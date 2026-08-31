@@ -81,6 +81,30 @@ def score(q: str, it: dict) -> tuple[int, str, str]:
     return best
 
 
+def _edit1(a: str, b: str) -> bool:
+    """兩字串是否相差至多一次編輯（插入／刪除／替換）。"""
+    if a == b:
+        return True
+    la, lb = len(a), len(b)
+    if abs(la - lb) > 1:
+        return False
+    i = j = edits = 0
+    while i < la and j < lb:
+        if a[i] == b[j]:
+            i, j = i + 1, j + 1
+            continue
+        edits += 1
+        if edits > 1:
+            return False
+        if la > lb:
+            i += 1
+        elif la < lb:
+            j += 1
+        else:
+            i, j = i + 1, j + 1
+    return edits + (la - i) + (lb - j) <= 1
+
+
 def wrap(text: str, width: int, indent: str) -> str:
     """中文不能靠空白斷行，逐字累加寬度（全形算 2）。"""
     out, line, w = [], "", 0
@@ -160,6 +184,16 @@ def main() -> int:
         sc, field, matched = score(q, it)
         if sc:
             hits.append((sc, it, field, matched))
+
+    # 零結果才跑模糊比對（1 個字元差），避免每次查詢都做 O(n·m)。
+    # 學名很長又難拼，打錯一個字母就查無結果對門診沒幫助。
+    if not hits and len(q) >= 5:
+        for it in ing:
+            for cand in [it["n"], *it.get("al", [])]:
+                c = norm(cand)
+                if abs(len(c) - len(q)) <= 1 and _edit1(c, q):
+                    hits.append((10, it, "學名（近似）", cand))
+                    break
     if not hits and not args.all:
         allx = load("all.json")["ing"]
         n = sum(1 for it in allx if score(q, it)[0])
