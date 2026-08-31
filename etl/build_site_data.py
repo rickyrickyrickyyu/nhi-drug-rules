@@ -28,7 +28,7 @@ from lib.section import code_tuple  # noqa: E402
 TODAY = date.today().isoformat()
 
 
-def slim(ing: dict, products: dict) -> dict:
+def slim(ing: dict, products: dict, mentions: dict) -> dict:
     """搜尋列所需的最小欄位。欄名縮寫是刻意的 —— 45k 筆時省 25% 體積。"""
     return {
         "k": ing["inn"],
@@ -57,6 +57,9 @@ def slim(ing: dict, products: dict) -> dict:
             for rt, r in ing["routes"].items()
         ],
         "dr": ing["derm_reasons"],
+        # 健保「給付規定章節」欄有缺漏（實測 bimekizumab、amorolfine 等），
+        # 條文內文卻列有藥名。當線索提供，UI 必須與正式章節分開標示。
+        "mn": mentions.get(ing["inn"], {}),
     }
 
 
@@ -71,11 +74,13 @@ def gz_size(path: Path) -> float:
 
 def main() -> int:
     products = json.loads((STAGING / "products.json").read_text(encoding="utf-8"))
+    mpath = STAGING / "mentions.json"
+    mentions = json.loads(mpath.read_text(encoding="utf-8")) if mpath.exists() else {}
     ingredients = json.loads((STAGING / "ingredients.json").read_text(encoding="utf-8"))
     rules = json.loads((STAGING / "rules.json").read_text(encoding="utf-8"))
 
-    derm = [slim(i, products) for i in ingredients.values() if i["derm"]]
-    allx = [slim(i, products) for i in ingredients.values()]
+    derm = [slim(i, products, mentions) for i in ingredients.values() if i["derm"]]
+    allx = [slim(i, products, mentions) for i in ingredients.values()]
     derm.sort(key=lambda x: x["n"])
     allx.sort(key=lambda x: x["n"])
 

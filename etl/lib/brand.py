@@ -96,6 +96,12 @@ def zh_alias(name_zh: str) -> str | None:
     """
     for m in _RE_PAREN.findall(name_zh or ""):
         t = m.strip()
-        if 2 <= len(t) <= 8 and not any(c.isdigit() for c in t):
-            return t
+        if not (2 <= len(t) <= 8) or any(c.isdigit() for c in t):
+            continue
+        # 括號裡常常是廠商、國別或劑型註記而非藥名俗稱
+        # （"Ganciclovir（義大利廠）" 會被誤收成中文俗稱）
+        if any(k in t for k in ("廠", "公司", "股份", "有限", "藥業", "製藥",
+                                "進口", "分裝", "國", "版", "型")):
+            continue
+        return t
     return None

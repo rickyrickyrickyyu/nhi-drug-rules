@@ -8,6 +8,7 @@ refresh:            ## 抓最新資料 → 解析 → 驗證 → promote
 	python3 etl/normalize_drugs.py
 	python3 etl/parse_rules.py
 	python3 etl/tag_derm.py
+	python3 etl/mentions.py
 	python3 etl/diff_rules.py
 	python3 etl/build_site_data.py
 	python3 etl/validate.py
@@ -16,14 +17,16 @@ refresh:            ## 抓最新資料 → 解析 → 驗證 → promote
 gates:              ## 只跑驗證閘門
 	python3 etl/validate.py
 
-verify:             ## 逐藥比對條文原文 + 搜尋命中測試
+verify:             ## 逐藥比對條文原文 + 分類驗證 + 搜尋命中測試
 	python3 tests/verify_drugs.py
+	python3 tests/verify_categories.py
 	node tests/search.test.mjs
 
 rebuild:            ## 用既有 raw 檔重跑，不重新下載
 	python3 etl/normalize_drugs.py
 	python3 etl/parse_rules.py
 	python3 etl/tag_derm.py
+	python3 etl/mentions.py
 	python3 etl/diff_rules.py
 	python3 etl/build_site_data.py
 	python3 etl/validate.py

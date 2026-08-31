@@ -122,7 +122,29 @@ def wrap(text: str, width: int, indent: str) -> str:
     return ("\n" + indent).join(out)
 
 
-def show_section(code: str, rules: dict, full: bool, width: int) -> None:
+def pick_clauses(lines: list[str], inn: str, n: int) -> tuple[list[str], int, bool]:
+    """挑出與該學名最相關的段落。
+
+    10.7.1.1. 同時規範 acyclovir、famciclovir、valaciclovir，條文第 1 項整段
+    都在講 acyclovir。查 famciclovir 卻先看到 acyclovir 的適應症清單，
+    在門診是會誤導的 —— 所以先找提到該學名的那一段，從那裡開始顯示。
+    """
+    if not lines:
+        return [], 0, False
+    base = inn.split(" (")[0].lower()
+    # 學名在條文裡可能是英文，也可能只有詞幹（famciclovir / Famciclovir；）
+    start = next((i for i, ln in enumerate(lines) if base[:8] in ln.lower()), 0)
+    # 往前退到該段落的開頭（編號行）
+    while start > 0 and not re.match(r"^\s*\d+\s*[.、]", lines[start]):
+        prev = start - 1
+        if re.match(r"^\s*\d+\s*[.、]", lines[prev]):
+            start = prev
+            break
+        start = prev
+    return lines[start:start + n], start, start > 0
+
+
+def show_section(code: str, rules: dict, full: bool, width: int, inn: str = "") -> None:
     sec = rules.get(code)
     if not sec:
         print(f"    {DIM}{code}（條文未載入）{RESET}")
@@ -156,11 +178,18 @@ def show_section(code: str, rules: dict, full: bool, width: int) -> None:
     body = sec.get("text", "") if sec.get("raw") else "\n".join(
         c["text"] for c in sec.get("clauses", []))
     lines = [ln for ln in body.splitlines() if ln.strip()]
-    shown = lines if full else lines[:6]
+    if full:
+        for ln in lines:
+            print(f"      {wrap(ln, width - 8, ' ' * 6)}")
+        return
+    shown, start, skipped = pick_clauses(lines, inn, 6)
+    if skipped:
+        print(f"      {DIM}…（跳過前 {start} 行，以下為與 {inn.split(' (')[0].title()} 相關的段落）{RESET}")
     for ln in shown:
         print(f"      {wrap(ln, width - 8, ' ' * 6)}")
-    if not full and len(lines) > 6:
-        print(f"      {DIM}… 還有 {len(lines) - 6} 行，加 --full 看完整條文{RESET}")
+    rest = len(lines) - start - len(shown)
+    if rest > 0:
+        print(f"      {DIM}… 還有 {rest} 行，加 --full 看完整條文{RESET}")
 
 
 def main() -> int:
@@ -238,6 +267,12 @@ def main() -> int:
             derm_secs, other_secs = r.get("sd", []), r.get("so", [])
             if not derm_secs and not other_secs:
                 print(f"    {DIM}無個別給付規定章節（仍須符合仿單適應症與給付規定通則）{RESET}")
+                mn = it.get("mn") or {}
+                codes = [*mn.get("listed", []), *mn.get("referenced", [])][:12]
+                if codes:
+                    print(f"    {DIM}條文中出現本藥名稱的章節：{' '.join(codes)}{RESET}")
+                    print(f"    {DIM}（可能是適用藥品、複方成分或前置治療條件，"
+                          f"非健保核定本藥適用該章節，請查閱原文）{RESET}")
                 continue
             if not derm_secs and other_secs:
                 print(f"    {YEL}本劑型無皮膚科適應症章節；健保給付之其他科別適應症如下{RESET}")
@@ -251,7 +286,7 @@ def main() -> int:
                                 x["code"]: x for x in load(f"rules/ch{ch}.json")["sections"]}
                         except SystemExit:
                             rules_cache[ch] = {}
-                    show_section(code, rules_cache[ch], args.full, width)
+                    show_section(code, rules_cache[ch], args.full, width, it["k"])
 
             render(derm_secs)
             if other_secs and derm_secs:

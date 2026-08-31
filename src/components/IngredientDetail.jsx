@@ -36,6 +36,9 @@ export default function IngredientDetail({ item }) {
   // 有章節但沒有皮膚科章節 —— rituximab 就是這種：健保只給類風濕性關節炎與
   // 淋巴瘤，沒有天疱瘡。醫師最需要知道的就是這件事，不能只是靜靜地列出來。
   const noDermSection = routeSections.length > 0 && own.length === 0;
+  const mentionCodes = [
+    ...(item.mn?.listed ?? []), ...(item.mn?.referenced ?? []),
+  ].slice(0, 12);
   // 有列價的排前面：未列價的多半已無流通，醫師要先看到真正開得到的
   const allRouteItems = (products?.items ?? []).filter((p) => p.route === tab);
   const routeItems = allRouteItems.filter((p) => p.price);
@@ -79,6 +82,31 @@ export default function IngredientDetail({ item }) {
           {routeSections.length === 0 ? (
             <div className="bg-white rounded-xl border border-slate-200 p-4">
               <div className="font-semibold">本劑型無個別給付規定章節</div>
+              {mentionCodes.length > 0 && (
+                <div className="mt-2 text-sm bg-slate-50 rounded-lg px-3 py-2">
+                  <div className="font-medium text-slate-700">條文中出現本藥名稱的章節</div>
+                  <div className="mt-1 flex flex-wrap gap-1.5">
+                    {mentionCodes.map((c) => (
+                      <button
+                        key={c}
+                        type="button"
+                        onClick={() => go(`#/s/${c.replace(/\.$/, '').replaceAll('.', '-')}`)}
+                        className="font-mono text-xs px-2 py-0.5 rounded border border-slate-300 hover:border-brand-600"
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </div>
+                  {/* 實測過的反例：12.4. 是「ciprofloxacin + hydrocortisone 耳滴劑」，
+                      名稱出現不代表 hydrocortisone 本身適用；10.6.5. 只涵蓋
+                      amphotericin B 的 liposomal 劑型。措辭不能給暗示。 */}
+                  <p className="mt-1.5 text-[11px] text-slate-500 leading-relaxed">
+                    健保「給付規定章節」欄未指定本藥，但上列章節的條文中出現本藥名稱。
+                    可能是適用藥品、複方成分，也可能只是前置治療條件或其他劑型的規定
+                    —— <b>並非健保核定本藥適用該章節</b>，請點開查閱原文自行判斷。
+                  </p>
+                </div>
+              )}
               <p className="text-sm text-slate-600 mt-1.5 leading-relaxed">
                 健保藥品主檔中，此劑型的品項未標註任何給付規定章節碼，代表沒有針對本品的
                 <b>專章限制</b>（例如事前審查、專科限制、療程上限）。
@@ -99,13 +127,13 @@ export default function IngredientDetail({ item }) {
                   </p>
                 </div>
               )}
-              {own.map((c) => <RuleSectionPanel key={c} section={sections[c]} />)}
+              {own.map((c) => <RuleSectionPanel key={c} section={sections[c]} inn={item.k} />)}
               {other.length > 0 && (
                 <>
                   <div className="text-sm text-slate-500 pt-1">
                     {noDermSection ? '健保給付之其他科別適應症' : '其他科別的相關規定'}
                   </div>
-                  {other.map((c) => <RuleSectionPanel key={c} section={sections[c]} />)}
+                  {other.map((c) => <RuleSectionPanel key={c} section={sections[c]} inn={item.k} />)}
                 </>
               )}
             </>

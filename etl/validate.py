@@ -141,6 +141,15 @@ def run() -> list[Gate]:
     ]
     g.append(Gate(18, "相容表意文字", not compat, f"未正規化 {len(compat)} 節 {compat[:5]}"))
 
+    # 19 學名鍵不得夾中文
+    # 部分 分類分組名稱 用空白而非逗號分隔（'AMOROLFINE HCL 55.74MG/ML 外用液劑 5.0ML'），
+    # 中文劑型詞會黏進學名，把同一支藥拆成兩個 —— 其中一個帶章節、一個沒有。
+    cjk_keys = [
+        k for k in ings
+        if k[:1].isascii() and any("\u3400" <= ch <= "\u9fff" for ch in k)
+    ]
+    g.append(Gate(19, "學名鍵無中文", not cjk_keys, f"{len(cjk_keys)} 個 {cjk_keys[:5]}"))
+
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
         kb = len(gzip.compress((PUBLIC / "derm.json").read_bytes(), 9)) / 1024

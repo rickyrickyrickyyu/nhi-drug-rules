@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { rocToAd } from '../lib/format.js';
 
 const FLAG_BADGES = [
@@ -26,7 +27,26 @@ function annotate(text) {
   });
 }
 
-export default function RuleSectionPanel({ section }) {
+/**
+ * 挑出與該學名最相關的條文起點。
+ *
+ * 10.7.1.1. 同時規範 acyclovir、famciclovir、valaciclovir，第 1 項整段都在講
+ * acyclovir。查 famciclovir 的醫師先看到 acyclovir 的適應症清單，在門診會誤導。
+ */
+function relevantStart(clauses, inn) {
+  if (!inn || clauses.length <= 3) return 0;
+  const base = inn.split(' (')[0].toLowerCase().slice(0, 8);
+  const hit = clauses.findIndex((c) => c.text.toLowerCase().includes(base));
+  if (hit <= 0) return 0;
+  // 退回該段落的編號起點，免得從半句開始
+  for (let i = hit; i >= 0; i--) {
+    if ((clauses[i].level ?? 0) === 1) return i;
+  }
+  return hit;
+}
+
+export default function RuleSectionPanel({ section, inn }) {
+  const [expanded, setExpanded] = useState(false);
   if (!section) return null;
   const flags = section.flags ?? {};
 
@@ -109,13 +129,33 @@ export default function RuleSectionPanel({ section }) {
           </pre>
         </>
       ) : (
-        <div className="mt-3 text-[15px] leading-relaxed text-slate-800">
-          {(section.clauses ?? []).map((c, i) => (
-            <p key={i} className="whitespace-pre-wrap mb-1.5" style={{ paddingLeft: `${(c.level ?? 0) * 1.1}rem` }}>
-              {annotate(c.text)}
-            </p>
-          ))}
-        </div>
+        (() => {
+          const all = section.clauses ?? [];
+          const start = expanded ? 0 : relevantStart(all, inn);
+          const shown = all.slice(start);
+          return (
+            <div className="mt-3 text-[15px] leading-relaxed text-slate-800">
+              {start > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setExpanded(true)}
+                  className="mb-2 text-xs text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1.5 text-left w-full"
+                >
+                  ↑ 本節前 {start} 項規範其他藥品，已略過。點此顯示完整條文
+                </button>
+              )}
+              {shown.map((c, i) => (
+                <p
+                  key={start + i}
+                  className="whitespace-pre-wrap mb-1.5"
+                  style={{ paddingLeft: `${(c.level ?? 0) * 1.1}rem` }}
+                >
+                  {annotate(c.text)}
+                </p>
+              ))}
+            </div>
+          );
+        })()
       )}
 
       {section.rev?.length > 0 && (

@@ -58,6 +58,28 @@ def _strip_strength(s: str) -> str:
     return _RE_WS.sub(" ", s).strip(" ,;.")
 
 
+# 學名一律是拉丁字母，中文只會是劑型或分類詞
+_RE_CJK = re.compile(r"[\u3400-\u9fff]")
+
+
+def _cut_at_cjk(s: str) -> str:
+    """砍掉學名後面黏著的中文劑型詞。
+
+    ★ 部分 分類分組名稱 用空白而非逗號分隔：
+        'AMOROLFINE HCL 55.74MG/ML 外用液劑 5.0ML'   ← 沒有逗號
+        'AMOROLFINE , 外用軟膏劑 , 5.00 MG/GM'        ← 正常格式
+      前者 split(",")[0] 會拿到整串，剝掉劑量後剩 'AMOROLFINE HCL 外用液劑'，
+      同一支藥就被拆成兩個學名，其中一個還帶著 13.12. 的章節、另一個沒有。
+
+    整串都是中文時（'維生素 Vitamins'、'含ANTIHISTAMINE…之複方製劑'）是分類名
+    而非學名，保持原樣不動。
+    """
+    m = _RE_CJK.search(s)
+    if not m or m.start() == 0:
+        return s
+    return s[: m.start()].strip(" ,;.-")
+
+
 def canonicalize(raw: str, atc: str = "") -> str:
     """單一成分字串 → canonical inn_key。
 
@@ -70,6 +92,7 @@ def canonicalize(raw: str, atc: str = "") -> str:
 
     s = _strip_strength((raw or "").upper())
     s = _RE_LEAD_STRENGTH.sub("", s).strip()
+    s = _cut_at_cjk(s)
     if not s:
         return ""
 

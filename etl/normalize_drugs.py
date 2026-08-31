@@ -14,7 +14,9 @@ from __future__ import annotations
 
 import collections
 import csv
+import html
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -26,6 +28,27 @@ from lib.roc import roc_to_iso  # noqa: E402
 
 csv.field_size_limit(1 << 24)
 TODAY = date.today().isoformat()
+
+
+def _repair(nhi_name: str, tfda_name: str | None) -> tuple[str, bool]:
+    """修復掉字的品名。回傳 (品名, 是否修復過)。
+
+    健保檔的 '?' 在原始 UTF-8 位元組就是 0x3F —— 是健保署資料庫掉的字，
+    不是我們的解碼問題。多數是 ®（HALDOL? → HALDOL®），少數是罕用漢字
+    （"五洲"嘴? → "五洲"嘴疱）。食藥署許可證有完整字串，優先用它補。
+    """
+    # 健保檔另有 18 筆的品名夾著未解碼的 HTML 實體
+    # （'媚姿雅&reg;膠囊' 與 '&#31185;&#25035;'＝科懋）。unescape 對一般字串無害。
+    name = html.unescape((nhi_name or "").strip())
+    changed = name != (nhi_name or "").strip()
+    if not tfda.has_mojibake(name):
+        return name, changed
+    cand = html.unescape((tfda_name or "").strip())
+    if cand and not tfda.has_mojibake(cand):
+        return cand, True
+    # TFDA 也缺：只在問號緊接英數字時當成 ® 殘留移除，不臆測漢字
+    fixed = re.sub(r"(?<=[A-Za-z0-9])\?(?=\s|$|[A-Za-z0-9])", "", name).strip()
+    return (fixed, True) if fixed != name else (name, False)
 
 
 def _read_rows(path: Path):
@@ -133,16 +156,18 @@ def main() -> int:
         #   解碼問題，只能靠 TFDA 補。實測 100% 可修復。
         tf_rec = tfda.lookup(lic, tfda_idx) if lic else None
         tf_state = tfda.classify(tf_rec)
-        name_zh = cur["藥品中文名稱"]
-        name_zh_repaired = False
-        if tfda.has_mojibake(name_zh) and tf_rec:
-            cand = (tf_rec.get("中文品名") or "").strip()
-            if cand and not tfda.has_mojibake(cand):
-                name_zh, name_zh_repaired = cand, True
+
+        # 中英文品名都會掉字（同一批資料、同一個成因：® 被吃成 ASCII '?'）。
+        # 英文的 51 筆同樣先試 TFDA；TFDA 也壞掉時才把孤立的 '?' 當 ® 移除
+        # —— 不猜測字元，只拿掉明顯是符號殘留的那個問號。
+        name_zh, name_zh_repaired = _repair(cur["藥品中文名稱"], (tf_rec or {}).get("中文品名"))
+        name_en, name_en_repaired = _repair(cur["藥品英文名稱"], (tf_rec or {}).get("英文品名"))
         if name_zh_repaired:
             warn_counter["name_zh_repaired"] += 1
         elif tfda.has_mojibake(name_zh):
             warn_counter["name_zh_mojibake_unfixed"] += 1
+        if name_en_repaired:
+            warn_counter["name_en_repaired"] += 1
         if tf_state == "miss" and lic:
             warn_counter["tfda_join_miss"] += 1
         elif tf_state == "stale":
@@ -152,11 +177,11 @@ def main() -> int:
 
         products[code] = {
             "code": code,
-            "name_en": cur["藥品英文名稱"],
+            "name_en": name_en,
             "name_zh": name_zh,
             "name_zh_raw": cur["藥品中文名稱"],
             "name_zh_repaired": name_zh_repaired,
-            "brand_stem_en": brand.stem_en(cur["藥品英文名稱"]),
+            "brand_stem_en": brand.stem_en(name_en),
             "brand_stem_zh": stem_zh,
             "zh_mojibake": mojibake,
             "zh_alias": brand.zh_alias(cur["藥品中文名稱"]),
