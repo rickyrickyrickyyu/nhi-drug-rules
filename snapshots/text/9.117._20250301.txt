@@ -1,0 +1,31 @@
+9.117.Selinexor(如Xpovio)：(114/3/1) 
+1.與bortezomib 及dexamethasone 合併使用於先前已接受至少2種治療失
+敗之多發性骨髓瘤病人，且須具有良好日常體能狀態(ECOG<2)者。 
+2.須經事前審查核准後使用： 
+(1)初次申請以4個療程(每療程為5週)為限，且需同時符合下列Ⅰ.與Ⅱ.
+的條件： 
+I.具有下列任一疾病惡化的指標：病患開始治療前須在連續2次評估中均
+符合同一指標(但若為plamacytoma 體積增加，或是新產生的bone 
+lesion(s)或新plasmacytoma，則僅需1次評估)： 
+i.若前一線治療中M component 最低值≧5g/dL，血清M 蛋白需增加≧
+1g/dL；若前一線治療中M component 最低值＜5g/dL，血清M 蛋白需
+增加≧0.5g/dL。 
+ii.Urine M-protein 需增加≧0.2gm/24Hr，且需較前一線治療中的最低
+值增加≧25%。 
+iii.在non-secretary myeloma 病患，骨髓漿細胞(plasmacells)之比例
+絕對值增加≧10%，且需較前一線治療中的最低值增加≧25%。 
+iv.新產生的bone lesion(s)或plasmacytoma；且須經病理切片證實。
+v.Plasmacytoma 體積增加≧50%。 
+vi.周邊血液中漿細胞比例≧20%或漿細胞絕對值≧2000 cells/μL。 
+II.出現下列任一臨床症狀： 
+i. 新產生的bone lesion(s)或plasmacytoma；且須經病理切片證實。
+ii.Plasmacytoma 體積增加≧50%。 
+iii.高血鈣(corrected serumcalcium＞11.0mg/dL 或2.75mmol/L)。 
+iv.貧血(Hemoglobin 下降幅度≧2gm/dL 且無其他原因可以解釋)。 
+v. 腎功能惡化(eGFR 需下降幅度≧25%)，且無其他原因可以解釋。 
+vi. 出現其他end-organ dysfunctions。 
+(2)再次申請時必須確定paraprotein(M-protein)未上升(即表示對藥物有
+反應或為穩定狀態)；或對部分non-secretory type MM 病人以骨髓檢
+查plasma cell 為療效依據，證明為對藥物有反應或為穩定狀態，方可
+繼續使用。續用時的申請每次以4個療程為限。 
+(3)每人終生以8個療程為上限。 

@@ -1,0 +1,17 @@
+9.134.Encorafenib (如Braftovi):(115/5/1)
+1.與cetuximab 併用，作為具有BRAF V600E 突變的轉移性結腸直腸癌(CRC)
+成人病人之第二線治療，需同時符合下列條件：
+(1)曾接受bevacizumab 與FOLFIRI（Folinicacid/5-
+fluorouracil/irinotecan）或FOLFOX（Folinicacid/5-
+fluorouracil/oxaliplatin）或5-fluorouracil/leucovorin 合併使
+用之全身性療法。
+(2)未曾接受過抗表皮生長因子受體(anti-EGFR)藥品治療。
+(3)ECOG 分數≦2。
+(4)需檢附BRAF V600E 突變之基因檢測報告，且需符合全民健康保險藥
+品給付規定之通則十二。
+2.須經事前審查核准後使用，初次申請之療程以12週為限，之後每12週申請
+一次，再次申請時必須提出客觀影像學證據（如：影像學）證實無惡化，
+才可繼續使用。
+3.使用總療程以24週為上限。
+4.使用本品併用cetuximab 作為第二線治療，不得再申請給付抗表皮生長因
+子受體(anti-EGFR)藥品作為後續治療。

@@ -1,0 +1,106 @@
+name: monthly-update
+on:
+  schedule:
+    # UTC 5 日 21:00 = 台北 6 日 05:00。刻意不選 1 號：健保署月初資料 1–3 號還在滾動。
+    - cron: '0 21 5 * *'
+  workflow_dispatch:
+    inputs:
+      override_gate:
+        description: '人工確認後放行的 gate 編號，逗號分隔（例 6,10）'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: nhi-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v5
+      - name: 安裝 Python 依賴
+        run: uv pip install --system pymupdf pyyaml
+
+      - name: 抓取與建置
+        run: |
+          python3 etl/fetch_nhi_drugs.py
+          python3 etl/fetch_rule_pdfs.py
+          python3 etl/normalize_drugs.py
+          python3 etl/parse_rules.py
+          python3 etl/tag_derm.py
+          python3 etl/build_site_data.py
+
+      - name: 驗證閘門（fail-closed）
+        run: python3 etl/validate.py --override "${{ inputs.override_gate }}"
+
+      - name: 保留 staging 供人工檢視
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-${{ github.run_id }}
+          path: data/build/.staging
+
+      - name: promote（gate 全綠才搬）
+        run: python3 etl/promote.py
+
+      - name: commit
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # ★ 必須用 add -A：每月新下載的 snapshots/pdf、text、diff 全是 untracked，
+          #   git commit -am 只 stage 已追蹤檔案，快照機制會靜默失效。
+          git add -A
+          if git diff --cached --quiet; then
+            echo "無變更"
+          else
+            N=$(python3 -c "import json;d=json.load(open('data/build/fetch_events.json'));print(len(d['events']))")
+            git commit -m "chore(data): $(date +%Y-%m) 月更 — ${N} 個章節異動"
+            git push
+          fi
+
+      # ★ GITHUB_TOKEN 的 push 不會觸發其他 workflow（GitHub 防遞迴），
+      #   所以 build+deploy 必須併在同一個 workflow，不能指望 deploy.yml 自己跑。
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - name: 失敗時開 issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: `❌ ${new Date().toISOString().slice(0,7)} 月更失敗`,
+              body: `驗證閘門或抓取失敗，資料未更新（fail-closed，正式檔案未被修改）。\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

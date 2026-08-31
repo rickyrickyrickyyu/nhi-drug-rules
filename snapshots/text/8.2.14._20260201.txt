@@ -1,0 +1,34 @@
+8.2.14.Satralizumab(如Enspryng)、inebilizumab(如Uplizna)：(112/10/1、
+115/1/1、115/2/1) 
+1. Satralizumab 限用於治療泛視神經脊髓炎(neuromyelitis optica spectrum 
+disorder,NMOSD)之12 歲以上患者，另inebilizumab 限用於成人，且需同時
+符合下列條件： 
+(1) 經檢測為水通道蛋白4 自體抗體陽性(anti-aquaporin-4[AQP4] 
+antibody positive)。 
+(2) 使用至少3 個月免疫抑制療法後，如口服皮質類固醇、azathioprine 或
+mycophenolate mofetil，仍有疾病復發。 
+(3) 二年內曾發生二次以上需要救援治療的復發患者，且須符合以下條件(Ⅰ
++Ⅱ+Ⅲ或Ⅰ+Ⅱ+Ⅳ)(112/10/1、115/1/1、115/2/1) 
+I.有神經影像學(磁振造影)報告佐證其發作 
+II.發作時住院接受急性期治療 
+III.發作時EDSS(Expanded Disability Status Scale)分數增加，其定義
+為原先EDSS 為0 者須增加2 分以上，原先EDSS 大於0 者須增加1 分以
+上。 
+【EDSS：Expanded Disability Status Scale。擴展失能狀態量表，針
+對神經功能的表現評估。分數介於0 至10 分，0 分代表健康無失能狀
+態，10 分代表死亡。】 
+IV.發作時最佳矯正視力、辨色力與視野檢查呈現與視神經炎相關視覺損
+害加上視網膜斷層掃描儀(Optical Coherence Tomography)結構損傷
+之證據。 
+(4) 治療前之疾病嚴重度(EDSS)須小於等於6.5 分。 
+2. 須經事前審查核准後使用： 
+(1) 限由神經科、小兒神經科及眼科醫師開立處方。(112/10/1、115/1/1) 
+(2) 應併檢附病人完整視力、視野、MRI、整個用藥期間復發情形之相關完整
+病歷等資料。 
+(3) 初始給付期間以12 個月為限。 
+3. 續用標準：初始給付12 個月後，應每6 個月測量病人之EDSS 分數，且EDSS
+值≦6.5 分，始得續用，每次續用限6 個月。 
+4. 停用標準：使用satralizumab 或inebilizumab 後，病人疾病惡化，且EDSS
+≧8 分，或疾病年度發作頻率增加者，應停止使用。 
+5. Satralizumab 或inebilizumab 僅得擇一使用，惟在有耐受不良時方可轉換使
+用。 

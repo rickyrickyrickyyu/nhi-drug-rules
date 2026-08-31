@@ -1,0 +1,92 @@
+# 半年一次的完整校驗（1 月與 7 月）。
+#
+# 為什麼需要這條：月更是增量的 —— 只下載「檔名生效日有變」的章節。
+# 但健保署有前科會修訂條文卻不改檔名，那種靜默改檔增量模式抓不到。
+# 半年重抓全部 534 份 PDF 比對 sha256，才能確定本站條文與官方一致。
+name: full-refresh
+on:
+  schedule:
+    - cron: '0 21 5 1,7 *'   # UTC 1月/7月 5日 21:00 = 台北 6 日 05:00
+  workflow_dispatch:
+    inputs:
+      override_gate:
+        description: '人工確認後放行的 gate 編號（例 6,10）'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: nhi-data
+  cancel-in-progress: false
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: astral-sh/setup-uv@v5
+      - run: uv pip install --system pymupdf pyyaml
+
+      - name: 完整重抓與校驗
+        run: |
+          python3 etl/fetch_nhi_drugs.py
+          python3 etl/fetch_tfda.py
+          python3 etl/fetch_rule_pdfs.py --force   # ★ --force：全部 534 份重抓比對 sha256
+          python3 etl/normalize_drugs.py
+          python3 etl/parse_rules.py
+          python3 etl/tag_derm.py
+          python3 etl/diff_rules.py
+          python3 etl/build_site_data.py
+
+      - run: python3 etl/validate.py --override "${{ inputs.override_gate }}"
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-${{ github.run_id }}
+          path: data/build/.staging
+      - run: python3 etl/promote.py
+
+      - name: commit
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "無變更" || \
+            git commit -m "chore(data): $(date +%Y-%m) 半年完整校驗" && git push
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: ./dist }
+
+      - name: 失敗時開 issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: `❌ ${new Date().toISOString().slice(0,7)} 半年完整校驗失敗`,
+              body: `完整重抓或閘門失敗，資料未更新。\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
+
+  deploy:
+    needs: full
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

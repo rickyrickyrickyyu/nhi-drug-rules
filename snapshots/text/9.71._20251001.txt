@@ -1,0 +1,41 @@
+9.71. Venetoclax (如Venclexta)：(108/9/1、110/7/1、112/7/1、114/8/1、114/10/1) 
+1.單獨使用於具有17p 缺失的慢性淋巴球性白血病(CLL) 成年患者。（108/9/1、
+112/7/1、114/10/1) 
+(1)限先前曾接受至少1種包括alkylating agent 與anti-CD20 (如R-CVP、R-
+CHOP、rituximab 加bendamustine 等)的治療2個療程以上仍惡化或復發者。 
+(2)開始使用前之疾病狀態需出現下列任一情形： 
+Ⅰ.進行性的血液相惡化至Hb< 10.0gm/dL 或PLT<100K/uL，且無其他原因可以
+解釋。 
+Ⅱ.脾臟腫大超過左肋骨下緣6cm。 
+Ⅲ.淋巴結腫大，最長徑超過10cm。 
+Ⅳ.周邊血液淋巴球在2個月內增加50%以上，或倍增時間(doubling time)小於6
+個月。 
+Ⅴ.出現自體免疫併發症，且經類固醇治療無效。 
+Ⅵ.出現具症狀的淋巴結外病灶。 
+(3)需經事前審查核准後使用，每3個月需再次申請。再次申請時需檢附療效評估資
+料，若未達iwCLL(International Workshop on CLL)最新定義之partial 
+remission 或complete remission，則不予給付。 
+(4) 在具有17p 缺失病人，venetoclax、acalabrutinib、ibrutinib 及
+zanubrutinib 四者僅能擇一使用，唯有在出現無法忍受其副作用時方可互換。
+三者使用總療程合併計算，以全部24個月為上限。（108/9/1、112/7/1、
+114/10/1) 
+(5)每日至多處方4粒。 
+2.併用低劑量cytarabine 或azacitidine(除Winduza 及Azacitidine Lyophilized 
+Inj 100mg"GBC"以外)，使用於無法接受高強度化學治療之初診斷急性骨髓性白血
+病(AML)病人：(110/7/1、114/8/1) 
+(1)需具有下列I.或Ⅱ.的條件之一： 
+I.75歲以上。 
+Ⅱ.18歲以上但未滿75歲時，需ECOG performance status 為2或3，且符合下列
+任一條件者： 
+A.具有心臟衰竭治療病史，且left ventricle ejection fraction (LVEF)
+＜50%。 
+B.具慢性肺部疾病史，且 DLCO＜65%。 
+C.具肝功能異常：Bilirubin level 在1.5-3.0倍正常值間。 
+(2)需未曾因骨髓化生不良症候群(myelodysplastic syndrome, MDS)接受過
+azacitidine 治療者。 
+(3)需經事前審查核准後使用，每2個療程需再次申請；再次申請時需檢附療效評估
+
+資料，若病情惡化應即停止使用。 
+(4)若併用低劑量cytarabine，每日至多處方6粒，最多給付4個療程。若併用
+azacitidine 治療，每日至多處方4粒，最多給付6個療程。(110/7/1、114/8/1) 
+ 

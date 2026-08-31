@@ -1,0 +1,28 @@
+# Phase 0 spike：驗證 GitHub Actions 的美國 IP 能不能抓健保署資料。
+# 本機 curl 通不代表 CI 通，政府網站擋境外不罕見。這條不通，整個自動更新
+# 架構要改成「本機 make refresh + push」，所以必須在做其他事之前先確認。
+name: spike-fetch
+on:
+  workflow_dispatch:
+
+jobs:
+  spike:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 下載健保藥品主檔並印列數
+        run: |
+          set -euo pipefail
+          curl -sSL --fail \
+            -H "User-Agent: nhi-drug-rules/1.0 (+https://github.com/${{ github.repository }})" \
+            -o nhi.csv \
+            "https://info.nhi.gov.tw/api/iode0000s01/Dataset?rId=A21030000I-E41001-001"
+          echo "檔案大小: $(du -h nhi.csv | cut -f1)"
+          echo "列數: $(wc -l < nhi.csv)"
+          head -1 nhi.csv
+      - name: 抓一份給付規定 PDF
+        run: |
+          set -euo pipefail
+          curl -sSL --fail -o rule.pdf \
+            "https://info.nhi.gov.tw/api/INAE3000/INAE3000S01/getPDF?DurgFileName=13.4._20220301.pdf"
+          file rule.pdf

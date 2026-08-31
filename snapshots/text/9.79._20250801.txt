@@ -1,0 +1,48 @@
+9.79.Obinutuzumab(如Gazyva)：（109/4/1、113/2/1、114/8/1）
+1.限用於第一次接受含rituximab 治療後治療無效或治療結束後6個月
+內復發的濾泡性淋巴瘤(follicular lymphoma)患者。
+(1)需經事前審查核准後使用：
+Ⅰ.首次申請限6個療程(共8次治療)，且需與bendamustine 併用。
+Ⅱ.經治療後達partial remission 或complete remission 病患可
+續申請obinutuzumab 單一藥物維持治療，每次申請最多12個月
+(6個療程)，每12個月須進行疾病評估，若病情惡化應即停止使
+用。
+Ⅲ.每位病人最多給付24個月(12個療程)維持治療。
+(2)病患曾使用本藥物後再復發或惡化時，不得再申請使用。
+2.限與chlorambucil 併用於治療先前未曾接受過治療，且具有合併症
+(comorbidities)而不適合接受含fludarabine 治療的CD20陽性慢
+性淋巴球性白血病（CLL）患者。（113/2/1）
+(1)Rai Stage Ⅲ/Ⅳ(或Binet C 級)之CLL 病人。若用於Rai
+StageⅠ/Ⅱ(或Binet A/B 級)併有疾病相關免疫性症候(如自體免
+疫性溶血、免疫性血小板低下紫瘢症等)的病人時，需符合具有
+CD20陽性。
+(2)需經事前審查核准後使用，首次申請限6個療程(共8次治療)。
+(3)病患曾使用本藥物後再復發或惡化時，不得再申請使用。
+3.限與zanubrutinib 併用，治療先前曾接受至少兩線(每線至少4個療
+程)全身性治療無效或復發的濾泡性淋巴瘤成人病人。(114/8/1)
+(1)需曾接受過至少一種anti-CD20 monoclonal antibody 及一種靜
+脈注射型之alkylating agent 治療。
+(2)需符合WHO 淋巴瘤分類為I、II 或IIIa 期的診斷。
+(3)開始使用前之疾病狀態需出現下列任一情形：
+I.
+有單一腫瘤直徑7公分以上者；
+II. 有三顆以上之腫瘤其直徑大於3公分以上者；
+III.脾臟腫大，其長度16公分以上者；
+IV. 對vitalorgans 造成擠壓者；
+V.
+周邊血中出現淋巴球增生超過5000/mm
+3者；
+VI. 出現任一系列血球低下者（platelet<100,000/ mm
+3，或
+Hb<10gm/dL，或absolute neutrophil count<1500/ mm
+3)。
+VII.B symptoms。
+(4)需經事前審查核准後使用，每3 個月需再次申請，再次申請時需
+檢附療效評估資料，若未達partial remission 或complete
+remission，則不予給付。
+(5)總療程以全部24個月為上限。Obinutuzumab 總療程以給付18支為
+限。
+4.限以obinutuzumab 1,000mg 作為glofitamab 用於治療先前曾接受至
+少兩線全身治療之復發性或難治性瀰漫性大B 細胞淋巴瘤(DLBCL)
+的成人病人之前置治療，需與glofitamab 首次治療同時申請事前審
+查並經核准後使用。(114/8/1）

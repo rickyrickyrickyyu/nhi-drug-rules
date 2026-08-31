@@ -1,0 +1,46 @@
+1.3.6.1.Modafinil(如Provigil)：(96/2/1、109/12/1、110/12/1、
+112/3/1) 
+同時需符合下列條件： 
+1.限猝睡症(narcolepsy)患者有日間過度睡眠症狀。(109/12/1） 
+2.猝睡症之診斷需符合ICSD-3診斷準則（2014國際睡眠障礙分類標準）
+為Narcolepsy Type 1及Type 2，如下：(109/12/1） 
+Ⅰ.病人必須出現3個月以上白天不可擋的嗜睡症狀。 
+Ⅱ.以下兩項至少出現一項以上。 
+(i)Type I Narcolepsy 必須出現猝倒（cataplexy）及多次入睡睡眠檢查
+（Multiple Sleep Latency Test,MSLT）出現的平均入睡潛伏期
+（sleep latency）小於等於8分鐘，且有兩次以上的快速動眼期
+（SOREMPs）；或者前一晚多頻睡眠檢查 (Polysomnography,PSG)的快
+速動眼期潛伏期小於15分鐘，可取代一次白天的快速動眼期
+（SOREMP）。 
+Type 2 Narcolepsy 則沒有猝倒（cataplexy），但其多頻睡眠檢查 
+(Polysomnography,PSG)及多次入睡睡眠檢查（Multiple Sleep 
+Latency Test,MSLT）準則如前述。 
+(ii)Type 1 Narcolepsy 病人腦脊髓液中的Hypocretin-1濃度低於
+110pg/mL 或小於1/3正常人的平均濃度（是以immunoreactivity 測
+定）。 
+Type 2 Narcolepsy 病人腦脊髓液中的Hypocretin-1是大於110 
+pg/mL 或大於1/3正常人的平均濃度，亦或是無法檢測Hypocretin-
+1。亦可參考血液 HLA-DQB1*0602檢驗是否為positive，來協助診斷
+或分類猝睡症類型。 
+3.日間過度睡眠持續至少3個月以上，應有客觀評估，如成人的愛普沃斯
+嗜睡量表ESS (Epworthsleepiness Scale)需高於9分，或兒童青少年
+日間嗜睡量表PDSS(Pediatric daytime sleepiness Scale)或史丹福
+嗜睡評量表SSS(Stanfordsleepiness scale)。病患嗜睡症狀及MSLT
+的結果必須排除其他原因，且需排除阻塞性睡眠呼吸障礙(obstructive 
+sleep apnea)、週期性下肢抽動（Periodic leg movementdisorder）
+和睡眠相位後移症候群（Delayed sleep phase syndrome）等造成日間
+過度睡眠之可能性。(109/12/1） 
+4.限有睡眠實驗室之醫院之神經內科、精神科、胸腔內科、耳鼻喉科、兒
+童神經科及兒童胸腔科專科醫師使用。(110/12/1) 
+5.經事前審查核准後使用。首次申請時需檢附以下資料：1.病歷紀錄  
+2.ICSD II 診斷  3.PSG 報告4.MSLT 報告5.日間過度睡眠量表，如
+ESS、PDSS、SSS 等。使用後每3-6個月施測日間過量睡眠症狀量表
+ESS、或PDSS、SSS，以評估療效。 
+
+6.使用期程：第1次申請獲准1年後，需重新進行MSLT 檢查以評估客觀療
+效，並同時檢附過去1年之ESS 或PDSS、SSS。連續2年申請，如病人服
+藥順從性高，且藥效確定，則可每次核准3年。否則仍需每年申請1次，
+若 ESS 或 MSLT 其中之一顯示療效不佳，應即停用。 
+7.限制每日最大劑量 200-400mg。(109/12/1） 
+8.Modafinil(如Provigil)與pitolisant(如Wakix)兩者限擇一使用。
+(112/3/1) 

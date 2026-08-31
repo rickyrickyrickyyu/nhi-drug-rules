@@ -1,0 +1,9 @@
+# 原始下載檔一律不進 git：96MB 健保 CSV 與 79MB TFDA JSON 每月可重抓，
+# 進 history 一年就是 1GB 以上，且沒有任何 provenance 價值（快照才有）。
+data/raw/
+data/build/
+node_modules/
+dist/
+.DS_Store
+*.pyc
+__pycache__/

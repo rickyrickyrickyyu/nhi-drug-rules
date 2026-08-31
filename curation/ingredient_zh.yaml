@@ -1,0 +1,21 @@
+# 學名的中文俗稱／口語稱呼。門診常用口語，是搜尋命中率的關鍵。
+# 自動萃取（藥品中文名括號內容，同 INN 出現 >=2 次）會補進來，這裡放人工加的。
+version: 1
+
+zh_common:
+  ISOTRETINOIN: [口服A酸, A酸, 異維A酸, 羅可坦]
+  TRETINOIN: [外用A酸, A酸]
+  ADAPALENE: [愛達帕林, 痘膚潤]
+  ACITRETIN: [新體康, 銀屑病A酸]
+  ACICLOVIR: [艾賽可威, 抗疱疹藥]
+  VALACICLOVIR: [祛疹易]
+  DUPILUMAB: [杜避炎, 異膚生物製劑]
+  TERBINAFINE: [療黴舒, 灰指甲藥]
+  ITRACONAZOLE: [適撲諾]
+  CICLOSPORIN: [環孢素, 新體睦]
+  METHOTREXATE: [MTX, 滅殺除癌錠]
+  HYDROXYCHLOROQUINE: [必賴克廔, 奎寧]
+  DAPSONE: [得普松]
+  PERMETHRIN: [疥瘡藥, 百滅寧]
+  MINOXIDIL: [落健, 生髮水]
+  FINASTERIDE: [柔沛, 波斯卡]

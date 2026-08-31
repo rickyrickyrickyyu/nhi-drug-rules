@@ -1,0 +1,61 @@
+4.2.4.類血友病治療藥品，VWF/FVIII 濃縮製劑(如 Haemate P, Alphanate 等)、 
+Desmopressin(DDAVP) 等：(103/4/1) 
+1.各分型類血友病治療規定： 
+(1)第一型類血友病(Type 1 von-Willebrand Disease)： 
+Ⅰ.以DDAVP 治療為原則，如患者VWF:RCo ＜10 IU/dL，則不建議使用DDAVP。 
+Ⅱ.輕度出血或小手術處置：使用DDAVP，治療目標為VWF:RCo 及VIII:C 都上升到
+30-50 IU/dL 以上，維持1-5 天，若DDAVP 治療無效或有禁忌症時可使用
+VWF/FVIII 濃縮製劑。 
+Ⅲ.嚴重出血治療或重大手術處置：使用VWF/FVIII 濃縮製劑，治療目標為VWF:RCo
+及VIII:C 起初濃度都上升到至少100 IU/dL 以上，接下來劑量於7-10 日內維
+持VWF:RCo 及VIII:C 最低濃度(trough level)都在50IU/dL 以上。 
+IV.如重複給予DDAVP 使得藥物效果降低，或已知對DDAVP 治療無效，應使用
+VWF/FVIII 濃縮製劑。 
+(2)第二型類血友病(Type 2 von-Willebrand Disease)： 
+Ⅰ.Type 2A 及 2M VWD 
+i.輕度出血治療或小手術處置：如病人對於DDAVP 治療有效，應以DDAVP 治療
+為原則。如使用VWF/FVIII 濃縮製劑，治療目標為VWF:RCo 及VIII:C 都上升
+到30-50 IU/dL 以上，維持1-5 天。 
+ii.嚴重出血治療或重大手術處置：依Type 1 VWD 之III 規定處置。 
+Ⅱ.Type 2B VWD 
+i.DDAVP 不適合使用於Type 2B VWD。 
+ii.輕度出血或小手術處置：使用VWF/FVIII 濃縮製劑，治療目標為VWF:RCo 及
+VIII:C 都上升到30-50 IU/dL 以上，維持1-5 天。 
+iii.嚴重出血治療或重大手術處置：依Type 1 VWD 之III 規定處置，並且應注
+意血小板濃度，必要時應給予血小板輸注。 
+Ⅲ.Type 2N VWD 
+i.使用DDAVP 治療可能提升VIII:C，但VIII:C 半衰期會減短。 
+ii.輕度出血或小手術處置：使用DDAVP 或VWF/FVIII 濃縮製劑，治療目標為
+VIII:C 上升到30-50 IU/dL 以上，維持1-5 天。 
+iii.嚴重出血治療或重大手術處置：使用VWF/FVIII 濃縮製劑，治療目標為
+VIII:C 起初濃度上升到至少100 IU/dL 以上，接下來劑量於7-10 日內維持
+VIII:C 最低濃度在50 IU/dL 以上。 
+(3)第三型類血友病(Type 3 von-Willebrand Disease)： 
+Ⅰ.原則應使用VWF/FVIII 濃縮製劑，DDAVP 則不應使用。 
+Ⅱ.輕度出血或小手術處置：使用VWF/FVIII 濃縮製劑，治療目標為VWF:RCo 及
+VIII:C 都上升到30-50 IU/dL 以上，維持1-5 天。 
+Ⅲ.嚴重出血治療或重大手術處置：依Type 1 VWD 之III 規定處置，惟Alphanate
+不適用於Type 3 VWD 病人進行重度手術。 
+2.VWD 患者輔助治療及懷孕患者處置： 
+(1) 血小板輸注可以考慮使用於已使用足量VWF/FVIII 濃縮製劑達成治療目標濃度但
+
+仍有出血之患者，尤其是腸胃道出血時。 
+(2) 冷凍沉澱品(Cryoprecipitate)可以考慮使用於已充分使用其他各種藥物治療但
+仍無法控制的頑固性出血。 
+(3) 抗纖維蛋白溶解製劑(如tranexamic acid)可以單獨使用於黏膜輕微出血(如月經
+量過多、口腔出血、流鼻血)，如果治療無效，應合併使用DDAVP 或VWF/FVIII 濃
+縮製劑治療。 
+(4) 拔牙時大多數病患可使用單次DDAVP加上tranexamic acid治療，不適合使用DDAVP
+患者則用單次VWF/FVIII 濃縮製劑加上tranexamic acid 治療。 
+(5) 月經量過多患者可單獨使用雌性激素/黃體素製劑或tranexamic acid 治療，如果
+無效時則需合併使用DDAVP 或VWF/FVIII 濃縮製劑治療。 
+(6) VWD 患者懷孕生產治療建議： 
+Ⅰ.DDAVP 避免使用於子癲前症或體液增加(fluid retention)患者。 
+Ⅱ.Type 1 VWD：分娩時大多數不需要預防性治療。 
+Ⅲ.Type 2 VWD：剖腹生產或自然生產預期要進行episiotomy 時，要給予藥物預防
+性治療。 
+Ⅳ.Type 3 VWD：各種生產方式都需要給予藥物預防性治療。 
+Ⅴ.對於Type 1 及Type 2 VWD 的懷孕婦女，應該要在懷孕第三期與生產前檢查
+VWF:RCo 與VIII:C。如果VWF:RCo <50IU/dL，產程期間則應該給予藥物預防治
+療。Type 2B 懷孕婦女應特別注意血小板有無減少。 
+Ⅵ.生產後至少應該維持VWF:RCo > 50IU/dL 3-5 天。 

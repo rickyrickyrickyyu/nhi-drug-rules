@@ -1,0 +1,104 @@
+# 皮膚科標籤規則。三路 OR，任一命中即標記，並記錄命中理由供稽核。
+version: 1
+
+# ── 1. ATC 前綴 ────────────────────────────────────────
+atc_always:
+  - D          # 皮膚科用藥全部
+  - J05AB      # aciclovir / valaciclovir / famciclovir
+  - J02A       # 全身性抗黴菌
+atc_review:    # 命中則進 review queue，人工決定是否加白名單（跨科藥）
+  - L04A       # 免疫抑制劑／生物製劑（含乾癬、AD 用藥，但也含移植科）
+  - H02AB      # 全身性類固醇
+  - L01        # 化療（MF/CTCL 會用）
+
+# ATC D 底下要排除的：沒有 blocklist 會塞進兩百個優碘與紗布
+atc_block:
+  - D08A       # 消毒防腐劑
+  - D09A       # 醫療用敷料
+  - D02A       # 潤膚保護劑（凡士林之類）
+
+# ── 2. 章節碼前綴（★ 一律帶尾點，見 lib/section.match_prefix）──
+# 這份清單同時決定「是否標為皮膚科」與「條文顯示時排在前面還是歸到其他科別」。
+# 每一條都逐字讀過條文才列入 —— 8.2.4.x 底下 RA、僵直性脊椎炎、克隆氏症、
+# 潰瘍性結腸炎、葡萄膜炎、新冠都混在一起，用 "8.2.4." 一個前綴全收會讓
+# 皮膚科醫師查 upadacitinib 時看到一堆腸炎條文。
+sections:
+  - "13."          # 皮膚科專節全部
+  - "10.6."        # 抗黴菌（terbinafine 甲癬、itraconazole、fluconazole）
+  - "10.7.1."      # 抗疱疹病毒（全身 .1 / 外用 .2）
+  - "14.2."        # Acyclovir 眼用製劑（aciclovir 的劑型之一）
+  - "8.2.1."       # Cyclosporin：條文明列「嚴重乾癬或異位性皮膚炎」
+  - "8.2.4.4."     # 乾癬性關節炎－周邊關節炎
+  - "8.2.4.5."     # 乾癬性關節炎－脊椎病變
+  - "8.2.4.6."     # 乾癬（含 8.2.4.6.1. 與 8.2.4.6.2. 膿疱性乾癬 GPP）
+  - "8.2.4.11."    # Guselkumab 掌蹠膿皰症
+  - "8.2.4.14."    # Secukinumab 化膿性汗腺炎
+  - "8.2.16."      # Apremilast / deucravacitinib 斑塊乾癬
+# 刻意排除（查證條文後確認非皮膚科，會被歸到「其他科別」區塊顯示）：
+#   8.2.2.1./8.2.2.2. tacrolimus 口服與注射 → 純器官移植（外用 tacrolimus 在 13.10.）
+#   8.2.4.1./8.2.4.2.  類風濕性關節炎
+#   8.2.4.3.           僵直性脊椎炎
+#   8.2.4.7.x          克隆氏症      8.2.4.9.x  潰瘍性結腸炎
+#   8.2.4.8.           幼年型慢性關節炎  8.2.4.10.  小兒葡萄膜炎
+#   8.2.4.12./8.2.4.13. 新型冠狀病毒（8.2.4.13. baricitinib 是新冠，不是圓禿）
+#   8.2.7.             rituximab 用於類風濕性關節炎  9.20. rituximab 抗癌瘤
+#     → 台灣健保 rituximab 並未給付天疱瘡，這個落差正是本站要讓醫師看見的
+#   8.2.13. belimumab 狼瘡腎炎   8.2.14. satralizumab NMOSD
+
+# ── 3. 人工白名單：ATC 與章節都抓不到，但皮膚科天天開 ──
+whitelist_inn:
+  - METHOTREXATE
+  - AZATHIOPRINE
+  - MYCOPHENOLATE MOFETIL
+  - MYCOPHENOLATE SODIUM
+  - HYDROXYCHLOROQUINE
+  - DAPSONE
+  - COLCHICINE
+  - THALIDOMIDE
+  - DOXYCYCLINE
+  - MINOCYCLINE
+  - TETRACYCLINE
+  - AZITHROMYCIN
+  - CEPHALEXIN
+  - SPIRONOLACTONE          # 女性痤瘡
+  - PROPRANOLOL             # 嬰兒血管瘤
+  - FINASTERIDE
+  - DUTASTERIDE
+  - MINOXIDIL
+  - TRANEXAMIC ACID         # 肝斑
+  - CETIRIZINE
+  - LEVOCETIRIZINE
+  - FEXOFENADINE
+  - BILASTINE
+  - LORATADINE
+  - DESLORATADINE
+  - HYDROXYZINE
+  - GABAPENTIN              # PHN、神經性搔癢
+  - PREGABALIN
+  - PREDNISOLONE
+  - IMMUNOGLOBULIN          # IVIG
+  - RITUXIMAB
+
+# ── 金絲雀：這 20 個必須永遠在皮膚科子集內，缺一即 fail ──
+# 純統計閘門抓不到「yaml 前綴寫錯一個字導致生物製劑全部消失」，這個可以。
+canary_inn:
+  - ISOTRETINOIN
+  - DUPILUMAB
+  - SECUKINUMAB
+  - CICLOSPORIN
+  - METHOTREXATE
+  - TERBINAFINE
+  - ITRACONAZOLE
+  - ACICLOVIR
+  - VALACICLOVIR
+  - DOXYCYCLINE
+  - HYDROXYCHLOROQUINE
+  - DAPSONE
+  - TACROLIMUS
+  - CLOBETASOL (PROPIONATE)
+  - BETAMETHASONE (VALERATE)
+  - CALCIPOTRIOL
+  - MINOXIDIL
+  - FINASTERIDE
+  - PROPRANOLOL
+  - PERMETHRIN

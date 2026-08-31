@@ -1,0 +1,133 @@
+# 酯基／前驅物修飾必須保留在學名主鍵裡的成分。
+#
+# 為什麼：外用類固醇的酯基決定效價分級，不是同一個藥。
+#   betamethasone valerate      Class III
+#   betamethasone dipropionate  Class I–II   ← 差兩級
+#   hydrocortisone acetate      Class VII
+#   hydrocortisone butyrate     Class V
+#   fluticasone propionate / furoate 根本是兩個不同分子
+# 把它們合併成一張「betamethasone」卡片，對皮膚科是明確有害的錯誤。
+#
+# 清單內的 base：inn_key = "<base> (<ester>)"，酯基保留
+# 清單外的 base：括號內容視為鹽類，剝除後歸併
+version: 1
+
+preserve_ester:
+  - BETAMETHASONE
+  - HYDROCORTISONE
+  - CLOBETASOL
+  - CLOBETASONE
+  - MOMETASONE
+  - FLUTICASONE
+  - TRIAMCINOLONE
+  - DESONIDE
+  - DESOXIMETASONE
+  - PREDNICARBATE
+  - METHYLPREDNISOLONE      # aceponate 是外用、base 是口服/針
+  - DIFLUCORTOLONE
+  - FLUOCINOLONE
+  - FLUOCINONIDE
+  - HALCINONIDE
+  - HALOBETASOL
+  - ERYTHROMYCIN            # estolate/stearate 口服吸收差異大
+# 刻意不列 DEXAMETHASONE / PREDNISOLONE / BECLOMETHASONE / BUDESONIDE：
+# 它們的 sodium phosphate、succinate 是全身用的鹽類，不像外用類固醇的酯基會改變效價分級，
+# 保留只會把同一支藥拆成兩張卡片。
+
+# 這些括號內容一律視為鹽類，任何 base 都可剝
+salt_tokens:
+  - HYDROCHLORIDE
+  - DIHYDROCHLORIDE
+  - HCL
+  - HYDROBROMIDE
+  - SODIUM
+  - DISODIUM
+  - POTASSIUM
+  - CALCIUM
+  - MAGNESIUM
+  - SULFATE
+  - SULPHATE
+  - NITRATE
+  - CHLORIDE
+  - BROMIDE
+  - MESYLATE
+  - MESILATE
+  - BESYLATE
+  - TOSYLATE
+  - MALEATE
+  - FUMARATE
+  - TARTRATE
+  - CITRATE
+  - LACTATE
+  - GLUCONATE
+  - CARBONATE
+  - MONOHYDRATE
+  - DIHYDRATE
+  - TRIHYDRATE
+  - ANHYDROUS
+  - HYDRATED
+  - PHOSPHATE
+  - SUCCINATE
+  - SODIUM PHOSPHATE
+
+# ★ 真正會改變外用效價分級的酯基。只有這些會被保留進主鍵；
+#   其餘括號內容與尾綴（含 PHOSPHATE、SUCCINATE 這類全身用鹽）一律當鹽類剝除。
+ester_tokens:
+  - VALERATE
+  - 17-VALERATE
+  - DIPROPIONATE
+  - PROPIONATE
+  - BUTYRATE
+  - 17-BUTYRATE
+  - FUROATE
+  - ACEPONATE
+  - BENZOATE
+  - ACETONIDE
+  - PIVALATE
+  - ACETATE
+  - 21-ACETATE
+  - DIACETATE
+  - HEXANOATE
+  - CAPROATE
+  - ESTOLATE
+  - STEARATE
+
+# 酯基拼法歸一（同一酯基的不同寫法）
+ester_alias:
+  17-VALERATE: VALERATE
+  17-PROPIONATE: PROPIONATE
+  21-ACETATE: ACETATE
+  17-BUTYRATE: BUTYRATE
+
+# ── ATC 補酯基 ───────────────────────────────────────────
+# 健保分組欄有時只寫裸名（MOMETASONE、TRIAMCINOLONE），但 ATC 第 7 碼已經
+# 唯一決定了酯基。外用類固醇的效價分級靠酯基，能補就要補。
+# 只列「該 ATC 在台灣市場上酯基唯一」的碼；有疑義的一律不列，寧可留裸名。
+atc_ester:
+  D07AC13: FUROATE          # mometasone furoate
+  D07XC03: FUROATE          # mometasone furoate 複方
+  R01AD09: FUROATE          # mometasone furoate 鼻噴
+  D07AB09: ACETONIDE        # triamcinolone acetonide
+  A01AC01: ACETONIDE        # triamcinolone acetonide 口內膏
+  R01AD11: ACETONIDE        # triamcinolone acetonide 鼻噴
+  D07AC06: VALERATE         # diflucortolone valerate
+  D07AC04: ACETONIDE        # fluocinolone acetonide
+  R01AD12: FUROATE          # fluticasone furoate
+  R01AD08: PROPIONATE       # fluticasone propionate
+# 刻意不列：
+#   D07AC03 desoximetasone —— 本身就是活性分子，沒有酯基，裸名才正確
+#   D07AA02 hydrocortisone —— 外用氫化可體松鹼基是真實存在的劑型（Class VII）
+#   H02AB* / A07EA* / S01B* —— 全身、直腸、眼用，效價分級是外用的概念，不適用
+
+# 部分列的 ATC 只有 5 碼（D07AC）無法用完整碼比對，但配合 base 就足以判定。
+# 格式 "BASE|ATC前綴"。比對時完整碼優先，找不到才用這裡。
+base_atc_ester:
+  "MOMETASONE|D07AC": FUROATE       # 台灣外用 mometasone 全部是 furoate
+
+# 已知且刻意容許「裸名與酯基並存」的 base（gate 14 的例外清單）。
+# 每一筆都必須寫理由 —— 沒有理由就是塌縮，不是例外。
+allow_bare_with_ester:
+  HYDROCORTISONE: >
+    D07AA02 之下健保同時收載標為 hydrocortisone 與 hydrocortisone acetate 的品項。
+    兩者同屬效價 Class VII、臨床等價，是健保標示不一致而非效價分級問題，
+    故不視為酯基塌縮。若日後出現 butyrate 被併進裸名才是真問題（butyrate 是 Class V）。

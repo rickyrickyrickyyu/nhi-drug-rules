@@ -1,0 +1,36 @@
+9.127.Momelotinib (如Omjjara)：(114/10/1) 
+1.用於未曾接受Janus 激酶抑制劑（JAK inhibitor）治療或曾接
+受ruxolitinib、fedratinib 治療後不耐受或有禁忌症，且為
+International Working Group（IWG）Consensus Criteria 中
+度風險或高風險之骨髓纖維化，包括原發性骨髓纖維化、真性紅
+血球增多症後骨髓纖維化、或血小板增多症後骨髓纖維化等疾病
+所造成脾臟腫大（symptomatic splenomegaly）及/或其他相關
+全身症狀且不適於接受幹細胞移植（stem cell 
+transplantation）且併有中至重度貧血之成人病人。 
+(1)需經事前審查核准後使用，每次申請之療程以6 個月為限，送
+審時需檢送影像資料及症狀改善之病歷紀錄，每6 個月評估一
+次。 
+(2)用藥後第一次評估時，需達到症狀反應(symptom response)或
+脾臟體積無惡化兩者之一，且同時無AML tranformation，方
+得以繼續使用。分別定義如下： 
+Ⅰ.症狀反應：MPN-SAF-TSS 分數或MPN-10 與治療前基準值相
+比，需下降超過50%。 
+Ⅱ.脾臟體積無惡化：使用電腦斷層評估，脾臟長度未增加超過
+治療前基準值之40%以上(或體積增加未達25%以上)。 
+Ⅲ.AML transformation：骨髓中之芽細胞≥20%或血液中之芽細
+胞≥20%合併芽細胞數值≥1×109/L。 
+(3)用藥後第二次及其後的評估，必須顯示無疾病惡化（無症狀惡
+化且脾臟體積無惡化，並同時無AML transformation），方得
+以繼續使用。分別定義如下： 
+Ⅰ.無症狀惡化：未出現新症狀，且MPN-SAF-TSS 分數或MPN-
+10 未超過治療前的基準值。 
+Ⅱ.脾臟體積無惡化：使用電腦斷層評估，脾臟長度未增加超過
+最佳反應(best response)時之脾臟長度40%以上(或體積增
+加未達25%以上)。 
+
+Ⅲ.AML transformation：骨髓中之芽細胞≥20%或血液中之芽細
+胞≥20%合併芽細胞數值≥1×109/L。 
+IV.每日限給付1 粒。 
+2.本藥品與ruxolitinib、fedratinib 用於中度風險或高風險之骨
+髓纖維化治療時，僅得擇一給付。Ruxolitinib、fedratinib 治
+療後如疾病惡化不得換用本藥品。 
