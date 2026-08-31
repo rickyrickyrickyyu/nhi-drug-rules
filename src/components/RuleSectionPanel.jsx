@@ -87,9 +87,15 @@ export default function RuleSectionPanel({ section }) {
         </p>
       )}
 
-      {section.stub ? (
+      {section.stub && !section.title_rule ? (
         <p className="mt-3 text-sm text-slate-500 bg-slate-50 rounded-lg px-3 py-2">
           本節僅有標題，實際給付條件請見其子節。
+        </p>
+      ) : section.stub && section.title_rule ? (
+        // 整條規則就寫在標題行（如 13.3.3.「與 tazarotene 併用…」）。
+        // 對這種節說「請見子節」是誤導 —— 上面顯示的標題就是完整規則。
+        <p className="mt-3 text-[11px] text-slate-500">
+          本節之給付規定即為上方條文全文（健保署原文未再分項）。
         </p>
       ) : section.raw ? (
         // 條號切塊沒涵蓋住原文（多為「修訂對照表」雙欄版型）→ 顯示完整原文。

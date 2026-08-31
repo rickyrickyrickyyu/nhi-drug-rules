@@ -160,8 +160,11 @@ def main() -> int:
     for g in gates:
         icon = "✅" if g.passed else ("🟡" if g.id in allow else "❌")
         print(f"{icon} gate {g.id:>2} {g.name:<14} {g.message}")
+    # 把 override 記進報告 —— promote.py 只讀這份檔案決定要不要搬，
+    # 不記的話人工放行過的閘門在 promote 階段又會被擋一次。
     (STAGING / "validation_report.json").write_text(json.dumps(
-        [{"id": g.id, "name": g.name, "passed": g.passed, "message": g.message} for g in gates],
+        [{"id": g.id, "name": g.name, "passed": g.passed, "message": g.message,
+          "overridden": (not g.passed) and g.id in allow} for g in gates],
         ensure_ascii=False, indent=2), encoding="utf-8")
 
     if failed:

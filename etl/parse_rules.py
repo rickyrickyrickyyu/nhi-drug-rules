@@ -45,6 +45,9 @@ FLAG_KEYWORDS = {
     "no_combination": ("不得併用", "不得合併使用", "擇一使用", "擇一"),
     "annual_limit": ("每年", "半年內"),
 }
+# 修訂日期區塊：（86/9/1、87/4/1）—— 至少兩個數字加斜線才算，避免誤中劑量括號
+_RE_DATE_BLOCK = re.compile(r"[（(]\s*\d{2,3}/\d{1,2}/\d{1,2}[^）)]*[）)]")
+
 _RE_SPECIALIST = re.compile(r"限([一-鿿]{2,6}?)專科醫師")
 _RE_ATTACHMENT = re.compile(r"附表[一二三四五六七八九十百\d]+")
 
@@ -158,20 +161,44 @@ def parse_one(code: str, text: str) -> dict:
                 title, title_idx = ln.strip(), i
                 break
 
-    # 標題常常換行（13.17. 的藥名清單橫跨三行）。往下併行，直到出現編號條文為止，
-    # 否則被截斷的標題尾巴會被當成條文內容，stub 判定也會跟著錯。
+    # 標題常常換行 —— 生物製劑章節的藥名清單可以橫跨七、八行
+    # （8.2.4.4. 列了 adalimumab…bimekizumab 十幾支藥）。
+    #
+    # 終止判準用「修訂日期區塊」而非括號配對：藥名本身就帶括號（如Humira），
+    # 括號配對在第一行就平衡了，會把標題切在半路，剩下的藥名被當成條文內容。
+    # 真正的標題結尾是 `（98/8/1、…、114/2/1）：用於…治療部分` 這個日期區塊。
+    # 兩個終止條件，缺一不可：
+    #   a) 出現編號條文 → 硬停（8.2.4.4. 的標題後面接「1.限內科專科醫師…」）
+    #   b) 日期區塊已出現「且括號都閉合」→ 停
+    #      只看日期區塊會太早停：13.17.1. 的日期後面還接「(12歲/以上病人治療部分)」
+    #      跨兩行；只看括號配對也不行：藥名自帶括號（如Humira）第一行就平衡了。
+    def _balanced(x: str) -> bool:
+        return x.count("（") <= x.count("）") and x.count("(") <= x.count(")")
+
+    def _title_complete(t: str) -> bool:
+        """標題看起來收尾了沒。
+
+        這一節的標題幾乎都以「…治療部分」或日期區塊的右括號結束。
+        用結尾符判斷比用長度或括號配對穩：
+          8.2.4.5. 原文斷在「…：用於活 / 動性乾癬性關節炎－乾癬性脊椎病變治療部分」
+          8.2.4.6.1. 斷在「…：用於乾 / 癬治療部分」
+        兩者的第一行括號都已閉合，只看括號會把標題切在詞中間。
+        """
+        return t.rstrip().endswith(("部分", "。", "）", ")", "："))
+
     end = title_idx + 1
-    while end < len(lines):
+    while end < len(lines) and end - title_idx <= 12:
+        if _RE_DATE_BLOCK.search(title) and _balanced(title) and _title_complete(title):
+            break
         ln = lines[end].strip()
         if not ln:
             end += 1
             continue
         if any(pat.match(ln) for _, pat in _LEVEL_PATTERNS):
             break
-        if title.count("（") <= title.count("）") and title.count("(") <= title.count(")"):
-            break
         title = f"{title}{ln}"
         end += 1
+
     body = "\n".join(lines[end:]) if title_idx >= 0 else text
     clauses = split_clauses(body)
     full = text.strip()
@@ -202,6 +229,7 @@ def parse_one(code: str, text: str) -> dict:
 
 def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    all_codes = set(manifest)
     rules: dict[str, dict] = {}
     failed: list[str] = []
 
@@ -219,6 +247,14 @@ def main() -> int:
             failed.append(code)
             continue
         r = parse_one(code, txt_path.read_text(encoding="utf-8"))
+        # 沒有條文的節分兩種，UI 文案完全不同，不能混為一談：
+        #   有子節 → 父節指標（8.2.4.6. 乾癬，真正條件在 8.2.4.6.1.）
+        #   無子節 → 整條規則就寫在標題行（13.3.3.「與 tazarotene 併用…」）
+        #            對後者說「請見子節」是誤導，那是完整規則
+        r["has_children"] = any(
+            c != code and c.startswith(code) for c in all_codes
+        )
+        r["title_is_rule"] = r["is_stub"] and not r["has_children"]
         r["effective_date"] = m["effective_date"]
         r["pdf_filename"] = m["pdf_filename"]
         r["is_future"] = m["effective_date"] > TODAY     # 尚未生效，UI 必須標示

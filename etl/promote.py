@@ -27,9 +27,13 @@ def main() -> int:
     if not report.exists():
         raise SystemExit("❌ 找不到 validation_report.json，請先跑 validate.py")
     gates = json.loads(report.read_text(encoding="utf-8"))
-    failed = [g for g in gates if not g["passed"]]
+    failed = [g for g in gates if not g["passed"] and not g.get("overridden")]
     if failed:
         raise SystemExit(f"❌ 仍有 {len(failed)} 個閘門失敗，拒絕 promote: {[g['name'] for g in failed]}")
+    overridden = [g for g in gates if g.get("overridden")]
+    if overridden:
+        # 人工放行要留痕：last_run.json 會被 commit，日後可回溯是誰在哪一期放行了什麼
+        print(f"⚠️  人工放行 {len(overridden)} 個閘門: {[g['name'] for g in overridden]}")
 
     moved = 0
     for src in STAGING.glob("*.json"):

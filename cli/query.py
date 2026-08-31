@@ -107,8 +107,12 @@ def show_section(code: str, rules: dict, full: bool, width: int) -> None:
         print(f"    {CYN}{code}{RESET} {DIM}分類節點，條件見子節{RESET}")
         return
 
-    title = wrap(sec["title"], width - 8, " " * 8)
-    print(f"    {CYN}{BOLD}{code}{RESET} {title}")
+    # 生物製劑章節的標題是十幾支藥名加二十幾個修訂日期，完整印出來要七、八行，
+    # 會把真正要看的給付條件擠到螢幕外。終端機只留前兩行，--full 才印完整。
+    t = sec["title"]
+    if not full and len(t) > 110:
+        t = t[:110].rstrip() + "…"
+    print(f"    {CYN}{BOLD}{code}{RESET} {wrap(t, width - 8, ' ' * 8)}")
     if sec.get("future"):
         print(f"      {YEL}⏳ 本版 {sec['eff']} 起生效，尚未適用{RESET}")
 
@@ -120,7 +124,9 @@ def show_section(code: str, rules: dict, full: bool, width: int) -> None:
         print(f"      {YEL}{'  '.join(badges)}{RESET}")
 
     if sec.get("stub"):
-        print(f"      {DIM}本節僅有標題，條件見子節{RESET}")
+        msg = ("本節之給付規定即為上方條文全文" if sec.get("title_rule")
+               else "本節僅有標題，條件見子節")
+        print(f"      {DIM}{msg}{RESET}")
         return
 
     body = sec.get("text", "") if sec.get("raw") else "\n".join(
