@@ -27,6 +27,30 @@ make rebuild     # 用既有 data/raw 重建（不重新下載）
 pnpm dev
 ```
 
+### 終端機查詢（`nhi`）
+
+`~/Developer/local_LLM/bin/nhi`（setup.sh 會 symlink 到 `~/.local/bin/nhi`）。
+門診當下開瀏覽器太慢，打一行就有答案：
+
+```bash
+nhi dupilumab              # 學名
+nhi Valtrex                # 商品名（中英皆可）
+nhi 口服A酸                 # 中文俗稱
+nhi 13.4                   # 章節碼直查
+nhi aciclovir --route TOP  # 只看外用劑型
+nhi dupilumab --full       # 完整條文（預設前 6 行）
+nhi metformin --all        # 搜全庫
+
+nhi status    # 資料快照日期與規模（超過 45 天會提醒）
+nhi changes   # 本期給付規定異動
+nhi verify    # 逐藥比對條文原文 + 搜尋命中測試
+nhi update    # 一鍵更新（本機 + 推上網連動網頁版）
+nhi web       # 起本機開發站    nhi open  開線上版
+```
+
+CLI 與網頁版讀同一份 `public/data/`，不會有兩套事實。
+repo 路徑可用 `NHI_RULES_DIR` 環境變數覆寫。
+
 ### 更新資料
 
 | 方式 | 做什麼 |
