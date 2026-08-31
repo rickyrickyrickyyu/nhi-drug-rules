@@ -27,7 +27,13 @@ else
 fi
 echo
 
-die() { echo "❌ $1"; osascript -e "display alert \"資料更新已中止\" message \"$1／本機與網頁資料維持原狀。\" as critical"; read -k 1 -s "?按任意鍵關閉..."; exit 1; }
+# 非互動執行（cron／CI／管線）時不要卡在等按鍵
+pause() { [[ -t 0 ]] && read -k 1 -s "?按任意鍵關閉..." || true; }
+die() {
+  echo "❌ $1"
+  osascript -e "display alert \"資料更新已中止\" message \"$1／本機與網頁資料維持原狀。\" as critical" 2>/dev/null
+  pause; exit 1
+}
 
 echo "▶ 1/9 下載健保藥品主檔（約 96 MB）"
 python3 etl/fetch_nhi_drugs.py       || die "健保主檔下載失敗"
@@ -68,23 +74,68 @@ PY
 echo
 if ! command -v git >/dev/null || [[ ! -d .git ]]; then
   echo "ℹ️  沒有 git repo，只更新本機（網頁版不受影響）"
-  read -k 1 -s "?按任意鍵關閉..."; exit 0
+  pause; exit 0
 fi
+if ! git remote get-url origin >/dev/null 2>&1; then
+  echo "ℹ️  尚未設定 GitHub remote，只更新了本機"
+  pause; exit 0
+fi
+
 if [[ -z "$(git status --porcelain)" ]]; then
-  echo "✅ 資料無變化，本機已是最新，不需要推上網。"
-  read -k 1 -s "?按任意鍵關閉..."; exit 0
-fi
-
-echo "📤 推上 GitHub（會自動重新部署網頁版）"
-git add -A
-git commit -q -m "chore(data): $(date +%Y-%m-%d) 資料更新" || true
-if git remote get-url origin >/dev/null 2>&1 && git push -q; then
-  echo "✅ 已推送。GitHub Actions 會在幾分鐘內重新部署網頁版。"
-  osascript -e 'display notification "本機與網頁版都已更新" with title "健保資料更新完成"'
+  echo "✅ 本機資料無變化。"
 else
-  echo "ℹ️  尚未設定 remote 或推送失敗，本機資料已更新。"
+  echo "📤 準備推上 GitHub"
+  git add -A
+  git commit -q -m "chore(data): $(date +%Y-%m-%d) 資料更新" || true
 fi
 
-echo
-echo "🎉 完成"
-read -k 1 -s "?按任意鍵關閉..."
+# 先 pull 再 push：GitHub Actions 的月更排程也會 commit，
+# 不先併會被拒（non-fast-forward），使用者只會看到一個看不懂的錯誤。
+# --rebase 讓本機這筆疊在遠端之上，資料檔沒有真正的內容衝突。
+echo "🔄 同步遠端變更"
+if ! git pull --rebase -q 2>/dev/null; then
+  echo "⚠️  自動合併失敗（可能有衝突）。本機資料已更新，請手動處理："
+  echo "     cd $(pwd) && git status"
+  pause; exit 1
+fi
+
+if [[ -z "$(git log origin/main..HEAD --oneline 2>/dev/null)" ]]; then
+  echo "✅ 遠端已是最新，本機與網頁版一致。"
+  pause; exit 0
+fi
+
+# 推送重試：家用網路 DNS 偶爾斷線，一次失敗就放棄會讓兩邊資料不同步
+PUSHED=0
+for i in 1 2 3 4 5; do
+  if git push -q 2>/dev/null; then PUSHED=1; break; fi
+  echo "   推送失敗，${i}/5 次重試…"; sleep 6
+done
+if (( PUSHED == 0 )); then
+  echo "⚠️  推送失敗，本機已更新但網頁版還是舊的。網路恢復後執行："
+  echo "     cd $(pwd) && git push"
+  osascript -e 'display alert "網頁版未更新" message "本機資料已更新，但推送到 GitHub 失敗。網路恢復後請執行 git push。"' 2>/dev/null
+  pause; exit 1
+fi
+echo "✅ 已推送"
+
+# 確認網頁版真的更新到 —— 使用者要的是「兩邊同時更新」，
+# push 成功不等於網站更新完成，要等 Actions 部署並比對線上的資料日期。
+LOCAL_BUILT=$(python3 -c "import json;print(json.load(open('public/data/meta.json'))['built'])")
+SITE="https://rickyrickyrickyyu.github.io/nhi-drug-rules/data/meta.json"
+echo "⏳ 等待 GitHub Actions 部署（約 1–3 分鐘）"
+for i in $(seq 1 40); do
+  sleep 15
+  REMOTE_BUILT=$(curl -sS -m 10 "${SITE}?t=$RANDOM" 2>/dev/null \
+    | python3 -c "import json,sys;print(json.load(sys.stdin).get('built',''))" 2>/dev/null || echo "")
+  if [[ "$REMOTE_BUILT" == "$LOCAL_BUILT" ]]; then
+    echo "✅ 網頁版已更新（資料快照 $REMOTE_BUILT）— 本機與線上一致"
+    osascript -e 'display notification "本機與網頁版都已更新" with title "健保資料更新完成"' 2>/dev/null
+    echo
+    echo "🎉 完成  https://rickyrickyrickyyu.github.io/nhi-drug-rules/"
+    pause; exit 0
+  fi
+  (( i % 4 == 0 )) && echo "   仍在部署…（線上 ${REMOTE_BUILT:-讀取中}，本機 $LOCAL_BUILT）"
+done
+echo "⚠️  10 分鐘內未看到網頁版更新。commit 已推送，可到 Actions 頁確認："
+echo "     https://github.com/rickyrickyrickyyu/nhi-drug-rules/actions"
+pause
