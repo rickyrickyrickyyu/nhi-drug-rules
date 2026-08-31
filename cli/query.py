@@ -132,9 +132,17 @@ def pick_clauses(lines: list[str], inn: str, n: int) -> tuple[list[str], int, bo
     if not lines:
         return [], 0, False
     base = inn.split(" (")[0].lower()
-    # 學名在條文裡可能是英文，也可能只有詞幹（famciclovir / Famciclovir；）
+
+    # ★ 只在「第 1 項一開頭就是別的藥名」時才跳段。
+    #   10.7.1.1. 的第 1 項是「1.Acyclovir：…」整段講 acyclovir，
+    #   查 famciclovir 的人不該先讀那一段。
+    #   但 13.4. 的第 1 項是「1.限皮膚科專科醫師使用。」—— 沒有藥名，
+    #   三項全都適用 isotretinoin。之前無條件跳段會略過最關鍵的第 1、2 項。
+    lead = re.match(r"^\s*\d+\s*[.、]\s*([A-Za-z][A-Za-z-]{5,})", lines[0])
+    if not lead or lead.group(1).lower()[:8] == base[:8]:
+        return lines[:n], 0, False
+
     start = next((i for i, ln in enumerate(lines) if base[:8] in ln.lower()), 0)
-    # 往前退到該段落的開頭（編號行）
     while start > 0 and not re.match(r"^\s*\d+\s*[.、]", lines[start]):
         prev = start - 1
         if re.match(r"^\s*\d+\s*[.、]", lines[prev]):
@@ -175,8 +183,13 @@ def show_section(code: str, rules: dict, full: bool, width: int, inn: str = "") 
         print(f"      {DIM}{msg}{RESET}")
         return
 
+    clauses = sec.get("clauses", [])
+    appx = sec.get("appx")
+    # 附表是空白表單範本，不列進條文預覽（--full 才顯示）
+    if appx is not None and not full:
+        clauses = clauses[:appx]
     body = sec.get("text", "") if sec.get("raw") else "\n".join(
-        c["text"] for c in sec.get("clauses", []))
+        c["text"] for c in clauses)
     lines = [ln for ln in body.splitlines() if ln.strip()]
     if full:
         for ln in lines:
@@ -190,6 +203,9 @@ def show_section(code: str, rules: dict, full: bool, width: int, inn: str = "") 
     rest = len(lines) - start - len(shown)
     if rest > 0:
         print(f"      {DIM}… 還有 {rest} 行，加 --full 看完整條文{RESET}")
+    if appx is not None:
+        names = "、".join((sec.get("flags") or {}).get("attachments", [])) or "附表"
+        print(f"      {DIM}📎 另附 {names} 表單範本（--full 顯示）{RESET}")
 
 
 def main() -> int:

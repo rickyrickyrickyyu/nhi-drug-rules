@@ -36,9 +36,16 @@ function annotate(text) {
 function relevantStart(clauses, inn) {
   if (!inn || clauses.length <= 3) return 0;
   const base = inn.split(' (')[0].toLowerCase().slice(0, 8);
+
+  // 只在「第 1 項一開頭就是別的藥名」時才跳段。
+  // 10.7.1.1. 第 1 項是「1.Acyclovir：…」，查 famciclovir 不該先讀那段；
+  // 但 13.4. 第 1 項是「1.限皮膚科專科醫師使用。」，三項都適用 isotretinoin，
+  // 無條件跳段會略過最關鍵的第 1、2 項。
+  const lead = /^\s*\d+\s*[.、]\s*([A-Za-z][A-Za-z-]{5,})/.exec(clauses[0].text);
+  if (!lead || lead[1].toLowerCase().slice(0, 8) === base) return 0;
+
   const hit = clauses.findIndex((c) => c.text.toLowerCase().includes(base));
   if (hit <= 0) return 0;
-  // 退回該段落的編號起點，免得從半句開始
   for (let i = hit; i >= 0; i--) {
     if ((clauses[i].level ?? 0) === 1) return i;
   }
@@ -132,7 +139,11 @@ export default function RuleSectionPanel({ section, inn }) {
         (() => {
           const all = section.clauses ?? [];
           const start = expanded ? 0 : relevantStart(all, inn);
-          const shown = all.slice(start);
+          // 附表是空白表單範本（同意書欄位），預設摺疊
+          const appx = section.appx;
+          const bodyEnd = appx == null ? all.length : appx;
+          const shown = all.slice(start, Math.max(start, bodyEnd));
+          const appendix = appx == null ? [] : all.slice(appx);
           return (
             <div className="mt-3 text-[15px] leading-relaxed text-slate-800">
               {start > 0 && (
@@ -153,6 +164,16 @@ export default function RuleSectionPanel({ section, inn }) {
                   {annotate(c.text)}
                 </p>
               ))}
+              {appendix.length > 0 && (
+                <details className="mt-2 border-t border-slate-100 pt-2">
+                  <summary className="text-xs text-slate-500 cursor-pointer">
+                    📎 {appendix[0].text.split(/\s/)[0]} 表單範本（{appendix.length} 行，點開檢視）
+                  </summary>
+                  <div className="mt-2 text-[13px] text-slate-600 whitespace-pre-wrap">
+                    {appendix.map((c) => c.text).join('\n')}
+                  </div>
+                </details>
+              )}
             </div>
           );
         })()

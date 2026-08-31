@@ -108,6 +108,7 @@ def main() -> int:
             "rev": r["revision_dates"], "first_seen": r.get("first_seen"),
             "pdf": r.get("pdf_filename"), "flags": r["flags"],
             "clauses": r["clauses"], "text": r["text"],
+            "appx": r.get("appendix_from"),
         })
     ch_sizes = {}
     for ch, items in by_ch.items():

@@ -50,6 +50,8 @@ _RE_DATE_BLOCK = re.compile(r"[（(]\s*\d{2,3}/\d{1,2}/\d{1,2}[^）)]*[）)]")
 
 _RE_SPECIALIST = re.compile(r"限([一-鿿]{2,6}?)專科醫師")
 _RE_ATTACHMENT = re.compile(r"附表[一二三四五六七八九十百\d]+")
+# 附表區塊的起始行：「附表十 患者服用Isotretinoin口服製劑同意書」
+_RE_APPENDIX_HEAD = re.compile(r"^附表[一二三四五六七八九十百\d]+\s*[^）)]{0,40}$")
 
 
 def _negated(text: str, idx: int, kw: str) -> bool:
@@ -86,7 +88,15 @@ def split_clauses(body: str) -> list[dict]:
             clauses.append({**cur, "text": txt, "dates": parse_revision_dates(txt)})
 
     for line in body.splitlines():
-        if not line.strip():
+        ln = line.strip()
+        if not ln:
+            continue
+        # 附表標題行是硬邊界。它不以編號開頭，會被當成上一條的續行吞掉，
+        # 之後整份空白同意書（病歷號碼／年齡／出生日期…）就混進給付條件裡。
+        if _RE_APPENDIX_HEAD.match(ln):
+            flush()
+            buf = [ln]
+            cur = {"marker": "", "level": 0, "appendix": True}
             continue
         matched = None
         for level, pat in _LEVEL_PATTERNS:
@@ -95,11 +105,13 @@ def split_clauses(body: str) -> list[dict]:
                 matched = (level, m.group(1))
                 break
         if matched:
+            was_appendix = cur.get("appendix", False)
             flush()
-            buf = [line.strip()]
-            cur = {"marker": matched[1], "level": matched[0]}
+            buf = [ln]
+            # 附表內部的編號（同意書自己的 1.2.3.）仍屬附表
+            cur = {"marker": matched[1], "level": matched[0], "appendix": was_appendix}
         else:
-            buf.append(line.strip())
+            buf.append(ln)
     flush()
     return clauses
 
@@ -219,6 +231,11 @@ def parse_one(code: str, text: str) -> dict:
         # 的全部條文就是一句沒有編號的「限成人使用，每次處方不超過七天。」，那不是 stub。
         "is_stub": sum(len(c["text"]) for c in clauses) < 10,
         "clauses": clauses,
+        # 附表是要印出來給病人簽的空白表單（同意書欄位、切結書），
+        # 不是給付條件。13.4. 的附表十佔了整節一半篇幅，攤開會把
+        # 真正要看的三項條件擠到螢幕外。標出起點讓前端預設摺疊。
+        "appendix_from": next(
+            (i for i, c in enumerate(clauses) if c.get("appendix")), None),
         "coverage": round(coverage, 4),
         # 條號切塊沒涵蓋住原文 → 前端改顯示完整原文。寧可版面難看，
         # 也不能讓醫師看到被截斷的給付條件。
