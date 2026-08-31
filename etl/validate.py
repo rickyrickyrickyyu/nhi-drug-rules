@@ -120,6 +120,18 @@ def run() -> list[Gate]:
     miss_seed = [s for s in seed if not any(match_prefix(t, s) or match_prefix(s, t) for t in tagged_secs)]
     g.append(Gate(16, "種子章節命中", not miss_seed, f"缺 {miss_seed}"))
 
+    # 17 皮膚科章節條文覆蓋率
+    # 低覆蓋率的節會退回顯示原文（安全），但若皮膚科主力章節覆蓋率太低，
+    # 代表官方換了版型、解析器需要跟上，不能默默放過。
+    derm_pref = tags["sections"]
+    low = [
+        (c, r.get("coverage"))
+        for c, r in rules.items()
+        if not r.get("no_pdf") and r.get("coverage") is not None
+        and r["coverage"] < 0.70 and any(match_prefix(c, p) for p in derm_pref)
+    ]
+    g.append(Gate(17, "皮膚科條文覆蓋", not low, f"覆蓋率<70% 的皮膚科章節: {low or '無'}"))
+
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
         kb = len(gzip.compress((PUBLIC / "derm.json").read_bytes(), 9)) / 1024

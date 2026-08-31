@@ -91,6 +91,17 @@ export default function RuleSectionPanel({ section }) {
         <p className="mt-3 text-sm text-slate-500 bg-slate-50 rounded-lg px-3 py-2">
           本節僅有標題，實際給付條件請見其子節。
         </p>
+      ) : section.raw ? (
+        // 條號切塊沒涵蓋住原文（多為「修訂對照表」雙欄版型）→ 顯示完整原文。
+        // 版面難看沒關係，被截斷的給付條件會害人。
+        <>
+          <p className="mt-3 text-xs text-slate-500 bg-slate-50 rounded-lg px-3 py-2">
+            本節 PDF 為特殊版型（如修訂對照表），為避免條文被截斷，以下顯示官方原文全文。
+          </p>
+          <pre className="mt-2 text-[14px] leading-relaxed text-slate-800 whitespace-pre-wrap font-sans">
+            {annotate(section.text ?? '')}
+          </pre>
+        </>
       ) : (
         <div className="mt-3 text-[15px] leading-relaxed text-slate-800">
           {(section.clauses ?? []).map((c, i) => (

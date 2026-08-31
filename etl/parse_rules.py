@@ -9,8 +9,10 @@
 
 from __future__ import annotations
 
+import difflib
 import json
 import re
+import unicodedata
 import sys
 from datetime import date
 from pathlib import Path
@@ -99,6 +101,26 @@ def split_clauses(body: str) -> list[dict]:
     return clauses
 
 
+def clause_coverage(src: str, title: str, clauses: list[dict]) -> float:
+    """條文切塊涵蓋了原文多少比例。
+
+    有些章節的 PDF 是「藥品給付規定修訂對照表」的雙欄版型（修訂後／原給付規定
+    並排），條號偵測會漏掉大半內容。醫師看到被截斷的給付條件比看不到更危險，
+    所以覆蓋率不足時要退回顯示完整原文。
+    """
+    def norm(x: str) -> str:
+        # 章節碼前綴只出現在原文，比對前先拿掉，否則短章節會被誤判成大量掉字
+        x = re.sub(r"\s+", "", unicodedata.normalize("NFKC", x or ""))
+        return re.sub(r"\d+(?:\.\d+)*\.?(?=[^\d])", "", x)
+
+    a = norm(src)
+    b = norm(title + "".join(c["text"] for c in clauses))
+    if not a:
+        return 1.0
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    return sum(blk.size for blk in sm.get_matching_blocks()) / len(a)
+
+
 def parse_one(code: str, text: str) -> dict:
     lines = [ln.rstrip() for ln in text.splitlines()]
     title = ""
@@ -138,6 +160,7 @@ def parse_one(code: str, text: str) -> dict:
     body = "\n".join(lines[end:]) if title_idx >= 0 else text
     clauses = split_clauses(body)
     full = text.strip()
+    coverage = clause_coverage(full, title, clauses)
     return {
         "code": code,
         "slug": slug(code),
@@ -154,6 +177,10 @@ def parse_one(code: str, text: str) -> dict:
         # 的全部條文就是一句沒有編號的「限成人使用，每次處方不超過七天。」，那不是 stub。
         "is_stub": sum(len(c["text"]) for c in clauses) < 10,
         "clauses": clauses,
+        "coverage": round(coverage, 4),
+        # 條號切塊沒涵蓋住原文 → 前端改顯示完整原文。寧可版面難看，
+        # 也不能讓醫師看到被截斷的給付條件。
+        "render_raw": coverage < 0.95,
         "flags": extract_flags(full),
     }
 
@@ -188,7 +215,9 @@ def main() -> int:
     n_stub = sum(1 for r in rules.values() if r.get("is_stub"))
     n_future = sum(1 for r in rules.values() if r.get("is_future"))
     n_pa = sum(1 for r in rules.values() if r["flags"]["prior_review"])
-    print(f"✅ rules.json {len(rules)} 節｜stub {n_stub}｜未生效 {n_future}｜事前審查 {n_pa}｜缺文字 {len(failed)}")
+    n_raw = sum(1 for r in rules.values() if r.get("render_raw"))
+    print(f"✅ rules.json {len(rules)} 節｜stub {n_stub}｜未生效 {n_future}｜事前審查 {n_pa}"
+          f"｜退回原文顯示 {n_raw}｜缺文字 {len(failed)}")
     if failed:
         print(f"❌ 缺少文字檔: {failed[:10]}")
     return 1 if failed else 0

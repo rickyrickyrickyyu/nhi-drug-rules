@@ -98,6 +98,7 @@ def main() -> int:
             "title": r["title"], "eff": r.get("effective_date"),
             "future": r.get("is_future", False), "stub": r.get("is_stub", False),
             "no_pdf": r.get("no_pdf", False),
+            "raw": r.get("render_raw", False), "cov": r.get("coverage"),
             "rev": r["revision_dates"], "first_seen": r.get("first_seen"),
             "pdf": r.get("pdf_filename"), "flags": r["flags"],
             "clauses": r["clauses"], "text": r["text"],
