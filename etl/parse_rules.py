@@ -121,7 +121,22 @@ def clause_coverage(src: str, title: str, clauses: list[dict]) -> float:
     return sum(blk.size for blk in sm.get_matching_blocks()) / len(a)
 
 
+def normalize_text(text: str) -> str:
+    """把 CJK 相容表意文字正規化回一般表意文字。
+
+    ★ 健保 PDF 裡有 70 種相容表意文字散落在 86 個章節（U+F9C1「療」出現 416 次、
+      U+F967「不」129 次、U+F962「異」51 次…）。它們長得跟一般字完全一樣，但碼位不同，
+      導致關鍵字比對整批失效 —— 例如「療程」會比不中，該標「療程限制」的章節漏標。
+
+    刻意用 NFC 而非 NFKC：NFC 會把相容表意文字轉回正規碼位，但不會動全形數字
+    （「５０毫克」保持原樣）。條文原文的忠實度要顧，snapshots/text/ 的 .txt
+    仍保存 PDF 抽出的原始位元組，這裡只在解析階段正規化。
+    """
+    return unicodedata.normalize("NFC", text or "")
+
+
 def parse_one(code: str, text: str) -> dict:
+    text = normalize_text(text)
     lines = [ln.rstrip() for ln in text.splitlines()]
     title = ""
     title_idx = -1

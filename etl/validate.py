@@ -132,6 +132,15 @@ def run() -> list[Gate]:
     ]
     g.append(Gate(17, "皮膚科條文覆蓋", not low, f"覆蓋率<70% 的皮膚科章節: {low or '無'}"))
 
+    # 18 相容表意文字必須已正規化
+    # 健保 PDF 夾雜 CJK 相容表意文字（U+F900–U+FAFF），長得跟一般字一樣但碼位不同，
+    # 會讓「療程」這種關鍵字比對整批失效。parse 階段已做 NFC，這裡守住不能回退。
+    compat = [
+        c for c, r in rules.items()
+        if any(0xF900 <= ord(ch) <= 0xFAFF for ch in (r.get("text") or ""))
+    ]
+    g.append(Gate(18, "相容表意文字", not compat, f"未正規化 {len(compat)} 節 {compat[:5]}"))
+
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
         kb = len(gzip.compress((PUBLIC / "derm.json").read_bytes(), 9)) / 1024

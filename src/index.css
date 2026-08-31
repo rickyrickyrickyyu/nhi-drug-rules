@@ -1,6 +1,21 @@
 @import 'tailwindcss';
 
 @theme {
+  /* 繁中字型堆疊：明確列出三大平台的正體中文字型。
+     只靠 Tailwind 預設的 system-ui/Segoe UI 會讓 Windows 與 Android
+     退到不定的 fallback，同一個藥名在不同裝置字重與字形會不一致。
+     注意順序：先列各平台的正體中文字型，再列拉丁字型當補漏。 */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "PingFang TC", "Heiti TC",                  /* macOS / iOS */
+    "Microsoft JhengHei", "Microsoft YaHei",    /* Windows */
+    "Noto Sans TC", "Noto Sans CJK TC",         /* Android / Linux */
+    "Source Han Sans TC", "Hiragino Sans CNS",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
   --color-brand-50: #f0fdfa;
   --color-brand-100: #ccfbf1;
   --color-brand-600: #0d9488;
@@ -9,5 +24,14 @@
 }
 
 html { -webkit-text-size-adjust: 100%; }
-body { @apply bg-slate-50 text-slate-900 antialiased; }
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  font-family: var(--font-sans);
+  /* 中文標點在行首行尾的處理；避免長條文在窄螢幕出現孤標點 */
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+
+/* 條文原文用等寬會破壞中文排版，強制沿用內文字型 */
+pre { font-family: var(--font-sans); }
 mark { @apply bg-amber-200 text-inherit rounded-sm px-0.5; }
