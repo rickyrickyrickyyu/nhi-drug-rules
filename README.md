@@ -377,9 +377,26 @@ grep -rn "dangerouslySetInnerHTML\|innerHTML\|eval(\|new Function" src/   # 應�
 unzip -l offline/*.zip            # 應只有 2 個 .html + 1 個 .txt
 ```
 
-**已知且刻意接受的事項**：commit 作者 email 會出現在公開的 git 歷史裡
-（這是 GitHub 的預設行為）。若要隱藏，到 GitHub 設定啟用 noreply email
-並改本 repo 的 `git config user.email`。
+### commit 作者 email
+
+本 repo 已把 `user.email` 設為 GitHub 的 noreply 位址
+（`git config --local user.email 212214878+rickyrickyrickyyu@users.noreply.github.com`），
+**2026-09-01 之後**的 commit 不再帶私人信箱。CI 的自動 commit 本來就用
+`github-actions[bot]@users.noreply.github.com`。
+
+⚠️ **在那之前的 26 個 commit 仍帶著私人 gmail**，任何人用
+`gh api repos/<owner>/<repo>/commits` 就讀得到。刻意不改寫歷史：force push
+會讓所有 commit 換 SHA，但舊 SHA 在 GitHub 上短期內仍可存取、已 clone 的
+副本也還留著 —— 代價大而效果有限。
+
+還沒做、**需要帳號擁有者自己到網頁操作**的一步：
+GitHub → Settings → Emails → 勾選
+「Keep my email addresses private」與
+「Block command line pushes that expose my email」。
+第二項是真正的保險：之後任何一台電腦忘了設 noreply，push 會直接被 GitHub 擋下。
+
+> 換一台電腦時記得重設，`--local` 設定不會跟著 clone 走：
+> `git config --local user.email <你的>@users.noreply.github.com`
 
 ## 致謝與設計來源
 
