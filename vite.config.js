@@ -43,13 +43,13 @@ export default defineConfig(({ mode }) => {
             options: {
               cacheName: 'nhi-data-v1',
               networkTimeoutSeconds: 3,
+              // ★ products 分片有 455 個，原本的 maxEntries: 200 會讓 LRU 把
+              //   分片踢掉，PWA 離線時點某些藥會失敗。maxEntries 只在
+              //   expiration 內合法，寫在 workbox 頂層會讓 build 直接失敗。
               expiration: { maxEntries: 600, maxAgeSeconds: 60 * 60 * 24 * 45 },
             },
           },
         ],
-        // products 分片有 455 個，maxEntries 200 會讓 LRU 把分片踢掉，
-        // PWA 離線時點某些藥會失敗
-        maxEntries: 600,
       },
     })]),
   ],

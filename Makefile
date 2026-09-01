@@ -21,7 +21,11 @@ refresh:            ## 抓最新資料 → 解析 → 驗證 → promote
 gates:              ## 只跑驗證閘門
 	python3 etl/validate.py
 
-verify:             ## 逐藥比對條文原文 + 分類驗證 + 搜尋命中測試
+verify:             ## 逐藥比對條文原文 + 分類驗證 + 搜尋命中測試 + 兩種 build
+	# ★ 線上版 build 一定要跑：offline mode 會關掉 PWA，只跑 offline 等於
+	#   沒驗到 workbox 設定，曾因此本機全綠而 CI 紅燈（maxEntries 寫錯層級）。
+	pnpm build
+	pnpm exec vite build --mode offline
 	python3 tests/verify_drugs.py
 	python3 tests/verify_categories.py
 	node tests/search.test.mjs
