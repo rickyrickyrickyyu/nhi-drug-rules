@@ -7,6 +7,7 @@ export function parseHash(h = window.location.hash) {
   const arg = decodeURIComponent(rest.join('/'));
   if (kind === 'i') return { view: 'ingredient', key: arg };
   if (kind === 's') return { view: 'section', key: arg };
+  if (kind === 'p') return { view: 'procedure', key: arg };
   if (kind === 'about') return { view: 'about' };
   if (kind === 'changes') return { view: 'changes' };
   return { view: 'home', q: kind ? decodeURIComponent(kind) : '' };

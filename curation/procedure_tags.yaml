@@ -1,0 +1,97 @@
+# 皮膚科處置醫令的標籤與同義詞。
+#
+# ★ 為什麼同義詞是必要條件而非加分項（實測）：
+#   查「照光」只會命中 57117B「加強照光治療」—— 那是新生兒黃疸照光。
+#   皮膚科真正要的 51018C 光化治療(PUVA) 與 51019C 光線治療，
+#   名稱裡根本沒有「照光」兩個字。不做同義詞表，醫師會查到錯的東西。
+#   查「冷凍」會撞到 49011C 痔冷凍治療、50035B 腎臟腫瘤冷凍治療(70,000點)。
+version: 1
+
+# 同義詞群組：一組代碼共用一組中英文說法
+groups:
+  cryo:
+    label: 冷凍治療
+    codes: ["51017C", "37002B"]
+    zh: [冷凍治療, 凍療, 液態氮, 冷凍, 液氮, 冷凍療法]
+    en: [cryotherapy, cryosurgery, liquid nitrogen, LN2, cryo]
+
+  phototherapy:
+    label: 光照治療
+    codes: ["51018C", "51019C"]
+    zh: [照光, 光療, 照光治療, 光化治療, 光線治療, 紫外線, 窄波段]
+    en: [phototherapy, PUVA, UVB, NBUVB, nb-UVB, UVA, light therapy, photochemotherapy]
+
+  skin_biopsy:
+    label: 皮膚切片
+    codes: ["51001C", "51002C", "51003C"]
+    zh: [皮膚切片, 切片, 穿刺切片, 打洞切片]
+    en: [skin biopsy, biopsy, punch biopsy, punch]
+
+  electrocautery:
+    label: 皮膚電燒
+    codes: ["51005C", "51006C", "56008C", "56009C"]
+    zh: [電燒, 皮膚電燒, 電燒灼, 燒灼]
+    en: [electrocautery, electrocauterization, cautery]
+
+  patch_test:
+    label: 貼布試驗
+    codes: ["30508C", "30002C"]
+    zh: [貼布試驗, 貼膚試驗, 貼膚測試, 接觸過敏, 過敏原檢測]
+    en: [patch test, contact allergy test]
+
+  nail:
+    label: 拔甲
+    codes: ["56006C", "56007C"]
+    zh: [拔甲, 拔指甲, 拔趾甲, 甲手術]
+    en: [nail extraction, nail avulsion]
+
+  wart:
+    label: 疣處置
+    codes: ["55008C", "50015C", "50005C"]
+    zh: [疣, 濕疣, 菜花, 病毒疣]
+    en: [wart, condyloma]
+
+  incision:
+    label: 皮膚切開引流
+    codes: ["51004C", "48007C"]
+    zh: [切開, 引流, 膿瘍切開, 膿疱切開]
+    en: [incision, drainage, I&D]
+
+  dermabrasion:
+    label: 磨皮
+    codes: ["62041B", "62042B"]
+    zh: [磨皮, 微晶磨皮]
+    en: [dermabrasion, microdermabrasion]
+
+  photo_test:
+    label: 光敏感試驗
+    codes: ["30504B"]
+    zh: [紫外線致紅劑量, 光敏感試驗, MED]
+    en: [minimal erythema dose, phototest]
+
+# 額外納入皮膚科子集（同義詞群組以外的個別醫令）
+extra_codes: []
+
+# 關鍵字會命中但明確不是皮膚科 —— 必須排除，否則會誤導
+blocklist:
+  "57117B": 加強照光治療（新生兒黃疸，非皮膚科光療）
+  "57106C": 新生兒光線治療
+  "49011C": 痔冷凍治療（大腸直腸外科）
+  "50035B": 腎臟腫瘤冷凍治療（泌尿科）
+  "25009B": 肌肉病理切片檢查（冷凍特殊染色，非冷凍治療）
+  "25006B": 冰凍切片檢查（病理）
+  "53017C": 砂眼手術壓碎或電燒（眼科）
+  "54013C": 鼻內電燒術（耳鼻喉科）
+  "86407C": 光線凝固治療（眼科）
+  "86408B": 光線凝固治療－複雜（眼科）
+
+# 金絲雀：這些醫令必須在皮膚科子集內，缺一即 fail
+canary:
+  - "51017C"   # 液態氮冷凍治療
+  - "51018C"   # 光化治療 PUVA
+  - "51019C"   # 光線治療
+  - "51001C"   # 皮膚切片一針
+  - "51005C"   # 皮膚電燒灼－單純
+  - "56006C"   # 拔指甲
+  - "30508C"   # 皮膚貼布試驗
+  - "55008C"   # 濕疣切除及電燒

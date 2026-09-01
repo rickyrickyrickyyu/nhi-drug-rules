@@ -4,6 +4,8 @@ import { useHashRoute, go } from './lib/routes.js';
 import { searchIngredients, fuzzyFallback } from './lib/search.js';
 import SearchBar from './components/SearchBar.jsx';
 import IngredientRow from './components/IngredientRow.jsx';
+import ProcedureRow from './components/ProcedureRow.jsx';
+import ProcedureDetail from './components/ProcedureDetail.jsx';
 import IngredientDetail from './components/IngredientDetail.jsx';
 import Footer from './components/Footer.jsx';
 import About from './components/About.jsx';
@@ -11,7 +13,7 @@ import Changes from './components/Changes.jsx';
 import SectionView from './components/SectionView.jsx';
 
 export default function App() {
-  const { loading, error, meta, derm, all, loadAll } = useCoreData();
+  const { loading, error, meta, derm, procs, all, loadAll } = useCoreData();
   const route = useHashRoute();
   const [q, setQ] = useState('');
   const [scope, setScope] = useState('derm');
@@ -23,6 +25,7 @@ export default function App() {
     loadAll().finally(() => setLoadingAll(false));
   }, [scope, all, loadingAll, loadAll]);
 
+  // 處置混在 derm.json 裡；切全庫時併入 procs_all
   const dataset = scope === 'all' ? (all ?? derm) : derm;
 
   const results = useMemo(() => {
@@ -70,6 +73,10 @@ export default function App() {
 
       {!loading && !error && route.view === 'section' && <SectionView slug={route.key} />}
 
+      {!loading && !error && route.view === 'procedure' && (
+        <ProcedureDetail item={(procs ?? []).find((p) => p.k === route.key)} />
+      )}
+
       {!loading && !error && route.view === 'ingredient' && current && (
         <div className="mt-4">
           <IngredientDetail item={current} />
@@ -99,6 +106,7 @@ export default function App() {
                 <li>商品名（中英皆可）— <code className="bg-slate-200 px-1 rounded">Valtrex</code>、<code className="bg-slate-200 px-1 rounded">羅可坦</code></li>
                 <li>中文俗稱 — <code className="bg-slate-200 px-1 rounded">口服A酸</code></li>
                 <li>章節碼或 ATC — <code className="bg-slate-200 px-1 rounded">13.4</code>、<code className="bg-slate-200 px-1 rounded">D11AH</code></li>
+                <li>醫療處置 — <code className="bg-slate-200 px-1 rounded">冷凍治療</code>、<code className="bg-slate-200 px-1 rounded">照光</code>、<code className="bg-slate-200 px-1 rounded">PUVA</code>、<code className="bg-slate-200 px-1 rounded">51017C</code></li>
               </ul>
               <p className="pt-2">
                 <button type="button" onClick={() => go('#/changes')} className="text-brand-700 underline">
@@ -109,7 +117,11 @@ export default function App() {
           ) : (
             <div className="mt-2">
               <div className="text-xs text-slate-500 mb-2">{results.length} 筆結果</div>
-              {results.map((hit) => <IngredientRow key={hit.item.k} hit={hit} />)}
+              {results.map((hit) =>
+                hit.item.t === 'p'
+                  ? <ProcedureRow key={`p-${hit.item.k}`} hit={hit} />
+                  : <IngredientRow key={hit.item.k} hit={hit} />,
+              )}
               {results.length === 0 && (
                 <div className="text-sm text-slate-600 bg-white border border-slate-200 rounded-xl p-4">
                   <p>皮膚科常用清單中查無「{q}」。</p>

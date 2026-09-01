@@ -229,6 +229,24 @@ def run() -> list[Gate]:
                 leak.append(f"{inn}←{others[0]}")
     g.append(Gate(28, "劑量歸屬純度", not leak, f"疑似他藥劑量 {len(leak)} 條 {leak[:4]}"))
 
+    # 29–31 醫療處置
+    procp = STAGING / "procedures.json"
+    procs = json.loads(procp.read_text(encoding="utf-8")) if procp.exists() else {}
+    ptags = yaml.safe_load((CURATION / "procedure_tags.yaml").read_text(encoding="utf-8"))
+
+    p0 = prev.get("n_procs")
+    ok29 = not procs or p0 is None or 0.90 * p0 <= len(procs) <= 1.10 * p0
+    g.append(Gate(29, "處置筆數健檢", ok29, f"{len(procs):,}（上期 {p0}）"))
+
+    # 處置金絲雀：這些醫令必須在皮膚科子集內
+    miss_p = [c for c in ptags["canary"] if not procs.get(c, {}).get("derm")]
+    g.append(Gate(30, "處置金絲雀", not miss_p, f"缺 {miss_p or '無'}"))
+
+    # blocklist 的醫令絕不能出現在皮膚科子集
+    # 57117B「加強照光治療」是新生兒黃疸，混進來醫師查「照光」會拿到錯的
+    leaked = [c for c in (ptags.get("blocklist") or {}) if procs.get(c, {}).get("derm")]
+    g.append(Gate(31, "處置黑名單", not leaked, f"洩漏 {leaked or '無'}"))
+
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
         kb = len(gzip.compress((PUBLIC / "derm.json").read_bytes(), 9)) / 1024

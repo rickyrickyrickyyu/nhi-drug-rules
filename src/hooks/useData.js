@@ -10,20 +10,31 @@ async function getJson(path) {
 
 /** 首載只抓皮膚科子集與 meta；全庫要使用者主動切換才載。 */
 export function useCoreData() {
-  const [state, setState] = useState({ loading: true, error: null, meta: null, derm: [], all: null });
+  const [state, setState] = useState({ loading: true, error: null, meta: null, derm: [], procs: [], all: null });
 
   useEffect(() => {
     let alive = true;
     Promise.all([getJson('meta.json'), getJson('derm.json')])
-      .then(([meta, derm]) => alive && setState({ loading: false, error: null, meta, derm: derm.ing, all: null }))
+      .then(([meta, derm]) => alive && setState({
+        loading: false, error: null, meta,
+        derm: [...derm.ing, ...(derm.proc ?? [])],   // 藥品與處置混在同一個搜尋集合
+        procs: derm.proc ?? [],
+        all: null,
+      }))
       .catch((e) => alive && setState((s) => ({ ...s, loading: false, error: e.message })));
     return () => { alive = false; };
   }, []);
 
   const loadAll = useCallback(async () => {
-    const all = await getJson('all.json');
-    setState((s) => ({ ...s, all: all.ing }));
-    return all.ing;
+    // 處置的全庫另存一檔（6,173 筆）。任一失敗只停用該部分，
+    // 不讓新功能拖垮既有的藥品查詢。
+    const [all, procAll] = await Promise.all([
+      getJson('all.json'),
+      getJson('procs_all.json').catch(() => ({ proc: [] })),
+    ]);
+    const merged = [...all.ing, ...(procAll.proc ?? [])];
+    setState((s) => ({ ...s, all: merged, procs: procAll.proc?.length ? procAll.proc : s.procs }));
+    return merged;
   }, []);
 
   return { ...state, loadAll };

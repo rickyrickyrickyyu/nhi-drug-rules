@@ -26,6 +26,11 @@ def _c(code: str) -> str: return code if _TTY else ""
 BOLD, DIM, RESET = _c("\033[1m"), _c("\033[2m"), _c("\033[0m")
 RED, GRN, YEL, BLU, CYN = (_c(f"\033[3{i}m") for i in (1, 2, 3, 4, 6))
 
+PROC_LABEL = {
+    "procCode": "醫令代碼", "procName": "處置名稱", "procEn": "英文名稱",
+    "procSyn": "同義詞", "procNote": "給付備註",
+}
+
 ROUTE_ICON = {"PO": "💊", "INJ": "💉", "TOP": "🧴", "OPH": "👁", "OTIC": "👂",
               "NASAL": "👃", "INH": "🫁", "TD": "🩹", "PR": "💊", "PV": "💊",
               "DIAL": "🧪", "OTHER": "•"}
@@ -43,6 +48,41 @@ def load(name: str):
     if not p.exists():
         sys.exit(f"{RED}找不到 {p}{RESET}\n請先在專案目錄執行 make rebuild")
     return json.loads(p.read_text(encoding="utf-8"))
+
+
+def score_proc(q: str, it: dict) -> tuple[int, str, str]:
+    """處置評分。權重與 src/lib/search.js:scoreProcedure 一致。
+
+    同義詞分數刻意接近名稱本身：醫師打「照光」時 51018C 光化治療的名稱裡
+    沒有這兩個字，全靠同義詞命中；分數太低會被 57117B（新生兒黃疸照光）壓過。
+    """
+    best = (0, "", "")
+
+    def bump(sc, field, matched):
+        nonlocal best
+        if sc > best[0]:
+            best = (sc, field, matched)
+
+    def m(hay, exact, pre, sub):
+        h = norm(hay)
+        if not h:
+            return 0
+        return exact if h == q else pre if h.startswith(q) else sub if q in h else 0
+
+    if norm(it["k"]) == q:
+        bump(100, "procCode", it["k"])
+    elif len(q) >= 3 and norm(it["k"]).startswith(q):
+        bump(92, "procCode", it["k"])
+    # 名稱命中優先於同義詞（見 search.js 同段註解）
+    if s_ := m(it["n"], 99, 95, 93): bump(s_, "procName", it["n"])
+    if s_ := m(it.get("en", ""), 94, 88, 52): bump(s_, "procEn", it["en"])
+    for sy in it.get("z", []):
+        if s_ := m(sy, 92, 86, 50): bump(s_, "procSyn", sy)
+    if it.get("note") and q in norm(it["note"]):
+        bump(20, "procNote", it["note"][:40])
+    if best[0] > 0 and it.get("pri"):
+        best = (best[0] + 1, best[1], best[2])
+    return best
 
 
 def score(q: str, it: dict) -> tuple[int, str, str]:
@@ -224,9 +264,11 @@ def main() -> int:
     meta = load("meta.json")
     ing = load("all.json" if args.all else "derm.json")["ing"]
 
+    procs = load("derm.json").get("proc", []) if not args.all else load("procs_all.json")["proc"]
+
     hits = []
-    for it in ing:
-        sc, field, matched = score(q, it)
+    for it in list(ing) + list(procs):
+        sc, field, matched = (score_proc(q, it) if it.get("t") == "p" else score(q, it))
         if sc:
             hits.append((sc, it, field, matched))
 
@@ -255,6 +297,19 @@ def main() -> int:
 
     for sc, it, field, matched in hits[: args.limit]:
         print()
+        if it.get("t") == "p":
+            print(f"{BOLD}{BLU}{it['n']}{RESET}  {DIM}{it.get('en','')}{RESET}")
+            print(f"{CYN}{it['k']}{RESET} · {BOLD}{it['pt']:.0f} 點{RESET}"
+                  f"{DIM}（點數非金額，實際給付依浮動點值結算）{RESET}")
+            if field != "procName":
+                print(f"{DIM}（透過{PROC_LABEL.get(field, field)} {matched} 命中）{RESET}")
+            if it.get("note"):
+                print(f"  {DIM}給付備註：{RESET}")
+                for ln in wrap(it["note"], width - 4, "    ").split("\n"):
+                    print(f"    {ln}")
+                if it.get("note_more"):
+                    print(f"    {DIM}…（備註過長已截斷，完整內容見官方支付標準）{RESET}")
+            continue
         print(f"{BOLD}{GRN}{it['n']}{RESET}", end="")
         if it.get("z"):
             print(f"  {it['z'][0]}", end="")
@@ -265,8 +320,8 @@ def main() -> int:
             "複方" if it.get("c") else "",
         ]))
         print(f"{DIM}{meta_line}{RESET}")
-        if field != "學名":
-            print(f"{DIM}（透過{field} {matched} 命中）{RESET}")
+        if field not in ("學名", ""):
+            print(f"{DIM}（透過{PROC_LABEL.get(field, field)} {matched} 命中）{RESET}")
 
         rules_cache: dict[str, dict] = {}
         for r in it.get("r", []):

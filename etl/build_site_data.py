@@ -28,9 +28,32 @@ from lib.section import code_tuple  # noqa: E402
 TODAY = date.today().isoformat()
 
 
+def slim_proc(p: dict) -> dict:
+    """處置的 slim 形狀。與藥品共用 `t` 型別欄，讓搜尋能天然跨實體。
+
+    刻意不硬塞進藥品的欄位語意（處置沒有劑型／ATC／商品名），
+    但保留 k/n/z 三個共通欄，搜尋器就不必為每種實體各寫一份。
+    """
+    return {
+        "t": "p",
+        "k": p["code"],
+        "n": p["name_zh"],
+        "en": p["name_en"],
+        "z": p["synonyms"],
+        "pt": p["points"],
+        "note": p["note"][:600],
+        "note_more": len(p["note"]) > 600,
+        "g": p["group"],
+        "pri": 1 if p.get("primary") else 0,
+        "st": p["status"],
+        "dr": p["derm_reasons"],
+    }
+
+
 def slim(ing: dict, products: dict, mentions: dict, dosing: dict) -> dict:
     """搜尋列所需的最小欄位。欄名縮寫是刻意的 —— 45k 筆時省 25% 體積。"""
     return {
+        "t": "d",
         "k": ing["inn"],
         "n": ing["inn_display"],
         "z": ing["zh_common"],
@@ -83,6 +106,9 @@ def main() -> int:
         for x in (_yaml.safe_load(pend_path.read_text(encoding="utf-8")) or {}).get("pending", []):
             pending[x["section"]] = x
 
+    ppath = STAGING / "procedures.json"
+    procs = json.loads(ppath.read_text(encoding="utf-8")) if ppath.exists() else {}
+
     dpath = STAGING / "dosing.json"
     dosing = json.loads(dpath.read_text(encoding="utf-8")) if dpath.exists() else {}
 
@@ -104,8 +130,15 @@ def main() -> int:
         p.write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         return p
 
-    p_derm = dump("derm.json", {"schema": 1, "built": TODAY, "ing": derm})
-    p_all = dump("all.json", {"schema": 1, "built": TODAY, "ing": allx})
+    proc_derm = [slim_proc(p) for p in procs.values() if p["derm"]]
+    proc_all = [slim_proc(p) for p in procs.values()]
+    proc_derm.sort(key=lambda x: x["k"])
+    proc_all.sort(key=lambda x: x["k"])
+
+    # 處置混進 derm.json：只有 23 筆、體積可忽略，省一次 fetch 且搜尋天然跨實體
+    p_derm = dump("derm.json", {"schema": 2, "built": TODAY, "ing": derm, "proc": proc_derm})
+    p_all = dump("all.json", {"schema": 2, "built": TODAY, "ing": allx})
+    dump("procs_all.json", {"schema": 1, "built": TODAY, "proc": proc_all})
 
     # 章節按大節分檔
     by_ch: dict[int, list] = collections.defaultdict(list)
@@ -168,6 +201,8 @@ def main() -> int:
         "n_ingredients_all": len(allx),
         "n_products": len(products),
         "n_sections": len(rules),
+        "n_procs_derm": len(proc_derm),
+        "n_procs_all": len(proc_all),
         "n_indications": sum(1 for p in products.values() if p.get("indication")),
         "n_name_repaired": sum(1 for p in products.values() if p.get("name_zh_repaired")),
         "sizes_kb_gz": {

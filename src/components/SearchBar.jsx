@@ -5,7 +5,7 @@ export default function SearchBar({ value, onChange, scope, onScope, allLoaded, 
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="學名 / 商品名 / 中文俗稱 / 章節碼，例：dupilumab、Valtrex、口服A酸、13.4"
+        placeholder="學名 / 商品名 / 處置 / 章節碼，例：dupilumab、Valtrex、口服A酸、冷凍治療、13.4"
         autoComplete="off"
         autoCorrect="off"
         spellCheck={false}

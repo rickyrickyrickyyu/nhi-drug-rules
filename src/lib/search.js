@@ -29,8 +29,20 @@ const FIELD_LABEL = {
   section: '給付章節',
   atc: 'ATC 碼',
   combo: '複方成分',
+  procName: '處置名稱',
+  procEn: '英文名稱',
+  procSyn: '同義詞',
+  procCode: '醫令代碼',
+  procNote: '給付備註',
 };
 
+/**
+ * 比對層級：3=完全相符 2=前綴 1=子字串 0=不中。
+ *
+ * ★ 呼叫端必須用 pick() 展開成三級分數。舊版寫成 `s >= 2 ? X : Y`
+ * 把「完全相符」與「前綴」壓成同一分，與 cli/query.py 的三級版本不一致，
+ * 實測 9/10 查詢兩邊分數不同（valtrex JS 85 / PY 90）。
+ */
 function prefixOrSub(hay, q) {
   if (!hay) return 0;
   const h = hay.normalize('NFKC').toLowerCase();
@@ -38,6 +50,45 @@ function prefixOrSub(hay, q) {
   if (h.startsWith(q)) return 2;
   if (h.includes(q)) return 1;
   return 0;
+}
+
+const pick = (lvl, exact, pre, sub) => (lvl === 3 ? exact : lvl === 2 ? pre : sub);
+
+/**
+ * 對單一處置計分。
+ *
+ * 同義詞權重刻意接近名稱本身 —— 醫師打「照光」時，51018C 光化治療的名稱裡
+ * 沒有這兩個字，全靠同義詞命中；若同義詞分數太低，會被名稱含「照光」的
+ * 57117B（新生兒黃疸）壓過去。
+ */
+export function scoreProcedure(q, item) {
+  let best = { score: 0, field: null, matched: null };
+  const bump = (score, field, matched) => {
+    if (score > best.score) best = { score, field, matched };
+  };
+
+  if (item.k.toLowerCase() === q) bump(100, 'procCode', item.k);
+  else if (q.length >= 3 && item.k.toLowerCase().startsWith(q)) bump(92, 'procCode', item.k);
+
+  // 名稱命中優先於同義詞：查「液態氮」時 51017C「液態氮冷凍治療」的名稱
+  // 就含這三個字，應排在只靠同義詞命中的 37002B「冷凍治療」之前。
+  const n = prefixOrSub(item.n, q);
+  if (n) bump(pick(n, 99, 95, 93), 'procName', item.n);
+
+  const e = prefixOrSub(item.en, q);
+  if (e) bump(pick(e, 94, 88, 52), 'procEn', item.en);
+
+  for (const sy of item.z ?? []) {
+    const s = prefixOrSub(sy, q);
+    if (s) bump(pick(s, 92, 86, 50), 'procSyn', sy);
+  }
+
+  if (item.note && item.note.normalize('NFKC').toLowerCase().includes(q)) {
+    bump(20, 'procNote', item.note.slice(0, 40));
+  }
+  // 同分時群組首選代碼勝出（yaml 裡群組的第一個代碼）
+  if (best.score > 0 && item.pri) best.score += 1;
+  return best;
 }
 
 /**
@@ -51,16 +102,16 @@ export function scoreIngredient(q, item) {
   };
 
   const m = prefixOrSub(item.n, q);
-  if (m) bump(m === 3 ? 100 : m === 2 ? 95 : 50, 'inn', item.n);
+  if (m) bump(pick(m, 100, 95, 50), 'inn', item.n);
 
   for (const a of item.al ?? []) {
     const s = prefixOrSub(a, q);
-    if (s) bump(s >= 2 ? 90 : 48, 'alias', a);
+    if (s) bump(pick(s, 100, 90, 48), 'alias', a);
   }
 
   for (const z of item.z ?? []) {
     const s = prefixOrSub(z, q);
-    if (s) bump(s >= 2 ? 80 : 42, 'zh', z);
+    if (s) bump(pick(s, 88, 80, 42), 'zh', z);
   }
 
   // 原廠商品名（route 的第一個 brand_preview）權重高於一般學名藥商品名
@@ -68,15 +119,15 @@ export function scoreIngredient(q, item) {
   for (const r of item.r ?? []) for (const b of r.bp ?? []) originators.add(b.split(' ')[0]);
   for (const b of originators) {
     const s = prefixOrSub(b, q);
-    if (s) bump(s >= 2 ? 85 : 40, 'brandOrig', b);
+    if (s) bump(pick(s, 90, 85, 40), 'brandOrig', b);
   }
   for (const b of item.be ?? []) {
     const s = prefixOrSub(b, q);
-    if (s) bump(s >= 2 ? 75 : 40, originators.has(b) ? 'brandOrig' : 'brandEn', b);
+    if (s) bump(pick(s, 80, 75, 40), originators.has(b) ? 'brandOrig' : 'brandEn', b);
   }
   for (const b of item.bz ?? []) {
     const s = prefixOrSub(b, q);
-    if (s) bump(s >= 2 ? 70 : 38, 'brandZh', b);
+    if (s) bump(pick(s, 78, 70, 38), 'brandZh', b);
   }
 
   for (const s of item.s ?? []) {
@@ -91,22 +142,27 @@ export function scoreIngredient(q, item) {
   if (item.c) {
     for (const part of item.k.split(' + ')) {
       const s = prefixOrSub(part, q);
-      if (s) bump(s >= 2 ? 45 : 30, 'combo', part);
+      if (s) bump(pick(s, 50, 45, 30), 'combo', part);
     }
   }
   return best;
 }
 
 /** 藥品代號直查：不在 slim 資料裡，靠 be/bz 之外的獨立索引由呼叫端補。 */
+/** 依 item.t 分派到對應的評分器，讓藥品與處置能在同一個結果清單裡排序。 */
+export function scoreEntity(q, item) {
+  return item.t === 'p' ? scoreProcedure(q, item) : scoreIngredient(q, item);
+}
+
 export function searchIngredients(query, dataset, { limit = 60 } = {}) {
-    const q = normalizeQuery(query);
+  const q = normalizeQuery(query);
   if (q.length < 1) return [];
   const out = [];
   for (const item of dataset) {
-    const hit = scoreIngredient(q, item);
+    const hit = scoreEntity(q, item);
     if (hit.score > 0) out.push({ item, ...hit, fieldLabel: FIELD_LABEL[hit.field] });
   }
-  out.sort((a, b) => b.score - a.score || a.item.n.localeCompare(b.item.n));
+  out.sort((a, b) => b.score - a.score || String(a.item.n).localeCompare(String(b.item.n)));
   return out.slice(0, limit);
 }
 
