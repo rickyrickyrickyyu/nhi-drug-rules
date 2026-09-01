@@ -29,6 +29,43 @@ function annotate(text) {
   });
 }
 
+// ETL 在條文裡留下的表格佔位標記（私用區字元，不可能出現在條文原文）
+const RE_TABLE_MARK = /\ue000TB(\d+)\ue000/g;
+
+/**
+ * 一段條文。表格標記處就地換成 <RuleTable>。
+ *
+ * ★ 為什麼不是「條文照印、表格附在最後」：
+ *   表格在 PDF 純文字裡是逐格換行的碎片（「涵蓋程/度/0﹪/1-9﹪…」）。
+ *   照印等於同一份內容出現兩次，而且先出現的那份不可讀。
+ *   ETL 已把碎片從條文挖掉（挖除是無損的：只有夾雜 0 個非表格字元才會挖），
+ *   這裡只負責把標記換回表格。
+ */
+function ClauseBody({ text, tables, indent = 0 }) {
+  const segs = String(text ?? '').split(RE_TABLE_MARK);
+  const out = [];
+  for (let i = 0; i < segs.length; i += 1) {
+    // split 帶捕獲群組 → 偶數索引是文字、奇數索引是表格編號
+    if (i % 2 === 1) {
+      const t = tables?.[Number(segs[i])];
+      if (t) out.push(<RuleTable key={`t${i}`} table={t} />);
+      continue;
+    }
+    const body = segs[i].replace(/^\n+|\n+$/g, '');
+    if (!body) continue;
+    out.push(
+      <p
+        key={`p${i}`}
+        className="whitespace-pre-wrap mb-1.5"
+        style={indent ? { paddingLeft: `${indent}rem` } : undefined}
+      >
+        {annotate(body)}
+      </p>,
+    );
+  }
+  return out;
+}
+
 /**
  * 挑出與該學名最相關的條文起點。
  *
@@ -59,9 +96,6 @@ export default function RuleSectionPanel({ section, inn }) {
   if (!section) return null;
   const flags = section.flags ?? {};
   const tables = section.tables ?? [];
-  // 附表區塊的表格由下方 details 呈現；其餘（如 2.6.1. 降血脂給付規定表本身
-  // 就是一張大表）要顯示在條文正文上方 —— 醫師先看到讀得懂的表，再看細則。
-  const inAppendix = section.appx != null && (section.clauses?.length ?? 0) > 0;
   // 引用了附表但本體在別節（13.17.1. 引用「附表三十二」，EASI 評分表其實在 13.17.2.）
   const crossRefs = (section.appx_refs ?? []).filter((x) => x.host && !x.self);
   const missingRefs = (section.appx_refs ?? []).filter((x) => x.missing);
@@ -150,15 +184,6 @@ export default function RuleSectionPanel({ section, inn }) {
         </p>
       )}
 
-      {tables.length > 0 && !inAppendix && (
-        <div className="mt-3">
-          <div className="text-xs text-slate-500 mb-1">
-            本節含 {tables.length} 個表格，以下為由官方 PDF 版面還原之結果
-          </div>
-          {tables.map((t, i) => <RuleTable key={i} table={t} />)}
-        </div>
-      )}
-
       {section.stub && !section.title_rule ? (
         <p className="mt-3 text-sm text-slate-500 bg-slate-50 rounded-lg px-3 py-2">
           本節僅有標題，實際給付條件請見其子節。
@@ -183,19 +208,10 @@ export default function RuleSectionPanel({ section, inn }) {
       ) : (
         (() => {
           const all = section.clauses ?? [];
-          if (tables.length > 0 && !inAppendix) {
-            // 表格已在上方完整呈現，原始線性化文字收摺起來（它就是表格被拆散的樣子）
-            return (
-              <details className="mt-2">
-                <summary className="text-xs text-slate-500 cursor-pointer">
-                  官方 PDF 的原始文字（表格在此為逐格換行，僅供比對）
-                </summary>
-                <div className="mt-2 text-[13px] text-slate-600 whitespace-pre-wrap">
-                  {all.map((c) => c.text).join('\n')}
-                </div>
-              </details>
-            );
-          }
+          const usedTables = new Set(
+            [...all.map((c) => c.text ?? '').join('\n').matchAll(RE_TABLE_MARK)]
+              .map((m) => Number(m[1])),
+          );
           const start = expanded ? 0 : relevantStart(all, inn);
           // 附表是空白表單範本（同意書欄位），預設摺疊
           const appx = section.appx;
@@ -214,13 +230,12 @@ export default function RuleSectionPanel({ section, inn }) {
                 </button>
               )}
               {shown.map((c, i) => (
-                <p
+                <ClauseBody
                   key={start + i}
-                  className="whitespace-pre-wrap mb-1.5"
-                  style={{ paddingLeft: `${(c.level ?? 0) * 1.1}rem` }}
-                >
-                  {annotate(c.text)}
-                </p>
+                  text={c.text}
+                  tables={tables}
+                  indent={(c.level ?? 0) * 1.1}
+                />
               ))}
               {appendix.length > 0 && (
                 <details className="mt-2 border-t border-slate-100 pt-2">
@@ -228,10 +243,15 @@ export default function RuleSectionPanel({ section, inn }) {
                     📎 {appendix[0].text.split(/\s/)[0]} 附表內容（{appendix.length} 段
                     {tables.length > 0 && `、${tables.length} 個表格`}，點開檢視）
                   </summary>
-                  <div className="mt-2 text-[13px] text-slate-600 whitespace-pre-wrap">
-                    {appendix.map((c) => c.text).join('\n')}
+                  <div className="mt-2 text-[13px] text-slate-600">
+                    {appendix.map((c, i) => (
+                      <ClauseBody key={i} text={c.text} tables={tables} />
+                    ))}
                   </div>
-                  {tables.map((t, i) => <RuleTable key={i} table={t} />)}
+                  {/* 定位不到的表格（PDF 文字流順序與版面不同）沒有標記可換，
+                      仍附在最後，總比看不到好 */}
+                  {tables.filter((_, i) => !usedTables.has(i))
+                         .map((t, i) => <RuleTable key={`x${i}`} table={t} />)}
                 </details>
               )}
             </div>

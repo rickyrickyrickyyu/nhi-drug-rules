@@ -23,6 +23,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.tablesplice import RE_MARK as RE_TBMARK  # noqa: E402
 from config import CSV_COLUMNS, CURATION, MANIFEST, PUBLIC, RAW, ROOT, SNAPSHOTS, STAGING  # noqa: E402
 from lib.section import match_prefix  # noqa: E402
 
@@ -246,6 +247,27 @@ def run() -> list[Gate]:
     # 57117B「加強照光治療」是新生兒黃疸，混進來醫師查「照光」會拿到錯的
     leaked = [c for c in (ptags.get("blocklist") or {}) if procs.get(c, {}).get("derm")]
     g.append(Gate(31, "處置黑名單", not leaked, f"洩漏 {leaked or '無'}"))
+
+    # 32 表格挖除的一致性
+    #    表格文字從 clause 挖掉、原位換成標記後，UI 才不會「先印一堆碎片、
+    #    後面再附一張正確的表」。這裡確認標記沒有指向不存在的表格，
+    #    且沒有洩漏到 text（原文欄位是 diff 的比對基準，必須保持乾淨）。
+    bad_mark, leak_txt, n_mark = [], [], 0
+    for code, r in rules.items():
+        tabs = r.get("tables") or []
+        for c in r.get("clauses", []):
+            for m in RE_TBMARK.finditer(c.get("text", "")):
+                n_mark += 1
+                if int(m.group(1)) >= len(tabs):
+                    bad_mark.append(code)
+        if RE_TBMARK.search(r.get("text", "")):
+            leak_txt.append(code)
+    n_spliced = sum(r.get("tables_spliced", 0) for r in rules.values())
+    ok32 = not bad_mark and not leak_txt and n_mark == n_spliced
+    g.append(Gate(32, "表格就地渲染", ok32,
+                  f"標記 {n_mark}／挖除 {n_spliced}"
+                  + (f"｜壞標記 {bad_mark[:3]}" if bad_mark else "")
+                  + (f"｜原文遭汙染 {leak_txt[:3]}" if leak_txt else "")))
 
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():

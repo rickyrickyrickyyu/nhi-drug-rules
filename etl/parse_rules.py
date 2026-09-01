@@ -18,6 +18,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.tablesplice import splice_clauses  # noqa: E402
 from config import BUILD, MANIFEST, SNAP_TEXT, STAGING  # noqa: E402
 from lib.roc import parse_revision_dates, roc_to_iso  # noqa: E402
 from lib.section import chapter_no, code_tuple, parent_code, same_code, slug  # noqa: E402
@@ -184,7 +185,7 @@ def normalize_text(text: str) -> str:
     return unicodedata.normalize("NFC", text or "")
 
 
-def parse_one(code: str, text: str) -> dict:
+def parse_one(code: str, text: str, tables: list[dict] | None = None) -> dict:
     text = normalize_text(text)
     lines = [ln.rstrip() for ln in text.splitlines()]
     title = ""
@@ -250,6 +251,10 @@ def parse_one(code: str, text: str) -> dict:
     full = text.strip()
     coverage = clause_coverage(full, title, clauses)
     _flags, _ev = extract_flags(full)
+    # ★ 把表格文字從 clause 裡挖掉、原位換成標記。必須在算 appendix_from 之前做，
+    #   因為挖除會刪掉變空的 clause，索引會位移。
+    clauses, spliced = splice_clauses(clauses, tables or [])
+
     return {
         "code": code,
         "slug": slug(code),
@@ -266,6 +271,7 @@ def parse_one(code: str, text: str) -> dict:
         # 的全部條文就是一句沒有編號的「限成人使用，每次處方不超過七天。」，那不是 stub。
         "is_stub": sum(len(c["text"]) for c in clauses) < 10,
         "clauses": clauses,
+        "tables_spliced": spliced,
         # 附表是要印出來給病人簽的空白表單（同意書欄位、切結書），
         # 不是給付條件。13.4. 的附表十佔了整節一半篇幅，攤開會把
         # 真正要看的三項條件擠到螢幕外。標出起點讓前端預設摺疊。
@@ -336,7 +342,8 @@ def main() -> int:
         if not txt_path.exists():
             failed.append(code)
             continue
-        r = parse_one(code, txt_path.read_text(encoding="utf-8"))
+        tabs = load_tables(m["pdf_filename"])
+        r = parse_one(code, txt_path.read_text(encoding="utf-8"), tabs)
         # 沒有條文的節分兩種，UI 文案完全不同，不能混為一談：
         #   有子節 → 父節指標（8.2.4.6. 乾癬，真正條件在 8.2.4.6.1.）
         #   無子節 → 整條規則就寫在標題行（13.3.3.「與 tazarotene 併用…」）
@@ -345,7 +352,7 @@ def main() -> int:
             c != code and c.startswith(code) for c in all_codes
         )
         r["title_is_rule"] = r["is_stub"] and not r["has_children"]
-        r["tables"] = load_tables(m["pdf_filename"])
+        r["tables"] = tabs
         r["effective_date"] = m["effective_date"]
         r["pdf_filename"] = m["pdf_filename"]
         r["is_future"] = m["effective_date"] > TODAY     # 尚未生效，UI 必須標示

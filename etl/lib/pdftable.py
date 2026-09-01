@@ -19,7 +19,7 @@ from __future__ import annotations
 import re
 import unicodedata
 
-EXTRACTOR_VERSION = 2
+EXTRACTOR_VERSION = 3
 
 # ★ 刻意不用 "text" strategy：它不看框線、純靠文字位置猜欄位，
 #   會把散文切成假表格且切在字中間（實測 8.2.16. 被切出「(2)M」「ethotrexate」）。
@@ -47,7 +47,12 @@ def _clean(cell) -> str:
     但英文折行要保留空白（「Region\nscore」→「Region score」），
     否則會黏成 Regionscore。判準：折行兩側只要有一邊是中日韓字元就直接相接。
     """
-    text = (cell or "").strip()
+    # ★ 必須與 parse_rules.normalize_text 用同一種正規化（NFC）：
+    #   健保 PDF 含 CJK 相容表意文字（U+F900–FAFF），「度/數」等字看起來一樣但
+    #   碼位不同。表格這邊不做 NFC 的話，就無法把表格文字對回條文原文，
+    #   結果是「條文照樣逐行印出表格碎片，還原好的表格另外接在後面」——
+    #   正是使用者回報的畫面。
+    text = unicodedata.normalize("NFC", (cell or "")).strip()
     if not text:
         return ""
 
@@ -138,7 +143,12 @@ def extract_tables(doc) -> tuple[list[dict], list[dict]]:
                 if key not in best_by_bbox or cand[0] > best_by_bbox[key][0]:
                     best_by_bbox[key] = cand
 
-        for key, (score, strat, grid, bbox) in sorted(best_by_bbox.items()):
+        # ★ 依閱讀順序（先上下、再左右）排序。原本 sorted(dict.items()) 是拿
+        #   bbox 元組排 → 等於先比 x0，同一頁上下兩張表會顛倒，
+        #   後續「把表格文字對回條文原文」的單向游標就會錯過前一張表。
+        for key, (score, strat, grid, bbox) in sorted(
+            best_by_bbox.items(), key=lambda kv: (kv[1][3][1], kv[1][3][0])
+        ):
             tables.append({
                 "page": pno,
                 "bbox": [round(v, 1) for v in bbox],
