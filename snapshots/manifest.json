@@ -6,7 +6,7 @@
   "pdf_sha256": "3096f9ce47d45a4bcf74623d9845a11d7d13620e836b3fb27499fb9f3d3b089c",
   "char_count": 320,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.2.": {
@@ -16,7 +16,7 @@
   "pdf_sha256": "143d37e57d97ffa308c090cf5a777e84a4e9d671fd0d772c82a1e58a3a76426a",
   "char_count": 254,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.3.": {
@@ -26,7 +26,7 @@
   "pdf_sha256": "e628f5d6ec7f995c484938e39287ba2a31df8c1770b67836f88146a1ad37108d",
   "char_count": 192,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.4.": {
@@ -36,7 +36,7 @@
   "pdf_sha256": "c3ba2597ffc6d60184d457c62334c742e319588abe67853c3db2b0eae7f2500f",
   "char_count": 253,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.5.": {
@@ -46,7 +46,7 @@
   "pdf_sha256": "e4d6c7baef216a788caba3bf451c44377126145b4b649b7db4eb74219d32077f",
   "char_count": 924,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.6.": {
@@ -56,7 +56,7 @@
   "pdf_sha256": "d1ec3c5156cce8f3e5fc0f650f8553df5f82c01c93ff484c148a14fea842f545",
   "char_count": 464,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.7.": {
@@ -66,7 +66,7 @@
   "pdf_sha256": "101c5bac15302f440543cd22d0a76eb53d092c3f229bfc681123cd5149931ddc",
   "char_count": 1458,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.8.": {
@@ -76,7 +76,7 @@
   "pdf_sha256": "3e824c9f3b63414e1e0b8e1ae098ae9e1d61e0b20f206ef85a936cfd9676a4eb",
   "char_count": 1019,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.9.": {
@@ -86,7 +86,7 @@
   "pdf_sha256": "a1797b21443e69a0d127eb9ccf391e5d4b2108629b9be79232ac98b4a3dd8218",
   "char_count": 243,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.1.10.": {
@@ -96,7 +96,7 @@
   "pdf_sha256": "4ac224d857daf87418d06a424b925341fe066dc6ac223c9dbc82243ff008b328",
   "char_count": 55,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.2.1.": {
@@ -106,7 +106,7 @@
   "pdf_sha256": "2336a607dc9f379d5bde6afb644070294fdb845d09dd35f67dd064a5f713d2b5",
   "char_count": 319,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.2.1.1.": {
@@ -116,7 +116,7 @@
   "pdf_sha256": "371390e01a7056782fcb456c17b4bc39bf91155b4185f1b7f741a1544b21841a",
   "char_count": 62,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.2.2.1.": {
@@ -126,7 +126,7 @@
   "pdf_sha256": "e918a8291279a3932fad0c0eafd39488222c6e613608fb7a4a12c5c33c28208a",
   "char_count": 121,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.2.2.2.": {
@@ -136,7 +136,7 @@
   "pdf_sha256": "61f6f253d9adbe911248aed03d9a9967a0eb94e75ebe819f1e3add5cedde5de1",
   "char_count": 860,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.2.3.": {
@@ -146,7 +146,7 @@
   "pdf_sha256": "8498f6a841cf8a797513cd8972439d64f8d0181bb945b3d428a5eaf92dab622d",
   "char_count": 654,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.1.1.": {
@@ -156,7 +156,7 @@
   "pdf_sha256": "c8e34646b1e88c8bb4350266b88ebe1e05f41c2fc3c40810759f15a950517c3a",
   "char_count": 93,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.1.": {
@@ -166,7 +166,7 @@
   "pdf_sha256": "e5fdbb0bb4a30162a2cfd3c296979da30dcd483bfe18713ed26b17be607e3512",
   "char_count": 250,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.2.": {
@@ -176,7 +176,7 @@
   "pdf_sha256": "58b395883e5876d7a11f44bd08f6c8f8d7af0f7a1d1ec0f577d29041c6cfe065",
   "char_count": 254,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.3.": {
@@ -186,7 +186,7 @@
   "pdf_sha256": "13b4f4db3d19984d821935cf4cd98f76cecf0d88188f3449c48c2f57ca2dad36",
   "char_count": 468,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.4.": {
@@ -196,7 +196,7 @@
   "pdf_sha256": "2c18a4757ce51f68ca523943c032f79936b103bec201d9dc663f19e98edff8ca",
   "char_count": 569,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.5.": {
@@ -206,7 +206,7 @@
   "pdf_sha256": "163407d5d0a1b01ea14d809715eb781119740c5a8ea8aacc73f4159d61159b9d",
   "char_count": 338,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.6.": {
@@ -216,7 +216,7 @@
   "pdf_sha256": "40ce186e980bc0d96cdbf8ee3e2f6561a0bc47240312dfea4c3a9465a32c5adf",
   "char_count": 403,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.7.": {
@@ -226,7 +226,7 @@
   "pdf_sha256": "4f6834062e417f7c565c0cee0d1da3067cc5e01ed9abaa8056b776a777a5ff00",
   "char_count": 131,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.8.": {
@@ -236,7 +236,7 @@
   "pdf_sha256": "993dfc861662be835b0a8cf778d374780e00e47b5345ddf6f658674d62b50ac7",
   "char_count": 109,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.9.": {
@@ -246,7 +246,7 @@
   "pdf_sha256": "f6c639e36332cbbedfc8a033d5199cbeabb4939e48491bf46fa2c6da91b78485",
   "char_count": 310,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.10.": {
@@ -256,7 +256,7 @@
   "pdf_sha256": "a864a10709a7ebb567f604ac7beeb12d0f36e92512f506be96f3aabebbf450f6",
   "char_count": 1135,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.11.": {
@@ -266,7 +266,7 @@
   "pdf_sha256": "be849ea298afc9701ff3255ebdb3112c32a39c164b5e3d66a8350d0ccbaa0354",
   "char_count": 299,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.12.": {
@@ -276,7 +276,7 @@
   "pdf_sha256": "ab60d4a0381d6bf1f5c71c97c5cd76832020885927a384c166937e54e6a56f5a",
   "char_count": 380,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.2.13.": {
@@ -286,7 +286,7 @@
   "pdf_sha256": "1505353754f7db36a9d69ce4416ed07ff33385ab8b3e3a9dc428b1df338279cf",
   "char_count": 668,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.3.": {
@@ -296,7 +296,7 @@
   "pdf_sha256": "c5dd250a2556f8cb009a3e81ba7296523e1ba633523f5dba16db2683c40f054d",
   "char_count": 2083,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.4.": {
@@ -306,7 +306,7 @@
   "pdf_sha256": "279b5506573043a81a44f9220a64b7b799f90c49d8824b0cea7a1f404d146aa8",
   "char_count": 1214,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.5.": {
@@ -316,7 +316,7 @@
   "pdf_sha256": "a0dc4722fee324fcad326b4e93e19112b2dae755b1c5cdd6ecf48b06ce579fa7",
   "char_count": 1476,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.6.": {
@@ -326,7 +326,7 @@
   "pdf_sha256": "15fb304178a957f1558344b0d83d164d656e4815aa1dc87643a20bfe5d3e8112",
   "char_count": 505,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.6.1.": {
@@ -336,7 +336,7 @@
   "pdf_sha256": "3c53e2a386e90cba139649c0560a70bd85bd2f9cde17279a9da580632f040259",
   "char_count": 1579,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.3.6.2.": {
@@ -346,7 +346,7 @@
   "pdf_sha256": "4cbd854cd12faf2445575350315d5dc3361d2392ceb5e7945d1304427da92780",
   "char_count": 1351,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.4.1.": {
@@ -356,7 +356,7 @@
   "pdf_sha256": "d65e2845d26e3f8b6c9d0776451b22d655b2561a46a87d5c412c873325a6fee7",
   "char_count": 197,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.4.2.": {
@@ -366,7 +366,7 @@
   "pdf_sha256": "cfeb027fb85df6f66e9abe087f461773187cc28e4bb8aaca30849565b777c58c",
   "char_count": 120,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.4.3.": {
@@ -376,7 +376,7 @@
   "pdf_sha256": "4d1fb066b36525d90a3caf141ea9744707aeaf7aca277fb0a31abb24196d6d96",
   "char_count": 156,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.4.4.": {
@@ -386,7 +386,7 @@
   "pdf_sha256": "1a33e1dba1aa46ae20c5d217203dcd0dbe91833792782f4950ce03473a2e5760",
   "char_count": 108,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.4.5.": {
@@ -396,7 +396,7 @@
   "pdf_sha256": "08f6eadda833e81e8a8dd830e55eac6198e74833b264734f9964c374c84d9c8c",
   "char_count": 141,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.5.1.": {
@@ -406,7 +406,7 @@
   "pdf_sha256": "7ca6f44dad70c95bbe4663ef4e748b19ffeb0bf41daa260330dedc67ca635064",
   "char_count": 1504,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.5.2.": {
@@ -416,7 +416,7 @@
   "pdf_sha256": "bd87b853e03ed19c841037654fb7212f6056f621e41eafc6a30bb5ecc0ee7214",
   "char_count": 287,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.1.": {
@@ -426,7 +426,7 @@
   "pdf_sha256": "fa58a6f5eeee195feea95692955907dd7d42792aa8f01bca0823849cc6611a10",
   "char_count": 308,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.2.": {
@@ -436,7 +436,7 @@
   "pdf_sha256": "28172d95137450af52e71970ff73e1618ac4ccf0540744e6c724e8b39a617a70",
   "char_count": 75,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.2.1.": {
@@ -446,7 +446,7 @@
   "pdf_sha256": "659ea4249714382b314f65fbfbf2ad8fd389c12d1a8d815105b4842597291881",
   "char_count": 2942,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.2.2.": {
@@ -456,7 +456,7 @@
   "pdf_sha256": "7128d6ec36b4323735ec848137b3947288fe8fe81de66ad59114bf434a971d34",
   "char_count": 3537,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.3.": {
@@ -466,7 +466,7 @@
   "pdf_sha256": "b9b13472478e144b9964e3c95b5c3a437d668cf98824707c423bf586dcdbef48",
   "char_count": 440,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.4.": {
@@ -476,7 +476,7 @@
   "pdf_sha256": "ebfadde0bd26d4a3d2f3389f38c26f047b1ea1876285685539338d49b2099e52",
   "char_count": 2379,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.5.": {
@@ -486,7 +486,7 @@
   "pdf_sha256": "686e156ea1141961e65158315906279ed249720ec31e4123f362f49be923211f",
   "char_count": 676,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.6.": {
@@ -496,7 +496,7 @@
   "pdf_sha256": "d0e689b488130ead783c8333070b072d2c518205914a2075563869e8c7c1c286",
   "char_count": 1517,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.7.": {
@@ -506,7 +506,7 @@
   "pdf_sha256": "7bdec4e1a0063d69e89bc0dad99234fe2f36902d0b1d7aafd48fcacd79108970",
   "char_count": 3729,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.8.": {
@@ -516,7 +516,7 @@
   "pdf_sha256": "1301fd9fc6636e2da7ba3521b20cb3342fc32f4806205429e9866e0588dfb18c",
   "char_count": 2964,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "1.6.9.": {
@@ -526,7 +526,7 @@
   "pdf_sha256": "6ef574c75fbd83461a8691afb98dd69a040c7efe290c8c47d901cf7c40b02dcb",
   "char_count": 454,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.1.": {
@@ -536,7 +536,7 @@
   "pdf_sha256": "b636ecf4ec046c89d1aad50cdae588b32a35fb1e954290f9cfb22b464603f2b5",
   "char_count": 70,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.2.": {
@@ -546,7 +546,7 @@
   "pdf_sha256": "21c3a721d90625b9ad3d552f74066ab7f49e6a851587f271df1ee86b9aea11b1",
   "char_count": 347,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.3.": {
@@ -556,7 +556,7 @@
   "pdf_sha256": "d39bb507b2ee2dfda2add9ec02e67848a58d203f5fd7034e57043e02c4e6e2e3",
   "char_count": 179,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.4.": {
@@ -566,7 +566,7 @@
   "pdf_sha256": "ab311946984d1d7965ad8458ac5459a8a119cd2a93f1bf9fe3266605e5642a20",
   "char_count": 167,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.5.": {
@@ -576,7 +576,7 @@
   "pdf_sha256": "03a6f2cfaf5c65840be3b517ac85a446c86b87a150845b9a173bb61fd2c8563a",
   "char_count": 560,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.6.": {
@@ -586,7 +586,7 @@
   "pdf_sha256": "5df7a83a6f578d7cb988f6a844fb3790c9ae72acd1ab7cb4d64ecf016f06e436",
   "char_count": 944,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.7.": {
@@ -596,7 +596,7 @@
   "pdf_sha256": "dbfe6a64c05509d116a967a3fca8b4972bfcf64be44d8c9e717c7edd4b56f6f0",
   "char_count": 178,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.8.": {
@@ -606,7 +606,7 @@
   "pdf_sha256": "d20c4ed1cb25fccc80cdf2124daada46e19706d43bab2c76bf98f626ad3eae73",
   "char_count": 304,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.9.": {
@@ -616,7 +616,7 @@
   "pdf_sha256": "d9c7187dcae7a509214ec5065e8c07b6c76c9765ab2c12ad5bc540c2e1de3a91",
   "char_count": 155,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.1.10.": {
@@ -626,7 +626,7 @@
   "pdf_sha256": "6adb417e4298b69723f86158d0d0d5936b07f00f0a1956e54abbe03d39c011d1",
   "char_count": 174,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.2.1.": {
@@ -636,7 +636,7 @@
   "pdf_sha256": "5c0f905088f69c44ec79b3e811dd3c1c369f8fd4c2817e3bb78af05120407f7e",
   "char_count": 558,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.2.2.": {
@@ -646,7 +646,7 @@
   "pdf_sha256": "07c54ebcf30a8a6b96a94017936855f628974d4a5dfc1f52314a8ef3cb783247",
   "char_count": 2204,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.3.1.": {
@@ -656,7 +656,7 @@
   "pdf_sha256": "aaf13ce51103f78a82c0e2ae95fe46a8ca8fe25ba03726beafa5d1439a3f6730",
   "char_count": 119,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.4.1.": {
@@ -666,7 +666,7 @@
   "pdf_sha256": "1b072c5f735ddcef888d5e7004ce211a091f045c8d0090357cd107f759c3092e",
   "char_count": 530,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.4.2.": {
@@ -676,7 +676,7 @@
   "pdf_sha256": "f3bd5b0517b15bbc8b8051f493cd47938b1c1e0161d6e77c57ac784e3cb8e713",
   "char_count": 1548,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.4.3.": {
@@ -686,7 +686,7 @@
   "pdf_sha256": "5f66e29fb65920ac3f0e1b756189066656af9af623978e0abccd21aec7d8e880",
   "char_count": 486,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.4.4.": {
@@ -696,7 +696,7 @@
   "pdf_sha256": "ad2cd09b9583d94a5b0d6120ada7120069c7e28b7093a633b14459379daee773",
   "char_count": 436,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.5.": {
@@ -706,7 +706,7 @@
   "pdf_sha256": "83d74866bb2581c1d67c158b542c2a4741af546d2f4b3ae4761023eda65c0a67",
   "char_count": 957,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.2.2.": {
@@ -716,7 +716,7 @@
   "pdf_sha256": "ff7aa0b317c3a9d0e067d92eacf22c316ca66bd3185c17f550ec989fdc290f9a",
   "char_count": 116,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.2.3.": {
@@ -726,7 +726,7 @@
   "pdf_sha256": "34bcf2aa8af786e762f0df34011d30a00dc30c20b891b573c1b9bb22908eba19",
   "char_count": 41,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.3.1.": {
@@ -736,7 +736,7 @@
   "pdf_sha256": "4647c4cd35f3bf7256aa045f778b59f810d4e2b5f53db10c3ab7dcbefd232518",
   "char_count": 920,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.4.1.": {
@@ -746,7 +746,7 @@
   "pdf_sha256": "d54d7b9687e5f2e6999a84eab9176d89df2df0c496fc349f8fcd52b9a0744447",
   "char_count": 49,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.4.2.": {
@@ -756,7 +756,7 @@
   "pdf_sha256": "b01c3276cf4281f268459ef775373a43a0897b61bf3816ecb30215d79258fbda",
   "char_count": 63,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.4.3.": {
@@ -766,7 +766,7 @@
   "pdf_sha256": "4c5d1e9b7f13d7b140094dce3cdb80ffdadbe168a8956fc356d3b3c605781504",
   "char_count": 377,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.6.1.": {
@@ -776,7 +776,7 @@
   "pdf_sha256": "bd7e96e5b8551c39718f80b3d5fa394581457e34f2dea1f8628a8982201bc79a",
   "char_count": 1272,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.6.2.": {
@@ -786,7 +786,7 @@
   "pdf_sha256": "8993b1dd3f983c583e512632913fb2fd825cc6a3a4c2ec6a1a930f481b9db451",
   "char_count": 256,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.6.3.": {
@@ -796,7 +796,7 @@
   "pdf_sha256": "eb59877e80e10ddecba744bb4b67d558990358c35de096010c0ca9c932508a7a",
   "char_count": 238,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.6.4.": {
@@ -806,7 +806,7 @@
   "pdf_sha256": "6c134f5c70f749ff6f804cfd1a2dd3226892c70791570aea37534296ff33fdea",
   "char_count": 4553,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.6.4.1.": {
@@ -816,7 +816,7 @@
   "pdf_sha256": "6c134f5c70f749ff6f804cfd1a2dd3226892c70791570aea37534296ff33fdea",
   "char_count": 4553,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.6.4.2.": {
@@ -826,7 +826,7 @@
   "pdf_sha256": "6c134f5c70f749ff6f804cfd1a2dd3226892c70791570aea37534296ff33fdea",
   "char_count": 4553,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.1.": {
@@ -836,7 +836,7 @@
   "pdf_sha256": "6184272558d3253ddcfcf57ca9a6fa7c000be7bf2223c7173c4015bad8babdcb",
   "char_count": 103,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.": {
@@ -846,7 +846,7 @@
   "pdf_sha256": "6a44a20834fd0f5126f42fcc692b15a3950a6fb6890df8730a2a33d5416826f6",
   "char_count": 307,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.1.": {
@@ -856,7 +856,7 @@
   "pdf_sha256": "fc55fe0cd6bcc12c7eb8d11c571ef16a339a363126f816fb0b1e276639f1c5fe",
   "char_count": 154,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.2.": {
@@ -866,7 +866,7 @@
   "pdf_sha256": "639e392e55ca82a1b0da97b72088093d8dbf1ad7e0798ef0d61f634c5299c236",
   "char_count": 194,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.3.": {
@@ -876,7 +876,7 @@
   "pdf_sha256": "c016a8a24490ed56df51e4cae66cdb5848719a3be15f7f78387d2bea3707474c",
   "char_count": 116,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.4.": {
@@ -886,7 +886,7 @@
   "pdf_sha256": "aa660f3e81f07ec1518da7ec91729394ca4076e49d8ccad4bd3d72fe4567b19a",
   "char_count": 205,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.5.": {
@@ -896,7 +896,7 @@
   "pdf_sha256": "a7d27e90d741107eb5b68bbcc172135f650d405e1d0c58c97b34773549f38c04",
   "char_count": 204,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.6.": {
@@ -906,7 +906,7 @@
   "pdf_sha256": "c6e7404d6449a0276323120ab0c67569ce9de69fa6c66ff9c7f26739838ebcc6",
   "char_count": 577,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.7.": {
@@ -916,7 +916,7 @@
   "pdf_sha256": "c2ec98d4b0d728e60a2f3cc811f2b1dff317751a3fcbc5839a8a7df849c93125",
   "char_count": 927,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.8.": {
@@ -926,7 +926,7 @@
   "pdf_sha256": "3e4de0bd4bfebf49167090291341b11713d1151c67b6845e8ccf87dadad03cc8",
   "char_count": 414,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.9.": {
@@ -936,7 +936,7 @@
   "pdf_sha256": "40ede8784ee9e4fdd029e042dcd43419d2bcc344c3de4ba3d8bf1b0fbead979a",
   "char_count": 200,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.10.": {
@@ -946,7 +946,7 @@
   "pdf_sha256": "7f367e6de05e01f8860bbdd8367f6584649bc7327cd469ce18edf3abdc670ccd",
   "char_count": 540,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.8.2.11.": {
@@ -956,7 +956,7 @@
   "pdf_sha256": "63b9278cb7384c3e5d29577519efff7ab2987a70c5ce150231892db2867db556",
   "char_count": 664,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.9.1.": {
@@ -966,7 +966,7 @@
   "pdf_sha256": "b09dd941dce47264562c257ff6ea100986ab449257991676a853622ade818392",
   "char_count": 172,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.9.2.": {
@@ -976,7 +976,7 @@
   "pdf_sha256": "914106fa1296a42678b74735dd95fbe132fb7300f15ee11f6fec961f8a141654",
   "char_count": 178,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.9.3.": {
@@ -986,7 +986,7 @@
   "pdf_sha256": "a45d75074fbd720ddd0610c27854e58992a06a8deef63d4816a1fe18e54f8d9f",
   "char_count": 97,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.10.": {
@@ -996,7 +996,7 @@
   "pdf_sha256": "a0ef783d485feabdbc1305e0ac301ee28c7552b0a8ea88d9332145798a8b58ee",
   "char_count": 389,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.10.1.": {
@@ -1006,7 +1006,7 @@
   "pdf_sha256": "a0ef783d485feabdbc1305e0ac301ee28c7552b0a8ea88d9332145798a8b58ee",
   "char_count": 389,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.11.1.": {
@@ -1016,7 +1016,7 @@
   "pdf_sha256": "cecd88dab25186a81ae327d9afdb20a046975ae23f8484017a959d0f4041b02a",
   "char_count": 327,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.11.2.": {
@@ -1026,7 +1026,7 @@
   "pdf_sha256": "02da9b1922d698e17d880b164245498006bbd5eb5f66f154f0f1e298279815a7",
   "char_count": 135,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.12.": {
@@ -1036,7 +1036,7 @@
   "pdf_sha256": "1c79b2e7ff0785dfab85d50bc7a89b20fc011dd79fb36d3a6ac8c4347856b33d",
   "char_count": 246,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.13.1.": {
@@ -1046,7 +1046,7 @@
   "pdf_sha256": "e00d3fba9d36188ca3d64daaeb73e0e952537e636dbf10741162bbeb52f4e88f",
   "char_count": 416,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.13.2.": {
@@ -1056,7 +1056,7 @@
   "pdf_sha256": "ffe6643c30f59f685fe27f887e0aa9cd9a2f4280f934649be06108620f46d108",
   "char_count": 969,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.14.": {
@@ -1066,7 +1066,7 @@
   "pdf_sha256": "3df94035a8f39d8a392af0fec3bc8de0659a1002b66c86a490aacbedb137f014",
   "char_count": 726,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.15.": {
@@ -1076,7 +1076,7 @@
   "pdf_sha256": "2b3fcacff4e5b8bad4a23eb76d996b649fb06988475f8d94afa8887ae7f00215",
   "char_count": 66,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.16.": {
@@ -1086,7 +1086,7 @@
   "pdf_sha256": "3848d3f7e26d9cee5b82c5ebc9d49c5a2d942386f0191b08ed1fdd47f77816e1",
   "char_count": 1124,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.17.": {
@@ -1096,7 +1096,7 @@
   "pdf_sha256": "55f5a24d2aec36f400ec7d6b65c90d51945d81e69cf7407769c0703cca0f5e76",
   "char_count": 806,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.18.": {
@@ -1106,7 +1106,7 @@
   "pdf_sha256": "49e6901b542f6588ddfec4645fec6bbfc9c9140aae6e08f15a814ce9a5f47629",
   "char_count": 147,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.19.": {
@@ -1116,7 +1116,7 @@
   "pdf_sha256": "aaaa278ccecf29c2e3f2896cd0cd2dbd4301c0fc9bdfc7484e6fa7945d502bbb",
   "char_count": 734,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.1.2.": {
@@ -1126,7 +1126,7 @@
   "pdf_sha256": "9d4a95c76d1c42b6a6d2d6a8ecf256705fb1590d65777268a05522e9ccb8d2dc",
   "char_count": 117,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.2.": {
@@ -1136,7 +1136,7 @@
   "pdf_sha256": "852b887e4751e1c92d4284b89bc63418390e119fc7955e65c3dc26d77be0bdf9",
   "char_count": 37,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.2.1.": {
@@ -1146,7 +1146,7 @@
   "pdf_sha256": "7a85b2fad008865aa17584eefb15d26a3cfe4c4e550b2eb481214d4792b1d071",
   "char_count": 162,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.2.2.": {
@@ -1156,7 +1156,7 @@
   "pdf_sha256": "92efae6382ffe9917deb3f7ee7e7d5ce63aba0c7aee76f56cc9c2c1175cc74fb",
   "char_count": 334,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.1.": {
@@ -1166,7 +1166,7 @@
   "pdf_sha256": "46502f99e35d9d0bbbe9d2c580ba8c12ed0f90635a27b80f762f28c44f0cced3",
   "char_count": 416,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.2.": {
@@ -1176,7 +1176,7 @@
   "pdf_sha256": "436a9a012e0c178aad69ff9f463d57d7e19f2b5be68420e730b77282dc5c3f75",
   "char_count": 337,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.4.": {
@@ -1186,7 +1186,7 @@
   "pdf_sha256": "b97711e38d52c007267e9f004e90b5647271224fcc1ec119e612e1bd892022e4",
   "char_count": 188,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.5.": {
@@ -1196,7 +1196,7 @@
   "pdf_sha256": "ecdaebec07e2a4d82099e051d500d997734b5cbd86bd56af38a55b0853100a1b",
   "char_count": 385,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.6.": {
@@ -1206,7 +1206,7 @@
   "pdf_sha256": "26f71e43f0c9f8ed85dfe4bb00f078a9745e9e96c1adcdb828bc39b5df72cb93",
   "char_count": 510,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.7.": {
@@ -1216,7 +1216,7 @@
   "pdf_sha256": "36ec2614e01ff3ef02c170d6a9f843abf0cfbd287f4ea980c43820176c4b409d",
   "char_count": 65,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.8.": {
@@ -1226,7 +1226,7 @@
   "pdf_sha256": "96e4f84249a816fc0e94df6299b96e1435769c99e4b0d15a4b7c0e5cfa1da31f",
   "char_count": 1455,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.9.": {
@@ -1236,7 +1236,7 @@
   "pdf_sha256": "199a7392df3b4b72ed075028f9bd6754f71a3de2a91fdd14a5706eb9b5ed33e5",
   "char_count": 1052,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.10.": {
@@ -1246,7 +1246,7 @@
   "pdf_sha256": "b3af221d881c9c86df5cb75f9874c19cbe320dfc4aa1b7dfede9c029bdfc639f",
   "char_count": 1015,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.11.": {
@@ -1256,7 +1256,7 @@
   "pdf_sha256": "7ca70aebb9e10f1a00b0baf4744f5cc559adae34fa8c7947c6c8ee1e3e78d5c9",
   "char_count": 420,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.12.": {
@@ -1266,7 +1266,7 @@
   "pdf_sha256": "ddcfb4d50463dcc4c4107b85816ff9a9578bf6b5fd71184959732e32d1548a5d",
   "char_count": 99,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.13.": {
@@ -1276,7 +1276,7 @@
   "pdf_sha256": "00a42eb277cda66572ffa02c2be85e0b7383ac1ffdead40729caec22bad02393",
   "char_count": 3228,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.14.": {
@@ -1286,7 +1286,7 @@
   "pdf_sha256": "4c3f4cc512531f8332f075c2e3b924eceb87e5fb1e508b1921782ba0d0b8c3fe",
   "char_count": 563,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.15.": {
@@ -1296,7 +1296,7 @@
   "pdf_sha256": "d0e34b27b598010ff2d7cfc5efb5599713a3c0c4f273783f88bce018f64e20f7",
   "char_count": 1217,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.17.": {
@@ -1306,7 +1306,7 @@
   "pdf_sha256": "45e1595eb04c1f6b245b4aa79ae906080c7cb55d7ef4f6d0383a84400cdc45e7",
   "char_count": 999,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.18.": {
@@ -1316,7 +1316,7 @@
   "pdf_sha256": "c8e779fb80f1ef40513c62a9198dc79e005a17fff8b5133c6e8e6846e8367714",
   "char_count": 136,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.19.": {
@@ -1326,7 +1326,7 @@
   "pdf_sha256": "91ff50bd4ebc75668c54fad965336c3cd82994eaaee63753a3e324160a3e5e6a",
   "char_count": 1820,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.20.": {
@@ -1336,7 +1336,7 @@
   "pdf_sha256": "45de84b1fafb0702afbaf3839fc8a70fedbbfa34cd68fe37b6e5a03f7109f82d",
   "char_count": 261,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.21.": {
@@ -1346,7 +1346,7 @@
   "pdf_sha256": "54d2d1924057bca3263504245b378f93fb77029f359c7ebca12c1676e95d9b56",
   "char_count": 543,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.22.": {
@@ -1356,7 +1356,7 @@
   "pdf_sha256": "2c260a5f6bf144560f0dcaadac22efbecca02d088c8eea966ced545ac8a979b9",
   "char_count": 227,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.23.": {
@@ -1366,7 +1366,7 @@
   "pdf_sha256": "9cc0d733277b2c71b962885476194f7ca4c29f511b06bd6a0c61a64324bf04cb",
   "char_count": 228,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.24.": {
@@ -1376,7 +1376,7 @@
   "pdf_sha256": "801330c292d55836df0c8dd10155e3fb8b49174a82976d7b936c8186c96e4338",
   "char_count": 222,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.25.": {
@@ -1386,7 +1386,7 @@
   "pdf_sha256": "e4ffbb6fd0f795672569f98b18ace45085b2384da8d287854586abc6d19b4fc2",
   "char_count": 295,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.26.": {
@@ -1396,7 +1396,7 @@
   "pdf_sha256": "824d67160f19eaecf0f198a832f597e6f3495bca10fe533af350fe309a3478a1",
   "char_count": 950,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.27.": {
@@ -1406,7 +1406,7 @@
   "pdf_sha256": "4812ca2219a8e92e0bec62bc7ca4baeb8d25db966369cfbe2133a53572e988fd",
   "char_count": 89,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.28.": {
@@ -1416,7 +1416,7 @@
   "pdf_sha256": "9858d0446bb9b42097781cf93f552efaf752a22bd819468a1533a03c15f1b5e4",
   "char_count": 3065,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.29.": {
@@ -1426,7 +1426,7 @@
   "pdf_sha256": "58456b7c3a217b03573bb06541d6bdd324967fe0520fd319dfb1a120c4a2af2b",
   "char_count": 682,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.30.": {
@@ -1436,7 +1436,7 @@
   "pdf_sha256": "17ec27c08dd836e03c4f5a58d3004b4e13f24a40a3c7405cb1be08837bcf6789",
   "char_count": 639,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "3.3.31.": {
@@ -1446,7 +1446,7 @@
   "pdf_sha256": "f7472335bde2b9cf1894454e055f8cd024c65b3ac00d915250e8c1f29452f41b",
   "char_count": 1402,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.1.1.": {
@@ -1456,7 +1456,7 @@
   "pdf_sha256": "d86b00774c8455be6cce81b04ed8d5a9d30abdcdfcf5bb877451d861cfd9b964",
   "char_count": 1753,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.1.2.2.": {
@@ -1466,7 +1466,7 @@
   "pdf_sha256": "181e13f232b5d7b2002cb08d7892c21967fbce8a0073a57f2b9eadce67245c74",
   "char_count": 229,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.1.": {
@@ -1476,7 +1476,7 @@
   "pdf_sha256": "66680b74e8cb6512471cc09ba573759905479852050958d073bdf4e6181aa22d",
   "char_count": 959,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.2.": {
@@ -1486,7 +1486,7 @@
   "pdf_sha256": "7fa358a9b812d605528fcabe3bb1a6627c18a3267bd2bd7dccfc6ee1544f27ff",
   "char_count": 3200,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.3.": {
@@ -1496,7 +1496,7 @@
   "pdf_sha256": "251a39e08eca8ed292d3874ba5c64ae5bbaed453feaca8b719f91c3c09688b92",
   "char_count": 2967,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.4.": {
@@ -1506,7 +1506,7 @@
   "pdf_sha256": "bad52608b92b170b8471713b6b7ae652da6140a36045e8f7dc66fb4ca910aa5c",
   "char_count": 2177,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.5.": {
@@ -1516,7 +1516,7 @@
   "pdf_sha256": "909e5271160b3aec314282fafec99599bfb0624f72f38ed07a72785258e17498",
   "char_count": 326,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.6.": {
@@ -1526,7 +1526,7 @@
   "pdf_sha256": "f888b88c4cb0125c1f235c8e1f40e8f1e1171102b65b7038931fd4c5a763e0b8",
   "char_count": 791,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.7.": {
@@ -1536,7 +1536,7 @@
   "pdf_sha256": "4872acf8a47651e4b579f339afc66a747c12064870fcc69d502e51dbabd1aa1e",
   "char_count": 3012,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.2.8.": {
@@ -1546,7 +1546,7 @@
   "pdf_sha256": "f8e91b2c77c9bc2ea9d0471760c8f23aa6e3bf14273b6e7cd7b1c8daa00c74f0",
   "char_count": 2583,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.1.": {
@@ -1556,7 +1556,7 @@
   "pdf_sha256": "50f0ba55ecf8b0fe2c7fee9460d4c524467df32eb1a2a26d8d297e132fa5abf3",
   "char_count": 456,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.2.1.": {
@@ -1566,7 +1566,7 @@
   "pdf_sha256": "163f1c4ad714a79a68a599295a05c9cde3dc4a5fb4d2fc8ece8a171f2c5df000",
   "char_count": 1777,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.2.2.": {
@@ -1576,7 +1576,7 @@
   "pdf_sha256": "b178fb6d9e608f6c6b204316c2b099412966027d5e0f57b467707899c93165ef",
   "char_count": 1069,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.3.": {
@@ -1586,7 +1586,7 @@
   "pdf_sha256": "fcf00f89d89d16041be30dfe9f5f99650919e38d14426d13818bc4f1ba33e994",
   "char_count": 117,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.4.": {
@@ -1596,7 +1596,7 @@
   "pdf_sha256": "05ab0e0ee369d2f3f202f73a033e1ab55b65b0bc3f355977c99b0eb20cd2683c",
   "char_count": 923,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.5.": {
@@ -1606,7 +1606,7 @@
   "pdf_sha256": "4c93422f78be6a0738079fb0fc93b776ada2368ddf5b79b6c9ef0533bf0c2f94",
   "char_count": 439,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.6.": {
@@ -1616,7 +1616,7 @@
   "pdf_sha256": "61e56aa152f0754716fe16066e01c5a68e3822f78e425b2803453beaae5cd308",
   "char_count": 413,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "4.3.7.": {
@@ -1626,7 +1626,7 @@
   "pdf_sha256": "1a1c1b456140c463e3218d93da2c7b314c4395a6af5735292f1d382e03bc5ec7",
   "char_count": 782,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.": {
@@ -1636,7 +1636,7 @@
   "pdf_sha256": "198dae27eb465bdc567af1215e1195a6d47b2265bc47c6b0a8fb152f14c36b09",
   "char_count": 406,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.1.": {
@@ -1646,7 +1646,7 @@
   "pdf_sha256": "071f762620a3bab96ae2eaa390faf1f50cab4ffa1c2b3520db34578488d18c83",
   "char_count": 102,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.2.": {
@@ -1656,7 +1656,7 @@
   "pdf_sha256": "56bf0d07acd8f9e56fd45b93a94d6d8c1f3e0dd14c769fed5f55b9fec5371fba",
   "char_count": 42,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.3.1.": {
@@ -1666,7 +1666,7 @@
   "pdf_sha256": "230ac963b6db51966eaa35d8f9ad4038ac25f8d8a802d1e30b6da7abe620c20f",
   "char_count": 160,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.3.2.": {
@@ -1676,7 +1676,7 @@
   "pdf_sha256": "0f517efec86ed9ceeb36696a7e40bc7297749320683d88e75ee719e3e75e1f93",
   "char_count": 688,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.3.3.": {
@@ -1686,7 +1686,7 @@
   "pdf_sha256": "0ab7a430220458e2232cfb98ed34068bb0d1857af132f6f114f1d77b32720275",
   "char_count": 285,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.5.": {
@@ -1696,7 +1696,7 @@
   "pdf_sha256": "17c68984f98fdef93e367566ee5322b96d884ffa6618ab6c3a7b61338060905c",
   "char_count": 297,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.6.": {
@@ -1706,7 +1706,7 @@
   "pdf_sha256": "16660e7ab5f7e4b86084f984a212e426d7b439772ca1e4da0061d9ede2e8c970",
   "char_count": 167,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.7.": {
@@ -1716,7 +1716,7 @@
   "pdf_sha256": "2f9f34d2bf573c84f45ee9146a1508f85b0ca58433c1af801050bbb9f1fcf932",
   "char_count": 167,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.1.8.": {
@@ -1726,7 +1726,7 @@
   "pdf_sha256": "50b882b204c4cf690fa12bbf5b81786e39ce3c1f9ddd925e80cff707272a8e10",
   "char_count": 161,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.2.1.": {
@@ -1736,7 +1736,7 @@
   "pdf_sha256": "3afcef831cb524dd449061c89819999541df6cf22a099727ac0ccd01a4665add",
   "char_count": 55,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.2.2.1.": {
@@ -1746,7 +1746,7 @@
   "pdf_sha256": "84bc025c53e1067072f02ec443feac740aa9d9c15a6549427dd7ff21c7a39129",
   "char_count": 261,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.2.2.2.": {
@@ -1756,7 +1756,7 @@
   "pdf_sha256": "828219df2d3122cc3a7e5332bdabc48a863caaa8b787c657db90a1120983be89",
   "char_count": 224,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.3.1.1.": {
@@ -1766,7 +1766,7 @@
   "pdf_sha256": "466b77383ee9e7b1c5b3671ab2d764b7eb45cf48702f6eac9ae31576ee787f18",
   "char_count": 73,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.3.1.2.": {
@@ -1776,7 +1776,7 @@
   "pdf_sha256": "c10f39a7087326013a2d29deaafa51a470f0d91523a3f545dd120295c575b509",
   "char_count": 91,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.3.3.": {
@@ -1786,7 +1786,7 @@
   "pdf_sha256": "c1f5a5e273fb25dcccf8f7cb8f9539c76d854b0f2de7f98122bc1fe0cf833846",
   "char_count": 71,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.3.4.": {
@@ -1796,7 +1796,7 @@
   "pdf_sha256": "883b9cff26d4a0d129d9fc9f4f09040ea9e4a817e63d1dce81c1220f006159c9",
   "char_count": 21,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.3.5.": {
@@ -1806,7 +1806,7 @@
   "pdf_sha256": "31f85b41ab7fc5168a5f0c56a22a1eb1a987945e53c522dcbe02a448735a35d1",
   "char_count": 139,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.3.6.": {
@@ -1816,7 +1816,7 @@
   "pdf_sha256": "806e0c25ba5c1d898b7d091f9931406127bf7e94116d0490ecbda23d2c1b4539",
   "char_count": 161,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.1.1.": {
@@ -1826,7 +1826,7 @@
   "pdf_sha256": "a0162c366935ae656a236c30913187df5a448319e35e8787ff3325355366108c",
   "char_count": 2747,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.1.2.": {
@@ -1836,7 +1836,7 @@
   "pdf_sha256": "9a6712742e8809350bd06d4f6a03d5369613902ec9ea2693a234200700755dc8",
   "char_count": 542,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.2.": {
@@ -1846,7 +1846,7 @@
   "pdf_sha256": "adc235734c9af895961746b0ba804e9d77d655c1fdaf22f8bf7860f2564fc0b3",
   "char_count": 41,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.3.": {
@@ -1856,7 +1856,7 @@
   "pdf_sha256": "84e1975396cb3c20e4ed43237c90cb62f86f9849b6ca899e5bdee75497663b07",
   "char_count": 187,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.4.": {
@@ -1866,7 +1866,7 @@
   "pdf_sha256": "19f06ca2eb3df27ce1268c1a9ece9d4dc618b81532c7cbfb6cfea015a2cdbbf3",
   "char_count": 426,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.5.": {
@@ -1876,7 +1876,7 @@
   "pdf_sha256": "ce236e2133e2a328e2766e60620d957522ea4911c9f21a505ae58863b3f51652",
   "char_count": 184,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.6.": {
@@ -1886,7 +1886,7 @@
   "pdf_sha256": "9304f4f13537a3afc367b89af2b105b35b348c439ec766cd4e974b5412c32adb",
   "char_count": 445,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.7.": {
@@ -1896,7 +1896,7 @@
   "pdf_sha256": "8a06343620511c909ad50aa0296d9c5b18a941b7161cee58e99a6d3bd8abfb69",
   "char_count": 86,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.8.": {
@@ -1906,7 +1906,7 @@
   "pdf_sha256": "2c9d31dd6b9faceae5870556a795d49fc38523ade2ea450b065148f1be458996",
   "char_count": 130,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.4.9.": {
@@ -1916,7 +1916,7 @@
   "pdf_sha256": "b8e01d330af84f960a3d0d94da0f678a7e7d061e9cda0638db0fcb9f44788fbd",
   "char_count": 186,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.1.": {
@@ -1926,7 +1926,7 @@
   "pdf_sha256": "f75a428243bad9d821b4de806ff43e2ad8cd79ec773bc7591219515cf3615d73",
   "char_count": 1668,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.1.1.": {
@@ -1936,7 +1936,7 @@
   "pdf_sha256": "131c5d73436c827ec5b86618a75df63ecb7218237cb31215271c820334a4035a",
   "char_count": 63,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.2.": {
@@ -1946,7 +1946,7 @@
   "pdf_sha256": "e80393fced55e62212b81cc2fd862a63eb546459ebc4f61a3a00d64e86ff9f97",
   "char_count": 114,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.3.1.": {
@@ -1956,7 +1956,7 @@
   "pdf_sha256": "08919ec3ec7ae4ed878efefcc3581dd7dbf41d7b939cfd3c81fe19c36d3132e3",
   "char_count": 255,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.3.2.1.": {
@@ -1966,7 +1966,7 @@
   "pdf_sha256": "eddd0b8ff11fe9f38ba65cb7431137a0cda1ca8488fa5200a856fbf2b2776c40",
   "char_count": 277,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.3.2.2.": {
@@ -1976,7 +1976,7 @@
   "pdf_sha256": "ebc063e410a6df867f823f12b841f599740ca047c416caa5d8a21cf7936ad21d",
   "char_count": 116,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.3.3.": {
@@ -1986,7 +1986,7 @@
   "pdf_sha256": "1547cffd7550c99a4a4bbf8db7f057f0cb6a86342ff2d0439c2fb4c0a22e9beb",
   "char_count": 82,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.3.4.1.": {
@@ -1996,7 +1996,7 @@
   "pdf_sha256": "6ffa1a1a20a3e3919d15bef3ade83e208184e989ee2e80c6bb176d74e1794685",
   "char_count": 233,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.4.": {
@@ -2006,7 +2006,7 @@
   "pdf_sha256": "7e3b9e7fc8145da6715a83ef6ebf7a7771203cd33285228b6f2075c251d09035",
   "char_count": 131,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.6.": {
@@ -2016,7 +2016,7 @@
   "pdf_sha256": "45c2cd0a9ceeadcd24c60db505be2d35c05a55999ed481ee919cb3a8fa53b4dc",
   "char_count": 193,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.7.": {
@@ -2026,7 +2026,7 @@
   "pdf_sha256": "3c5d3d06d6723d09a65a3aae7cd5eb0b43581a3138abd72a1f8dbada376b85e6",
   "char_count": 1047,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.5.8.": {
@@ -2036,7 +2036,7 @@
   "pdf_sha256": "cade9753f95085da1fcaa0068bd54ef34ebc272ade202afd8b65ead9f8bb3d33",
   "char_count": 698,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.6.1.": {
@@ -2046,7 +2046,7 @@
   "pdf_sha256": "38bbecde9177057e260ebb928973ff1a3b7fd31442e208ea464a825a6ca8e72c",
   "char_count": 1286,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.6.2.": {
@@ -2056,7 +2056,7 @@
   "pdf_sha256": "66b30bb4a423d1e12d936646823af93b3602caa4bc82285b6f9f960ba73f9177",
   "char_count": 443,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "5.6.3.": {
@@ -2066,7 +2066,7 @@
   "pdf_sha256": "147684813a41e38c4fe7f9a16935a596986ddee767fc1be6c6a31210144a6db0",
   "char_count": 863,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.1.": {
@@ -2076,7 +2076,7 @@
   "pdf_sha256": "87b49816ae5242d2ecf184cace318ba0512df5334256159663975dca86523237",
   "char_count": 4163,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.1.": {
@@ -2086,7 +2086,7 @@
   "pdf_sha256": "802685a5b6c95d673bfd33c8ff0413ee52e5b1902dd60529f352c73cfdaa009b",
   "char_count": 433,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.2.": {
@@ -2096,7 +2096,7 @@
   "pdf_sha256": "103c4c660c2c2a6e7135152ab4d00dff6ed759f81fcabd7fadc3803dd178c395",
   "char_count": 88,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.3.": {
@@ -2106,7 +2106,7 @@
   "pdf_sha256": "294f3ee3a7f2e31f39a7e6475b258d5422cbb8d13e1ef46fc5c0707140fd68de",
   "char_count": 62,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.4.": {
@@ -2116,7 +2116,7 @@
   "pdf_sha256": "bef4032d2107c046a75290b0c17ca2c860cc06e1a6cbc3b57d6ffbebebef5a60",
   "char_count": 380,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.5.": {
@@ -2126,7 +2126,7 @@
   "pdf_sha256": "3bd415221f17ffbb45a4464c9e24a01c2f4b894ea65dd7b1618e72def01e4b5c",
   "char_count": 289,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.6.": {
@@ -2136,7 +2136,7 @@
   "pdf_sha256": "760b6be3961feb2443c875f89a46e903665ae3dcaed7b3515e40f21b8f0d6cee",
   "char_count": 1543,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.7.": {
@@ -2146,7 +2146,7 @@
   "pdf_sha256": "4cf124fb21d330c219bbbc99558617d8c5baa8804e3f91a252b2aeab2e52d59f",
   "char_count": 2016,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.8.": {
@@ -2156,7 +2156,7 @@
   "pdf_sha256": "d1fc8b9d3ea0493fde889605e68b0d9b2ab56e214cb896ffc892341c061ba88f",
   "char_count": 824,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.9.": {
@@ -2166,7 +2166,7 @@
   "pdf_sha256": "749d92a5cfef3cea07fcce3d62400d64fc89ded46855e9ed7aff7368d9ff75c7",
   "char_count": 700,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.10.": {
@@ -2176,7 +2176,7 @@
   "pdf_sha256": "402c6fc6ed2dd7f53c710d0701a7b37beb5e922100e9523bb396bcd9509d64d7",
   "char_count": 380,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "6.2.11.": {
@@ -2186,7 +2186,7 @@
   "pdf_sha256": "05260cd358906c3d06bab6b84f94e05fd2af8b5f50adc91add06d727f1f38eea",
   "char_count": 332,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.1.": {
@@ -2196,7 +2196,7 @@
   "pdf_sha256": "5b093074b7c672128b4e32b569cfc266ee87fda7e6bbca3d773119fca3404aa3",
   "char_count": 5845,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.2.1.": {
@@ -2206,7 +2206,7 @@
   "pdf_sha256": "dd4cf08fea57048c70c8bec158c09f06b4fb96a8b80c6f2c8e1aee50ac0eba72",
   "char_count": 1022,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.2.2.": {
@@ -2216,7 +2216,7 @@
   "pdf_sha256": "9e95e63f354b546f2a78c027cdc1efe03266e3522448a69abc6462a65e7b2944",
   "char_count": 345,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.2.3.": {
@@ -2226,7 +2226,7 @@
   "pdf_sha256": "51de0c2a6ed01c75225265e93d4b7239227d92701002acd6ba3d78c28664ce38",
   "char_count": 317,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.1.": {
@@ -2236,7 +2236,7 @@
   "pdf_sha256": "11a943a80d7be8d47fee94e742143a49c6e43301b8bcde379183455904a5bc23",
   "char_count": 77,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.2.": {
@@ -2246,7 +2246,7 @@
   "pdf_sha256": "db91a1cbf0da8d6c7e4cb76f5d07190526f1617bf234b0258cdd5c6213e78216",
   "char_count": 78,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.3.": {
@@ -2256,7 +2256,7 @@
   "pdf_sha256": "c27998d12a306fbf84a3a36b3473d89953f0dd5d0e1a18aa66f000cfe2b946aa",
   "char_count": 55,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.4.": {
@@ -2266,7 +2266,7 @@
   "pdf_sha256": "d4ad77256565c89bdde092c3554a84345d6611af576c5bdabd7534e838ee0294",
   "char_count": 462,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.5.": {
@@ -2276,7 +2276,7 @@
   "pdf_sha256": "2e66b5bcd8af9b362113f0c3ad47f3b302635b6748edc0e6f6f936edfc22203d",
   "char_count": 165,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.6.": {
@@ -2286,7 +2286,7 @@
   "pdf_sha256": "d29e39206567583a6e6840c8dc811c73bf8f082ac0c3b4c0ac7e9b878e0dd98d",
   "char_count": 217,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.7.": {
@@ -2296,7 +2296,7 @@
   "pdf_sha256": "28ea13af03c69e15d2deea3d198dc0eb0009ae8b187664295801c290dd0a566f",
   "char_count": 192,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "7.3.8.": {
@@ -2306,7 +2306,7 @@
   "pdf_sha256": "770e69dbf427eea6f19b0f05652d5bf311c69f935d926ab2f6e7e0489c81aa44",
   "char_count": 545,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.1.1.": {
@@ -2316,7 +2316,7 @@
   "pdf_sha256": "23c04c3e5313489ba3ecbe597a1670ad54457ebdfcb5e0899dc1e8b7c1b99925",
   "char_count": 87,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.1.3.": {
@@ -2326,7 +2326,7 @@
   "pdf_sha256": "91a41c1b152f3458122f02990df194500521ae90e10a2fe250ca2ce5de87940d",
   "char_count": 3224,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.1.4.": {
@@ -2336,7 +2336,7 @@
   "pdf_sha256": "3e201649cf3553da7d2ef0f8ff00fc1d16ff7130b229d90be84d1835b70fa3d1",
   "char_count": 374,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.1.5.": {
@@ -2346,7 +2346,7 @@
   "pdf_sha256": "ed744bb9507ee0d120f72654de4b79aa83f1ce2cce033fde4fff4fb46218a3c1",
   "char_count": 244,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.1.6.": {
@@ -2356,7 +2356,7 @@
   "pdf_sha256": "558878073c2c01e08e3f9526a1d3a5cd58f90bd793edcdb110cf381ae44ec47c",
   "char_count": 55,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.1.": {
@@ -2366,7 +2366,7 @@
   "pdf_sha256": "acf255fdfdc17c0d6a852081eeec0a7ad8d62f53da0e30e1c6728a772a6e7210",
   "char_count": 583,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.2.1.": {
@@ -2376,7 +2376,7 @@
   "pdf_sha256": "b21fea7a91215a6577609f33862c328dda382a655f311425a6eb2d5a540fac43",
   "char_count": 85,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.2.2.": {
@@ -2386,7 +2386,7 @@
   "pdf_sha256": "377db8f275cea0f95a1a7121a246d45c92efd96413c922f52f3d2cb0c1523103",
   "char_count": 122,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.3.1.": {
@@ -2396,7 +2396,7 @@
   "pdf_sha256": "bfbd619d0b46977a6261eb32e2e487442aa20fdfd92b831627a1239f3bdefbb5",
   "char_count": 1195,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.3.2.": {
@@ -2406,7 +2406,7 @@
   "pdf_sha256": "46281189e1442781ee95f95e5b331af90ad11d46e90f7ea304e4a39cf51a4fd4",
   "char_count": 537,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.3.3.": {
@@ -2416,7 +2416,7 @@
   "pdf_sha256": "e04e6ee4385a0c7307d662e2b65e51be94364e77859dc2c6af63bc9461e7fc6c",
   "char_count": 111,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.3.4.": {
@@ -2426,7 +2426,7 @@
   "pdf_sha256": "33b7b29d8cc5f0444bc3452d23953c7e05c7517abd6bc725db26dc8662e4de51",
   "char_count": 548,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.3.5.": {
@@ -2436,7 +2436,7 @@
   "pdf_sha256": "3d997f33cd125a83f67efbd364d5d1ee318315a884f62f20a6d93d40b4e58416",
   "char_count": 798,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.3.6.": {
@@ -2446,7 +2446,7 @@
   "pdf_sha256": "4ab026415fc2828eb2682fb2179b354ef3b0c94c6ac295a77054f8a031541774",
   "char_count": 805,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.3.7.": {
@@ -2456,7 +2456,7 @@
   "pdf_sha256": "2960a22eeb92df941d175e945f24b18a6d0757ebee850b802df884776e2cb8bd",
   "char_count": 580,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.": {
@@ -2466,7 +2466,7 @@
   "pdf_sha256": "36c89ba750a09b81cd2bd9ca889bbd69d5c64542be684505add2164ba0b36160",
   "char_count": 511,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.1.": {
@@ -2476,7 +2476,7 @@
   "pdf_sha256": "86f438c8e525db4440b16a5f498976aecfeeccf08635becba789693c238e532e",
   "char_count": 2824,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.2.": {
@@ -2486,7 +2486,7 @@
   "pdf_sha256": "ac2a37705b2ad8b11cd46bcf143326eadb5cd204ad2ecb520f202c51d627a576",
   "char_count": 4214,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.3.": {
@@ -2496,7 +2496,7 @@
   "pdf_sha256": "1c62aa9b8c1fe515f2c2405db131e009d9c9f9fe6694674d5534b5c8e6b0300a",
   "char_count": 2383,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.4.": {
@@ -2506,7 +2506,7 @@
   "pdf_sha256": "3e2c94a01262f5be8f4f2fb95639a2684468de6c1477f9e93583d7539158fe6e",
   "char_count": 4590,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.5.": {
@@ -2516,7 +2516,7 @@
   "pdf_sha256": "0c15a71b9a7ca3cf7e7545dcc76fb9ae7fd42b40507e36b63078fb6b3e7e8b70",
   "char_count": 2628,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.6.": {
@@ -2526,7 +2526,7 @@
   "pdf_sha256": "8dbb11da8068741d34ad224005d177a3d95a4566b5ac5ef2a1418cbd3266e77c",
   "char_count": 366,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.6.1.": {
@@ -2536,7 +2536,7 @@
   "pdf_sha256": "00cfc85ef5b9148f34d3340b38ffcd4f59c9ed5aa3de2d8e77997eae73b0c545",
   "char_count": 7072,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.6.2.": {
@@ -2546,7 +2546,7 @@
   "pdf_sha256": "8d63ec4411506814e6e91aa4dfe5b3ef124349be45f64a1136d18612594fd8df",
   "char_count": 385,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.7.": {
@@ -2556,7 +2556,7 @@
   "pdf_sha256": "93a2dc80777b3d9a0f608c1e0131d728eebb6a24f5ba956522d9cfeb78893842",
   "char_count": 263,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.7.1.": {
@@ -2566,7 +2566,7 @@
   "pdf_sha256": "f6a5c3ce4c685ad1031e4efbfeb610a41d9d5e33c1c1c3f16c72f125c2e1c5e7",
   "char_count": 4435,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.7.2.": {
@@ -2576,7 +2576,7 @@
   "pdf_sha256": "312df28f84ee38218afc2c58ef7471d61653509b3f6dc0933b6379c23137c896",
   "char_count": 2248,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.8.": {
@@ -2586,7 +2586,7 @@
   "pdf_sha256": "8d599dc175aff30bab7950cf4cc24519230b0357556c8a679d417e3096037a3c",
   "char_count": 2563,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.9.": {
@@ -2596,7 +2596,7 @@
   "pdf_sha256": "3e55641a2c99163017f1044e32da311108ece7b8836d073bb9e8372a61e8b49a",
   "char_count": 277,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.9.1.": {
@@ -2606,7 +2606,7 @@
   "pdf_sha256": "8b761b91177647480256667d6abacb74d32e40c3e113f8810c601865b6cbe5b4",
   "char_count": 4405,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.9.2.": {
@@ -2616,7 +2616,7 @@
   "pdf_sha256": "7e183436dec13b3d66e8e4986b526365c35e4e1aff40a412e2fe75af5232e110",
   "char_count": 2107,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.10.": {
@@ -2626,7 +2626,7 @@
   "pdf_sha256": "c6eb518fd1738d33fcc392086b6fc7740c1d9d859f74c9463979dc9dded6128f",
   "char_count": 1040,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.11.": {
@@ -2636,7 +2636,7 @@
   "pdf_sha256": "97a7f47c7f278b909d4db995e42421316dd8336e4773d1126cc457efefcc2fbd",
   "char_count": 5332,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.12.": {
@@ -2646,7 +2646,7 @@
   "pdf_sha256": "52102836a73af72f1db9b83db0886b918ec48b5babb9774abc5338a31a0c4644",
   "char_count": 300,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.13.": {
@@ -2656,7 +2656,7 @@
   "pdf_sha256": "84503067fbdce981083f7ccccdabb82492cc1c68094ffb8fc20a968149150ed2",
   "char_count": 200,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.4.14.": {
@@ -2666,7 +2666,7 @@
   "pdf_sha256": "a050ad8ba76cc6c5d18aa6cff9791ce5114944f5fd9a0734b2b5ad2ce5fee807",
   "char_count": 1185,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.5.": {
@@ -2676,7 +2676,7 @@
   "pdf_sha256": "fe45634b748d7ec43e59e75b65564f999555bbb3f4c5fb7642e1cebb821275d7",
   "char_count": 179,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.6.1.": {
@@ -2686,7 +2686,7 @@
   "pdf_sha256": "069ce00f224addd34c23e998049c1f094191fe3ead46f8a93ee72c3c188e9209",
   "char_count": 3456,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.6.2.": {
@@ -2696,7 +2696,7 @@
   "pdf_sha256": "3dd615b0d94e1a7ef03350b9d844deff0cf052294ece3d3c0092c526ee318c4c",
   "char_count": 943,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.7.": {
@@ -2706,7 +2706,7 @@
   "pdf_sha256": "3a81235525d098c540e0c6fada4b68c06b8ac0c6e4d152d6d7a63ab460ed0ecd",
   "char_count": 2420,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.8.": {
@@ -2716,7 +2716,7 @@
   "pdf_sha256": "075f529b981efddcdfaeaa05b79668c1cf6aed4ab1d31486304ffe45a4175834",
   "char_count": 672,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.9.": {
@@ -2726,7 +2726,7 @@
   "pdf_sha256": "ee15a6644541608609c2e3e220c79c6a6d7bc6f9d8b037bb2456142f25e94a41",
   "char_count": 166,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.10.": {
@@ -2736,7 +2736,7 @@
   "pdf_sha256": "ca4bd13eaa5a9bca471499a0232a56950e7e9a79ab3f1fa7fca74343a0d8f9b6",
   "char_count": 7381,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.11.": {
@@ -2746,7 +2746,7 @@
   "pdf_sha256": "a2b415b51e9ebc0a472a5e3a841ca8282c1acbcc698733ea0488aea089e46b45",
   "char_count": 236,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.12.": {
@@ -2756,7 +2756,7 @@
   "pdf_sha256": "e0e05b3f3b28505328f5037113ef8d1521396a6b2d4208546847043c6b9fc3d5",
   "char_count": 603,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.13.": {
@@ -2766,7 +2766,7 @@
   "pdf_sha256": "5743f8666ca70bb753f1b67e6f4873c8f8caf2f43d2f10cb40ae0366858e38fc",
   "char_count": 10409,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.14.": {
@@ -2776,7 +2776,7 @@
   "pdf_sha256": "5e16b1ac336b443d2baaada32c9a843a0cafb5c017b4d3534d20a7d421bf49ca",
   "char_count": 1105,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.15.": {
@@ -2786,7 +2786,7 @@
   "pdf_sha256": "6ae607b5f030007a9971d75980e9fec533e457f80137519606c1a881108a23c6",
   "char_count": 1707,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.16.": {
@@ -2796,7 +2796,7 @@
   "pdf_sha256": "e16224cd987a727ca8a4696476d5147b46d9b1bd5389f6465905d8fcce63e6cb",
   "char_count": 1127,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.17.": {
@@ -2806,7 +2806,7 @@
   "pdf_sha256": "dc12fe1f69e7f54bcaef1931e0a7e4708a28a3b2e4b0de1cea929c361253a5cb",
   "char_count": 933,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.18.": {
@@ -2816,7 +2816,7 @@
   "pdf_sha256": "484e026ffaafd8f807246161461657bb99f1b16cfaaf6305ecd5089048e063fa",
   "char_count": 1830,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "8.2.19.": {
@@ -2826,7 +2826,7 @@
   "pdf_sha256": "9902542e2758da4af4788b962a6eda728043f15a74d82c5661b4f6aa7e5077b4",
   "char_count": 4119,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.1.1.": {
@@ -2836,7 +2836,7 @@
   "pdf_sha256": "a16aea982403330eb1bad9bc3fd5835aaf903b93efeecbd68015e34c1c0f5d1e",
   "char_count": 337,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.1.2.": {
@@ -2846,7 +2846,7 @@
   "pdf_sha256": "a43dfdf77f7212d09d00eb086bbb47a9f48175768fe465cf87f1e84c50b8e35c",
   "char_count": 364,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.1.3.": {
@@ -2856,7 +2856,7 @@
   "pdf_sha256": "1b1b0ebb9c67b13d8244a7c183e790cafdd70e3bd56dc37219a9cca97e426e2e",
   "char_count": 543,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.2.": {
@@ -2866,7 +2866,7 @@
   "pdf_sha256": "7cd766fafda45a44f3ae1908c55f6c9241b7b02652a19e8e78f020e0766f4214",
   "char_count": 1181,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.3.": {
@@ -2876,7 +2876,7 @@
   "pdf_sha256": "594ed860f4e5bf6fe1d3f52f826111e05d8cfc013ef4e85e228018ec06d6b191",
   "char_count": 696,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.4.": {
@@ -2886,7 +2886,7 @@
   "pdf_sha256": "9836faff278de48db775ee8c13570f6dd6795c5497ac2b19ce7c2c03801cfc2f",
   "char_count": 709,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.5.1.": {
@@ -2896,7 +2896,7 @@
   "pdf_sha256": "30dbaca9286c3a3cfafb9c53ee4880f79e2b1108909ea4c2c454259ed1cd6ee3",
   "char_count": 899,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.5.2.": {
@@ -2906,7 +2906,7 @@
   "pdf_sha256": "f38a7bba851929af5d796934e9fa97bec045377ae6536312f02c1d89f61c6d9c",
   "char_count": 86,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.6.": {
@@ -2916,7 +2916,7 @@
   "pdf_sha256": "7162f6477d695f7f23f3d0dcfa562c16267f5653a161717ba4d10fda85c1ade4",
   "char_count": 78,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.7.": {
@@ -2926,7 +2926,7 @@
   "pdf_sha256": "a13c921a728749a6076d08ce0243f50b60caf5d4585ce74647bb473bf6b86378",
   "char_count": 32,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.8.": {
@@ -2936,7 +2936,7 @@
   "pdf_sha256": "c6b567dd4e7fcd63d8c86ee3f6e3010cd3b53c134a136e0ea436eca3ef151db8",
   "char_count": 87,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.9.": {
@@ -2946,7 +2946,7 @@
   "pdf_sha256": "0ff62231737882c98e0bff4db632ab9d1b7d3349fcf365302172d046058d3de2",
   "char_count": 203,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.10.": {
@@ -2956,7 +2956,7 @@
   "pdf_sha256": "1323532030d1261ccc7287b41c61d86bd0ba97997a9c372c0b80b3a4b34aba41",
   "char_count": 531,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.11.": {
@@ -2966,7 +2966,7 @@
   "pdf_sha256": "4b90bed2fc37073fcba60c63c3766223b750389d2166054d428662ca3f349cdc",
   "char_count": 267,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.12.1.": {
@@ -2976,7 +2976,7 @@
   "pdf_sha256": "3aecd12d3ecbc5b1f2991417021c7077aa613611005a62ffafea96dda747fbc5",
   "char_count": 142,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.12.2.": {
@@ -2986,7 +2986,7 @@
   "pdf_sha256": "c1bcbe693b20eb9d5519e469a114e608e21b94944299272461120431cff5ca2a",
   "char_count": 204,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.13.": {
@@ -2996,7 +2996,7 @@
   "pdf_sha256": "b9155dc0f64d89b4ff3045aabff53e4a131bc13006aafae83ab92f8077ff5e06",
   "char_count": 81,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.14.": {
@@ -3006,7 +3006,7 @@
   "pdf_sha256": "7b662e26ea5f7eb60b1b21564504bf587d6e71426b6b177adbd79eaa2d2f7196",
   "char_count": 325,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.15.": {
@@ -3016,7 +3016,7 @@
   "pdf_sha256": "d4789b8f90560c413e3db29f04bbfa409675cd995c87b4a52f8b8cd2ca32fbe5",
   "char_count": 62,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.16.1.": {
@@ -3026,7 +3026,7 @@
   "pdf_sha256": "4e7969c3e4e592049565055fb85af0d4504bde55c52e55301119d34e3cb69f7a",
   "char_count": 169,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.16.2.": {
@@ -3036,7 +3036,7 @@
   "pdf_sha256": "bdacb335c673ac35423dcc3c97b12c4a54d194041f0a4e4b0d33d9ed2c0a3136",
   "char_count": 64,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.17.": {
@@ -3046,7 +3046,7 @@
   "pdf_sha256": "3c18604fa6849eccffb6b1bf88aaf8ca29fa2e1617218f043d29777305e8dbd2",
   "char_count": 488,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.18.": {
@@ -3056,7 +3056,7 @@
   "pdf_sha256": "b6745b5638155f664882ef15ed9b8b3738e6f6cb641b0927a7693c9f2dbb1fb9",
   "char_count": 2546,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.19.": {
@@ -3066,7 +3066,7 @@
   "pdf_sha256": "58337d3de3dea498f60f21188efc6b170ce1c483f4bdf3268ce5273122adfe59",
   "char_count": 137,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.20.": {
@@ -3076,7 +3076,7 @@
   "pdf_sha256": "fe21fa7e2809de4f5a9fdf95c2d362412bc3237e9ddc42e494be259520deef1c",
   "char_count": 2079,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.21.": {
@@ -3086,7 +3086,7 @@
   "pdf_sha256": "7202355e5a8a4153b3aa022c7a6e9767586593c6f1a2569326cc271f708de0eb",
   "char_count": 488,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.22.": {
@@ -3096,7 +3096,7 @@
   "pdf_sha256": "186455e5b41220d624e301183544816e42159c90d84d4f0119e6822b3bcadde3",
   "char_count": 911,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.23.": {
@@ -3106,7 +3106,7 @@
   "pdf_sha256": "3adf4722b57d28522c68a55df91505c7c8ff456f92d34234f2940b85c2aefdd1",
   "char_count": 69,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.24.": {
@@ -3116,7 +3116,7 @@
   "pdf_sha256": "e20dc6edc573105651a52d3064dd9cd09d53de80ae167e513f337e5e4d4a7f50",
   "char_count": 1512,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.25.": {
@@ -3126,7 +3126,7 @@
   "pdf_sha256": "c97a3ded8cd2ff023eff774e137086c507615fee1d79dcb458c54af5f6c06949",
   "char_count": 405,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.26.": {
@@ -3136,7 +3136,7 @@
   "pdf_sha256": "589b5c8e3f5715925ab7328edd1e3555671ad476054234d1ad0df68e6168f881",
   "char_count": 841,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.27.": {
@@ -3146,7 +3146,7 @@
   "pdf_sha256": "c302349cb045ffaa88d8617afc2b9da8cbd68a5a7a656610814fc5a2dbd9b1d8",
   "char_count": 1652,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.28.": {
@@ -3156,7 +3156,7 @@
   "pdf_sha256": "3ad5941a623c176cf66680f8b81f6e726acd18c62b9e6249571876a4ce350dea",
   "char_count": 1182,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.29.": {
@@ -3166,7 +3166,7 @@
   "pdf_sha256": "0cc15c9a674fdcdebd46d59ddb0be865ef30ccee4bab5f8003b4283a2d05dc84",
   "char_count": 2274,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.30.": {
@@ -3176,7 +3176,7 @@
   "pdf_sha256": "1990c95012f7ba0572a89de66071b75ef4702fd88e8650b53046b8ce5b450eda",
   "char_count": 592,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.31.": {
@@ -3186,7 +3186,7 @@
   "pdf_sha256": "1a03cf6f602da1c7357f45b8d9684c47e58ce2a3cdc07c850aefbf7cdf8464e4",
   "char_count": 674,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.32.1.": {
@@ -3196,7 +3196,7 @@
   "pdf_sha256": "56863b684eaea6e912306711f4bebd64a58507b5dd28b13c1c092d4c80dc8bd5",
   "char_count": 405,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.32.2.": {
@@ -3206,7 +3206,7 @@
   "pdf_sha256": "213f84350b3a189a5d63e401851e561da289762bc8d815ec53663fd5eb866661",
   "char_count": 162,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.33.": {
@@ -3216,7 +3216,7 @@
   "pdf_sha256": "ba4c8a2b287907e97882e52d265abaca3689dca8d8a3754c8fc8dd03c248eb31",
   "char_count": 121,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.34.": {
@@ -3226,7 +3226,7 @@
   "pdf_sha256": "76bb9af7b7d0a76636c4d944929c6b84b42e3b5f4474ef2126d64e7d46ee14ef",
   "char_count": 1071,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.35.": {
@@ -3236,7 +3236,7 @@
   "pdf_sha256": "f9b46e2434484b697f0a4f7fd5e8ef9de42d531e3ab20fe01c765184100cda29",
   "char_count": 113,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.36.1.": {
@@ -3246,7 +3246,7 @@
   "pdf_sha256": "3de1295d10bec2eaecc18dd1e38e8dd688dfd85def2f0a4914b98218963af13a",
   "char_count": 848,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.36.2.": {
@@ -3256,7 +3256,7 @@
   "pdf_sha256": "aa175861d6d87d49f649459e492ac086dc31b4cac945e7705aa2c78c0b8f5b5c",
   "char_count": 836,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.37.": {
@@ -3266,7 +3266,7 @@
   "pdf_sha256": "f786c9e32dfc030ebbf5ec7a54fadc155a356d2db1262edcaf8a530b362e003a",
   "char_count": 3249,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.38.": {
@@ -3276,7 +3276,7 @@
   "pdf_sha256": "5be9587469cc42de295dcf723a309444cd3a1acdccb71ebbe23ef8fe6afed94e",
   "char_count": 435,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.39.": {
@@ -3286,7 +3286,7 @@
   "pdf_sha256": "02fe5deef6e8bc18d6e0ab4dc3f515ee02eb06b5238dca12ac61fd330fc03ba3",
   "char_count": 221,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.40.": {
@@ -3296,7 +3296,7 @@
   "pdf_sha256": "ff21742094a5a8b8dfe1d5b5a3a06b7806869072c77c08f0fd834402b7618ea7",
   "char_count": 69,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.41.": {
@@ -3306,7 +3306,7 @@
   "pdf_sha256": "6a547353f96786fb1fa665655d2ad83480c725308531121fad4bd792bd77f0af",
   "char_count": 2493,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.42.": {
@@ -3316,7 +3316,7 @@
   "pdf_sha256": "8919af3b72f9cc2b5f6b0fc0657a6637085989768a43931b260f9a801cb55b55",
   "char_count": 785,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.43.": {
@@ -3326,7 +3326,7 @@
   "pdf_sha256": "8f6541bca51a9f8c08d0e0519c8726c10bfc777027ea7ee94c1c610d79976dee",
   "char_count": 2166,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.44.": {
@@ -3336,7 +3336,7 @@
   "pdf_sha256": "fa54335d12aa31a45dd3c4b7466ed3a5d61def6a4989618e83525489b39a662a",
   "char_count": 1258,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.44.1.": {
@@ -3346,7 +3346,7 @@
   "pdf_sha256": "4ba61ac34fdf69f568f65a04a714711ed5d80369edb9018ac20b8a75f652b8ab",
   "char_count": 1181,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.44.2.": {
@@ -3356,7 +3356,7 @@
   "pdf_sha256": "0842ef9e604739bb51c0ebcd291dc18fe0a969dbe87e03763ea5fb9cf442027b",
   "char_count": 553,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.45.": {
@@ -3366,7 +3366,7 @@
   "pdf_sha256": "d368f303768cfc14d5b37a78c93daf22d1c0036f1c5a96ce8a97b8db068d5c77",
   "char_count": 1452,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.46.": {
@@ -3376,7 +3376,7 @@
   "pdf_sha256": "a5b5572b6415fd3ab1a59e1df16f6f5bd84fbc5e2ef3a2c0dae5b139ff4fe3e0",
   "char_count": 339,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.47.": {
@@ -3386,7 +3386,7 @@
   "pdf_sha256": "c95f1d1c1e30e08c857507c4852e7561d382ade6afd7ed0e744ab614ae291217",
   "char_count": 309,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.48.": {
@@ -3396,7 +3396,7 @@
   "pdf_sha256": "361d09a1e06da2bfaea0c167338b30905718df33042c087d672c15db7206346e",
   "char_count": 437,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.49.": {
@@ -3406,7 +3406,7 @@
   "pdf_sha256": "f3165359ba30a233f55d9de2846db6da082202da9e16008f7c1042bc0a74b5f6",
   "char_count": 1523,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.50.": {
@@ -3416,7 +3416,7 @@
   "pdf_sha256": "3a7256ac0c3a88f2863a176e0ffd10030d9c58164cbe920ac4abc0e5f14acfbd",
   "char_count": 790,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.51.": {
@@ -3426,7 +3426,7 @@
   "pdf_sha256": "df62921021e5659a3b4b04097476de424b1abf8c5f6c58bcddf0438117a2f414",
   "char_count": 822,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.52.": {
@@ -3436,7 +3436,7 @@
   "pdf_sha256": "24cdf6335db6769f381092d41ba5d0600297eb7464ac87132e74d299ee09ed92",
   "char_count": 291,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.53.": {
@@ -3446,7 +3446,7 @@
   "pdf_sha256": "a8883fa11dac4ac28fdcfe21c992ebe767208a0ba8efca5f563e6b5747853526",
   "char_count": 773,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.54.": {
@@ -3456,7 +3456,7 @@
   "pdf_sha256": "50f9071b4b0c514a5ed7f5f35d7c384c2db2efeceb5ba171a449c771b311a48c",
   "char_count": 1784,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.55.": {
@@ -3466,7 +3466,7 @@
   "pdf_sha256": "b6c5992b877ed39418416174952fb229df84f8d5730d51d1c5bd660097c75dfe",
   "char_count": 2453,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.56.": {
@@ -3476,7 +3476,7 @@
   "pdf_sha256": "530e74bb15fbd920533e5901ff379b7b0a22bccd1e8f29243c6420501657944a",
   "char_count": 1779,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.57.": {
@@ -3486,7 +3486,7 @@
   "pdf_sha256": "4f35fcad2a2f9b7fe0ae5831c5afb164775308329b8222da27905f72f35ffdee",
   "char_count": 272,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.58.": {
@@ -3496,7 +3496,7 @@
   "pdf_sha256": "86066bbaad094a8a0f37b8f8ff09552c12d06f257de555469bcdc05310814887",
   "char_count": 172,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.59.": {
@@ -3506,7 +3506,7 @@
   "pdf_sha256": "e3a97054cc968a1439c3ca528eb715a4eb4d0ff0f1fb75ad15f6a06ed85f64f5",
   "char_count": 615,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.60.": {
@@ -3516,7 +3516,7 @@
   "pdf_sha256": "34705fe4b2912f54975b13cd72e8b2f878b2f77419db004e59ea356994da260a",
   "char_count": 586,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.61.": {
@@ -3526,7 +3526,7 @@
   "pdf_sha256": "6ef0f92e176391ad01faac64dcbaeeb152c654d9b3e953274b3520566080b270",
   "char_count": 1488,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.62.": {
@@ -3536,7 +3536,7 @@
   "pdf_sha256": "cc361dde3d2347d1b17e277ead63c73bde97296cb3c5bc22203c8857cab9e752",
   "char_count": 1572,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.63.": {
@@ -3546,7 +3546,7 @@
   "pdf_sha256": "24cc7446d1a3b1fa61183461d3c3ef349fd31e9e1f3d7ae6f034377621a21147",
   "char_count": 769,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.64.": {
@@ -3556,7 +3556,7 @@
   "pdf_sha256": "76204b7d538268dd0c7935667fcde1beb8d576a40437e5624987e5809f7a796a",
   "char_count": 1120,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.65.": {
@@ -3566,7 +3566,7 @@
   "pdf_sha256": "7b91fc3af499bf42e7e07d74167e579664825a24991e97963d2f7ee04c08a8a3",
   "char_count": 197,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.66.": {
@@ -3576,7 +3576,7 @@
   "pdf_sha256": "a559952b58263e658b4d79e54061c4306232b5498df5dfe870a1803c8cbbf406",
   "char_count": 661,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.67.": {
@@ -3586,7 +3586,7 @@
   "pdf_sha256": "d0474cf57207ef910503e269f89a9a1266e731c3ca8322931aa88c35dfa0b617",
   "char_count": 510,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.68.": {
@@ -3596,7 +3596,7 @@
   "pdf_sha256": "8e732fc89835c46e3269a993c1af97f013c8e37f0670d8b7708808380ad9c794",
   "char_count": 353,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.69.": {
@@ -3606,7 +3606,7 @@
   "pdf_sha256": "94f9395d6c909831a39ed87532c869901bfe35522af148bec7980c34767e94e8",
   "char_count": 13287,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.70.": {
@@ -3616,7 +3616,7 @@
   "pdf_sha256": "3f3a6abdf0216ba95be96a0a5b9e7f767a74fbb0df2d6ca9ebc608be1aab4235",
   "char_count": 1013,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.71.": {
@@ -3626,7 +3626,7 @@
   "pdf_sha256": "0ddc5a8e989c87d19824f3cc1c2d3b378e3131d046433de8dc445ae5c610f495",
   "char_count": 1317,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.72.": {
@@ -3636,7 +3636,7 @@
   "pdf_sha256": "986979c89009446fd4bd0afd934a04f27529f99e70b5f752977e3e6b9dffff39",
   "char_count": 1064,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.73.": {
@@ -3646,7 +3646,7 @@
   "pdf_sha256": "2ec8f555f2c7dcc19418165b926321336c15386293c2e04e2b377c0cfee5e9f8",
   "char_count": 452,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.74.": {
@@ -3656,7 +3656,7 @@
   "pdf_sha256": "a1b90ab6755cc1d675e5d982bf0dcc533f345ffdb68de341cbbd9a4cb5c3e110",
   "char_count": 546,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.75.": {
@@ -3666,7 +3666,7 @@
   "pdf_sha256": "805d849c96590a90beb7fdf6cc60459147891e803f9d930c9f6348eee093cd0a",
   "char_count": 1539,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.76.": {
@@ -3676,7 +3676,7 @@
   "pdf_sha256": "20ea87930c2665a5116cbdf5cf8f38bde6f70a99e3ff5a668392e95a7be7cc3f",
   "char_count": 446,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.77.": {
@@ -3686,7 +3686,7 @@
   "pdf_sha256": "d593580b115cabe93073fce140536c5dc8cf6afb6a3acaf1a788003b9bc5b2aa",
   "char_count": 1556,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.78.": {
@@ -3696,7 +3696,7 @@
   "pdf_sha256": "9c590b674ff62192adb4509e194f925d2cf6316fac246077cfc21e5c9c773f40",
   "char_count": 2299,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.79.": {
@@ -3706,7 +3706,7 @@
   "pdf_sha256": "a5e4bf90751fa1ba14022b7a439aae111993d046e1ccbe87316ad97c30e2f1e0",
   "char_count": 1346,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.80.": {
@@ -3716,7 +3716,7 @@
   "pdf_sha256": "6ea8541d17488cc69def9d323e0d8e8caff7b7e5ee9ee5e624ffab1e745e643f",
   "char_count": 1147,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.81.": {
@@ -3726,7 +3726,7 @@
   "pdf_sha256": "6ccf3adf26d86b03bb181b893346d86442b9b0be1376bb4d321673d1a26c7c9a",
   "char_count": 639,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.82.": {
@@ -3736,7 +3736,7 @@
   "pdf_sha256": "f5dad68e5dc28b4252dd12c175afdbafd1d583a062926b00519c880be537ee93",
   "char_count": 661,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.83.": {
@@ -3746,7 +3746,7 @@
   "pdf_sha256": "25b8b230f22c7029e41d4869dd02c4b63b9fff01120dd937648dadbbd12316af",
   "char_count": 573,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.85.": {
@@ -3756,7 +3756,7 @@
   "pdf_sha256": "b3e48a779e6b008576d38213c69b15f3416790e7e1d960a17116fd07bee1af3f",
   "char_count": 4171,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.86.": {
@@ -3766,7 +3766,7 @@
   "pdf_sha256": "b0544796ec76e93ad4522f2d6284e151de1c1ac6f5b88cbd3475f03b70f726d4",
   "char_count": 189,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.87.": {
@@ -3776,7 +3776,7 @@
   "pdf_sha256": "26d2fa2168bccbb831790d671ff71a9a3f291acc39788007cee0a9fa8d8fe70b",
   "char_count": 1012,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.88.": {
@@ -3786,7 +3786,7 @@
   "pdf_sha256": "89c1148325de2f75b35158a7934e18225604c88caa3f5e2ce594901cb2f93250",
   "char_count": 300,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.90.": {
@@ -3796,7 +3796,7 @@
   "pdf_sha256": "6ebaad4744719e03989835d272482a6b66e60b6656f19e85959ce8a0b1afd6e3",
   "char_count": 1181,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.92.": {
@@ -3806,7 +3806,7 @@
   "pdf_sha256": "ab963d8776789c9cb877b60d3c514e86a6e7ccd4b5a6b21a5e71d7d3612af630",
   "char_count": 285,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.93.": {
@@ -3816,7 +3816,7 @@
   "pdf_sha256": "2c77a308667d7b63271b993008153d39441a3786d7d4500d260474172d585e3c",
   "char_count": 432,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.94.": {
@@ -3826,7 +3826,7 @@
   "pdf_sha256": "e3111d82559b0ca4731fd7ce7f29ea2792ad99eab328eade1bd765e8d48be531",
   "char_count": 1339,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.95.": {
@@ -3836,7 +3836,7 @@
   "pdf_sha256": "77b7d0b13290589f8c15d527531d0e7eac329976ca6071d95015ac663b3aca5d",
   "char_count": 1642,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.96.": {
@@ -3846,7 +3846,7 @@
   "pdf_sha256": "92490af73566e3de329c28a844f93e4d4da2a030c60ebe72c8ec63fa8aab8eac",
   "char_count": 393,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.97.": {
@@ -3856,7 +3856,7 @@
   "pdf_sha256": "82178f36913ad21d349db92c65921eb07cdbbea59568d74753ed551978eaf35b",
   "char_count": 284,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.98.": {
@@ -3866,7 +3866,7 @@
   "pdf_sha256": "d88f48316e22d973d6c427b6e5b0f8aa5a3d1ac7332f81e94ac21d8283cf47ed",
   "char_count": 262,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.99.": {
@@ -3876,7 +3876,7 @@
   "pdf_sha256": "9ec17f5c026921101a8959bc2af169227e287d36a8ece9ffa4418c398d031135",
   "char_count": 928,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.100.": {
@@ -3886,7 +3886,7 @@
   "pdf_sha256": "e35d60bc076e3a57f13e31f947d4aca297e571d82b3b3ad4116449379a1c1461",
   "char_count": 1394,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.101.": {
@@ -3896,7 +3896,7 @@
   "pdf_sha256": "14f053c77e9796ad46738e358b000fcb92b6fed0dbd39ba4c2615af03ab84e30",
   "char_count": 388,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.102.": {
@@ -3906,7 +3906,7 @@
   "pdf_sha256": "b0054c896427a84bbb45b4c5d9299d678889d9215b51df2827d64c4643df85b9",
   "char_count": 207,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.103.": {
@@ -3916,7 +3916,7 @@
   "pdf_sha256": "54652cf5547dd5148bfd465fa8d31fb3cbbca119a9340c100451dd2c0324084f",
   "char_count": 2872,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.104.": {
@@ -3926,7 +3926,7 @@
   "pdf_sha256": "5c51609ba6863d0679eb2d90667e0ddb7251875f3800030c688f4f1059226f84",
   "char_count": 2377,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.105.": {
@@ -3936,7 +3936,7 @@
   "pdf_sha256": "18d7716195cb94b33167ce8da821732485f9833b458458296cbbd4885d7101f8",
   "char_count": 897,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.106.": {
@@ -3946,7 +3946,7 @@
   "pdf_sha256": "91b9bb3afc6c0593b59f1aafb9eac94da67ac07e1119124324554e8c45c0ed7e",
   "char_count": 701,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.107.": {
@@ -3956,7 +3956,7 @@
   "pdf_sha256": "13acf08bf2fd9010041707d39ee72dfd31c30d6b470ee1559895881bc379c57d",
   "char_count": 486,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.108.": {
@@ -3966,7 +3966,7 @@
   "pdf_sha256": "525efc10f59dbd8cf8d54d2dd9c83e937461cc47d4faceee587eaed01866901c",
   "char_count": 1299,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.109.": {
@@ -3976,7 +3976,7 @@
   "pdf_sha256": "b40e246d0cd0d578330c1ee2845606e73c4af844aff47aa1ccbfd13c5012926f",
   "char_count": 752,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.110.": {
@@ -3986,7 +3986,7 @@
   "pdf_sha256": "fd34a7008bfe750be134132717c6c5cc22b3a628657d5dffbb06cc69fd3fc056",
   "char_count": 296,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.111.": {
@@ -3996,7 +3996,7 @@
   "pdf_sha256": "b56e364d140dde3761d770843d6ed6bf0304616b760d1ada78c939fcbe4c0b41",
   "char_count": 1239,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.112.": {
@@ -4006,7 +4006,7 @@
   "pdf_sha256": "a2014f846ae75ba507abff523fc831ebedaf36dafefef48d4e598ba80d1df023",
   "char_count": 732,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.113.": {
@@ -4016,7 +4016,7 @@
   "pdf_sha256": "e8f0fa540c97ad38193e5f8c69e2369b49bfc684d20421ad58b999b32a0ebcbb",
   "char_count": 378,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.114.": {
@@ -4026,7 +4026,7 @@
   "pdf_sha256": "ca631bd25a44a58a0c9ba124f2d3a76b4f6b675e4c2e24d1e3dbd5fecba6c897",
   "char_count": 1033,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.115.": {
@@ -4036,7 +4036,7 @@
   "pdf_sha256": "d78bd5b70f31afde5e7565d6e4dfb0f03cb3e631635d8aa2c24aa4eaa2c6c0df",
   "char_count": 760,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.116.": {
@@ -4046,7 +4046,7 @@
   "pdf_sha256": "412b218ab7a2a4a7c67f8ba2d839d0adafb149d679a75aaeadb2ad3611b1ee5a",
   "char_count": 884,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.117.": {
@@ -4056,7 +4056,7 @@
   "pdf_sha256": "2462a65ffddcb1cbb7ce308582280084872ab810149aedb36983b5443d4d42a9",
   "char_count": 1062,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.118.": {
@@ -4066,7 +4066,7 @@
   "pdf_sha256": "5d1eb1ea8155667723836cf189e230a6fe5bc8e40536c9f6c1985744c7e9f25f",
   "char_count": 1278,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.119.": {
@@ -4076,7 +4076,7 @@
   "pdf_sha256": "aec0cc243980ab47ae58f0871fa06707695808e2385c06dee69850619d237a8c",
   "char_count": 1386,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.120.": {
@@ -4086,7 +4086,7 @@
   "pdf_sha256": "6c8ca7d2224b8ffd5ee2d1fb380806e2dfaa5335441c3b99966f3fe2d7fde462",
   "char_count": 766,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.121.": {
@@ -4096,7 +4096,7 @@
   "pdf_sha256": "cd82516e6b9a8ef6f05087547f549bb7d491c41ac574144bec0c7ddc579c462b",
   "char_count": 700,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.122.": {
@@ -4106,7 +4106,7 @@
   "pdf_sha256": "d1b21dfdd63aae92e2a4f39becc8ed0946bd882d7e4b761dc1ad2f169a2cb981",
   "char_count": 254,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.123.": {
@@ -4116,7 +4116,7 @@
   "pdf_sha256": "7c96a7341c3a8325119e94eeb18a05e5585e6027a30196c2057c408226884222",
   "char_count": 186,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.124.": {
@@ -4126,7 +4126,7 @@
   "pdf_sha256": "358e2d8e6168289ffcdf2849dd87b12c8915d9b452fe14f9ed1750ecac9c84f4",
   "char_count": 625,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.125.": {
@@ -4136,7 +4136,7 @@
   "pdf_sha256": "bcef1e4ed4d3e215d1ce50535909de089c8451eb9697ad95ccec8187092cda07",
   "char_count": 628,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.126.": {
@@ -4146,7 +4146,7 @@
   "pdf_sha256": "01dbff2fb0428e664b86c395249dc5bb1198f40166c48bae53fd77b97dcb685e",
   "char_count": 316,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.127.": {
@@ -4156,7 +4156,7 @@
   "pdf_sha256": "9d2882fa206b21e7ce8e6e7ab718d76c81ef4e067b13f7c6d53c61c90f711d57",
   "char_count": 1048,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.128.": {
@@ -4166,7 +4166,7 @@
   "pdf_sha256": "11e5d45bdfc62522ed16de0f0f4781a0c8370e1cd846fd98513267c04cb2f3f2",
   "char_count": 315,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.129.": {
@@ -4176,7 +4176,7 @@
   "pdf_sha256": "d83c05e3a9a7ead3e3545d638ca050c46aa9d4213fd1fda2045b6120174d1707",
   "char_count": 358,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.131.": {
@@ -4186,7 +4186,7 @@
   "pdf_sha256": "369fe37e8cf9e728d3cf12191b6afe2d49cae56b90fda43df12864a0e9a0aade",
   "char_count": 337,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.132.": {
@@ -4196,7 +4196,7 @@
   "pdf_sha256": "c3266b704ed1e98c6dd3719b8e39a431b72eb55cc479bdf5bb3c8f2fa2307381",
   "char_count": 401,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.133.": {
@@ -4206,7 +4206,7 @@
   "pdf_sha256": "22fc353113146223f7a7c8b7a194563254f218a1fcd0aa4b052269b5af471e16",
   "char_count": 425,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.134.": {
@@ -4216,7 +4216,7 @@
   "pdf_sha256": "63453507b6464c158ee9e7abd94ddee2c29bb22208ca1025ffc182fc075c1f05",
   "char_count": 520,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.135.": {
@@ -4226,7 +4226,7 @@
   "pdf_sha256": "f65d40cae311747c73aa1c0bb3f28400001f569a0c8784ae35aa361272692945",
   "char_count": 362,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.136.": {
@@ -4236,7 +4236,7 @@
   "pdf_sha256": "779a0a669f02b1ceba9e42ff58948c20732c5c36f1a6bfbb3f7a7227181eb5ac",
   "char_count": 358,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.137.": {
@@ -4246,7 +4246,7 @@
   "pdf_sha256": "a9eef580208919e50c194a6dfaa6703fe3e0aa1030158aeb9f3e7473ff8824ff",
   "char_count": 470,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "9.138.": {
@@ -4256,7 +4256,7 @@
   "pdf_sha256": "7bd22785fec692f8238a3ea4d57f62cc0b02dc12dc2167969e9dee877987f919",
   "char_count": 944,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.1.": {
@@ -4266,7 +4266,7 @@
   "pdf_sha256": "4c31b2f132fe7296a05c8ab830dc7e9ba241150b6983be74d47e1d41e4735c88",
   "char_count": 2247,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.2.1.": {
@@ -4276,7 +4276,7 @@
   "pdf_sha256": "246196a1ad11795eadea335247340d99513861b3787720f338aa01f0937cc2ea",
   "char_count": 146,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.2.2.": {
@@ -4286,7 +4286,7 @@
   "pdf_sha256": "043aef45edbbcf541fdb7aa97cb17184165289a1f918e4cf9ef6c5d296db8269",
   "char_count": 100,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.1.": {
@@ -4296,7 +4296,7 @@
   "pdf_sha256": "f947e00bd0cbe6efdf324872731d327b599b1663d5dd9dfe6acae4348fe79a16",
   "char_count": 108,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.2.": {
@@ -4306,7 +4306,7 @@
   "pdf_sha256": "730c91ad7e7e6ea2ba6ea20809df7c4191adad326bb82a83377cde8e98dd12b7",
   "char_count": 107,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.3.": {
@@ -4316,7 +4316,7 @@
   "pdf_sha256": "717a817f690c46a5d8eefa5731aaaf52432e2d0b0dbdad1056f7396c5ef27e00",
   "char_count": 65,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.4.": {
@@ -4326,7 +4326,7 @@
   "pdf_sha256": "377c2692d9e33d32e6cc2e817d5fd3660073e9ebd019938704301dd7c32bfe19",
   "char_count": 62,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.5.": {
@@ -4336,7 +4336,7 @@
   "pdf_sha256": "2ac8694996bf6e75a5a5970b77c6adb039f5206bdaf9a3a885746ea2ed8bdf3d",
   "char_count": 302,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.6.": {
@@ -4346,7 +4346,7 @@
   "pdf_sha256": "db9eabbfb22466ee4abc84789e27b3d76908701da536ab2733d696fd23d34efc",
   "char_count": 403,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.7.": {
@@ -4356,7 +4356,7 @@
   "pdf_sha256": "4def5ca219c0acb91f0614af0dcbd35c5603c0eb84f696031a415e8dbc201b5b",
   "char_count": 232,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.3.8.": {
@@ -4366,7 +4366,7 @@
   "pdf_sha256": "ad9d632b3e0da7a92365723c97ae71be074d2709bb716e6b49fc1cd483889474",
   "char_count": 314,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.4.": {
@@ -4376,7 +4376,7 @@
   "pdf_sha256": "4c633ba3be8ff045264f68f2fac019e1d72fb3731cacf8e3e72165911e16c72c",
   "char_count": 1338,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.5.1.": {
@@ -4386,7 +4386,7 @@
   "pdf_sha256": "3e8f50206a1b9c483757de89dfd3d8c1196ec0a9af16566c86ebb29cafe4b073",
   "char_count": 338,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.5.2.": {
@@ -4396,7 +4396,7 @@
   "pdf_sha256": "6a4270f4b9b211b0e95ea56804fb9def90a19580eaf7d78a5ab98340fef85703",
   "char_count": 174,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.5.3.": {
@@ -4406,7 +4406,7 @@
   "pdf_sha256": "b568b4086844b1b9aad29a1a5e7a03348d53448700a9738e4a42b8be2e7cab95",
   "char_count": 264,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.5.4.": {
@@ -4416,7 +4416,7 @@
   "pdf_sha256": "98e63b2761e17aab865093e7cc441b8ee0b6c6bc509b796eaef37ec56e316192",
   "char_count": 234,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.1.1.": {
@@ -4426,7 +4426,7 @@
   "pdf_sha256": "1b1c61c8f77c3142c20cd2913373a90d9512033f8ce2a9f3f6a4ad722016567f",
   "char_count": 235,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.1.2.": {
@@ -4436,7 +4436,7 @@
   "pdf_sha256": "4a147c04e3e9eb443f80d6d686275e1b2e3d2a12192e5309ed1fc1358395182c",
   "char_count": 173,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.1.3.": {
@@ -4446,7 +4446,7 @@
   "pdf_sha256": "7d4ef398a2a29362cd34cf03c7f8d67e989248629d4ff669d92ac58e058d4f18",
   "char_count": 178,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.3.1.": {
@@ -4456,7 +4456,7 @@
   "pdf_sha256": "47dd53c521220857bdee4ff8c0211aeb955fdb4d867a8f3b4f4dd14dc9f6d8db",
   "char_count": 496,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.3.2.": {
@@ -4466,7 +4466,7 @@
   "pdf_sha256": "2a1b9f2dc9db34fa39965916a6b94613595d3fbc5b195414f5dfad237427c47d",
   "char_count": 277,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.3.3.": {
@@ -4476,7 +4476,7 @@
   "pdf_sha256": "8a51c8bd07dc02212cd5d6deb97b7ac4a919964789fc428f6037c4b457046982",
   "char_count": 105,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.4.": {
@@ -4486,7 +4486,7 @@
   "pdf_sha256": "df59965c0be12189e9afebbb19b63769255528f219b91771b040fac02c2bc7f4",
   "char_count": 280,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.5.": {
@@ -4496,7 +4496,7 @@
   "pdf_sha256": "b3f63b7087c7d8ff961a306dcdf98d61e34af44b8e487932ddb055bcf5103518",
   "char_count": 183,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.6.": {
@@ -4506,7 +4506,7 @@
   "pdf_sha256": "a1f7b6c9bf7d0f1138841d237f587e483813032ec6946ef18d7a4847a09966f9",
   "char_count": 216,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.7.": {
@@ -4516,7 +4516,7 @@
   "pdf_sha256": "be45e1f248c6e7a8c64d1adb7d65be8e0a470aa55aae34e3c361bacd8447fc42",
   "char_count": 160,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.8.": {
@@ -4526,7 +4526,7 @@
   "pdf_sha256": "3d93d435d0505c678594ce8f8f92f2cf1f09ba9acd3ace6c9c669d57b9ddb00f",
   "char_count": 77,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.9.": {
@@ -4536,7 +4536,7 @@
   "pdf_sha256": "d5875803e7a801d641ade1c92b5dabd8497a86526c5fd806e1a961b8d12ad216",
   "char_count": 99,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.10.": {
@@ -4546,7 +4546,7 @@
   "pdf_sha256": "c441c254738029e9d890998b1d26a6f994eaaa19e89a3a1aef797f7f91646e1e",
   "char_count": 1163,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.6.11.": {
@@ -4556,7 +4556,7 @@
   "pdf_sha256": "d170503b554143f1efe0dc95f85adad4502dc571d5f6e81aac50a99be049ecfb",
   "char_count": 213,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.1.1.": {
@@ -4566,7 +4566,7 @@
   "pdf_sha256": "d1c94d59b3b84f6c0b6efacb901eb802e8e4f3c6f7bc79bf74826c5f3941e974",
   "char_count": 1267,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.1.2.": {
@@ -4576,7 +4576,7 @@
   "pdf_sha256": "dcb08960b4f53ccb3aed8d1899288a8cfde2cc72143de3632dacabd5f45371e9",
   "char_count": 291,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.3.": {
@@ -4586,7 +4586,7 @@
   "pdf_sha256": "b92caab27c3e2aa25d7f881b755b06aa7fdb6f450a353ec3f71af37c0d6c6ec0",
   "char_count": 5147,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.4.": {
@@ -4596,7 +4596,7 @@
   "pdf_sha256": "1333505ef2f6db23e1fe8e04263a27d6126f1668581bc614b3a198c7b4985dc6",
   "char_count": 2255,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.5.": {
@@ -4606,7 +4606,7 @@
   "pdf_sha256": "c0f1909f02301d0cf4c782bc799235b924dce8375b46c9d6b5de0378408ed4b8",
   "char_count": 105,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.6.": {
@@ -4616,7 +4616,7 @@
   "pdf_sha256": "b207405794ea6657c1739f3589371718a73d2e0b97e70626f2e9964c80a8c2c8",
   "char_count": 609,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.7.": {
@@ -4626,7 +4626,7 @@
   "pdf_sha256": "54dbca8dbed3e7f252c686fbe89e7564148dbc9b72ad42fcf76767b300d3bd72",
   "char_count": 733,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.8.": {
@@ -4636,7 +4636,7 @@
   "pdf_sha256": "2027ff56d8098d809d59874160449acc25ce133661c0d266005ae15c7e9c0547",
   "char_count": 779,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.9.": {
@@ -4646,7 +4646,7 @@
   "pdf_sha256": "548dfca5795ae695e5e0ff1a7a094eb2dbf17ceceb0258ae38887bf4e8a3ccec",
   "char_count": 338,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.10.": {
@@ -4656,7 +4656,7 @@
   "pdf_sha256": "b4c3023ca307612dae15ef49da75c0a79d25bc8e60952977f909ad4f32d8ee50",
   "char_count": 883,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.11.": {
@@ -4666,7 +4666,7 @@
   "pdf_sha256": "ed50acccede8809b1e30d1c9438fe8d4b936ae2d6c6da386a5cea60be5d4f424",
   "char_count": 1047,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.12.": {
@@ -4676,7 +4676,7 @@
   "pdf_sha256": "96618a9415a3bc987594f1a6c906d0e21be2e9003ea93972b98803e4416e6b24",
   "char_count": 310,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.13.": {
@@ -4686,7 +4686,7 @@
   "pdf_sha256": "18bb8bf9f7059f77e0e7956824c1d0dfcec9e781b5e386c5b313838971b73799",
   "char_count": 555,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.7.14.": {
@@ -4696,7 +4696,7 @@
   "pdf_sha256": "6d1f2b2bf8ed191ed0324d6c0684e0c6f04bff939af13a61e1e5237674120b1c",
   "char_count": 562,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.1.": {
@@ -4706,7 +4706,7 @@
   "pdf_sha256": "3d54fac348c6e97bc32848c519e7deaab4521ea84ea13098ea4a7b88d46d9ad5",
   "char_count": 653,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.1.1.": {
@@ -4716,7 +4716,7 @@
   "pdf_sha256": "3d54fac348c6e97bc32848c519e7deaab4521ea84ea13098ea4a7b88d46d9ad5",
   "char_count": 653,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.1.2.": {
@@ -4726,7 +4726,7 @@
   "pdf_sha256": "3d54fac348c6e97bc32848c519e7deaab4521ea84ea13098ea4a7b88d46d9ad5",
   "char_count": 653,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.2.": {
@@ -4736,7 +4736,7 @@
   "pdf_sha256": "ed3f3a7236803d6ed8d70b2645e4a458729de57792e07eb8e70d0542be1773c4",
   "char_count": 124,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.2.1.": {
@@ -4746,7 +4746,7 @@
   "pdf_sha256": "0f63180b2b7f87ba9dbd8baa13c6478d688b4c9ca7567c513fb2374697c35237",
   "char_count": 176,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.2.2.": {
@@ -4756,7 +4756,7 @@
   "pdf_sha256": "23a2785cee7c1e8fd2d4992eaa5a17fbab324ce89b8d62bd6a72f9c53983b872",
   "char_count": 81,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.2.3.": {
@@ -4766,7 +4766,7 @@
   "pdf_sha256": "ac969e16c8aa23e88dfbac1ef5ae18a0475c06ec163254dc224e3238a70a952f",
   "char_count": 82,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.2.4.": {
@@ -4776,7 +4776,7 @@
   "pdf_sha256": "7eba5f7d183492c69c4d68ce93863f61915d52a5999afe783d4046c6113e77fd",
   "char_count": 145,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.3.": {
@@ -4786,7 +4786,7 @@
   "pdf_sha256": "34476b0690f4ff7f382462f3a21542cab51859be75177cb949363a36ece2a55d",
   "char_count": 673,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.4.": {
@@ -4796,7 +4796,7 @@
   "pdf_sha256": "0c5b9d98922f6c274ab799b2d49a3c92f9489ec2d45a296f16912ba6ce67adb4",
   "char_count": 77,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.5.": {
@@ -4806,7 +4806,7 @@
   "pdf_sha256": "4783d211d8cd90a7f3e27083b6b947210dbdd12d7437fb09a4b0bb4f5706d15e",
   "char_count": 269,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.6.": {
@@ -4816,7 +4816,7 @@
   "pdf_sha256": "d625afe7c25dfcb1cdb7130457d1eac8d57a3353449fda99715792caa107db1c",
   "char_count": 94,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.7.": {
@@ -4826,7 +4826,7 @@
   "pdf_sha256": "24d31059e8dc1e5b67ca800b0e51e2114eb85e2031f674d673a440fe7231dec8",
   "char_count": 280,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.8.": {
@@ -4836,7 +4836,7 @@
   "pdf_sha256": "40949d214f2ce5ac7ca8fc9d10314bda9b1fa5cbf24877acec54219773dca3fd",
   "char_count": 217,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.9.": {
@@ -4846,7 +4846,7 @@
   "pdf_sha256": "39318756ea189b1500d6eaf6f6e2c4afbdcea88b5a77547a080db38f1e77638f",
   "char_count": 203,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.8.10.": {
@@ -4856,7 +4856,7 @@
   "pdf_sha256": "279bf29939f300dc103c37aa19bc62e0ee45feb663ca4e7e406030d971d0fc2f",
   "char_count": 174,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "10.9.": {
@@ -4866,7 +4866,7 @@
   "pdf_sha256": "255cd2f9ba5a4965b8a22be4a9d672ccce3d15929c23825d6458759516389389",
   "char_count": 105,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "11.1.1.": {
@@ -4876,7 +4876,7 @@
   "pdf_sha256": "609efd26530b884199d35d1d1bbef74783e2639846bc11c408b5e1dd0216f3da",
   "char_count": 26,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "11.2.1.": {
@@ -4886,7 +4886,7 @@
   "pdf_sha256": "d78c54101b2072c69feb99b915773ada73d4b5c51b75c34831148d74ce6a750e",
   "char_count": 83,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "11.2.3.": {
@@ -4896,7 +4896,7 @@
   "pdf_sha256": "373a530f754c50fca36c2a45f94fae38d967610b61456795c9f60dd6edbda37a",
   "char_count": 73,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "11.2.4.": {
@@ -4906,7 +4906,7 @@
   "pdf_sha256": "6df29a2d9849a5c0f0e7a2976768000172faaa80603d92f2c2518ce9a30c611d",
   "char_count": 96,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "11.2.5.": {
@@ -4916,7 +4916,7 @@
   "pdf_sha256": "7aeef44b4aa36d699709ab7da195276592daead43ffaea6ab15adc542a634a22",
   "char_count": 563,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "12.1.": {
@@ -4926,7 +4926,7 @@
   "pdf_sha256": "16b5bc807ba3378e3a326ed5eb18d7d601c247eedc12c416ff206f4b4a40c5da",
   "char_count": 86,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "12.2.": {
@@ -4936,7 +4936,7 @@
   "pdf_sha256": "afbc8f1a05ff6ca5f031535063fc52c969dec988439704f18460ce75561b7ac5",
   "char_count": 108,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "12.3.": {
@@ -4946,7 +4946,7 @@
   "pdf_sha256": "0e5e789c55a9dcd918f8a532cbb0e1622dc6c2c6c3d45c2403cfc0525c645d3b",
   "char_count": 130,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "12.4.": {
@@ -4956,7 +4956,7 @@
   "pdf_sha256": "2677058878f17d18030a2716e913c25c7bec4e93b28c782b8304482cd18c82f1",
   "char_count": 136,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.3.1.": {
@@ -4966,7 +4966,7 @@
   "pdf_sha256": "3914843de9f1168d1e734d3fd6dfaef38beaee696f1c476583d84c6705fb61b5",
   "char_count": 215,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.3.2.": {
@@ -4976,7 +4976,7 @@
   "pdf_sha256": "b370b88f25b965badb4443cad5c7ca896021a77bfab4e3d52a15029a2b5ce8e4",
   "char_count": 237,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.3.3.": {
@@ -4986,7 +4986,7 @@
   "pdf_sha256": "ac3ec619350c2672056e46a81c62f084d32ed3d4794c5469455cf5dc17213565",
   "char_count": 92,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.4.": {
@@ -4996,7 +4996,7 @@
   "pdf_sha256": "07affaff9324cbe821d117d068eaae5b6f6ff36c0ed5c84f1118c0ffd097cdf4",
   "char_count": 1021,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.5.": {
@@ -5006,7 +5006,7 @@
   "pdf_sha256": "60aea47f1ba117259b661b2be8e393f328290c6b208115b5d4d0ac058449ca12",
   "char_count": 844,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.6.": {
@@ -5016,7 +5016,7 @@
   "pdf_sha256": "6b86eb4108e5055210673947eec677ad8f4faf1acb221907349162fe245358dd",
   "char_count": 87,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.7.": {
@@ -5026,7 +5026,7 @@
   "pdf_sha256": "0332b4eba91ba003dae62e69c2e3a8f6e8b8e2343c54c96fec02b02d7566e9ec",
   "char_count": 60,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.8.": {
@@ -5036,7 +5036,7 @@
   "pdf_sha256": "99995ae58823252c5570367736dd3e2918b70dbac8041877889d3cbc6da839ed",
   "char_count": 230,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.9.": {
@@ -5046,7 +5046,7 @@
   "pdf_sha256": "31aface452d12a30a3563e2172d30ade74098d082b442a6d75e313f91f9ff539",
   "char_count": 270,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.10.": {
@@ -5056,7 +5056,7 @@
   "pdf_sha256": "8a0357c563414b496fe556d5174f0d72d30552fe6dadcf7be4721b6e91c5f47c",
   "char_count": 764,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.11.": {
@@ -5066,7 +5066,7 @@
   "pdf_sha256": "619faa1dceeb8e9b6e0a29e4146a5a6474fdb1131458ace592bdccae11090a4d",
   "char_count": 645,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.12.": {
@@ -5076,7 +5076,7 @@
   "pdf_sha256": "73c540bac52aaa834a8d370a9e985cd1ee3859a45e7330ae276e0426e19bd690",
   "char_count": 98,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.13.": {
@@ -5086,7 +5086,7 @@
   "pdf_sha256": "5c6d798a105088cecd06cb0782e8c7078c172851b498f3119c80418c9e52e1ab",
   "char_count": 237,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.14.": {
@@ -5096,7 +5096,7 @@
   "pdf_sha256": "26b12ad81da5a58c336f10abd96b6fd31849baf3a4b7f01c99fc2a58bbdd3208",
   "char_count": 388,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.15.": {
@@ -5106,7 +5106,7 @@
   "pdf_sha256": "7cd003caf66d740df86da1c35c2c5c608c00b987750ae5a57c228a884467e12a",
   "char_count": 197,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.16.": {
@@ -5116,7 +5116,7 @@
   "pdf_sha256": "13af7a07986344e35a4adaf4ba16be422126148bc48d3a3f3c07ae02fef99564",
   "char_count": 260,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.17.": {
@@ -5126,7 +5126,7 @@
   "pdf_sha256": "7a3ff29dc74d49638d538ea2b227c9bb5e42723c4b2e012bbcb939603aa4ec84",
   "char_count": 186,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.17.1.": {
@@ -5136,7 +5136,7 @@
   "pdf_sha256": "5e62b8c746bba569712bc707f077a7ff4d1fbf1cd7870ce310d9c4015760f705",
   "char_count": 3801,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.17.2.": {
@@ -5146,7 +5146,7 @@
   "pdf_sha256": "af927e52ea9d7099a5b698a3cb85c75c5fd7732653acdc4d669f69e531adcaa4",
   "char_count": 7860,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.18.": {
@@ -5156,7 +5156,7 @@
   "pdf_sha256": "2d197423ead1f51d5474b1b0000e30bb374480e4330d8614ddacd2b6b87ebda7",
   "char_count": 110,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "13.19.": {
@@ -5166,7 +5166,7 @@
   "pdf_sha256": "a1023aa8997856051df1fe9068f250daa8cb936c1451f19e62e2e85e135089a2",
   "char_count": 671,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.1.": {
@@ -5176,7 +5176,7 @@
   "pdf_sha256": "df5861f1e6ade655eae538ca964aaed900ffd4ea5ce33f0e36a2696cfb4281b8",
   "char_count": 1020,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.1.1.": {
@@ -5186,7 +5186,7 @@
   "pdf_sha256": "44df8d270716c6c3178c7a2c6dd9bca6efa5c610ce75da48fb138e5baa88012e",
   "char_count": 1364,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.1.2.": {
@@ -5196,7 +5196,7 @@
   "pdf_sha256": "bfdaaa90947c4cfd1a2f69c908e25121bcff3572446e7545ae3cb342c1888378",
   "char_count": 114,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.2.": {
@@ -5206,7 +5206,7 @@
   "pdf_sha256": "7b65fbf4598ab5cbd39fe53687400da5158a1de0fc6371c678b1ba2405ee42f2",
   "char_count": 155,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.3.": {
@@ -5216,7 +5216,7 @@
   "pdf_sha256": "ae7a28694612db566b7de0e02362bac86600bc18ec8c76349a71ccf15a7586bd",
   "char_count": 48,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.4.1.": {
@@ -5226,7 +5226,7 @@
   "pdf_sha256": "f633c76f18b9e2b0119ffa2963c7e6344803fa1db02ff913660afe3f224c55f6",
   "char_count": 165,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.5.": {
@@ -5236,7 +5236,7 @@
   "pdf_sha256": "306aafb8509aa262355964f4fc6282df6fc01a2d063399cb4f65a600fb6d9ea8",
   "char_count": 298,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.8.": {
@@ -5246,7 +5246,7 @@
   "pdf_sha256": "3087cead21a84771aac3547f2fb9db48ca2dbd2377870260ba2aa1c4dc94c682",
   "char_count": 83,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.2.": {
@@ -5256,7 +5256,7 @@
   "pdf_sha256": "5e6170a4e6e412dd330e59faad835427ec7f4ca2920fe2f4afa490cdba3108fa",
   "char_count": 5144,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.3.": {
@@ -5266,7 +5266,7 @@
   "pdf_sha256": "fd2a78c946346dd7addc8d5361478a7bc3e26901d1ce3caddaef5fe928776d41",
   "char_count": 533,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.4.": {
@@ -5276,7 +5276,7 @@
   "pdf_sha256": "2b85f0522143026e4a3b8f135c2fec47aaa06532c038dc43dacb88382ba9351f",
   "char_count": 2965,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.5.": {
@@ -5286,7 +5286,7 @@
   "pdf_sha256": "586f37da59876eeb38bdc09f0d4297e5c47a2e671a76eb736d0bdb36c95c0268",
   "char_count": 526,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.6.": {
@@ -5296,7 +5296,7 @@
   "pdf_sha256": "14f28152163e0b967e23767ddf8c3d63f2ee0e1583affa78fa84af3b99b72292",
   "char_count": 116,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.7.": {
@@ -5306,7 +5306,7 @@
   "pdf_sha256": "9d532916340164249c14377ac30e26c792881e7332053c4bac4feba3e4b37dd3",
   "char_count": 1011,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.8.": {
@@ -5316,7 +5316,7 @@
   "pdf_sha256": "8d70550e3d2fcc70025b451649f43dd9772bbad211708290fdaae5342df517ff",
   "char_count": 944,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "14.9.9.": {
@@ -5326,7 +5326,7 @@
   "pdf_sha256": "e74cdba2077410a45378db6b4146d78c760de9a94e50077ef8e5f831355cad17",
   "char_count": 1248,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "15.1.": {
@@ -5336,7 +5336,7 @@
   "pdf_sha256": "e3a603b2669221971d5ae5bb67df0e61b6128298d33243d511af6406a35d9560",
   "char_count": 61,
   "first_seen": "2026-08-31",
-  "last_verified": "2026-08-31",
+  "last_verified": "2026-09-02",
   "prev_filename": null
  },
  "2.1.5.2.": {
