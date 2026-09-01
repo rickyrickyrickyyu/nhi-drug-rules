@@ -34,4 +34,8 @@ body {
 
 /* 條文原文用等寬會破壞中文排版，強制沿用內文字型 */
 pre { font-family: var(--font-sans); }
+
+/* body 設了 overflow-wrap:anywhere（長條文在窄螢幕才不會爆版），
+   但表格儲存格不能這樣斷 —— 會把 LDL-C≧70mg/dL 斷成「…mg/d」「L」。 */
+table td, table th { overflow-wrap: normal; word-break: keep-all; }
 mark { @apply bg-amber-200 text-inherit rounded-sm px-0.5; }

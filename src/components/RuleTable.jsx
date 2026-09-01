@@ -14,8 +14,10 @@ export default function RuleTable({ table }) {
 
   return (
     <div className="my-3 rounded-lg border border-slate-200 overflow-hidden">
+      {/* 表格一律可橫向捲動：健保的表常有 5–8 欄，窄螢幕硬擠會讓
+          「LDL-C≧70mg/dL」在字中間斷行，比捲動更難讀 */}
       <div className="overflow-x-auto">
-        <table className="w-full text-[13px] border-collapse">
+        <table className="text-[13px] border-collapse min-w-full">
           <tbody>
             {grid.map((row, i) => {
               if (isLabelRow(row)) {
@@ -33,7 +35,7 @@ export default function RuleTable({ table }) {
                   {row.map((c, j) => (
                     <td
                       key={j}
-                      className="px-2 py-1 border-t border-slate-200 align-top whitespace-pre-wrap"
+                      className="px-2.5 py-1.5 border-t border-slate-200 align-top whitespace-pre-wrap break-normal min-w-[5.5rem] max-w-[18rem]"
                     >
                       {c}
                     </td>

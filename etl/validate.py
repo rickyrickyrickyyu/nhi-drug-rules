@@ -155,9 +155,20 @@ def run() -> list[Gate]:
                for t in (r.get("tables") or []) if not t.get("lossless")]
     g.append(Gate(20, "表格無損", not bad_tab, f"未通過 {len(bad_tab)} 個 {bad_tab[:4]}"))
 
+    # 20b 表格金絲雀：這幾張是實測確認過的關鍵表，欄數不得跑掉
+    tab_canary = {"13.17.2.": 8, "2.6.1.": 5, "8.2.4.11.": 8}
+    tab_bad = []
+    for code, want in tab_canary.items():
+        cols = {t["cols"] for t in (rules.get(code, {}).get("tables") or [])}
+        if want not in cols:
+            tab_bad.append(f"{code}期望{want}欄,實得{sorted(cols)}")
+    g.append(Gate(26, "表格金絲雀", not tab_bad, f"{tab_bad or '無'}"))
+
     # 21 散文不得被誤判成表格（負向金絲雀）
-    # 這幾節是純散文，實測過會被寬鬆的門檻誤判，釘住防止日後調鬆
-    prose_canary = ["13.15.", "13.10.", "13.11.", "13.16.", "10.6.4.", "10.7.1.1.", "8.2.1."]
+    # 這幾節是純散文。pymupdf 的 "text" strategy 會把它們切成假表格且切在字中間
+    # （實測 8.2.16. 被切出「(2)M」「ethotrexate」），所以只用 lines 系列策略。
+    prose_canary = ["13.15.", "13.10.", "13.11.", "13.16.", "10.6.4.", "10.7.1.1.",
+                    "8.2.1.", "13.3.1.", "10.7.1.2.", "8.2.16.", "13.4.", "13.5."]
     wrong = [c for c in prose_canary if rules.get(c, {}).get("tables")]
     g.append(Gate(21, "散文非表格", not wrong, f"誤判為表格: {wrong or '無'}"))
 
