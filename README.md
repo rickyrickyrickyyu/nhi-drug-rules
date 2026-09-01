@@ -334,7 +334,7 @@ python3 etl/check_offline.py
 | `#/i/DUPILUMAB` | 健保條文劑量 + 前置用藥橘底警語 |
 | `#/i/BETAMETHASONE` | 仿單登載用法用量，每段帶許可證字號 |
 | `#/p/51017C` | 液態氮冷凍治療 600 點 + 第二部第二章第六節 |
-| 離線 HTML | 網路請求**只有 HTML 自己 1 筆** |
+| 離線 HTML | 網路請求**只有 HTML 自己 1 筆**；`offline/` 內不該有舊日期的產物 |
 
 
 ## 安全與隱私
@@ -372,7 +372,7 @@ python3 etl/check_offline.py
 ### 定期該做的檢查
 
 ```bash
-python3 bin/pre_push_check.py     # 推送前個資／異物掃描
+python3 bin/pre_push_check.py     # 推送前個資／異物掃描（一鍵更新會自動跑）
 grep -rn "dangerouslySetInnerHTML\|innerHTML\|eval(\|new Function" src/   # 應為空
 unzip -l offline/*.zip            # 應只有 2 個 .html + 1 個 .txt
 ```
