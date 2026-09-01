@@ -33,10 +33,27 @@ export default defineConfig(({ mode }) => {
         icons: [{ src: 'icon-512.png', sizes: '512x512', type: 'image/png' }],
       },
       workbox: {
-        // ★ 只 precache app shell。給付規定每月改版，把 data/*.json 放進 precache
-        //   會讓醫師看到上個月的條文而不自知 —— 比查不到更危險。
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest}'],
+        // ★ 只 precache 有雜湊檔名的靜態資源，**不含 index.html**。
+        //   index.html 是唯一指向「哪一版 bundle」的入口，一旦被 precache，
+        //   新版部署後使用者第一次打開拿到的仍是舊 HTML → 舊 JS → 舊畫面，
+        //   而且畫面上毫無線索。對每月改版的給付規定，那等於看到上個月的條文。
+        globPatterns: ['**/*.{js,css,svg,png,ico,webmanifest}'],
+        // navigateFallback 預設會拿 precache 的 index.html 回應所有導覽，
+        // 等於繞過上面那條規則，必須關掉。本站是 hash 路由，所有導覽都指向
+        // 同一個網址，離線時由下面的 NetworkFirst 從快取取回，不會開天窗。
+        navigateFallback: null,
         runtimeCaching: [
+          {
+            // HTML 一律優先走網路（只有 0.8 KB，成本可忽略），
+            // 連不上才用快取 —— 這樣「有網路時永遠是最新版」。
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'nhi-shell-v1',
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 24 * 180 },
+            },
+          },
           {
             urlPattern: /\/data\/.*\.json$/,
             handler: 'NetworkFirst',
