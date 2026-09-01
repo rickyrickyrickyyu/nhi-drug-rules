@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { isOffline } from '../hooks/useData.js';
+
 const BASE = `${import.meta.env.BASE_URL}data`;
 const STALE_DAYS = 45;   // 月更 + GitHub cron 可能延遲，45 天才算過期
 
@@ -17,6 +19,9 @@ export default function DataFreshness({ meta, repoUrl }) {
     ? Math.floor((Date.now() - new Date(meta.built).getTime()) / 86400000)
     : null;
   const stale = ageDays != null && ageDays > STALE_DAYS;
+
+  // 離線版沒有網路可查，也不該嘗試連外（會被防毒視為可疑行為）
+  const offline = isOffline();
 
   const check = async () => {
     setState({ checking: true, msg: null });
@@ -44,6 +49,7 @@ export default function DataFreshness({ meta, repoUrl }) {
           )}
         </div>
         <div className="flex gap-3 shrink-0">
+          {!offline && (
           <button
             type="button"
             onClick={check}
@@ -52,7 +58,8 @@ export default function DataFreshness({ meta, repoUrl }) {
           >
             {state.checking ? '檢查中…' : '檢查更新'}
           </button>
-          {repoUrl && (
+          )}
+          {repoUrl && !offline && (
             <a
               href={`${repoUrl}/actions/workflows/monthly-update.yml`}
               target="_blank"
@@ -64,6 +71,11 @@ export default function DataFreshness({ meta, repoUrl }) {
           )}
         </div>
       </div>
+      {offline && (
+        <p className="mt-2 text-sm text-slate-700">
+          這是離線版，無法自動檢查更新。請向提供者索取新版檔案。
+        </p>
+      )}
       {stale && (
         <p className="mt-2 text-sm text-amber-900">
           ⚠️ 資料已超過 {STALE_DAYS} 天未更新，可能與現行給付規定不符。請按「立即重抓資料」或以健保署公告為準。

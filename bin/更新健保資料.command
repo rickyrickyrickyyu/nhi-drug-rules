@@ -35,31 +35,38 @@ die() {
   pause; exit 1
 }
 
-echo "▶ 1/9 下載健保藥品主檔（約 96 MB）"
+echo "▶ 1/10 下載健保藥品主檔（約 96 MB）"
 python3 etl/fetch_nhi_drugs.py       || die "健保主檔下載失敗"
-echo "▶ 2/9 下載食藥署許可證資料（約 79 MB）"
+echo "▶ 2/10 下載食藥署許可證資料（約 79 MB）"
 python3 etl/fetch_tfda.py            || echo "⚠️  食藥署下載失敗，沿用既有資料（仿單適應症可能不是最新）"
-echo "▶ 3/9 檢查給付規定章節改版"
+echo "▶ 3/10 檢查給付規定章節改版"
 python3 etl/fetch_rule_pdfs.py $FULL || die "章節 PDF 下載失敗"
-echo "▶ 4/9 正規化藥品資料"
+echo "▶ 4/10 正規化藥品資料"
 python3 etl/normalize_drugs.py       || die "正規化失敗"
-echo "▶ 5/9 解析條文"
+echo "▶ 5/10 解析條文"
 python3 etl/parse_rules.py           || die "條文解析失敗"
-echo "▶ 6/9 皮膚科標籤"
+echo "▶ 6/10 皮膚科標籤"
 python3 etl/tag_derm.py              || die "標籤失敗（可能是金絲雀藥物消失）"
-echo "▶ 7/9 產生條文異動 diff"
+echo "▶ 7/10 產生條文異動 diff"
 python3 etl/diff_rules.py            || die "diff 產生失敗"
-echo "▶ 8/9 建置前端資料"
+echo "▶ 8/10 建置前端資料"
 python3 etl/build_site_data.py       || die "前端資料建置失敗"
 
 echo
-echo "▶ 9/9 驗證閘門（fail-closed）"
+echo "▶ 9/10 驗證閘門（fail-closed）"
 if ! python3 etl/validate.py; then
   echo
   echo "   未通過的產物保留在 data/build/.staging/ 供檢查，正式資料未被修改。"
   die "驗證閘門未通過"
 fi
 python3 etl/promote.py || die "promote 失敗"
+
+echo "▶ 10/10 產生離線包（皮膚科版＋全庫版）"
+if pnpm exec vite build --mode offline >/dev/null 2>&1 && python3 etl/build_offline.py; then
+  echo "   📦 offline/ 已更新，可直接拖到隨身碟帶去封閉電腦"
+else
+  echo "   ⚠️  離線包產生失敗（線上版不受影響）"
+fi
 
 echo
 echo "── 本次異動 ──"

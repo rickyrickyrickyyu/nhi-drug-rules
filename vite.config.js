@@ -3,13 +3,25 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
-  // GitHub Pages 專案站台的子路徑；改 repo 名要一起改
-  base: '/nhi-drug-rules/',
+export default defineConfig(({ mode }) => {
+  // 離線版：資料內嵌成單一 HTML，用 file:// 開，所以 base 必須是相對路徑，
+  // 且不能有 Service Worker（file:// 下無法註冊且會噴 console 錯誤嚇到使用者）
+  const offline = mode === 'offline';
+
+  return {
+  base: offline ? './' : '/nhi-drug-rules/',
+  build: offline
+    ? {
+        outDir: 'dist-offline',
+        assetsInlineLimit: 100_000_000,
+        cssCodeSplit: false,
+        rollupOptions: { output: { inlineDynamicImports: true } },
+      }
+    : {},
   plugins: [
     react(),
     tailwindcss(),
-    VitePWA({
+    ...(offline ? [] : [VitePWA({
       registerType: 'autoUpdate',
       manifest: {
         name: '皮膚科健保給付規定查詢',
@@ -31,11 +43,15 @@ export default defineConfig({
             options: {
               cacheName: 'nhi-data-v1',
               networkTimeoutSeconds: 3,
-              expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 45 },
+              expiration: { maxEntries: 600, maxAgeSeconds: 60 * 60 * 24 * 45 },
             },
           },
         ],
+        // products 分片有 455 個，maxEntries 200 會讓 LRU 把分片踢掉，
+        // PWA 離線時點某些藥會失敗
+        maxEntries: 600,
       },
-    }),
+    })]),
   ],
+  };
 });

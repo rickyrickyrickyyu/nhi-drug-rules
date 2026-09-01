@@ -2,11 +2,30 @@ import { useCallback, useEffect, useState } from 'react';
 
 const BASE = `${import.meta.env.BASE_URL}data`;
 
+/**
+ * 離線版把所有資料內嵌在 window.__NHI_OFFLINE__，因為 file:// 下 fetch()
+ * 讀不到本機檔案（CORS）。只要在這裡分流，loadChapter / loadProducts /
+ * useCoreData 全部不必改就能在離線版運作。
+ */
+const EMBEDDED = typeof window !== 'undefined' ? window.__NHI_OFFLINE__ : null;
+
 async function getJson(path) {
+  if (EMBEDDED) {
+    const v = EMBEDDED[path];
+    if (v === undefined) throw new Error(`${path}: 離線版未內嵌此資料`);
+    return v;
+  }
   const r = await fetch(`${BASE}/${path}`);
   if (!r.ok) throw new Error(`${path}: HTTP ${r.status}`);
   return r.json();
 }
+
+export const isOffline = () => Boolean(EMBEDDED);
+export const offlineMeta = () =>
+  (typeof window !== 'undefined' ? window.__NHI_OFFLINE_META__ : null) ?? null;
+
+/** 給元件直接取任意資料檔用，離線與線上共用同一條路徑。 */
+export const fetchData = getJson;
 
 /** 首載只抓皮膚科子集與 meta；全庫要使用者主動切換才載。 */
 export function useCoreData() {

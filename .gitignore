@@ -7,3 +7,10 @@ dist/
 .DS_Store
 *.pyc
 __pycache__/
+
+# 離線包每月重產、單檔 15–19 MB，進 git 一年就是 400 MB。
+# 只有 MANIFEST.txt 進版控，方便回溯「某月帶出去的是哪一版」。
+dist-offline/
+offline/*.html
+offline/*.zip
+offline/READ-ME-FIRST.txt

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { go } from '../lib/routes.js';
-
-const BASE = `${import.meta.env.BASE_URL}data`;
+import { fetchData } from '../hooks/useData.js';
 
 const KIND = {
   revised: ['改版', 'bg-sky-100 text-sky-900'],
@@ -14,12 +13,13 @@ export default function Changes() {
   const [detail, setDetail] = useState({});
 
   useEffect(() => {
-    fetch(`${BASE}/changelog.json`).then((r) => r.json()).then(setLog).catch(() => setLog({ changes: [] }));
+    // 走 fetchData 才能在離線版（資料內嵌、無 fetch）也運作
+    fetchData('changelog.json').then(setLog).catch(() => setLog({ changes: [] }));
   }, []);
 
   const toggle = async (c) => {
     if (detail[c.code]) return setDetail((d) => ({ ...d, [c.code]: null }));
-    const r = await fetch(`${BASE}/diff/${c.diff_file}`).then((x) => x.json()).catch(() => null);
+    const r = await fetchData(`diff/${c.diff_file}`).catch(() => null);
     setDetail((d) => ({ ...d, [c.code]: r }));
   };
 

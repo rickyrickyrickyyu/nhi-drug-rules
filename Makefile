@@ -1,5 +1,5 @@
 # 本機與 CI 共用同一組入口，確保兩邊跑的是同一條 pipeline。
-.PHONY: refresh rebuild build gates verify dev clean
+.PHONY: refresh rebuild build gates verify offline dev clean
 
 refresh:            ## 抓最新資料 → 解析 → 驗證 → promote
 	python3 etl/fetch_nhi_drugs.py
@@ -45,6 +45,10 @@ dev:
 
 build:
 	pnpm build
+
+offline:            ## 產生可帶進封閉網路的單檔 HTML 與 zip
+	pnpm exec vite build --mode offline
+	python3 etl/build_offline.py
 
 clean:
 	rm -rf data/build/.staging dist

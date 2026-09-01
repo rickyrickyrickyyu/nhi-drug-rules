@@ -23,7 +23,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import CSV_COLUMNS, CURATION, MANIFEST, PUBLIC, RAW, SNAPSHOTS, STAGING  # noqa: E402
+from config import CSV_COLUMNS, CURATION, MANIFEST, PUBLIC, RAW, ROOT, SNAPSHOTS, STAGING  # noqa: E402
 from lib.section import match_prefix  # noqa: E402
 
 PREV = SNAPSHOTS / "last_run.json"
@@ -246,6 +246,17 @@ def run() -> list[Gate]:
     # 57117B「加強照光治療」是新生兒黃疸，混進來醫師查「照光」會拿到錯的
     leaked = [c for c in (ptags.get("blocklist") or {}) if procs.get(c, {}).get("derm")]
     g.append(Gate(31, "處置黑名單", not leaked, f"洩漏 {leaked or '無'}"))
+
+    # 32 離線包資料一致性（有產才驗）
+    man = ROOT / "offline" / "MANIFEST.txt"
+    if man.exists():
+        body = man.read_text(encoding="utf-8")
+        m = re.search(r"data_built:\s*(\S+)", body)
+        built = json.loads((PUBLIC / "meta.json").read_text(encoding="utf-8"))["built"] \
+            if (PUBLIC / "meta.json").exists() else None
+        ok32 = bool(m) and m.group(1) == built
+        g.append(Gate(32, "離線包同步", ok32,
+                      f"離線 {m.group(1) if m else '?'} vs 線上 {built}"))
 
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
