@@ -30,6 +30,7 @@ verify:             ## 逐藥比對條文原文 + 分類驗證 + 搜尋命中測
 	python3 tests/verify_categories.py
 	node tests/search.test.mjs
 	node tests/search_parity.mjs && python3 tests/search_parity.py
+	python3 etl/check_offline.py
 
 rebuild:            ## 用既有 raw 檔重跑，不重新下載
 	python3 etl/normalize_drugs.py
@@ -53,6 +54,7 @@ build:
 offline:            ## 產生可帶進封閉網路的單檔 HTML 與 zip
 	pnpm exec vite build --mode offline
 	python3 etl/build_offline.py
+	python3 etl/check_offline.py
 
 clean:
 	rm -rf data/build/.staging dist

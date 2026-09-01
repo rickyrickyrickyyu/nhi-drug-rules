@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import CURATION, PUBLIC, SNAP_DIFF, STAGING  # noqa: E402
+from lib.fingerprint import data_fingerprint  # noqa: E402
 from lib.section import code_tuple  # noqa: E402
 
 TODAY = date.today().isoformat()
@@ -195,8 +196,11 @@ def main() -> int:
     if diff_src.exists() and any(diff_src.rglob("*.json")):
         shutil.copytree(diff_src, diff_dst)
 
+    # ★ 指紋必須在所有資料檔都寫完之後、meta.json 之前算（meta.json 不列入）。
+    #   離線包用同一個函式重算，兩邊不同就代表帶出去的資料不是這一版。
     meta = {
         "built": TODAY,
+        "data_fingerprint": data_fingerprint(out_dir),
         "n_ingredients_derm": len(derm),
         "n_ingredients_all": len(allx),
         "n_products": len(products),

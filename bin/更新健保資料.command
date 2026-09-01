@@ -62,7 +62,8 @@ fi
 python3 etl/promote.py || die "promote 失敗"
 
 echo "▶ 10/10 產生離線包（皮膚科版＋全庫版）"
-if pnpm exec vite build --mode offline >/dev/null 2>&1 && python3 etl/build_offline.py; then
+if pnpm exec vite build --mode offline >/dev/null 2>&1 && python3 etl/build_offline.py \
+   && python3 etl/check_offline.py; then
   echo "   📦 offline/ 已更新，可直接拖到隨身碟帶去封閉電腦"
 else
   echo "   ⚠️  離線包產生失敗（線上版不受影響）"

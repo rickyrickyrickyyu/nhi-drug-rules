@@ -27,6 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import PUBLIC, ROOT  # noqa: E402
+from lib.fingerprint import data_fingerprint  # noqa: E402
 
 DIST = ROOT / "dist-offline"
 OUT = ROOT / "offline"
@@ -179,7 +180,14 @@ def main() -> int:
         print(f"✅ {name}  {p.stat().st_size/1e6:.1f} MB  ({len(payload)} 個資料檔)")
 
     meta = json.loads((PUBLIC / "meta.json").read_text(encoding="utf-8"))
-    fp = _sha("".join(f"{k}:{v}" for k, v in sorted(made[0][2].items())).encode())[:16]
+    # ★ 用 public/data 全域指紋，不用「本次內嵌檔案」的指紋：
+    #   後者只涵蓋皮膚科版帶到的檔，線上版改了沒帶到的檔就抓不出來。
+    fp = data_fingerprint(PUBLIC)
+    if meta.get("data_fingerprint") not in (None, fp):
+        raise SystemExit(
+            f"❌ public/data 指紋 {fp} 與 meta.json 記載的 "
+            f"{meta['data_fingerprint']} 不符 —— public/data 在 build 之後被改過，"
+            "請重跑 make rebuild 再產離線包")
     readme = READMEBODY = README.format(d=TODAY.replace("-", ""), built=meta["built"], fp=fp)
     # Windows 記事本要 BOM + CRLF 才不會變亂碼與擠成一行
     (OUT / "READ-ME-FIRST.txt").write_bytes(
