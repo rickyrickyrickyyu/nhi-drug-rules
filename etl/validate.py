@@ -150,6 +150,45 @@ def run() -> list[Gate]:
     ]
     g.append(Gate(19, "學名鍵無中文", not cjk_keys, f"{len(cjk_keys)} 個 {cjk_keys[:5]}"))
 
+    # 20 表格還原無損（防迴歸：只要有一個表沒通過無損驗證就不該被輸出）
+    bad_tab = [c for c, r in rules.items()
+               for t in (r.get("tables") or []) if not t.get("lossless")]
+    g.append(Gate(20, "表格無損", not bad_tab, f"未通過 {len(bad_tab)} 個 {bad_tab[:4]}"))
+
+    # 21 散文不得被誤判成表格（負向金絲雀）
+    # 這幾節是純散文，實測過會被寬鬆的門檻誤判，釘住防止日後調鬆
+    prose_canary = ["13.15.", "13.10.", "13.11.", "13.16.", "10.6.4.", "10.7.1.1.", "8.2.1."]
+    wrong = [c for c in prose_canary if rules.get(c, {}).get("tables")]
+    g.append(Gate(21, "散文非表格", not wrong, f"誤判為表格: {wrong or '無'}"))
+
+    # 22 附表定位金絲雀：這幾節必須找得到附表（本節或跨節）
+    appx_canary = {"13.4.": "附表十", "13.5.": "附表十一", "13.17.1.": "附表三十二"}
+    lost = []
+    for code, name in appx_canary.items():
+        refs = rules.get(code, {}).get("appx_refs") or []
+        if not any(x["name"] == name and not x["missing"] for x in refs):
+            lost.append(f"{code}/{name}")
+    g.append(Gate(22, "附表定位", not lost, f"定位失敗: {lost or '無'}"))
+
+    # 23 附表判定數量穩定（防 regex 放寬造成誤判暴增）
+    n_appx = sum(1 for r in rules.values() if r.get("appendix_from") is not None)
+    prev_appx = prev.get("n_appendix")
+    ok23 = prev_appx is None or n_appx <= max(prev_appx * 2, prev_appx + 15)
+    g.append(Gate(23, "附表節數穩定", ok23, f"{n_appx} 節（上期 {prev_appx}）"))
+
+    # 24 旗標皆有憑據：旗標是關鍵字掃出來的，沒有原文憑據就無法驗證
+    no_ev = [c for c, r in rules.items()
+             if r.get("flags", {}).get("prior_review") and not (r.get("flags_ev") or {}).get("prior_review")]
+    g.append(Gate(24, "旗標有憑據", not no_ev, f"缺憑據 {len(no_ev)} 節 {no_ev[:4]}"))
+
+    # 25 上游來源已登錄（沒有 sha256 與取得時間就無法回答「這份資料哪來的」）
+    src_path = STAGING.parent / "sources.json"
+    srcs = json.loads(src_path.read_text(encoding="utf-8")).get("sources", {}) if src_path.exists() else {}
+    need = {"nhi_csv", "tfda_json"}
+    missing_src = [s_ for s_ in need
+                   if s_ not in srcs or not srcs[s_].get("sha256") or not srcs[s_].get("fetched_at")]
+    g.append(Gate(25, "上游已登錄", not missing_src, f"缺: {missing_src or '無'}"))
+
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
         kb = len(gzip.compress((PUBLIC / "derm.json").read_bytes(), 9)) / 1024

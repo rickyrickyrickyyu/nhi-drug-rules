@@ -49,6 +49,8 @@ def main() -> int:
         "run_at": date.today().isoformat(),
         "n_products": len(prod),
         "n_sections": len(rules),
+        "n_appendix": sum(1 for r in rules.values() if r.get("appendix_from") is not None),
+        "n_tables": sum(len(r.get("tables") or []) for r in rules.values()),
         "stub_codes": sorted(c for c, r in rules.items() if r.get("is_stub")),
         "nonstub_codes": sorted(c for c, r in rules.items() if not r.get("is_stub")),
         "gates": gates,

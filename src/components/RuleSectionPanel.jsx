@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { rocToAd } from '../lib/format.js';
+import RuleTable from './RuleTable.jsx';
+import { go } from '../lib/routes.js';
 
 const FLAG_BADGES = [
   ['prior_review', '⚠️ 事前審查', 'bg-amber-100 text-amber-900'],
@@ -56,6 +58,19 @@ export default function RuleSectionPanel({ section, inn }) {
   const [expanded, setExpanded] = useState(false);
   if (!section) return null;
   const flags = section.flags ?? {};
+  const tables = section.tables ?? [];
+  // 附表區塊的表格由下方 details 呈現；其餘（如 2.6.1. 降血脂給付規定表本身
+  // 就是一張大表）要顯示在條文正文上方 —— 醫師先看到讀得懂的表，再看細則。
+  const inAppendix = section.appx != null && (section.clauses?.length ?? 0) > 0;
+  // 引用了附表但本體在別節（13.17.1. 引用「附表三十二」，EASI 評分表其實在 13.17.2.）
+  const crossRefs = (section.appx_refs ?? []).filter((x) => x.host && !x.self);
+  const missingRefs = (section.appx_refs ?? []).filter((x) => x.missing);
+  // 條文多久沒改了。健保署發布公告到更新條文 PDF 有時間落差，
+  // 標出年數讓醫師對「這條可能不是最新的」有感覺。
+  const lastRev = section.rev?.at(-1) ?? section.eff;
+  const staleYears = lastRev
+    ? Math.floor((Date.now() - new Date(lastRev).getTime()) / 31557600000)
+    : 0;
 
   if (section.no_pdf) {
     return (
@@ -75,6 +90,14 @@ export default function RuleSectionPanel({ section, inn }) {
           <div className="text-sm text-brand-700 font-mono">{section.code}</div>
           <h3 className="font-semibold leading-snug">{section.title || '(無標題)'}</h3>
         </div>
+        {staleYears >= 5 && !section.pending && (
+          <span
+            className="text-[11px] text-slate-500 shrink-0 self-center"
+            title="條文長期未修訂不代表有問題，但若你知道近期有新公告，請以官方公告為準"
+          >
+            條文 {staleYears} 年未修訂
+          </span>
+        )}
         {section.pdf && (
           <a
             href={PDF_URL(section.pdf)}
@@ -86,6 +109,19 @@ export default function RuleSectionPanel({ section, inn }) {
           </a>
         )}
       </div>
+
+      {section.pending && (
+        <div className="mt-2 text-sm bg-rose-50 border border-rose-300 text-rose-900 rounded-lg px-3 py-2">
+          <div className="font-semibold">
+            ⚠️ 健保署已公告新制（{section.pending.effective} 生效），但官方條文檔尚未更新
+          </div>
+          <p className="mt-1 leading-relaxed">{section.pending.note}</p>
+          <p className="mt-1 text-[11px] text-rose-800">
+            以下顯示的是官方目前提供的舊版條文，請以健保署最新公告為準。
+            （來源：{section.pending.source}；查核日 {section.pending.checked}）
+          </p>
+        </div>
+      )}
 
       {section.future && (
         <div className="mt-2 text-sm bg-orange-50 border border-orange-200 text-orange-900 rounded-lg px-3 py-2">
@@ -114,6 +150,15 @@ export default function RuleSectionPanel({ section, inn }) {
         </p>
       )}
 
+      {tables.length > 0 && !inAppendix && (
+        <div className="mt-3">
+          <div className="text-xs text-slate-500 mb-1">
+            本節含 {tables.length} 個表格，以下為由官方 PDF 版面還原之結果
+          </div>
+          {tables.map((t, i) => <RuleTable key={i} table={t} />)}
+        </div>
+      )}
+
       {section.stub && !section.title_rule ? (
         <p className="mt-3 text-sm text-slate-500 bg-slate-50 rounded-lg px-3 py-2">
           本節僅有標題，實際給付條件請見其子節。
@@ -138,6 +183,19 @@ export default function RuleSectionPanel({ section, inn }) {
       ) : (
         (() => {
           const all = section.clauses ?? [];
+          if (tables.length > 0 && !inAppendix) {
+            // 表格已在上方完整呈現，原始線性化文字收摺起來（它就是表格被拆散的樣子）
+            return (
+              <details className="mt-2">
+                <summary className="text-xs text-slate-500 cursor-pointer">
+                  官方 PDF 的原始文字（表格在此為逐格換行，僅供比對）
+                </summary>
+                <div className="mt-2 text-[13px] text-slate-600 whitespace-pre-wrap">
+                  {all.map((c) => c.text).join('\n')}
+                </div>
+              </details>
+            );
+          }
           const start = expanded ? 0 : relevantStart(all, inn);
           // 附表是空白表單範本（同意書欄位），預設摺疊
           const appx = section.appx;
@@ -167,16 +225,38 @@ export default function RuleSectionPanel({ section, inn }) {
               {appendix.length > 0 && (
                 <details className="mt-2 border-t border-slate-100 pt-2">
                   <summary className="text-xs text-slate-500 cursor-pointer">
-                    📎 {appendix[0].text.split(/\s/)[0]} 表單範本（{appendix.length} 行，點開檢視）
+                    📎 {appendix[0].text.split(/\s/)[0]} 附表內容（{appendix.length} 段
+                    {tables.length > 0 && `、${tables.length} 個表格`}，點開檢視）
                   </summary>
                   <div className="mt-2 text-[13px] text-slate-600 whitespace-pre-wrap">
                     {appendix.map((c) => c.text).join('\n')}
                   </div>
+                  {tables.map((t, i) => <RuleTable key={i} table={t} />)}
                 </details>
               )}
             </div>
           );
         })()
+      )}
+
+      {(crossRefs.length > 0 || missingRefs.length > 0) && (
+        <div className="mt-3 text-xs space-y-1">
+          {crossRefs.map((x) => (
+            <button
+              key={x.name}
+              type="button"
+              onClick={() => go(`#/s/${x.host.replace(/\.$/, '').replaceAll('.', '-')}`)}
+              className="block text-left text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1.5 w-full"
+            >
+              📎 {x.name} 的內容收錄於 <span className="font-mono">{x.host}</span>，點此查看 →
+            </button>
+          ))}
+          {missingRefs.map((x) => (
+            <div key={x.name} className="text-slate-500 bg-slate-50 rounded-lg px-2.5 py-1.5">
+              📎 {x.name}：本站快照未收錄此附表原文，請點上方官方 PDF 查閱
+            </div>
+          ))}
+        </div>
       )}
 
       {section.rev?.length > 0 && (

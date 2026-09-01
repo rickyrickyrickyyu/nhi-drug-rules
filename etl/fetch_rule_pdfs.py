@@ -22,7 +22,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import MANIFEST, PDF_URL, RAW, SNAP_PDF, SNAP_TEXT, STAGING  # noqa: E402
+from config import BUILD, MANIFEST, PDF_URL, RAW, SNAP_PDF, SNAP_TEXT, STAGING  # noqa: E402
 from lib.http import download  # noqa: E402
 from lib.section import code_tuple, split_pay_codes, split_pay_urls  # noqa: E402
 
@@ -47,10 +47,32 @@ def collect_targets() -> tuple[dict[str, tuple[str, str]], set[str]]:
 
 
 def extract_text(pdf: Path) -> str:
+    """★ 這個函式的輸出格式不可改動。
+
+    snapshots/text/*.txt 是 diff_rules.py 逐月比對的基準。只要在裡面插入任何
+    標記（例如表格分隔符），下一次 refresh 會讓 500+ 節誤報 silent_edit，
+    把「官方偷改條文」這個最重要的警訊淹沒。表格走獨立 sidecar，見 extract_tables_to()。
+    """
     import fitz
 
     with fitz.open(pdf) as doc:
         return "\n".join(page.get_text() for page in doc)
+
+
+def extract_tables_to(pdf: Path, out_dir: Path) -> int:
+    """表格還原成獨立 sidecar，放 data/build/tables/（衍生資料，不進 snapshots）。"""
+    import fitz
+
+    from lib.pdftable import EXTRACTOR_VERSION, extract_tables
+
+    with fitz.open(pdf) as doc:
+        tables, rejected = extract_tables(doc)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / f"{pdf.stem}.json").write_text(json.dumps({
+        "pdf": pdf.name, "extractor_version": EXTRACTOR_VERSION,
+        "tables": tables, "rejected": rejected,
+    }, ensure_ascii=False), encoding="utf-8")
+    return len(tables)
 
 
 def main() -> int:
@@ -88,6 +110,7 @@ def main() -> int:
             sha = hashlib.sha256(pdf_path.read_bytes()).hexdigest()
             text = extract_text(pdf_path)
             txt_path.write_text(text, encoding="utf-8")
+            extract_tables_to(pdf_path, BUILD / "tables")
         except Exception as e:                        # noqa: BLE001
             stats["failed"] += 1
             events.append({"code": code, "kind": "fetch_failed", "error": str(e)})

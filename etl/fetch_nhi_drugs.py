@@ -14,8 +14,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import NHI_DRUG_CSV, RAW  # noqa: E402
+from config import NHI_DRUG_CSV, RAW, SOURCES  # noqa: E402
 from lib.http import download  # noqa: E402
+from lib.prov import Registry  # noqa: E402
 
 
 def main() -> int:
@@ -24,12 +25,18 @@ def main() -> int:
     args = ap.parse_args()
 
     dest = RAW / "nhi_drug.csv"
+    reg = Registry(SOURCES)
     if args.cached and dest.exists():
         print(f"⏭  沿用既有檔案 {dest} ({dest.stat().st_size/1e6:.1f} MB)")
+        # 沿用也要登錄 —— 否則 sources.json 會缺這一筆而過不了 gate
+        reg.register_http("nhi_csv", NHI_DRUG_CSV, dest, cached=True)
+        reg.dump()
         return 0
 
     print(f"⬇️  下載健保藥品主檔 → {dest}")
     n = download(NHI_DRUG_CSV, dest)
+    reg.register_http("nhi_csv", NHI_DRUG_CSV, dest)
+    reg.dump()
     print(f"✅ 完成 {n/1e6:.1f} MB")
     return 0
 

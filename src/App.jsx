@@ -8,6 +8,7 @@ import IngredientDetail from './components/IngredientDetail.jsx';
 import Footer from './components/Footer.jsx';
 import About from './components/About.jsx';
 import Changes from './components/Changes.jsx';
+import SectionView from './components/SectionView.jsx';
 
 export default function App() {
   const { loading, error, meta, derm, all, loadAll } = useCoreData();
@@ -66,6 +67,8 @@ export default function App() {
       {!loading && !error && route.view === 'about' && <About meta={meta} />}
 
       {!loading && !error && route.view === 'changes' && <Changes />}
+
+      {!loading && !error && route.view === 'section' && <SectionView slug={route.key} />}
 
       {!loading && !error && route.view === 'ingredient' && current && (
         <div className="mt-4">

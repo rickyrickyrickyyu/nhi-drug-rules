@@ -22,7 +22,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import PUBLIC, SNAP_DIFF, STAGING  # noqa: E402
+from config import CURATION, PUBLIC, SNAP_DIFF, STAGING  # noqa: E402
 from lib.section import code_tuple  # noqa: E402
 
 TODAY = date.today().isoformat()
@@ -74,6 +74,13 @@ def gz_size(path: Path) -> float:
 
 def main() -> int:
     products = json.loads((STAGING / "products.json").read_text(encoding="utf-8"))
+    import yaml as _yaml
+    pend_path = CURATION / "pending_updates.yaml"
+    pending = {}
+    if pend_path.exists():
+        for x in (_yaml.safe_load(pend_path.read_text(encoding="utf-8")) or {}).get("pending", []):
+            pending[x["section"]] = x
+
     mpath = STAGING / "mentions.json"
     mentions = json.loads(mpath.read_text(encoding="utf-8")) if mpath.exists() else {}
     ingredients = json.loads((STAGING / "ingredients.json").read_text(encoding="utf-8"))
@@ -105,6 +112,11 @@ def main() -> int:
             "no_pdf": r.get("no_pdf", False),
             "raw": r.get("render_raw", False), "cov": r.get("coverage"),
             "title_rule": r.get("title_is_rule", False),
+            "tables": r.get("tables") or [],
+            "appx_refs": r.get("appx_refs") or [],
+            "flags_ev": r.get("flags_ev") or {},
+            # 已公告但官方條文檔尚未更新的提示（人工維護，程式偵測不到）
+            "pending": pending.get(r["code"]),
             "rev": r["revision_dates"], "first_seen": r.get("first_seen"),
             "pdf": r.get("pdf_filename"), "flags": r["flags"],
             "clauses": r["clauses"], "text": r["text"],

@@ -18,7 +18,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import MANIFEST, SNAP_TEXT, STAGING  # noqa: E402
+from config import BUILD, MANIFEST, SNAP_TEXT, STAGING  # noqa: E402
 from lib.roc import parse_revision_dates, roc_to_iso  # noqa: E402
 from lib.section import chapter_no, code_tuple, parent_code, same_code, slug  # noqa: E402
 
@@ -50,8 +50,18 @@ _RE_DATE_BLOCK = re.compile(r"[（(]\s*\d{2,3}/\d{1,2}/\d{1,2}[^）)]*[）)]")
 
 _RE_SPECIALIST = re.compile(r"限([一-鿿]{2,6}?)專科醫師")
 _RE_ATTACHMENT = re.compile(r"附表[一二三四五六七八九十百\d]+")
-# 附表區塊的起始行：「附表十 患者服用Isotretinoin口服製劑同意書」
-_RE_APPENDIX_HEAD = re.compile(r"^附表[一二三四五六七八九十百\d]+\s*[^）)]{0,40}$")
+# 附表區塊的起始行。實測三種寫法都要吃：
+#   「附表十 患者服用Isotretinoin口服製劑同意書」          純標題
+#   「◎附表三十二：異位性皮膚炎面積暨嚴重度指數【EASI】(108/12/1)」 有 ◎ 前綴、有括號
+#   「附表三十二之一：全民健康保險12歲以上病人…申請表」        有「之N」序號
+# 舊版寫成 ^附表…$ 且排除右括號，上面第二三種都比不中 —— 13.17.1. 的
+# appendix_from 因此一直是 None。
+_RE_APPENDIX_HEAD = re.compile(
+    r"^[◎●※★・\s]*附表[一二三四五六七八九十百零〇\d]+"
+    r"(?:之[一二三四五六七八九十\d]+)?\s*[：:、【（(\s]"
+)
+# 條文內文的引用（「詳附表十」「見附表三十二」）不是標題，不可當區塊起點
+_RE_APPENDIX_INLINE = re.compile(r"[詳見參照如]\s*附表")
 
 
 def _negated(text: str, idx: int, kw: str) -> bool:
@@ -59,21 +69,45 @@ def _negated(text: str, idx: int, kw: str) -> bool:
     return any(n in window for n in _NEGATIONS)
 
 
-def extract_flags(text: str) -> dict:
+def extract_flags(text: str) -> tuple[dict, dict]:
+    """回傳 (flags, evidence)。
+
+    ★ 旗標一定要留憑據。「事前審查」這種 badge 會直接影響醫師要不要送審查，
+    但它是關鍵字掃出來的 —— 沒有憑據就無法讓人自行驗證，也無法在關鍵字表改動時
+    抓到殘留的假旗標。evidence 記命中的字串與前後文，UI 點 badge 就地展開。
+    """
     flags: dict = {}
+    ev: dict = {}
     for name, kws in FLAG_KEYWORDS.items():
-        hit = False
+        hits = []
         for kw in kws:
             for m in re.finditer(re.escape(kw), text):
-                if not _negated(text, m.start(), kw):
-                    hit = True
-                    break
-            if hit:
+                if _negated(text, m.start(), kw):
+                    continue
+                lo, hi = max(0, m.start() - 22), min(len(text), m.end() + 22)
+                hits.append({"kw": kw, "pos": m.start(),
+                             "quote": text[lo:hi].replace("\n", " ").strip()})
                 break
-        flags[name] = hit
-    flags["specialist_only"] = sorted(set(_RE_SPECIALIST.findall(text)))
+            if hits:
+                break
+        flags[name] = bool(hits)
+        if hits:
+            ev[name] = hits
+
+    spec = sorted(set(_RE_SPECIALIST.findall(text)))
+    flags["specialist_only"] = spec
+    if spec:
+        ev["specialist_only"] = []
+        for s_ in spec:
+            m = re.search(rf"限{re.escape(s_)}專科醫師", text)
+            if m:
+                lo, hi = max(0, m.start() - 12), min(len(text), m.end() + 26)
+                ev["specialist_only"].append(
+                    {"kw": f"限{s_}專科醫師", "pos": m.start(),
+                     "quote": text[lo:hi].replace("\n", " ").strip()})
+
     flags["attachments"] = sorted(set(_RE_ATTACHMENT.findall(text)))
-    return flags
+    return flags, ev
 
 
 def split_clauses(body: str) -> list[dict]:
@@ -93,7 +127,7 @@ def split_clauses(body: str) -> list[dict]:
             continue
         # 附表標題行是硬邊界。它不以編號開頭，會被當成上一條的續行吞掉，
         # 之後整份空白同意書（病歷號碼／年齡／出生日期…）就混進給付條件裡。
-        if _RE_APPENDIX_HEAD.match(ln):
+        if _RE_APPENDIX_HEAD.match(ln) and not _RE_APPENDIX_INLINE.search(ln[:6]):
             flush()
             buf = [ln]
             cur = {"marker": "", "level": 0, "appendix": True}
@@ -215,6 +249,7 @@ def parse_one(code: str, text: str) -> dict:
     clauses = split_clauses(body)
     full = text.strip()
     coverage = clause_coverage(full, title, clauses)
+    _flags, _ev = extract_flags(full)
     return {
         "code": code,
         "slug": slug(code),
@@ -240,8 +275,46 @@ def parse_one(code: str, text: str) -> dict:
         # 條號切塊沒涵蓋住原文 → 前端改顯示完整原文。寧可版面難看，
         # 也不能讓醫師看到被截斷的給付條件。
         "render_raw": coverage < 0.95,
-        "flags": extract_flags(full),
+        "flags": _flags,
+        "flags_ev": _ev,
     }
+
+
+_RE_APPX_NAME = re.compile(r"附表[一二三四五六七八九十百零〇\d]+(?:之[一二三四五六七八九十\d]+)?")
+
+
+def load_tables(pdf_filename: str) -> list[dict]:
+    """讀表格 sidecar（由 etl/build_tables.py 產生，放 data/build/tables/）。"""
+    p = BUILD / "tables" / f"{Path(pdf_filename).stem}.json"
+    if not p.exists():
+        return []
+    try:
+        return json.loads(p.read_text(encoding="utf-8")).get("tables", [])
+    except (json.JSONDecodeError, OSError):
+        return []
+
+
+def build_appendix_registry(rules: dict) -> dict[str, str]:
+    """{附表名: 內容所在的章節碼}。
+
+    ★ 為什麼需要：13.17.1.（12 歲以上 dupilumab）條文引用「附表三十二 EASI 評分表」，
+    但表格本體收在 13.17.2.。醫師在 13.17.1. 頁面完全看不到評分表 —— 而 EASI≧16
+    正是申請門檻。這裡建索引讓 UI 能跨節指過去，**不複製內容**（維持單一事實來源）。
+    """
+    reg: dict[str, str] = {}
+    for code, r in rules.items():
+        a = r.get("appendix_from")
+        if a is None:
+            continue
+        body = r["clauses"][a:]
+        # 「有本體」的判準：附表區塊要有實質內容或表格，純引用標題不算
+        substantial = sum(len(c["text"]) for c in body) > 200 or bool(r.get("tables"))
+        if not substantial:
+            continue
+        for c in body:
+            for name in _RE_APPX_NAME.findall(c["text"][:60]):
+                reg.setdefault(name, code)
+    return reg
 
 
 def main() -> int:
@@ -256,7 +329,7 @@ def main() -> int:
                 "code": code, "slug": slug(code), "parent": parent_code(code),
                 "chapter": chapter_no(code), "sort_key": list(code_tuple(code)),
                 "title": "", "no_pdf": True, "is_stub": True, "clauses": [],
-                "flags": extract_flags(""), "revision_dates": [], "text": "",
+                "flags": extract_flags("")[0], "flags_ev": {}, "revision_dates": [], "text": "",
             }
             continue
         txt_path = SNAP_TEXT / m["pdf_filename"].replace(".pdf", ".txt")
@@ -272,11 +345,22 @@ def main() -> int:
             c != code and c.startswith(code) for c in all_codes
         )
         r["title_is_rule"] = r["is_stub"] and not r["has_children"]
+        r["tables"] = load_tables(m["pdf_filename"])
         r["effective_date"] = m["effective_date"]
         r["pdf_filename"] = m["pdf_filename"]
         r["is_future"] = m["effective_date"] > TODAY     # 尚未生效，UI 必須標示
         r["first_seen"] = m.get("first_seen")
         rules[code] = r
+
+    # 跨章節附表索引：條文引用了哪些附表、本體在哪一節
+    registry = build_appendix_registry(rules)
+    for code, r in rules.items():
+        refs = []
+        for name in sorted(set(r.get("flags", {}).get("attachments", []))):
+            host = registry.get(name)
+            refs.append({"name": name, "host": host, "missing": host is None,
+                         "self": host == code})
+        r["appx_refs"] = refs
 
     (STAGING / "rules.json").write_text(json.dumps(rules, ensure_ascii=False), encoding="utf-8")
 
@@ -284,8 +368,10 @@ def main() -> int:
     n_future = sum(1 for r in rules.values() if r.get("is_future"))
     n_pa = sum(1 for r in rules.values() if r["flags"]["prior_review"])
     n_raw = sum(1 for r in rules.values() if r.get("render_raw"))
+    n_tab = sum(len(r.get("tables") or []) for r in rules.values())
+    n_missing = sum(1 for r in rules.values() for x in r.get("appx_refs", []) if x["missing"])
     print(f"✅ rules.json {len(rules)} 節｜stub {n_stub}｜未生效 {n_future}｜事前審查 {n_pa}"
-          f"｜退回原文顯示 {n_raw}｜缺文字 {len(failed)}")
+          f"｜退回原文顯示 {n_raw}｜表格 {n_tab}｜附表本體缺 {n_missing}｜缺文字 {len(failed)}")
     if failed:
         print(f"❌ 缺少文字檔: {failed[:10]}")
     return 1 if failed else 0

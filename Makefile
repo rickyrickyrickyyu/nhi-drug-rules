@@ -6,6 +6,7 @@ refresh:            ## 抓最新資料 → 解析 → 驗證 → promote
 	python3 etl/fetch_tfda.py
 	python3 etl/fetch_rule_pdfs.py
 	python3 etl/normalize_drugs.py
+	python3 etl/build_tables.py
 	python3 etl/parse_rules.py
 	python3 etl/tag_derm.py
 	python3 etl/mentions.py
@@ -24,6 +25,7 @@ verify:             ## 逐藥比對條文原文 + 分類驗證 + 搜尋命中測
 
 rebuild:            ## 用既有 raw 檔重跑，不重新下載
 	python3 etl/normalize_drugs.py
+	python3 etl/build_tables.py
 	python3 etl/parse_rules.py
 	python3 etl/tag_derm.py
 	python3 etl/mentions.py

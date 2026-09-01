@@ -17,8 +17,9 @@ import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import RAW, TFDA_LICENCE  # noqa: E402
+from config import RAW, SOURCES, TFDA_LICENCE  # noqa: E402
 from lib.http import download  # noqa: E402
+from lib.prov import Registry  # noqa: E402
 
 
 def main() -> int:
@@ -27,7 +28,10 @@ def main() -> int:
     args = ap.parse_args()
 
     dest = RAW / "tfda_licence.json"
+    reg = Registry(SOURCES)
     if args.cached and dest.exists():
+        reg.register_http("tfda_json", TFDA_LICENCE, dest, cached=True)
+        reg.dump()
         print(f"⏭  沿用既有 {dest} ({dest.stat().st_size/1e6:.1f} MB)")
         return 0
 
@@ -38,6 +42,8 @@ def main() -> int:
         name = next(n for n in z.namelist() if n.endswith(".json"))
         dest.write_bytes(z.read(name))
     zip_path.unlink(missing_ok=True)
+    reg.register_http("tfda_json", TFDA_LICENCE, dest, zip_bytes=n)
+    reg.dump()
     print(f"✅ 完成 ZIP {n/1e6:.1f} MB → JSON {dest.stat().st_size/1e6:.1f} MB")
     return 0
 

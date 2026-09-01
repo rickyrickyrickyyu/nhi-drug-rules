@@ -14,6 +14,7 @@ SNAP_PDF = SNAPSHOTS / "pdf"
 SNAP_TEXT = SNAPSHOTS / "text"
 SNAP_DIFF = SNAPSHOTS / "diff"
 MANIFEST = SNAPSHOTS / "manifest.json"
+SOURCES = BUILD / "sources.json"        # 溯源登錄簿（promote 後複製到 public/data/）
 PUBLIC = ROOT / "public" / "data"
 
 NHI_DRUG_CSV = "https://info.nhi.gov.tw/api/iode0000s01/Dataset?rId=A21030000I-E41001-001"
