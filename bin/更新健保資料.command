@@ -110,21 +110,24 @@ echo "✅ 已推送"
 
 # 確認網頁版真的更新到 —— 使用者要的是「兩邊同時更新」，
 # push 成功不等於網站更新完成，要等 Actions 部署並比對線上的資料日期。
+# ★ 比指紋不比日期：built 只到「日」，同一天內重跑 ETL 資料已經不同，
+#   只比日期會在網站其實還沒部署好時就回報「已更新」。
+LOCAL_FP=$(python3 -c "import json;print(json.load(open('public/data/meta.json'))['data_fingerprint'])")
 LOCAL_BUILT=$(python3 -c "import json;print(json.load(open('public/data/meta.json'))['built'])")
 SITE="https://rickyrickyrickyyu.github.io/nhi-drug-rules/data/meta.json"
 echo "⏳ 等待 GitHub Actions 部署（約 1–3 分鐘）"
 for i in $(seq 1 40); do
   sleep 15
-  REMOTE_BUILT=$(curl -sS -m 10 "${SITE}?t=$RANDOM" 2>/dev/null \
-    | python3 -c "import json,sys;print(json.load(sys.stdin).get('built',''))" 2>/dev/null || echo "")
-  if [[ "$REMOTE_BUILT" == "$LOCAL_BUILT" ]]; then
-    echo "✅ 網頁版已更新（資料快照 $REMOTE_BUILT）— 本機與線上一致"
+  REMOTE_FP=$(curl -sS -m 10 "${SITE}?t=$RANDOM" 2>/dev/null \
+    | python3 -c "import json,sys;print(json.load(sys.stdin).get('data_fingerprint',''))" 2>/dev/null || echo "")
+  if [[ "$REMOTE_FP" == "$LOCAL_FP" ]]; then
+    echo "✅ 網頁版已更新（資料快照 $LOCAL_BUILT｜指紋 $LOCAL_FP）— 本機、線上、離線三者一致"
     osascript -e 'display notification "本機與網頁版都已更新" with title "健保資料更新完成"' 2>/dev/null
     echo
     echo "🎉 完成  https://rickyrickyrickyyu.github.io/nhi-drug-rules/"
     pause; exit 0
   fi
-  (( i % 4 == 0 )) && echo "   仍在部署…（線上 ${REMOTE_BUILT:-讀取中}，本機 $LOCAL_BUILT）"
+  (( i % 4 == 0 )) && echo "   仍在部署…（線上指紋 ${REMOTE_FP:-讀取中}，本機 $LOCAL_FP）"
 done
 echo "⚠️  10 分鐘內未看到網頁版更新。commit 已推送，可到 Actions 頁確認："
 echo "     https://github.com/rickyrickyrickyyu/nhi-drug-rules/actions"

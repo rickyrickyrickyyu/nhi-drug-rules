@@ -43,7 +43,7 @@ steps=()
 [[ "$MODE" == "fetch" ]] && steps+=("${FETCH_STEPS[@]}")
 steps+=("${BUILD_STEPS[@]}")
 
-total=$(( ${#steps[@]} + 3 ))   # +驗證 +promote +離線包
+total=$(( ${#steps[@]} + 4 ))   # +驗證 +promote +本機網頁 +離線包
 i=0
 for entry in "${steps[@]}"; do
   script="${entry%%:*}"; rest="${entry#*:}"
@@ -63,6 +63,13 @@ python3 etl/validate.py || exit 2          # exit 2 = 閘門擋下，呼叫端�
 
 i=$((i+1)); echo "▶ $i/$total promote 到 public/data"
 python3 etl/promote.py || exit 1
+
+i=$((i+1)); echo "▶ $i/$total 重建本機網頁（dist/）"
+# ★ 一定要跑：`nhi` 開的本機網頁服務的是 dist/，而 Vite 是在 build 時才把
+#   public/data 複製進 dist/。少了這一步，一鍵更新後本機網頁的資料與程式
+#   都還是上一版 —— 線上與離線都更新了，只有本機沒有，最難察覺。
+pnpm build >/dev/null 2>&1 || { echo "❌ 本機網頁建置失敗"; exit 1; }
+echo "   🖥  dist/ 已更新（nhi 開的本機網頁）"
 
 i=$((i+1)); echo "▶ $i/$total 產生離線包（皮膚科版＋全庫版）"
 if pnpm exec vite build --mode offline >/dev/null 2>&1 \
