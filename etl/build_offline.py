@@ -226,6 +226,26 @@ def main() -> int:
             z.write(OUT / "READ-ME-FIRST.txt", "READ-ME-FIRST.txt")
         print(f"📦 {zp.name}  {zp.stat().st_size/1e6:.1f} MB")
 
+        # ★ 清掉舊日期的產物。
+        #   這個資料夾的用途是「打開它、把檔案拖到隨身碟」。留著上個月的
+        #   nhi-offline-20260801.zip，就有機會把過期條文帶進醫院的封閉電腦，
+        #   而 check_offline.py 只驗 MANIFEST 記的那一份，看不到舊檔。
+        #   只刪自己命名規則產生的檔，且日期不是今天的 —— 不碰其他任何東西。
+        stamp = TODAY.replace("-", "")
+        removed = 0
+        for old in OUT.iterdir():
+            if not old.is_file():
+                continue
+            if not re.fullmatch(rf"nhi-(derm|full)-offline-\d{{8}}\.html|nhi-offline-\d{{8}}\.zip",
+                                old.name):
+                continue
+            if stamp in old.name:
+                continue
+            old.unlink()
+            removed += 1
+        if removed:
+            print(f"🧹 清除 {removed} 個舊日期產物（避免誤拿過期版本）")
+
         (OUT / "MANIFEST.txt").write_text(
             f"packed_at: {TODAY}\ndata_built: {meta['built']}\nfingerprint: {fp}\n"
             f"app_fingerprint: {app_fingerprint(DIST)}\n"

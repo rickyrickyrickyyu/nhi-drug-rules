@@ -303,6 +303,10 @@ def main() -> int:
                   f"{DIM}（點數非金額，實際給付依浮動點值結算）{RESET}")
             if field != "procName":
                 print(f"{DIM}（透過{PROC_LABEL.get(field, field)} {matched} 命中）{RESET}")
+            # 官方支付標準的章節定位。健保署對處置沒有逐項 PDF，
+            # 這是醫師在官方原文（整份 .doc）裡翻到這一條的唯一依據。
+            if it.get("ch"):
+                print(f"  {DIM}官方出處：《醫療服務給付項目及支付標準》{it['ch']}{RESET}")
             if it.get("note"):
                 print(f"  {DIM}給付備註：{RESET}")
                 for ln in wrap(it["note"], width - 4, "    ").split("\n"):

@@ -53,6 +53,10 @@ export default defineConfig(({ mode }) => {
     tailwindcss(),
     ...(offline ? [] : [VitePWA({
       registerType: 'autoUpdate',
+      // 自己註冊（見 src/lib/swUpdate.js）：vite-plugin-pwa 產生的 registerSW.js
+      // 沒有 .catch()，在不支援 SW 的環境（本機 serve.py、file://）會丟一個
+      // 未捕捉的 promise rejection，在 DevTools 裡看起來像壞掉了。
+      injectRegister: null,
       manifest: {
         name: '皮膚科健保給付規定查詢',
         short_name: '健保給付',

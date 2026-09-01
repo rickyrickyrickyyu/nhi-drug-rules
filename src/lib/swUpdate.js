@@ -27,6 +27,17 @@ export function watchSwUpdate() {
   // 註冊當下就有 controller = 這台裝置已經裝過舊版
   const hadController = Boolean(sw.controller);
 
+  // ★ 自己註冊而不是用 vite-plugin-pwa 產生的 registerSW.js：那支沒有 .catch()，
+  //   在不支援 SW 的環境（本機預覽伺服器、file://）會丟未捕捉的 promise
+  //   rejection。SW 只是加速用的，註冊失敗不該讓畫面看起來像壞了。
+  window.addEventListener('load', () => {
+    const base = import.meta.env.BASE_URL;
+    sw.register(`${base}sw.js`, { scope: base }).catch(() => {
+      // 本機預覽或 file:// 註冊不了 —— 這是預期內的，靜默略過。
+      // 少了 SW 只代表沒有離線快取，頁面照常運作（而且永遠是最新的）。
+    });
+  });
+
   sw.addEventListener('controllerchange', () => {
     if (!hadController) return;             // 首次安裝，不是換版
     try {
