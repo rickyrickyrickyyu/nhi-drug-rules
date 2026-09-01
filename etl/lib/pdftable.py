@@ -25,12 +25,17 @@ EXTRACTOR_VERSION = 3
 #   會把散文切成假表格且切在字中間（實測 8.2.16. 被切出「(2)M」「ethotrexate」）。
 #   真正的表格在這批 PDF 裡都有繪製框線，兩種 lines 策略就夠。
 _STRATEGIES = ("lines_strict", "lines")
+# ★ 這四個門檻在 2026-09 放寬過一次。原值（欄≤16、密度≥0.25、格≤400 字、列≥2）
+#   把真的表格擋掉了：申請書有 21–29 欄、空白表單天生稀疏（密度 0.11–0.22）、
+#   修訂對照表把整條規則塞在一格（488 字）、跨頁表格的續頁只有 1 列。
+#   放寬後 50→71 張表，且四個散文負向樣本（13.15./13.4./8.2.16./13.7.）
+#   仍然判定為非表格。
 _MIN_COLS = 2
-_MAX_COLS = 16
-_MIN_ROWS = 2
+_MAX_COLS = 32
+_MIN_ROWS = 1
 _MAX_ROWS = 80
-_MIN_DENSITY = 0.25
-_MAX_CELL_CHARS = 400
+_MIN_DENSITY = 0.10
+_MAX_CELL_CHARS = 1500
 
 
 def _norm(s: str) -> str:

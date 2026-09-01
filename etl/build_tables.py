@@ -16,7 +16,20 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import BUILD, SNAP_PDF  # noqa: E402
+from lib.formlines import FORMLINES_VERSION, extract_visual_lines  # noqa: E402
 from lib.pdftable import EXTRACTOR_VERSION, extract_tables  # noqa: E402
+
+
+def sidecar(pdf_name: str, tables: list, rejected: list, visual_lines: list) -> dict:
+    """表格 sidecar 的欄位定義（build_tables 與 fetch_rule_pdfs 共用）。"""
+    return {
+        "pdf": pdf_name,
+        "extractor_version": EXTRACTOR_VERSION,
+        "formlines_version": FORMLINES_VERSION,
+        "tables": tables,
+        "rejected": rejected,
+        "visual_lines": visual_lines,
+    }
 
 
 def main() -> int:
@@ -28,10 +41,13 @@ def main() -> int:
     for pdf in sorted(SNAP_PDF.glob("*.pdf")):
         with fitz.open(pdf) as doc:
             tables, rejected = extract_tables(doc)
-        (out / f"{pdf.stem}.json").write_text(json.dumps({
-            "pdf": pdf.name, "extractor_version": EXTRACTOR_VERSION,
-            "tables": tables, "rejected": rejected,
-        }, ensure_ascii=False), encoding="utf-8")
+            vlines = extract_visual_lines(doc)
+        # ★ sidecar 的欄位在這裡與 fetch_rule_pdfs.extract_tables_to() 各寫過一次，
+        #   結果 visual_lines 只進了其中一支 —— 表單還原完全沒生效。
+        #   兩邊都改成呼叫同一個組裝函式，不再各自維護欄位清單。
+        (out / f"{pdf.stem}.json").write_text(
+            json.dumps(sidecar(pdf.name, tables, rejected, vlines),
+                       ensure_ascii=False), encoding="utf-8")
         n_tab += len(tables)
         n_rej += len(rejected)
         n_sec += bool(tables)

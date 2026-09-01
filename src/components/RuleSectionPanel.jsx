@@ -204,6 +204,17 @@ export default function RuleSectionPanel({ section, inn }) {
           <pre className="mt-2 text-[14px] leading-relaxed text-slate-800 whitespace-pre-wrap font-sans">
             {annotate(section.text ?? '')}
           </pre>
+          {/* ★ 這條分支顯示的是未經條號切塊的原文，沒有表格標記可就地替換，
+              所以還原好的表格要另外附上 —— 否則像 1.3.6.、14.1.1. 這種
+              「修訂對照表」節，新舊條文對照表根本不會出現在畫面上。 */}
+          {tables.length > 0 && (
+            <div className="mt-3">
+              <div className="text-xs text-slate-500 mb-1">
+                由官方 PDF 版面還原之表格（{tables.length}）
+              </div>
+              {tables.map((t, i) => <RuleTable key={i} table={t} />)}
+            </div>
+          )}
         </>
       ) : (
         (() => {

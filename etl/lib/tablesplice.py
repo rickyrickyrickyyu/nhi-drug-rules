@@ -37,6 +37,8 @@ _RE_SKIP = re.compile(r"[\s_＿﹏‥…．·・]+")
 _WINDOW = 400
 # 候選起點掃描上限（首格文字若很常見，全掃會拖慢）
 _MAX_CANDIDATES = 60
+# 允許對不上的儲存格比例（find_tables 併格造成的順序差異）
+_MAX_SKIP_RATIO = 0.10
 
 
 def _norm(s: str) -> str:
@@ -48,7 +50,35 @@ def _cells(grid: list[list[str]]) -> list[str]:
     return [c for c in out if c]
 
 
-def _find_span(cells: list[str], hay: str, start: int) -> tuple[int, int, int] | None:
+def _foreign_runs(cells: list[str], hay: str, lo: int, hi: int) -> list[str]:
+    """區間內「扣掉所有儲存格出現處」之後剩下的文字片段。
+
+    刻意不依順序扣：PDF 文字流對多欄表單常常不照 grid 的列序吐字，
+    依順序扣會把已經是表格內容的字誤判成散文。
+    """
+    seg = hay[lo:hi]
+    marks = [False] * len(seg)
+    for c in sorted(set(cells), key=len, reverse=True):
+        i = seg.find(c)
+        while i >= 0:
+            for k in range(i, i + len(c)):
+                marks[k] = True
+            i = seg.find(c, i + 1)
+    runs, cur = [], ""
+    for ch, m in zip(seg, marks):
+        if m:
+            if cur:
+                runs.append(cur)
+                cur = ""
+        else:
+            cur += ch
+    if cur:
+        runs.append(cur)
+    return runs
+
+
+def _find_span(cells: list[str], hay: str, start: int,
+               max_skip: int = 0) -> tuple[int, int, int] | None:
     """依序找出每個儲存格，回傳 (起, 迄, 夾雜字數)。
 
     ★ 取「夾雜最少」的候選起點，不是第一個成功的：
@@ -64,13 +94,23 @@ def _find_span(cells: list[str], hay: str, start: int) -> tuple[int, int, int] |
             break
         lo = cur = p
         covered = 0
+        skipped = 0
+        ok = True
         for c in cells:
             j = hay.find(c, cur)
             if j < 0 or j - cur > _WINDOW:
-                break
+                # ★ find_tables 有時會把跨欄內容併成一格，那個字串在 PDF 的
+                #   線性文字裡並不存在（順序不同）。整張表因為一格對不上就
+                #   放棄太可惜 —— 允許跳過少數格子，安全性仍由下方
+                #   「夾雜必須是表格內容」把關，與有沒有跳過無關。
+                skipped += 1
+                if skipped > max_skip:
+                    ok = False
+                    break
+                continue
             covered += len(c)
             cur = j + len(c)
-        else:
+        if ok:
             foreign = cur - lo - covered
             if best is None or foreign < best[2]:
                 best = (lo, cur, foreign)
@@ -90,18 +130,30 @@ def locate_tables(tables: list[dict], text: str) -> list[dict]:
             continue
         start = spans[-1]["hi"] if spans else 0
         # 先從上一張表之後找；找不到再從頭找一次（同頁多表時 PDF 文字流
-        # 未必照版面順序，單向游標會錯過）
-        r = _find_span(cells, hay, start) or _find_span(cells, hay, 0)
+        # 未必照版面順序，單向游標會錯過）。
+        # ★ 嚴格版（不跳格）優先：它挑得到正確的錨點。容錯版是備援，
+        #   若一開始就容錯，13.17.2. 的嚴重度表會錨在標題句而吃掉
+        #   「（Severity）：」。
+        skip = max(1, int(len(cells) * _MAX_SKIP_RATIO))
+        r = (_find_span(cells, hay, start)
+             or _find_span(cells, hay, 0)
+             or _find_span(cells, hay, start, skip)
+             or _find_span(cells, hay, 0, skip))
         if not r:
             continue
         lo, hi, foreign = r
         if spans and lo < spans[-1]["hi"]:
             continue                       # 與前一張重疊，放棄
         if foreign:
-            # ★ 一個字都不能吃：條文原文的忠實度是本站的根本，寧可退回
-            #   「碎片 + 表格附在後面」也不能把散文刪掉。實測 5.4.1.1. 的
-            #   表頭與前一句「臨床特徵」相連，放寬到 35% 就會吃掉「床特徵」。
-            continue
+            # ★ 只有「夾雜的字本身就是表格內容的一部分」才准挖除。
+            #   實測 5.4.1.1. 夾著 '床特徵' 與 '良' —— 那是 PDF 文字層把
+            #   '臨床特徵'、'循環不良' 重複吐了一次的碎片，刪掉不損失任何資訊，
+            #   因為同樣的字就在下方表格裡。
+            #   反之，只要出現一個表格裡沒有的字（真正的散文），整張放棄挖除，
+            #   退回「碎片 + 表格附在後面」—— 條文忠實度不能讓步。
+            flat = "".join(cells)
+            if any(run not in flat for run in _foreign_runs(cells, hay, lo, hi)):
+                continue
         spans.append({"i": i, "lo": lo, "hi": hi})
     return spans
 

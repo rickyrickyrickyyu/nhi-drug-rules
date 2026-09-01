@@ -293,6 +293,33 @@ def run() -> list[Gate]:
         g.append(Gate(33, "仿單劑量忠實", not bad33,
                       f"{len(dt):,} 學名｜非原文 {len(bad33)} {bad33[:3]}"))
 
+    # 34 表格碎片殘留
+    #    模擬醫師眼睛：連續 4 行以上都只有 1–6 個字 = 表格被線性化成碎片
+    #    （dupilumab EASI 表當初就是長這樣）。真正的條文不會這樣排。
+    #    白名單裡的四節是空白申請書，PDF 本身沒有可還原的格線結構
+    #    （是/否勾選欄跨欄合併、印信框直書），find_tables 也救不了。
+    #   9.41.     官印欄（印信／承辦人／複核）直書，不是臨床內容
+    #   1.6.2.2.  肉毒桿菌注射評估表，欄位標題直書拆行
+    #   8.2.4.11. 掌蹠膿皰症申請書的「是／否」勾選欄跨欄合併，
+    #             find_tables 還原出來的字串在 PDF 線性文字裡不存在
+    KNOWN_FRAG = {"9.41.", "1.6.2.2.", "8.2.4.11."}
+    frag = set()
+    for code, r in rules.items():
+        for c in r.get("clauses", []):
+            lines = [x.strip() for x in RE_TBMARK.sub("", c.get("text", "")).split("\n")]
+            run = 0
+            for ln in lines:
+                run = run + 1 if 0 < len(ln) <= 6 else 0
+                if run >= 4:
+                    frag.add(code)
+                    break
+            if code in frag:
+                break
+    new_frag = sorted(frag - KNOWN_FRAG)
+    g.append(Gate(34, "表格碎片殘留", not new_frag,
+                  f"{len(frag)} 節（已知 {len(frag & KNOWN_FRAG)}）"
+                  + (f"｜新增 {new_frag[:5]}" if new_frag else "")))
+
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
         kb = len(gzip.compress((PUBLIC / "derm.json").read_bytes(), 9)) / 1024

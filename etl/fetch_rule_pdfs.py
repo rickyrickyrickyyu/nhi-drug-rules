@@ -63,15 +63,18 @@ def extract_tables_to(pdf: Path, out_dir: Path) -> int:
     """表格還原成獨立 sidecar，放 data/build/tables/（衍生資料，不進 snapshots）。"""
     import fitz
 
-    from lib.pdftable import EXTRACTOR_VERSION, extract_tables
+    from build_tables import sidecar
+    from lib.formlines import extract_visual_lines
+    from lib.pdftable import extract_tables
 
     with fitz.open(pdf) as doc:
         tables, rejected = extract_tables(doc)
+        # 表單填空欄位被拆行的還原資料（見 lib/formlines.py）
+        visual_lines = extract_visual_lines(doc)
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / f"{pdf.stem}.json").write_text(json.dumps({
-        "pdf": pdf.name, "extractor_version": EXTRACTOR_VERSION,
-        "tables": tables, "rejected": rejected,
-    }, ensure_ascii=False), encoding="utf-8")
+    (out_dir / f"{pdf.stem}.json").write_text(
+        json.dumps(sidecar(pdf.name, tables, rejected, visual_lines),
+                   ensure_ascii=False), encoding="utf-8")
     return len(tables)
 
 

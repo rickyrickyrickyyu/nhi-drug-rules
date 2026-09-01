@@ -18,6 +18,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.formlines import build_index, rejoin  # noqa: E402
 from lib.tablesplice import splice_clauses  # noqa: E402
 from config import BUILD, MANIFEST, SNAP_TEXT, STAGING  # noqa: E402
 from lib.roc import parse_revision_dates, roc_to_iso  # noqa: E402
@@ -185,7 +186,8 @@ def normalize_text(text: str) -> str:
     return unicodedata.normalize("NFC", text or "")
 
 
-def parse_one(code: str, text: str, tables: list[dict] | None = None) -> dict:
+def parse_one(code: str, text: str, tables: list[dict] | None = None,
+              visual_lines: list[str] | None = None) -> dict:
     text = normalize_text(text)
     lines = [ln.rstrip() for ln in text.splitlines()]
     title = ""
@@ -251,6 +253,13 @@ def parse_one(code: str, text: str, tables: list[dict] | None = None) -> dict:
     full = text.strip()
     coverage = clause_coverage(full, title, clauses)
     _flags, _ev = extract_flags(full)
+    # ★ 表單填空欄位（「茲證明本人／年齡／出生日期／年／月／日」）在 PDF 上是
+    #   同一行，被底線矩形切成多個 line 物件。先接回一行再處理表格。
+    if visual_lines:
+        idx = build_index(visual_lines)
+        for c in clauses:
+            c["text"] = rejoin(c["text"], idx)
+
     # ★ 把表格文字從 clause 裡挖掉、原位換成標記。必須在算 appendix_from 之前做，
     #   因為挖除會刪掉變空的 clause，索引會位移。
     clauses, spliced = splice_clauses(clauses, tables or [])
@@ -287,6 +296,13 @@ def parse_one(code: str, text: str, tables: list[dict] | None = None) -> dict:
 
 
 _RE_APPX_NAME = re.compile(r"附表[一二三四五六七八九十百零〇\d]+(?:之[一二三四五六七八九十\d]+)?")
+
+
+def load_visual_lines(pdf_filename: str) -> list[dict]:
+    p = BUILD / "tables" / f"{Path(pdf_filename).stem}.json"
+    if not p.exists():
+        return []
+    return json.loads(p.read_text(encoding="utf-8")).get("visual_lines", [])
 
 
 def load_tables(pdf_filename: str) -> list[dict]:
@@ -343,7 +359,8 @@ def main() -> int:
             failed.append(code)
             continue
         tabs = load_tables(m["pdf_filename"])
-        r = parse_one(code, txt_path.read_text(encoding="utf-8"), tabs)
+        vlines = load_visual_lines(m["pdf_filename"])
+        r = parse_one(code, txt_path.read_text(encoding="utf-8"), tabs, vlines)
         # 沒有條文的節分兩種，UI 文案完全不同，不能混為一談：
         #   有子節 → 父節指標（8.2.4.6. 乾癬，真正條件在 8.2.4.6.1.）
         #   無子節 → 整條規則就寫在標題行（13.3.3.「與 tazarotene 併用…」）
