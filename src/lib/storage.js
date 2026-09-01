@@ -32,7 +32,16 @@ export function saveNotes(state) {
 }
 
 export function exportNotes(state) {
-  const lines = ['# 匯出的臨床註記（貼進 curation/clinical_notes/ 後 commit 即成為共用註記）', ''];
+  // ★ 原本這行寫「貼進 curation/clinical_notes/ 後 commit 即成為共用註記」——
+  //   那是錯的，而且危險：本站的 repo 是公開的，沒有任何程式會讀那個目錄，
+  //   照做只會把可能含病人資訊的註記推上公開 GitHub，且得不到任何功能。
+  const lines = [
+    '# 匯出的臨床註記',
+    '#',
+    '# ⚠️ 這份檔案可能含病人資訊，請留在本機或加密隨身碟。',
+    '#    不要放進本專案資料夾，也不要 commit —— 本站 repo 是公開的。',
+    '',
+  ];
   for (const [key, v] of Object.entries(state.notes ?? {})) {
     if (!v?.text?.trim()) continue;
     lines.push(`---`, `key: ${key}`, `publish: false   # 改成 true 才會出現在公開網站`,

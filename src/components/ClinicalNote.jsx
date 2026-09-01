@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react';
 import { loadNotes, saveNotes, exportNotes } from '../lib/storage.js';
 
 /**
- * 臨床註記：本機草稿層。
+ * 臨床註記：**純本機**草稿層。
  *
- * 共用註記走 curation/clinical_notes/*.md 由使用者 commit，且必須明確標
- * publish: true 才會出現在公開網站 —— 這是 public repo 的隱私閘門。
+ * ★ 只寫進這台瀏覽器的 localStorage，不會上傳、不會進 git、不會同步到線上版。
+ *   離線版（file://）的 localStorage 還是 per-file 的，換一台電腦就沒有。
+ *
+ * ★ 沒有「共用註記」這個功能。本站 repo 是公開的，任何把註記放進專案資料夾
+ *   的做法都等於公開病人資訊 —— curation/clinical_notes/ 已列入 .gitignore，
+ *   匯出的 .md 也請留在本機。
  */
 export default function ClinicalNote({ innKey }) {
   const [state, setState] = useState(() => loadNotes());

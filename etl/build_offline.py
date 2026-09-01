@@ -69,6 +69,23 @@ def collect(scope: str) -> tuple[dict, dict]:
     return payload, shas
 
 
+def _embed(obj) -> str:
+    """把資料安全地嵌進 <script> 內。
+
+    ★ json.dumps 不會跳脫 `</script>`。條文原文來自健保署 PDF，只要哪天出現
+      這串字，內嵌的資料就會提前關閉 script 標籤，後面的內容變成可執行的 HTML
+      —— 離線檔會被帶進封閉網路的醫院電腦，這種洞不能留。
+      目前資料裡沒有這串（實測 0 處），這是防未來不是防現在。
+
+    ★ U+2028/U+2029 在舊版 JS 解析器裡不能出現在字串字面值中，一併跳脫。
+    """
+    s = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+    return (s.replace("<", "\\u003c")
+             .replace(">", "\\u003e")
+             .replace("\u2028", "\\u2028")
+             .replace("\u2029", "\\u2029"))
+
+
 def build_html(payload: dict, shas: dict, scope: str) -> str:
     """把 app、樣式與資料合成單一 HTML。
 
@@ -99,11 +116,11 @@ def build_html(payload: dict, shas: dict, scope: str) -> str:
     meta = payload.get("meta.json", {})
     tail = (
         "<script>window.__NHI_OFFLINE__="
-        + json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        + _embed(payload)
         + ";window.__NHI_OFFLINE_META__="
-        + json.dumps({"built": meta.get("built"), "scope": scope,
-                      "packed_at": TODAY, "fingerprint": fingerprint,
-                      "files": len(payload)}, ensure_ascii=False)
+        + _embed({"built": meta.get("built"), "scope": scope,
+                  "packed_at": TODAY, "fingerprint": fingerprint,
+                  "files": len(payload)})
         + ";</script>\n<script>\n" + app_js + "\n</script>\n"
     )
     if "</body>" not in idx:
@@ -171,6 +188,14 @@ def main() -> int:
         flags = [f for f in _AV_FLAGS if f in html]
         if flags:
             raise SystemExit(f"❌ 產物含防毒紅旗字樣 {flags}，拒絕輸出")
+
+        # ★ script 逃逸驗證：內嵌資料區塊裡不得出現任何 `</`。
+        #   資料是用 _embed() 跳脫過的，只要這裡命中就代表跳脫被繞過或被改掉，
+        #   那會讓條文原文變成可執行的 HTML。
+        head, _, rest = html.partition("window.__NHI_OFFLINE__=")
+        data_block, _, _ = rest.partition(";window.__NHI_OFFLINE_META__=")
+        if "</" in data_block or "<script" in data_block.lower():
+            raise SystemExit("❌ 內嵌資料含未跳脫的 `</`，可能造成 script 逃逸，拒絕輸出")
 
         # ★ 檔名一律純 ASCII：中文檔名在舊版 Windows 解壓縮會變亂碼
         name = f"nhi-{'derm' if scope == 'derm' else 'full'}-offline-{TODAY.replace('-', '')}.html"

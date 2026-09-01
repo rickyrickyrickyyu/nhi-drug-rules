@@ -3,6 +3,35 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
+// ★ CSP 只加在線上版。離線版是單一 HTML、資料與程式都內嵌成 inline script，
+//   `script-src 'self'` 會直接把它擋死。離線版不連外的保證來自「檔案本身
+//   不含任何會被觸發的網路呼叫」，以及 build_offline.py 的靜態檢查。
+//
+// 這裡刻意用最緊的 connect-src 'self'：這個站只讀自己 origin 底下的靜態 JSON，
+// 任何往外送資料的行為（不管是被注入的還是相依套件偷跑的）都會被瀏覽器擋下。
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",   // Tailwind 會注入 inline style
+  "img-src 'self' data:",
+  "font-src 'self'",
+  "connect-src 'self'",                 // 只准讀自己的 data/*.json
+  "form-action 'none'",                 // 本站沒有任何表單送出
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-src 'none'",
+].join('; ');
+
+const cspPlugin = {
+  name: 'nhi-csp',
+  transformIndexHtml(html) {
+    return html.replace(
+      '<meta charset="UTF-8" />',
+      `<meta charset="UTF-8" />\n    <meta http-equiv="Content-Security-Policy" content="${CSP}" />`,
+    );
+  },
+};
+
 export default defineConfig(({ mode }) => {
   // 離線版：資料內嵌成單一 HTML，用 file:// 開，所以 base 必須是相對路徑，
   // 且不能有 Service Worker（file:// 下無法註冊且會噴 console 錯誤嚇到使用者）
@@ -19,6 +48,7 @@ export default defineConfig(({ mode }) => {
       }
     : {},
   plugins: [
+    ...(offline ? [] : [cspPlugin]),
     react(),
     tailwindcss(),
     ...(offline ? [] : [VitePWA({

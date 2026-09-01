@@ -14,3 +14,9 @@ dist-offline/
 offline/*.html
 offline/*.zip
 offline/READ-ME-FIRST.txt
+
+# ★ 臨床註記絕不進 git。這是 public repo —— 醫師寫的註記可能含病人資訊，
+#   一旦 commit 就永遠留在公開歷史裡（刪掉也還在 reflog 與別人的 clone）。
+#   註記只存在瀏覽器 localStorage，匯出的 .md 請留在本機。
+curation/clinical_notes/
+*clinical-notes*.md

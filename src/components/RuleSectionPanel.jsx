@@ -11,8 +11,10 @@ const FLAG_BADGES = [
   ['special_case', '📄 專案申請', 'bg-slate-200 text-slate-800'],
 ];
 
+// 檔名來自健保署的 manifest（實測全是 [A-Za-z0-9._-]），但仍然編碼：
+// 上游哪天在檔名裡放進 & 或 #，未編碼就會被改寫成別的查詢參數。
 const PDF_URL = (fn) =>
-  `https://info.nhi.gov.tw/api/INAE3000/INAE3000S01/getPDF?DurgFileName=${fn}`;
+  `https://info.nhi.gov.tw/api/INAE3000/INAE3000S01/getPDF?DurgFileName=${encodeURIComponent(fn)}`;
 
 /** 民國日期加 tooltip 顯示西元。條文原文一字不改，只做視覺結構化。 */
 function annotate(text) {

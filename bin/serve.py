@@ -9,6 +9,11 @@ dist/ 已經是建置好的產物，用 stdlib 的 http.server 起來只要幾�
 
 為什麼要 prefix：vite.config.js 的 base 是 '/nhi-drug-rules/'（GitHub Pages 子路徑），
 在這裡把前綴 strip 掉再對映到 dist/，就不必為了本機而改 base。
+
+★ 這支只是本機預覽伺服器（HTTP/1.0 + Cache-Control: no-store），
+  瀏覽器在它上面**註冊不了 Service Worker** —— 這是刻意可接受的：
+  本機頁面本來就該永遠讀最新的 dist/，不需要離線快取。
+  線上版（GitHub Pages）的 SW 正常運作。
 """
 
 from __future__ import annotations

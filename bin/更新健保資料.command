@@ -71,6 +71,17 @@ if ! git remote get-url origin >/dev/null 2>&1; then
   pause; exit 0
 fi
 
+# ★ 推上公開 repo 前的隱私閘門。原本這裡是無條件 `git add -A` ——
+#   任何被放進專案資料夾的檔案（病歷截圖、匯出的臨床註記、scratch 檔）
+#   都會被 commit 並永久留在公開歷史裡。
+if ! python3 bin/pre_push_check.py; then
+  echo
+  echo "❌ 推送前檢查未通過，已停在本機（本機資料仍是最新的）"
+  echo "   處理完上列項目後，執行： cd $(pwd) && git add -A && git commit && git push"
+  osascript -e 'display alert "未推上 GitHub" message "偵測到不該公開的檔案或個資樣式，已停止推送。本機資料已更新。" as critical' 2>/dev/null
+  pause; exit 1
+fi
+
 if [[ -z "$(git status --porcelain)" ]]; then
   echo "✅ 本機資料無變化。"
 else
