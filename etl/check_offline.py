@@ -20,7 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from config import PUBLIC, ROOT  # noqa: E402
-from lib.fingerprint import data_fingerprint  # noqa: E402
+from lib.fingerprint import app_fingerprint, data_fingerprint  # noqa: E402
 
 
 def main() -> int:
@@ -40,10 +40,22 @@ def main() -> int:
               f"{meta.get('data_fingerprint')} 不符 → 請重跑 make rebuild")
         return 1
     if packed != live:
-        print(f"❌ 離線包指紋 {packed} ≠ 線上 {live} → 請重跑 make offline")
+        print(f"❌ 離線包資料指紋 {packed} ≠ 線上 {live} → 請重跑 make offline")
         return 1
 
-    print(f"✅ 離線包與線上版同一份資料（指紋 {live}｜快照 {meta['built']}）")
+    # ★ 也要比 app bundle：資料沒變但前端改版時，只比資料會放行一個
+    #   「介面還是舊的」離線包。dist-offline 是每次 make offline 前才重建的，
+    #   所以它代表「現在的前端」。
+    dist = ROOT / "dist-offline"
+    am = re.search(r"app_fingerprint:\s*(\S+)", body)
+    if dist.exists() and am:
+        live_app = app_fingerprint(dist)
+        if am.group(1) != live_app:
+            print(f"❌ 離線包前端指紋 {am.group(1)} ≠ 目前建置 {live_app}"
+                  " → 請重跑 make offline")
+            return 1
+
+    print(f"✅ 離線包與線上版同一份資料與前端（指紋 {live}｜快照 {meta['built']}）")
     return 0
 
 

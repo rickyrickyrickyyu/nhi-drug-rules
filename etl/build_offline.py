@@ -27,7 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import PUBLIC, ROOT  # noqa: E402
-from lib.fingerprint import data_fingerprint  # noqa: E402
+from lib.fingerprint import app_fingerprint, data_fingerprint  # noqa: E402
 
 DIST = ROOT / "dist-offline"
 OUT = ROOT / "offline"
@@ -203,6 +203,7 @@ def main() -> int:
 
         (OUT / "MANIFEST.txt").write_text(
             f"packed_at: {TODAY}\ndata_built: {meta['built']}\nfingerprint: {fp}\n"
+            f"app_fingerprint: {app_fingerprint(DIST)}\n"
             + "".join(f"{p.name}  {p.stat().st_size} bytes  {_sha(p.read_bytes())[:16]}\n"
                       for p, _s, _sh in made)
             + f"{zp.name}  {zp.stat().st_size} bytes\n", encoding="utf-8")

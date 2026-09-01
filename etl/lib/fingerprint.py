@@ -25,3 +25,19 @@ def data_fingerprint(public: Path) -> str:
             continue
         parts.append(f"{rel}:{hashlib.sha256(p.read_bytes()).hexdigest()}")
     return hashlib.sha256("".join(parts).encode()).hexdigest()[:16]
+
+
+def app_fingerprint(dist: Path) -> str:
+    """離線版 app bundle 的指紋（index.html + assets 全部）。
+
+    ★ 為什麼資料指紋不夠：
+      前端改版但資料沒變時（例如修了表格渲染、加了仿單劑量面板），
+      資料指紋一模一樣，只比資料的閘門會放行一個「畫面還是舊的」離線包。
+      使用者拿去封閉電腦，看到的是上一版的介面。
+    """
+    parts = []
+    for p in sorted(dist.rglob("*")):
+        if p.is_file():
+            parts.append(f"{p.relative_to(dist).as_posix()}:"
+                         f"{hashlib.sha256(p.read_bytes()).hexdigest()}")
+    return hashlib.sha256("".join(parts).encode()).hexdigest()[:16]
