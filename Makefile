@@ -1,22 +1,8 @@
 # 本機與 CI 共用同一組入口，確保兩邊跑的是同一條 pipeline。
 .PHONY: refresh rebuild build gates verify offline dev clean
 
-refresh:            ## 抓最新資料 → 解析 → 驗證 → promote
-	python3 etl/fetch_nhi_drugs.py
-	python3 etl/fetch_tfda.py
-	python3 etl/fetch_procedures.py
-	python3 etl/fetch_rule_pdfs.py
-	python3 etl/normalize_drugs.py
-	python3 etl/normalize_procedures.py
-	python3 etl/build_tables.py
-	python3 etl/parse_rules.py
-	python3 etl/tag_derm.py
-	python3 etl/dosing.py
-	python3 etl/mentions.py
-	python3 etl/diff_rules.py
-	python3 etl/build_site_data.py
-	python3 etl/validate.py
-	python3 etl/promote.py
+refresh:            ## 抓最新資料 → 解析 → 驗證 → promote → 離線包
+	bin/pipeline.sh fetch
 
 gates:              ## 只跑驗證閘門
 	python3 etl/validate.py
@@ -32,18 +18,8 @@ verify:             ## 逐藥比對條文原文 + 分類驗證 + 搜尋命中測
 	node tests/search_parity.mjs && python3 tests/search_parity.py
 	python3 etl/check_offline.py
 
-rebuild:            ## 用既有 raw 檔重跑，不重新下載
-	python3 etl/normalize_drugs.py
-	python3 etl/normalize_procedures.py
-	python3 etl/build_tables.py
-	python3 etl/parse_rules.py
-	python3 etl/tag_derm.py
-	python3 etl/dosing.py
-	python3 etl/mentions.py
-	python3 etl/diff_rules.py
-	python3 etl/build_site_data.py
-	python3 etl/validate.py
-	python3 etl/promote.py
+rebuild:            ## 用既有 raw 檔重跑（不重新下載）
+	bin/pipeline.sh rebuild
 
 dev:
 	pnpm dev

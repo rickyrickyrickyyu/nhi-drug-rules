@@ -15,6 +15,7 @@ import argparse
 import collections
 import gzip
 import re
+import unicodedata
 import json
 import sys
 from dataclasses import dataclass
@@ -268,6 +269,29 @@ def run() -> list[Gate]:
                   f"標記 {n_mark}／挖除 {n_spliced}"
                   + (f"｜壞標記 {bad_mark[:3]}" if bad_mark else "")
                   + (f"｜原文遭汙染 {leak_txt[:3]}" if leak_txt else "")))
+
+    # 33 仿單劑量忠實度
+    #    輸出必須是食藥署開放資料「用法用量」欄位的逐字原文。
+    #    只要有一段對不回原始欄位，就代表程式改動過藥廠登載的用法 —— 直接擋。
+    tf_path = STAGING / "dose_tfda.json"
+    if tf_path.exists() and (RAW / "tfda_licence.json").exists():
+        dt = json.loads(tf_path.read_text(encoding="utf-8"))
+        src = {}
+        for r in json.loads((RAW / "tfda_licence.json").read_text(encoding="utf-8")):
+            u = unicodedata.normalize("NFC", (r.get("用法用量") or "")).strip()
+            if u:
+                src[unicodedata.normalize("NFC", (r.get("許可證字號") or "")).strip()] = u
+        bad33 = []
+        for inn, groups in dt.items():
+            for gg in groups:
+                lics = gg.get("licences") or []
+                if not any(gg["text"] == src.get(x) for x in lics):
+                    bad33.append(f"{inn}/{lics[:1]}")
+                for quote in gg.get("adjust") or []:
+                    if quote not in gg["text"]:
+                        bad33.append(f"{inn}:調整句非原文")
+        g.append(Gate(33, "仿單劑量忠實", not bad33,
+                      f"{len(dt):,} 學名｜非原文 {len(bad33)} {bad33[:3]}"))
 
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():

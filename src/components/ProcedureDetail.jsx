@@ -1,5 +1,13 @@
 import { go } from '../lib/routes.js';
 
+// ★ 健保署對「藥品給付規定」有逐節 PDF，對「醫療服務給付項目」沒有 ——
+//   官方只發布整份支付標準壓縮檔（.doc）。所以這裡給的是官方發布頁與
+//   官方查詢系統，不編造不存在的逐項 PDF 連結。
+const OFFICIAL_DOC = 'https://www.nhi.gov.tw/ch/lp-3778-1.html';
+// 查詢系統是 POST + sessionStorage，沒有單一代碼的深連結，
+// 所以只連到入口並告訴醫師要貼哪個代碼 —— 不編一個看起來像深連結的假網址。
+const OFFICIAL_QUERY = 'https://info.nhi.gov.tw/INAE5000/INAE5001S01';
+
 /**
  * 處置詳情。
  *
@@ -61,6 +69,42 @@ export default function ProcedureDetail({ item }) {
           本醫令在支付標準中沒有個別備註。仍受支付標準通則約束。
         </div>
       )}
+
+      <div className="bg-white rounded-xl border border-slate-200 p-4">
+        <h3 className="text-sm font-semibold">官方原文出處</h3>
+        {item.ch ? (
+          <p className="mt-1.5 text-sm text-slate-700">
+            收錄於《全民健康保險醫療服務給付項目及支付標準》
+            <b className="text-brand-700">{item.ch}</b>
+          </p>
+        ) : (
+          <p className="mt-1.5 text-sm text-slate-500">
+            官方支付標準查詢未提供本醫令的章節定位。
+          </p>
+        )}
+        <div className="mt-2 flex flex-col gap-1.5 text-sm">
+          <a
+            href={OFFICIAL_DOC}
+            target="_blank"
+            rel="noreferrer"
+            className="text-brand-700 underline"
+          >
+            📄 支付標準原文下載（健保署發布頁，整份 .doc 壓縮檔）↗
+          </a>
+          <a
+            href={OFFICIAL_QUERY}
+            target="_blank"
+            rel="noreferrer"
+            className="text-brand-700 underline"
+          >
+            🔍 健保署支付標準查詢系統（在「診療項目代碼」貼上 {item.k} 可核對）↗
+          </a>
+        </div>
+        <p className="mt-2 text-[11px] text-slate-500">
+          健保署對醫療處置未發布逐項 PDF（僅藥品給付規定有），
+          因此以章節定位＋官方發布頁作為出處。
+        </p>
+      </div>
 
       <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
         ⚠️ 本頁僅列單一醫令的規定。<b>同日不得併報、互斥組合、部位計次</b>等限制

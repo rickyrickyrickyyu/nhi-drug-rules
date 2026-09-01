@@ -32,11 +32,21 @@ def _nfc(s: str) -> str:
     return unicodedata.normalize("NFC", s or "")
 
 
+def _load_chapters() -> dict[str, str]:
+    """支付標準章節定位。抓不到就留空 —— 缺欄位不該讓整個 build 停擺。"""
+    p = RAW / "nhi_proc_chapters.json"
+    if not p.exists():
+        print("⚠️  無 nhi_proc_chapters.json，章節欄位留空（跑 fetch_proc_chapters.py 可補）")
+        return {}
+    return json.loads(p.read_text(encoding="utf-8")).get("chapters", {})
+
+
 def main() -> int:
     src = RAW / "nhi_proc.csv"
     if not src.exists():
         raise SystemExit("❌ 找不到 data/raw/nhi_proc.csv，請先跑 fetch_procedures.py")
 
+    chapters = _load_chapters()
     tags = yaml.safe_load((CURATION / "procedure_tags.yaml").read_text(encoding="utf-8"))
     groups = tags["groups"]
     block = set(tags.get("blocklist") or {})
@@ -86,6 +96,9 @@ def main() -> int:
             "valid_to": end,
             "status": "active" if active else "retired",
             "note": _nfc(row["備註"]).strip(),
+            # 官方支付標準裡的章節定位（開放資料 CSV 沒有這欄，另從
+            # 支付標準查詢 API 取得）。醫師要在官方原文 .doc 裡翻到這一條靠它。
+            "chapter": chapters.get(code, ""),
             "synonyms": sorted(set(syn.get(code, []))),
             "group": grp.get(code),
             "primary": code in primary,
@@ -96,10 +109,11 @@ def main() -> int:
     (STAGING / "procedures.json").write_text(
         json.dumps(out, ensure_ascii=False), encoding="utf-8")
 
+    n_chap = sum(1 for p in out.values() if p["chapter"])
     n_derm = sum(1 for p in out.values() if p["derm"])
     n_note = sum(1 for p in out.values() if p["note"])
     missing = [c for c in tags["canary"] if not out.get(c, {}).get("derm")]
-    print(f"✅ procedures.json {len(out):,} 筆｜皮膚科 {n_derm}｜有備註 {n_note:,}")
+    print(f"✅ procedures.json {len(out):,} 筆｜皮膚科 {n_derm}｜有備註 {n_note:,}｜有章節 {n_chap:,}")
     print(f"   金絲雀 {len(tags['canary'])-len(missing)}/{len(tags['canary'])}"
           + (f"  ❌ 缺 {missing}" if missing else "  ✅"))
     bad = [c for c in syn if c not in out]

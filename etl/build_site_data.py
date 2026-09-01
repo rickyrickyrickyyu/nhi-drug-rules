@@ -42,6 +42,9 @@ def slim_proc(p: dict) -> dict:
         "en": p["name_en"],
         "z": p["synonyms"],
         "pt": p["points"],
+        # 官方支付標準的章節定位（第二部第二章第六節）。健保署對處置沒有
+        # 逐項 PDF，這是醫師在官方原文裡找到該條的唯一定位。
+        "ch": p.get("chapter") or None,
         "note": p["note"][:600],
         "note_more": len(p["note"]) > 600,
         "g": p["group"],
@@ -51,7 +54,7 @@ def slim_proc(p: dict) -> dict:
     }
 
 
-def slim(ing: dict, products: dict, mentions: dict, dosing: dict) -> dict:
+def slim(ing: dict, products: dict, mentions: dict, dosing: dict, dose_tfda: dict) -> dict:
     """搜尋列所需的最小欄位。欄名縮寫是刻意的 —— 45k 筆時省 25% 體積。"""
     return {
         "t": "d",
@@ -81,6 +84,7 @@ def slim(ing: dict, products: dict, mentions: dict, dosing: dict) -> dict:
             for rt, r in ing["routes"].items()
         ],
         "dr": ing["derm_reasons"],
+        "dt": 1 if dose_tfda.get(ing["inn"]) else 0,
         "ds": 1 if dosing.get(ing["inn"], {}).get("direct") or
                    dosing.get(ing["inn"], {}).get("section_sole") else 0,
         # 健保「給付規定章節」欄有缺漏（實測 bimekizumab、amorolfine 等），
@@ -110,6 +114,8 @@ def main() -> int:
     ppath = STAGING / "procedures.json"
     procs = json.loads(ppath.read_text(encoding="utf-8")) if ppath.exists() else {}
 
+    tpath = STAGING / "dose_tfda.json"
+    dose_tfda = json.loads(tpath.read_text(encoding="utf-8")) if tpath.exists() else {}
     dpath = STAGING / "dosing.json"
     dosing = json.loads(dpath.read_text(encoding="utf-8")) if dpath.exists() else {}
 
@@ -118,8 +124,8 @@ def main() -> int:
     ingredients = json.loads((STAGING / "ingredients.json").read_text(encoding="utf-8"))
     rules = json.loads((STAGING / "rules.json").read_text(encoding="utf-8"))
 
-    derm = [slim(i, products, mentions, dosing) for i in ingredients.values() if i["derm"]]
-    allx = [slim(i, products, mentions, dosing) for i in ingredients.values()]
+    derm = [slim(i, products, mentions, dosing, dose_tfda) for i in ingredients.values() if i["derm"]]
+    allx = [slim(i, products, mentions, dosing, dose_tfda) for i in ingredients.values()]
     derm.sort(key=lambda x: x["n"])
     allx.sort(key=lambda x: x["n"])
 
@@ -177,6 +183,10 @@ def main() -> int:
             "inn": key,
             # 劑量只放在懶載分片：搜尋用不到，放進 derm.json 會撐大首載
             "dosing": dosing.get(key, {}),
+            # 仿單層：食藥署開放資料的「用法用量」逐字原文，按證分組。
+            # 與健保條文劑量性質不同（一個是藥證登載用法、一個是給付條件），
+            # UI 必須分開呈現，不可合併成一份「建議劑量」。
+            "dose_tfda": dose_tfda.get(key, []),
             # 仿單適應症只有詳情頁用得到，放在懶載分片裡；
             # 塞進 derm.json 會讓首載從 82 KB 膨脹到 180 KB。
             "indications": {rt: r.get("indications", []) for rt, r in ing["routes"].items()},

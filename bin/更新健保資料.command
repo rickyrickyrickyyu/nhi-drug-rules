@@ -35,38 +35,20 @@ die() {
   pause; exit 1
 }
 
-echo "▶ 1/10 下載健保藥品主檔（約 96 MB）"
-python3 etl/fetch_nhi_drugs.py       || die "健保主檔下載失敗"
-echo "▶ 2/10 下載食藥署許可證資料（約 79 MB）"
-python3 etl/fetch_tfda.py            || echo "⚠️  食藥署下載失敗，沿用既有資料（仿單適應症可能不是最新）"
-echo "▶ 3/10 檢查給付規定章節改版"
-python3 etl/fetch_rule_pdfs.py $FULL || die "章節 PDF 下載失敗"
-echo "▶ 4/10 正規化藥品資料"
-python3 etl/normalize_drugs.py       || die "正規化失敗"
-echo "▶ 5/10 解析條文"
-python3 etl/parse_rules.py           || die "條文解析失敗"
-echo "▶ 6/10 皮膚科標籤"
-python3 etl/tag_derm.py              || die "標籤失敗（可能是金絲雀藥物消失）"
-echo "▶ 7/10 產生條文異動 diff"
-python3 etl/diff_rules.py            || die "diff 產生失敗"
-echo "▶ 8/10 建置前端資料"
-python3 etl/build_site_data.py       || die "前端資料建置失敗"
-
-echo
-echo "▶ 9/10 驗證閘門（fail-closed）"
-if ! python3 etl/validate.py; then
+# ★ 步驟清單集中在 bin/pipeline.sh，與 make refresh 共用同一份。
+#   以前這裡自己維護一份，結果漏掉處置、表格、劑量、提及索引四個步驟 ——
+#   按了「更新」但處置永遠停在上個月。
+bash bin/pipeline.sh fetch $FULL
+rc=$?
+if [[ $rc -eq 2 ]]; then
   echo
-  echo "   未通過的產物保留在 data/build/.staging/ 供檢查，正式資料未被修改。"
-  die "驗證閘門未通過"
-fi
-python3 etl/promote.py || die "promote 失敗"
-
-echo "▶ 10/10 產生離線包（皮膚科版＋全庫版）"
-if pnpm exec vite build --mode offline >/dev/null 2>&1 && python3 etl/build_offline.py \
-   && python3 etl/check_offline.py; then
-  echo "   📦 offline/ 已更新，可直接拖到隨身碟帶去封閉電腦"
-else
-  echo "   ⚠️  離線包產生失敗（線上版不受影響）"
+  echo "❌ 驗證閘門擋下，未更新正式資料（staging 保留在 data/build/.staging）"
+  echo "   線上與離線版都維持前一版，不會出現半套資料。"
+  exit 1
+elif [[ $rc -eq 3 ]]; then
+  echo "⚠️  資料已更新，但離線包產生失敗 —— 執行 nhi offline 可單獨重產"
+elif [[ $rc -ne 0 ]]; then
+  die "更新失敗"
 fi
 
 echo

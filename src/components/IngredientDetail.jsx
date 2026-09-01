@@ -84,7 +84,8 @@ export default function IngredientDetail({ item }) {
           <DosingPanel
             dosing={products?.dosing}
             innDisplay={item.n}
-            licenceId={routeItems[0]?.licence_id || allRouteItems[0]?.licence_id}
+            licenceNo={routeItems[0]?.licence_no || allRouteItems[0]?.licence_no}
+            doseTfda={products?.dose_tfda ?? []}
           />
 
           {routeSections.length === 0 ? (
