@@ -25,6 +25,7 @@ SOURCE_KINDS = frozenset({"http", "pdf", "curation", "code", "derived"})
 SOURCE_LABEL = {
     "nhi_csv": "健保署藥品品項主檔",
     "nhi_proc_csv": "健保署醫療服務給付項目及支付標準",
+    "nhi_proc_api": "健保署支付標準查詢（章節定位）",
     "tfda_json": "食藥署藥品許可證資料",
     "pdf:": "健保署給付規定條文 PDF",
     "cur:": "本專案人工策展",
