@@ -5,7 +5,8 @@
 > [更新資料（三個版本怎麼同步）](#更新資料) →
 > [架構](#架構) →
 > [**踩過的坑**](#踩過的坑不要再踩一次) →
-> [驗證清單](#驗證清單)。
+> [驗證清單](#驗證清單) →
+> [安全與隱私](#安全與隱私)。
 >
 > 「踩過的坑」那一節記的都是**實測打臉過的結論**，不是推測。
 > 憑常識重寫任何一條，都會原地踩回去。改完務必跑完[驗證清單](#驗證清單)。
@@ -335,6 +336,50 @@ python3 etl/check_offline.py
 | `#/p/51017C` | 液態氮冷凍治療 600 點 + 第二部第二章第六節 |
 | 離線 HTML | 網路請求**只有 HTML 自己 1 筆** |
 
+
+## 安全與隱私
+
+這是**公開** repo、**公開**網站，而使用者是臨床醫師 —— 兩者相加的風險是
+「病人資訊被永久公開」。設計上的三道防線：
+
+| 層 | 做法 |
+|---|---|
+| 臨床註記 | 只寫進**這台瀏覽器的 localStorage**，不上傳、不進 git、不同步。`curation/clinical_notes/` 與 `*clinical-notes*.md` 已列入 `.gitignore`。**沒有「共用註記」這個功能** |
+| 推送前 | `bin/pre_push_check.py`：路徑白名單（只有 pipeline 產出的路徑可 commit）＋ 內容掃描（身分證字號／手機／病歷號有值／出生日期有值／金鑰樣式）。一鍵更新在 `git add` 之前呼叫它，沒過就停在本機 |
+| 瀏覽器 | 線上版 meta CSP，`connect-src 'self'` —— 這個站只讀自己 origin 的靜態 JSON，任何往外送資料的行為都會被瀏覽器擋下 |
+
+> ★ 一鍵更新原本是無條件 `git add -A` + push。任何被放進專案資料夾的檔案
+> （病歷截圖、匯出的註記、scratch 檔）都會被 commit 並**永久**留在公開歷史、
+> reflog 與別人的 clone 裡。刪掉也拿不回來。這是本專案最高風險的一條路徑。
+
+### 注入面向
+
+- **離線包內嵌資料一律走 `_embed()`**：`json.dumps` **不會**跳脫 `</script>`。
+  條文原文來自健保署 PDF，只要哪天出現這串，內嵌資料就會提前關閉 script 標籤、
+  後面變成可執行的 HTML —— 而這個檔案是要被帶進醫院封閉網路的電腦的。
+  `build_offline.py` 另有靜態檢查：資料區出現 `</` 就拒絕輸出。
+- **前端不存在 `dangerouslySetInnerHTML` / `innerHTML` / `eval` / `new Function`**。
+  所有上游文字都以 React text node 渲染，永遠是資料不是程式。
+- **外連網域封閉**：只有 `nhi.gov.tw`、`fda.gov.tw`、`data.gov.tw`、`github.com`，
+  全部是硬編常數，沒有一個 URL 是用上游資料拼出來的（`PDF_URL` 的檔名有
+  `encodeURIComponent`）。
+- **離線 zip 內只有 2 個 `.html` 與 1 個 `.txt`**，無任何可執行檔、無巨集、
+  無自解壓、不加密碼（加密 ZIP 是防毒最常攔的特徵）。
+- **CI 權限最小化**：`deploy.yml` 只有 `contents: read`；沒有 `pull_request_target`
+  這類會執行外部 PR 程式碼的觸發條件。
+- **`bin/serve.py` 只綁 `127.0.0.1`**，不對區網開放。
+
+### 定期該做的檢查
+
+```bash
+python3 bin/pre_push_check.py     # 推送前個資／異物掃描
+grep -rn "dangerouslySetInnerHTML\|innerHTML\|eval(\|new Function" src/   # 應為空
+unzip -l offline/*.zip            # 應只有 2 個 .html + 1 個 .txt
+```
+
+**已知且刻意接受的事項**：commit 作者 email 會出現在公開的 git 歷史裡
+（這是 GitHub 的預設行為）。若要隱藏，到 GitHub 設定啟用 noreply email
+並改本 repo 的 `git config user.email`。
 
 ## 致謝與設計來源
 
