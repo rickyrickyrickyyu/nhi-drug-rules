@@ -9,6 +9,7 @@ refresh:            ## 抓最新資料 → 解析 → 驗證 → promote
 	python3 etl/build_tables.py
 	python3 etl/parse_rules.py
 	python3 etl/tag_derm.py
+	python3 etl/dosing.py
 	python3 etl/mentions.py
 	python3 etl/diff_rules.py
 	python3 etl/build_site_data.py
@@ -28,6 +29,7 @@ rebuild:            ## 用既有 raw 檔重跑，不重新下載
 	python3 etl/build_tables.py
 	python3 etl/parse_rules.py
 	python3 etl/tag_derm.py
+	python3 etl/dosing.py
 	python3 etl/mentions.py
 	python3 etl/diff_rules.py
 	python3 etl/build_site_data.py

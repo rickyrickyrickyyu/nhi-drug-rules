@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import collections
 import gzip
+import re
 import json
 import sys
 from dataclasses import dataclass
@@ -199,6 +200,34 @@ def run() -> list[Gate]:
     missing_src = [s_ for s_ in need
                    if s_ not in srcs or not srcs[s_].get("sha256") or not srcs[s_].get("fetched_at")]
     g.append(Gate(25, "上游已登錄", not missing_src, f"缺: {missing_src or '無'}"))
+
+    # 27 劑量引用忠實性：每條 quote 必須逐字出現在該章節條文中
+    # 這是「零幻覺」的機制保證 —— 系統只做選句，不得生成或改寫任何字
+    dpath = STAGING / "dosing.json"
+    dosing = json.loads(dpath.read_text(encoding="utf-8")) if dpath.exists() else {}
+    infidel = []
+    for inn, kinds in dosing.items():
+        for kind, items in kinds.items():
+            for it in items:
+                body = (rules.get(it["section"], {}).get("text") or "")
+                if re.sub(r"\s+", "", it["quote"]) not in re.sub(r"\s+", "", body):
+                    infidel.append(f"{inn}/{it['section']}")
+    g.append(Gate(27, "劑量引用忠實", not infidel, f"非原文 {len(infidel)} 條 {infidel[:4]}"))
+
+    # 28 前置用藥不得混入本藥劑量
+    # 「Methotrexate 每週15mg」是申請 dupilumab 的條件，若跑進 direct
+    # 醫師照著開就會出事，這是全案臨床風險最高的一條
+    leak = []
+    for inn, kinds in dosing.items():
+        for it in kinds.get("direct", []) + kinds.get("section_sole", []):
+            low = it["quote"].lower()
+            base = inn.split(" (")[0].lower()
+            others = [k for k in dosing
+                      if k != inn and len(k.split(" (")[0]) >= 6
+                      and re.search(rf"(?<![a-z]){re.escape(k.split(' (')[0].lower())}(?![a-z])", low)]
+            if others and not re.search(rf"(?<![a-z]){re.escape(base)}(?![a-z])", low):
+                leak.append(f"{inn}←{others[0]}")
+    g.append(Gate(28, "劑量歸屬純度", not leak, f"疑似他藥劑量 {len(leak)} 條 {leak[:4]}"))
 
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():

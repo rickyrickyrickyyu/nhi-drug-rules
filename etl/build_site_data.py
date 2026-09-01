@@ -28,7 +28,7 @@ from lib.section import code_tuple  # noqa: E402
 TODAY = date.today().isoformat()
 
 
-def slim(ing: dict, products: dict, mentions: dict) -> dict:
+def slim(ing: dict, products: dict, mentions: dict, dosing: dict) -> dict:
     """搜尋列所需的最小欄位。欄名縮寫是刻意的 —— 45k 筆時省 25% 體積。"""
     return {
         "k": ing["inn"],
@@ -57,6 +57,8 @@ def slim(ing: dict, products: dict, mentions: dict) -> dict:
             for rt, r in ing["routes"].items()
         ],
         "dr": ing["derm_reasons"],
+        "ds": 1 if dosing.get(ing["inn"], {}).get("direct") or
+                   dosing.get(ing["inn"], {}).get("section_sole") else 0,
         # 健保「給付規定章節」欄有缺漏（實測 bimekizumab、amorolfine 等），
         # 條文內文卻列有藥名。當線索提供，UI 必須與正式章節分開標示。
         "mn": mentions.get(ing["inn"], {}),
@@ -81,13 +83,16 @@ def main() -> int:
         for x in (_yaml.safe_load(pend_path.read_text(encoding="utf-8")) or {}).get("pending", []):
             pending[x["section"]] = x
 
+    dpath = STAGING / "dosing.json"
+    dosing = json.loads(dpath.read_text(encoding="utf-8")) if dpath.exists() else {}
+
     mpath = STAGING / "mentions.json"
     mentions = json.loads(mpath.read_text(encoding="utf-8")) if mpath.exists() else {}
     ingredients = json.loads((STAGING / "ingredients.json").read_text(encoding="utf-8"))
     rules = json.loads((STAGING / "rules.json").read_text(encoding="utf-8"))
 
-    derm = [slim(i, products, mentions) for i in ingredients.values() if i["derm"]]
-    allx = [slim(i, products, mentions) for i in ingredients.values()]
+    derm = [slim(i, products, mentions, dosing) for i in ingredients.values() if i["derm"]]
+    allx = [slim(i, products, mentions, dosing) for i in ingredients.values()]
     derm.sort(key=lambda x: x["n"])
     allx.sort(key=lambda x: x["n"])
 
@@ -136,6 +141,8 @@ def main() -> int:
         safe = key.replace("/", "_").replace(" ", "_").replace("(", "").replace(")", "")
         dump(f"products/{safe}.json", {
             "inn": key,
+            # 劑量只放在懶載分片：搜尋用不到，放進 derm.json 會撐大首載
+            "dosing": dosing.get(key, {}),
             # 仿單適應症只有詳情頁用得到，放在懶載分片裡；
             # 塞進 derm.json 會讓首載從 82 KB 膨脹到 180 KB。
             "indications": {rt: r.get("indications", []) for rt, r in ing["routes"].items()},

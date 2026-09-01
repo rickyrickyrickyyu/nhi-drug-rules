@@ -4,6 +4,7 @@ import { secChapter, money } from '../lib/format.js';
 import RuleSectionPanel from './RuleSectionPanel.jsx';
 import ClinicalNote from './ClinicalNote.jsx';
 import TfdaIndication from './TfdaIndication.jsx';
+import DosingPanel from './DosingPanel.jsx';
 import { go } from '../lib/routes.js';
 
 export default function IngredientDetail({ item }) {
@@ -79,6 +80,13 @@ export default function IngredientDetail({ item }) {
 
       {active && (
         <>
+          {/* 劑量放最前面：醫師確認「可以申請」之後，下一個問題就是「怎麼開」 */}
+          <DosingPanel
+            dosing={products?.dosing}
+            innDisplay={item.n}
+            licenceId={routeItems[0]?.licence_id || allRouteItems[0]?.licence_id}
+          />
+
           {routeSections.length === 0 ? (
             <div className="bg-white rounded-xl border border-slate-200 p-4">
               <div className="font-semibold">本劑型無個別給付規定章節</div>
