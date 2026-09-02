@@ -327,6 +327,13 @@ def main() -> int:
         if field not in ("學名", ""):
             print(f"{DIM}（透過{PROC_LABEL.get(field, field)} {matched} 命中）{RESET}")
 
+        # ★ 只給一行提示、不載入 products 分片：CLI 的定位是「門診當下秒開，
+        #   回答『這個藥健保給不給付』」，載分片會拖慢每一次查詢。
+        #   仿單用法用量屬於「怎麼開」，完整內容在網頁版與離線版。
+        if it.get("dt"):
+            print(f"{DIM}📋 本藥有食藥署登載之仿單用法用量（含族群／肝腎相關敘述），"
+                  f"詳見網頁版或離線版{RESET}")
+
         rules_cache: dict[str, dict] = {}
         for r in it.get("r", []):
             if args.route and r["ro"] != args.route.upper():
