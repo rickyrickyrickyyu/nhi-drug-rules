@@ -22,7 +22,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import BUILD, MANIFEST, PDF_URL, RAW, SNAP_PDF, SNAP_TEXT, STAGING  # noqa: E402
+from config import BUILD, CURATION, MANIFEST, PDF_URL, RAW, SNAP_PDF, SNAP_TEXT, STAGING  # noqa: E402
 from lib.http import download  # noqa: E402
 from lib.section import code_tuple, split_pay_codes, split_pay_urls  # noqa: E402
 
@@ -78,6 +78,19 @@ def extract_tables_to(pdf: Path, out_dir: Path) -> int:
     return len(tables)
 
 
+def _pending_codes() -> set[str]:
+    """curation/pending_updates.yaml 裡登記「已公告、等它落地」的章節碼。"""
+    p = CURATION / "pending_updates.yaml"
+    if not p.exists():
+        return set()
+    try:
+        import yaml
+        data = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    except Exception:                                 # noqa: BLE001
+        return set()
+    return {str(x["section"]) for x in (data.get("pending") or []) if x.get("section")}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0, help="只抓前 N 個（開發用）")
@@ -93,6 +106,10 @@ def main() -> int:
     if args.limit:
         targets = targets[: args.limit]
 
+    pending_codes = _pending_codes()
+    if pending_codes:
+        print(f"🔁 待更新清單 {sorted(pending_codes)} 每次強制重抓比對")
+
     stats = {"new": 0, "unchanged": 0, "revised": 0, "silent_edit": 0, "failed": 0}
     events: list[dict] = []
 
@@ -100,6 +117,15 @@ def main() -> int:
         prev = manifest.get(code)
         pdf_path = SNAP_PDF / fn
         txt_path = SNAP_TEXT / fn.replace(".pdf", ".txt")
+
+        # ★ pending_updates.yaml 裡的章節每次都強制重抓比對。
+        #   增量模式只在「檔名的生效日變了」才下載，抓不到「同檔名換內容」。
+        #   而 pending 清單記的正是「已公告、等它落地」的章節 —— 沒有這一段，
+        #   那份清單就只是靜態備忘，沒有任何機制會告訴你它何時真的更新了。
+        #   實測 2.6.1. 降血脂：官方公告 115/9/1 生效，但條文 PDF 檔名仍是
+        #   2021-03-29，增量模式永遠跳過它。
+        if not args.force and code in pending_codes and pdf_path.exists():
+            pdf_path.unlink()                        # 強制重新下載以比對雜湊
 
         if not args.force and prev and prev["pdf_filename"] == fn and pdf_path.exists():
             prev["last_verified"] = TODAY

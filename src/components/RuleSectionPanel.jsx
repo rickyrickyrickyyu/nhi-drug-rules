@@ -146,18 +146,28 @@ export default function RuleSectionPanel({ section, inn }) {
         )}
       </div>
 
-      {section.pending && (
-        <div className="mt-2 text-sm bg-rose-50 border border-rose-300 text-rose-900 rounded-lg px-3 py-2">
-          <div className="font-semibold">
-            ⚠️ 健保署已公告新制（{section.pending.effective} 生效），但官方條文檔尚未更新
+      {section.pending && (() => {
+        // ★ 「已生效但條文未更新」與「尚未生效」對臨床是完全不同的處境：
+        //   生效日過了，新制就是現行規定，下方那份舊條文**不能拿來判斷**；
+        //   還沒生效則舊條文仍然有效。兩者用同一句話帶過會誤導。
+        const inForce = section.pending.effective <= new Date().toISOString().slice(0, 10);
+        return (
+          <div className="mt-2 text-sm bg-rose-50 border border-rose-300 text-rose-900 rounded-lg px-3 py-2">
+            <div className="font-semibold">
+              {inForce
+                ? `⚠️ 新制已於 ${section.pending.effective} 生效，但健保署尚未更新官方條文檔`
+                : `⚠️ 健保署已公告新制（${section.pending.effective} 生效），官方條文檔尚未更新`}
+            </div>
+            <p className="mt-1 leading-relaxed">{section.pending.note}</p>
+            <p className="mt-1 text-[11px] text-rose-800">
+              {inForce
+                ? '以下條文是官方目前仍提供的舊版，已不等於現行規定，請勿據以判斷給付，一律以健保署公告為準。'
+                : '以下顯示的是官方目前提供的舊版條文，請以健保署最新公告為準。'}
+              （來源：{section.pending.source}；查核日 {section.pending.checked}）
+            </p>
           </div>
-          <p className="mt-1 leading-relaxed">{section.pending.note}</p>
-          <p className="mt-1 text-[11px] text-rose-800">
-            以下顯示的是官方目前提供的舊版條文，請以健保署最新公告為準。
-            （來源：{section.pending.source}；查核日 {section.pending.checked}）
-          </p>
-        </div>
-      )}
+        );
+      })()}
 
       {section.future && (
         <div className="mt-2 text-sm bg-orange-50 border border-orange-200 text-orange-900 rounded-lg px-3 py-2">
