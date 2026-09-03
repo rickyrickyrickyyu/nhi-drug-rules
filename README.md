@@ -1,5 +1,7 @@
 # 皮膚科健保給付規定查詢
 
+<sub>by M116 RickyYu</sub>
+
 > **給接手的 AI／工程師**，照這個順序讀：
 > [30 秒定位](#給接手者30-秒定位) →
 > [更新資料（三個版本怎麼同步）](#更新資料) →
@@ -42,8 +44,10 @@
 | PDF 表格還原 | `etl/lib/pdftable.py`（抽表）＋ `etl/lib/tablesplice.py`（嵌回條文） |
 | 表單填空欄位被拆行 | `etl/lib/formlines.py` |
 | 人工判斷（皮膚科標籤、酯基、同義詞） | `curation/*.yaml`（pipeline 只讀不寫） |
+| 「已公告但官方條文還沒改」的章節 | `curation/pending_updates.yaml`（見[待更新章節](#待更新章節官方公告了但條文-pdf-還沒改)） |
 | 搜尋排序 | `src/lib/search.js` ＋ `cli/query.py`（**兩份實作**，靠 `tests/search_parity.*` 綁在一起） |
 | 前端條文顯示 | `src/components/RuleSectionPanel.jsx` |
+| 條文起點（跳段）判定 | `src/lib/relevance.js`（用真實資料測：`tests/relevance.test.mjs`） |
 
 **權威資料只有一份**：`public/data/`。`dist/`（本機網頁）與 `offline/`（離線包）
 都是它的衍生物，三者用 `data_fingerprint` 綁在一起（見下節）。
@@ -83,6 +87,10 @@ nhi -q <關鍵字>   # 強制查詢模式（避免 update/status/web 等字被�
 
 CLI 與網頁版讀同一份 `public/data/`，不會有兩套事實。
 repo 路徑可用 `NHI_RULES_DIR` 環境變數覆寫。
+
+> **CLI 刻意不印仿單用法用量全文**，只給一行提示（`cli/query.py`）。
+> CLI 的定位是「門診當下秒開，回答『這個藥健保給不給付』」；載入 products 分片
+> 會拖慢每一次查詢，而「怎麼開」屬於網頁版與離線版的範圍。
 
 ### 更新資料
 
@@ -127,7 +135,8 @@ bin/更新健保資料.command --full   完整：重抓全部 534 份 PDF 比對
   fetch_tfda.py            食藥署許可證 JSON（79 MB）        [soft：失敗只警告，沿用舊資料]
   fetch_procedures.py      醫療服務給付項目 CSV（處置醫令）
   fetch_proc_chapters.py   處置的支付標準章節定位（官方 API，124 頁）  [soft]
-  fetch_rule_pdfs.py       章節 PDF（檔名生效日有變才下載；--force 全抓）
+  fetch_rule_pdfs.py       章節 PDF（檔名生效日有變才下載；--force 全抓；
+                           pending_updates.yaml 內的章節每次強制重抓比對雜湊）
 
 建置（兩種模式都跑）
    1  normalize_drugs.py       學名／劑型／途徑／商品名正規化
@@ -175,7 +184,8 @@ bin/            一鍵更新入口 + pipeline.sh（步驟的唯一事實來源�
 etl/            Python pipeline（跑在 ~/Developer/vibe-coding/.venv）
   lib/          共用模組：pdftable(抽表) tablesplice(嵌回) formlines(視覺行)
                 fingerprint(指紋) section(章節碼) inn/brand/route(正規化) prov(溯源)
-curation/       人工維護層，pipeline 只讀不寫（皮膚科標籤、酯基白名單、處置同義詞）
+curation/       人工維護層，pipeline 只讀不寫（皮膚科標籤、酯基白名單、處置同義詞、
+                待更新章節清單 pending_updates.yaml）
 snapshots/      條文快照 pdf/ + text/（★ 進 git：健保署換檔後就拿不回舊版，
                 這是唯一 provenance，也是 diff 偵測「靜默改檔」的基準）
 data/raw/       上游原始檔（★ 不進 git，約 180 MB，make refresh 會重抓）
@@ -218,6 +228,32 @@ data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ d
 - **支付價 0 不是免費**：69% 的品項支付價為 0（多為已無流通的舊品項），UI 標「未列價」。
 - **Service Worker 不快取資料**：給付規定每月改版，讓醫師看到上個月的條文比查不到更危險。
   `data/*.json` 走 NetworkFirst，每頁常駐顯示資料快照日期。
+
+### 待更新章節：官方公告了但條文 PDF 還沒改
+
+健保署**發布政策公告**到**實際更新條文 PDF**之間有落差，而本站的改版偵測依賴
+藥品主檔裡的條文 PDF 檔名日期 —— 落差期間程式偵測不到（開放資料平台沒有公告資料集）。
+`curation/pending_updates.yaml` 就是這段空窗的人工記錄。
+
+實例（2026-09）：降血脂 `2.6.1.` 依 ASCVD 風險分級擴大給付，公告 115/9/1 生效，
+但該節條文檔仍是 `2.6.1._20210329.pdf`、內文最新修訂日期停在 108/2/1。
+
+兩個機制配合：
+
+- **ETL 側**：`fetch_rule_pdfs.py` 對清單內的章節**每次強制重抓並比對 sha256**。
+  增量模式只在「檔名的生效日變了」才下載，抓不到「同檔名換內容」——
+  沒有這一段，那份清單就只是靜態備忘，沒有東西會告訴你它何時真的落地。
+  官方一改檔就會出現在 `nhi changes` 的「本次異動」裡。
+- **UI 側**：`RuleSectionPanel.jsx` 依生效日**分開措辭**，不可合併成一句：
+  - **已生效**（生效日已過）→「新制已於 X 生效，但健保署尚未更新官方條文檔」，
+    並明講「以下條文已不等於現行規定，請勿據以判斷給付」。
+  - **尚未生效** → 舊條文仍然有效，維持原本措辭。
+
+  兩者用同一句話帶過會誤導醫師 —— 生效日過了之後，畫面上那份舊條文**不能**
+  拿來判斷給付。
+
+維護方式：每次複查後更新該筆的 `checked` / `verified` 欄位（寫清楚是怎麼確認的），
+官方真的改版後就把該筆從清單移除。
 
 ## 踩過的坑（不要再踩一次）
 
@@ -289,6 +325,20 @@ data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ d
 - **`www.nhi.gov.tw` 有 WAF 擋非瀏覽器**（curl 一律 403）。連結給人點沒問題，
   程式抓不到。
 
+### 條文顯示
+
+- **跳段判定要帶英文別名，而且必須用詞邊界。** 查 aciclovir 曾被丟到
+  famciclovir／valaciclovir 的條文，兩個 bug 疊加：學名鍵是 WHO INN 的
+  `Aciclovir`(i) 但健保條文寫美式 `Acyclovir`(y)，「第 1 項是不是本藥」的
+  守門條件因此失效；接著找「含 aciclovi 的條文」時 `valaciclovir` 又含
+  `aciclovir`，於是跳到別的藥。**任一個 bug 單獨存在都不會出事。**
+- **跳段是 fail-safe 的**：只有能正面指認前面那些項屬於**別的藥**、且後面
+  確實有一段提到本藥，才跳；任何一點不確定就從頭顯示。最壞情況是多讀幾行。
+- **橫幅必須寫出略過的是什麼藥**（「前 16 項規範 Acyclovir」）。原本寫
+  「規範其他藥品」是個沒被驗證的斷言，跳錯時文案還會幫它圓謊。
+- 全庫只有 4 次跳段（famciclovir／valaciclovir × derm/all），
+  `tests/relevance.test.mjs` 用**真實實作跑真實資料**把它們釘住。
+
 ### 流程與架構
 
 - **步驟清單只能有一份。** `bin/pipeline.sh` 是唯一事實來源。曾經 Makefile 與
@@ -333,6 +383,7 @@ python3 etl/check_offline.py
 | `#/s/2-6-1` | statin 給付規定表 2 張，`LDL-C≧70mg/dL` 不被中間斷行 |
 | `#/i/DUPILUMAB` | 健保條文劑量 + 前置用藥橘底警語 |
 | `#/i/BETAMETHASONE` | 仿單登載用法用量，每段帶許可證字號 |
+| `nhi betamethasone` | 命中列後有一行 `📋 本藥有食藥署登載之仿單用法用量…詳見網頁版或離線版` |
 | `#/p/51017C` | 液態氮冷凍治療 600 點 + 第二部第二章第六節 |
 | 離線 HTML | 網路請求**只有 HTML 自己 1 筆**；`offline/` 內不該有舊日期的產物 |
 

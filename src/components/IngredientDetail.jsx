@@ -8,6 +8,10 @@ import DosingPanel from './DosingPanel.jsx';
 import { go } from '../lib/routes.js';
 
 export default function IngredientDetail({ item }) {
+  // ★ 條文比對必須連英文別名一起帶：健保條文的拼法未必是 WHO INN。
+  //   10.7.1.1. 寫的是美式 Acyclovir，我們的鍵是 ACICLOVIR —— 少了別名，
+  //   「這一項是不是本藥」會判錯，進而跳到別的藥的條文。
+  const innNames = [item.k, item.n, ...(item.al ?? [])].filter(Boolean);
   const [tab, setTab] = useState(item.r?.[0]?.ro ?? null);
   const [sections, setSections] = useState({});
   const [products, setProducts] = useState(null);
@@ -136,13 +140,13 @@ export default function IngredientDetail({ item }) {
                   </p>
                 </div>
               )}
-              {own.map((c) => <RuleSectionPanel key={c} section={sections[c]} inn={item.k} />)}
+              {own.map((c) => <RuleSectionPanel key={c} section={sections[c]} inn={item.k} innNames={innNames} />)}
               {other.length > 0 && (
                 <>
                   <div className="text-sm text-slate-500 pt-1">
                     {noDermSection ? '健保給付之其他科別適應症' : '其他科別的相關規定'}
                   </div>
-                  {other.map((c) => <RuleSectionPanel key={c} section={sections[c]} inn={item.k} />)}
+                  {other.map((c) => <RuleSectionPanel key={c} section={sections[c]} inn={item.k} innNames={innNames} />)}
                 </>
               )}
             </>

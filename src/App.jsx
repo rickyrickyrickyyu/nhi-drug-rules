@@ -51,9 +51,15 @@ export default function App() {
   return (
     <div className="min-h-dvh max-w-3xl mx-auto px-4 pb-10">
       <header className="pt-5">
-        <button type="button" onClick={() => go('#/')} className="text-left">
-          <h1 className="text-xl font-bold text-brand-900">皮膚科健保給付規定查詢</h1>
-        </button>
+        {/* 標題與署名同一列：署名靠右上，窄螢幕也不會擠掉標題（shrink-0） */}
+        <div className="flex items-start justify-between gap-3">
+          <button type="button" onClick={() => go('#/')} className="text-left">
+            <h1 className="text-xl font-bold text-brand-900">皮膚科健保給付規定查詢</h1>
+          </button>
+          <span className="text-[11px] text-slate-400 shrink-0 pt-1 whitespace-nowrap">
+            by M116 RickyYu
+          </span>
+        </div>
         <p className="text-xs text-slate-500 mt-0.5">
           以學名搜尋，分劑型對應給付章節
           {meta && `｜${meta.n_ingredients_derm} 個常用學名 / ${meta.n_products.toLocaleString()} 個健保品項`}

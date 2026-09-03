@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { rocToAd } from '../lib/format.js';
 import RuleTable from './RuleTable.jsx';
 import { go } from '../lib/routes.js';
+import { relevantStart } from '../lib/relevance.js';
 
 const FLAG_BADGES = [
   ['prior_review', '⚠️ 事前審查', 'bg-amber-100 text-amber-900'],
@@ -68,32 +69,7 @@ function ClauseBody({ text, tables, indent = 0 }) {
   return out;
 }
 
-/**
- * 挑出與該學名最相關的條文起點。
- *
- * 10.7.1.1. 同時規範 acyclovir、famciclovir、valaciclovir，第 1 項整段都在講
- * acyclovir。查 famciclovir 的醫師先看到 acyclovir 的適應症清單，在門診會誤導。
- */
-function relevantStart(clauses, inn) {
-  if (!inn || clauses.length <= 3) return 0;
-  const base = inn.split(' (')[0].toLowerCase().slice(0, 8);
-
-  // 只在「第 1 項一開頭就是別的藥名」時才跳段。
-  // 10.7.1.1. 第 1 項是「1.Acyclovir：…」，查 famciclovir 不該先讀那段；
-  // 但 13.4. 第 1 項是「1.限皮膚科專科醫師使用。」，三項都適用 isotretinoin，
-  // 無條件跳段會略過最關鍵的第 1、2 項。
-  const lead = /^\s*\d+\s*[.、]\s*([A-Za-z][A-Za-z-]{5,})/.exec(clauses[0].text);
-  if (!lead || lead[1].toLowerCase().slice(0, 8) === base) return 0;
-
-  const hit = clauses.findIndex((c) => c.text.toLowerCase().includes(base));
-  if (hit <= 0) return 0;
-  for (let i = hit; i >= 0; i--) {
-    if ((clauses[i].level ?? 0) === 1) return i;
-  }
-  return hit;
-}
-
-export default function RuleSectionPanel({ section, inn }) {
+export default function RuleSectionPanel({ section, inn, innNames }) {
   const [expanded, setExpanded] = useState(false);
   if (!section) return null;
   const flags = section.flags ?? {};
@@ -235,7 +211,11 @@ export default function RuleSectionPanel({ section, inn }) {
             [...all.map((c) => c.text ?? '').join('\n').matchAll(RE_TABLE_MARK)]
               .map((m) => Number(m[1])),
           );
-          const start = expanded ? 0 : relevantStart(all, inn);
+          // 學名鍵、顯示名與英文別名都要納入比對：健保條文的拼法未必是 WHO INN
+          // （10.7.1.1. 寫 Acyclovir，我們的鍵是 ACICLOVIR）。
+          const names = (innNames?.length ? innNames : [inn]).filter(Boolean);
+          const rel = expanded ? { start: 0, skipped: null } : relevantStart(all, names);
+          const start = rel.start;
           // 附表是空白表單範本（同意書欄位），預設摺疊
           const appx = section.appx;
           const bodyEnd = appx == null ? all.length : appx;
@@ -249,7 +229,9 @@ export default function RuleSectionPanel({ section, inn }) {
                   onClick={() => setExpanded(true)}
                   className="mb-2 text-xs text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1.5 text-left w-full"
                 >
-                  ↑ 本節前 {start} 項規範其他藥品，已略過。點此顯示完整條文
+                  ↑ 本節前 {start} 項規範
+                  {rel.skipped ? <b className="mx-1">{rel.skipped}</b> : '其他藥品'}
+                  ，已略過。點此顯示完整條文
                 </button>
               )}
               {shown.map((c, i) => (

@@ -15,6 +15,7 @@ verify:             ## 逐藥比對條文原文 + 分類驗證 + 搜尋命中測
 	python3 tests/verify_drugs.py
 	python3 tests/verify_categories.py
 	node tests/search.test.mjs
+	node tests/relevance.test.mjs
 	node tests/search_parity.mjs && python3 tests/search_parity.py
 	python3 etl/check_offline.py
 

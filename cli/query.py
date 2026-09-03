@@ -378,7 +378,7 @@ def main() -> int:
 
     if len(hits) > args.limit:
         print(f"\n{DIM}另有 {len(hits) - args.limit} 筆結果未顯示{RESET}")
-    print(f"\n{DIM}資料快照 {meta['built']}｜以健保署最新公告為準{RESET}")
+    print(f"\n{DIM}資料快照 {meta['built']}｜以健保署最新公告為準｜by M116 RickyYu{RESET}")
     return 0
 
 
