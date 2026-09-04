@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import RuleTable from './RuleTable.jsx';
 import { go } from '../lib/routes.js';
+import { isOffline, rulePdfUrl } from '../hooks/useData.js';
 import { relevantStart } from '../lib/relevance.js';
 import ClauseBody, { RE_TABLE_MARK, annotate } from './ClauseBody.jsx';
 
@@ -14,7 +15,7 @@ const FLAG_BADGES = [
 
 // 檔名來自健保署的 manifest（實測全是 [A-Za-z0-9._-]），但仍然編碼：
 // 上游哪天在檔名裡放進 & 或 #，未編碼就會被改寫成別的查詢參數。
-const PDF_URL = (fn) =>
+const NHI_PDF_URL = (fn) =>
   `https://info.nhi.gov.tw/api/INAE3000/INAE3000S01/getPDF?DurgFileName=${encodeURIComponent(fn)}`;
 
 export default function RuleSectionPanel({ section, inn, innNames }) {
@@ -66,12 +67,12 @@ export default function RuleSectionPanel({ section, inn, innNames }) {
         )}
         {section.pdf && (
           <a
-            href={PDF_URL(section.pdf)}
+            href={rulePdfUrl(section.pdf) ?? NHI_PDF_URL(section.pdf)}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs shrink-0 px-2.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50"
           >
-            官方原文 PDF ↗
+            官方原文 PDF {isOffline() && !rulePdfUrl(section.pdf) ? '（需網路）' : ''}↗
           </a>
         )}
       </div>

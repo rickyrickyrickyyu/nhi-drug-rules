@@ -78,18 +78,35 @@ const blobCache = new Map();
  *   瀏覽器會**擋掉 data: 的頂層導覽**，直接 <a href="data:application/pdf">
  *   點了不會有反應。blob: 沒有這個限制。
  */
-export function appendixPdfUrl(name) {
-  const embedded = typeof window !== 'undefined' ? window.__NHI_OFFLINE_PDF__ : null;
-  if (!embedded) return `${BASE}/appendix/${encodeURIComponent(name)}.pdf`;
-  const b64 = embedded[name];
+function embeddedPdf(key) {
+  const store = typeof window !== 'undefined' ? window.__NHI_OFFLINE_PDF__ : null;
+  const b64 = store?.[key];
   if (!b64) return null;
-  if (!blobCache.has(name)) {
+  if (!blobCache.has(key)) {
     const bin = atob(b64);
     const buf = new Uint8Array(bin.length);
     for (let i = 0; i < bin.length; i += 1) buf[i] = bin.charCodeAt(i);
-    blobCache.set(name, URL.createObjectURL(new Blob([buf], { type: 'application/pdf' })));
+    blobCache.set(key, URL.createObjectURL(new Blob([buf], { type: 'application/pdf' })));
   }
-  return blobCache.get(name);
+  return blobCache.get(key);
+}
+
+export function appendixPdfUrl(name) {
+  if (!isOffline()) return `${BASE}/appendix/${encodeURIComponent(name)}.pdf`;
+  return embeddedPdf(name);
+}
+
+/**
+ * 章節條文的官方 PDF。
+ *
+ * ★ 離線包只內嵌皮膚科用得到的 242 份（全部 534 份要多 64 MB，會讓單檔
+ *   HTML 破 90 MB）。沒內嵌的回 null，UI 改顯示「需要網路」而不是給一個
+ *   點了沒反應的按鈕。
+ */
+export function rulePdfUrl(filename) {
+  if (!filename) return null;
+  if (!isOffline()) return `${BASE}/pdf/${encodeURIComponent(filename)}`;
+  return embeddedPdf(`rule:${filename}`);
 }
 
 const appendixCache = new Map();

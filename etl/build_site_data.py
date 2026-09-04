@@ -222,6 +222,19 @@ def main() -> int:
             n_pdf += 1
         print(f"   附表分片 {n_appx} 個｜原文 PDF {n_pdf} 個")
 
+    # ★ 章節條文的官方 PDF 也放進 public/data，理由與附表相同：
+    #   線上版不必外連 info.nhi.gov.tw（對方改版或擋流量都不影響本站），
+    #   離線版才有辦法內嵌。CI 只跑 pnpm build（Vite 只複製 public/），
+    #   所以要上線的東西必須在這裡就位。
+    from config import SNAP_PDF
+    if SNAP_PDF.exists():
+        (out_dir / "pdf").mkdir(exist_ok=True)
+        n_rule_pdf = 0
+        for f in sorted(SNAP_PDF.glob("*.pdf")):
+            shutil.copy2(f, out_dir / "pdf" / f.name)
+            n_rule_pdf += 1
+        print(f"   章節條文 PDF {n_rule_pdf} 個")
+
     # diff 檔要能被前端 fetch —— 快照目錄不在 Vite 的 public/ 底下，得複製過去
     diff_src = SNAP_DIFF
     diff_dst = out_dir / "diff"
