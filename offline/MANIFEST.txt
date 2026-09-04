@@ -4,5 +4,5 @@ fingerprint: 250c73f08beb1ad3
 app_fingerprint: 235522389fbd43a6
 embedded_files: 553
 nhi-derm-offline-20260904.html  58331772 bytes  fc034c448d4df639
-nhi-full-offline-20260904.html  33259762 bytes  10052d32af6f6240
-nhi-offline-20260904.zip  43292150 bytes
+nhi-full-offline-20260904.html  99765680 bytes  b1c7725cccdaef4d
+nhi-offline-20260904.zip  90910481 bytes

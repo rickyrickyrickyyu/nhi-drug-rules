@@ -81,49 +81,55 @@ def collect(scope: str) -> tuple[dict, dict]:
 
 
 def collect_pdfs(payload: dict, scope: str) -> dict:
-    """附表原文 PDF → base64。只收這個版本用得到的。
+    """官方原文 PDF → base64，內嵌進離線包。
 
-    ★ 為什麼要內嵌：使用者要求「點選官方原文 PDF 時不需要額外下載」——
-      封閉網路的醫院電腦連不到 nhi.gov.tw，只給連結等於給不到。
+    ★ 為什麼要內嵌：封閉網路的醫院電腦連不到 nhi.gov.tw，只給連結等於給不到。
+      使用者的要求是「點選官方原文 PDF 時不需要額外下載」。
 
-    ★ 為什麼只收用得到的：全部 77 個是 11.9 MB（base64 後 15.8 MB）。
-      皮膚科版只有 42 個附表被引用到，收全部等於讓檔案白白多 7 MB。
+    ★ 兩個版本收的範圍不同：
+        皮膚科版：附表收「條文有引用到的」61 個 + 章節收「皮膚科學名用得到的」
+                  242 份 → 58 MB。收全部要多 34 MB，而那些章節這個版本查不到。
+        全庫版：  兩者全收（77 + 534）→ 100 MB。它涵蓋 2,419 個學名，
+                  幾乎每一節都可能被查到，挑選反而會留下開不了的按鈕。
+
+    ★ 沒收到的章節，UI 會標「官方原文 PDF（需網路）」並連回健保署，
+      不給一個點了沒反應的按鈕（見 useData.rulePdfUrl）。
     """
-    want: set[str] = set()
-    for key, val in payload.items():
-        if not key.startswith("rules/"):
-            continue
-        for sec in val.get("sections", []):
-            for x in sec.get("appx_refs") or []:
-                if x.get("kind") == "file":
-                    want.add(x["name"])
-                want.update(x.get("variants") or [])
-    out = {}
-    for name in sorted(want):
+    out: dict[str, str] = {}
+    take_all = scope == "all"
+
+    # ── 附表 ──
+    if take_all:
+        appx_names = sorted(p.stem for p in (PUBLIC / "appendix").glob("*.pdf"))
+    else:
+        want: set[str] = set()
+        for key, val in payload.items():
+            if not key.startswith("rules/"):
+                continue
+            for sec in val.get("sections", []):
+                for x in sec.get("appx_refs") or []:
+                    if x.get("kind") == "file":
+                        want.add(x["name"])
+                    want.update(x.get("variants") or [])
+        appx_names = sorted(want)
+    for name in appx_names:
         f = PUBLIC / "appendix" / f"{name}.pdf"
         if f.exists():
             out[name] = base64.b64encode(f.read_bytes()).decode("ascii")
 
-    # ★ 章節條文 PDF：只收「這個版本的學名實際會用到的章節」。
-    #   全部 534 份是 48 MB（base64 後 64 MB），會讓單檔 HTML 破 90 MB；
-    #   皮膚科用得到的 242 份只要 22 MB。條文文字本來就完整內嵌，
-    #   PDF 是拿來核對原文用的 —— 沒收到的在 UI 上會標「需網路」，
-    #   不會給一個點了沒反應的按鈕。
-    #   全庫版不內嵌章節 PDF：它涵蓋 2,419 個學名、幾乎用到全部 534 份，
-    #   收進去單檔會破 95 MB。全庫版本來就是「查得廣」用的，
-    #   條文文字一樣完整，PDF 按鈕標「需網路」。
-    if scope == "all":
-        return out
-
-    slim = json.loads((PUBLIC / "derm.json").read_text(encoding="utf-8"))
-    used_secs = {c for i in slim.get("ing", [])
-                 for rt in (i.get("r") or []) for c in (rt.get("s") or [])}
+    # ── 章節條文 ──
+    if take_all:
+        used_secs = None                      # None = 全收
+    else:
+        slim = json.loads((PUBLIC / "derm.json").read_text(encoding="utf-8"))
+        used_secs = {c for i in slim.get("ing", [])
+                     for rt in (i.get("r") or []) for c in (rt.get("s") or [])}
     for key, val in payload.items():
         if not key.startswith("rules/"):
             continue
         for sec in val.get("sections", []):
             fn = sec.get("pdf")
-            if not fn or sec["code"] not in used_secs:
+            if not fn or (used_secs is not None and sec["code"] not in used_secs):
                 continue
             f = PUBLIC / "pdf" / fn
             if f.exists():
@@ -219,11 +225,14 @@ nhi-full-offline-{d}.html   全庫版（全部學名與醫令，檔案較大）
 4. 你在這個檔案裡寫的臨床註記存在這台電腦的瀏覽器裡，
    換一台電腦或換一個瀏覽器就看不到，重要內容請自行備份。
 5. 手機瀏覽器開這種大檔案可能會當掉，手機請用線上版。
-6. 附表的內容與 PDF、以及皮膚科相關章節的條文 PDF，都已內嵌在本檔案裡，
-   離線可直接開，不需要網路。
-7. 非皮膚科章節的條文 PDF 未內嵌（檔案會太大），按鈕上會標示「需網路」。
-   條文文字本身仍然完整，只是無法開啟官方原始 PDF 核對。
-8. 「食藥署仿單」連結指向食藥署網站，需要網路；封閉電腦點了不會有反應。
+6. 官方原文 PDF 都已內嵌在檔案裡，離線可直接開，不需要網路：
+     皮膚科版：61 個附表 + 242 個皮膚科相關章節
+     全庫版　：77 個附表 + 全部 534 個章節
+   皮膚科版若查到非皮膚科的章節，PDF 按鈕會標「需網路」（那些章節的
+   條文文字仍然完整，只是無法開啟官方原始 PDF 核對）。
+7. 「食藥署仿單」連結指向食藥署網站，需要網路；封閉電腦點了不會有反應。
+8. 全庫版約 100 MB，開啟需要數秒，記憶體約 200 MB。若只看皮膚科，
+   用皮膚科版（約 58 MB）比較輕快。
 
 資料來源
 --------
