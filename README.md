@@ -325,6 +325,21 @@ data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ d
 - **`www.nhi.gov.tw` 有 WAF 擋非瀏覽器**（curl 一律 403）。連結給人點沒問題，
   程式抓不到。
 
+### 學名鍵
+
+- **學名鍵一律採健保藥品主檔「分類分組名稱」的第一段，不做「正規化成 WHO INN」。**
+  本站的核心原則是以官方開放資料為唯一權威來源；把主檔實際使用的拼法改寫成
+  主檔裡從未出現過的拼法，等於自己發明一個查不到的鍵。實際踩過兩個後果：
+  `#/i/CYCLOSPORIN` 是一片「找不到」（主檔寫 CYCLOSPORIN 114 次、CICLOSPORIN 0 次），
+  以及條文寫 Acyclovir 而鍵是 ACICLOVIR，導致條文比對判錯跳到別的藥。
+  台灣三個來源都一致偏好美式拼法：主檔 ACYCLOVIR 1,785 / ACICLOVIR 0、
+  食藥署 173/17、條文原文 8/2。
+- `gate 35` 只擋精確的有害模式：「來源拼法主檔有在用，但 canonical 主檔完全沒有」。
+  兩邊都不在主檔（BRIVUDIN→BRIVUDINE，健保未收載）＝休眠規則，不擋；
+  canonical 以子字串存在（主檔寫 `RETINOIC ACID (=TRETINOIN)`）＝合法，不擋。
+- **改鍵會讓已分享的連結失效**，所以 `App.jsx` 的路由有別名回退：
+  找不到 key 時再比對各學名的 `al` 別名清單。
+
 ### 條文顯示
 
 - **跳段判定要帶英文別名，而且必須用詞邊界。** 查 aciclovir 曾被丟到

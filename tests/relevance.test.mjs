@@ -18,18 +18,18 @@ let fail = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '✅' : '❌'} ${msg}`); if (!cond) fail += 1; };
 
 // ── 1. 單元：詞邊界 ──
-ok(!mentionsDrug('2.Famciclovir；valaciclovir：', ['ACICLOVIR', 'Aciclovir', 'Acyclovir']),
-   'valaciclovir 不可被當成 aciclovir');
-ok(mentionsDrug('1.Acyclovir：', ['ACICLOVIR', 'Aciclovir', 'Acyclovir']),
-   '美式拼法 Acyclovir 要認得出是 aciclovir');
+ok(!mentionsDrug('2.Famciclovir；valaciclovir：', ['ACYCLOVIR', 'Acyclovir', 'Aciclovir']),
+   'valaciclovir 不可被當成 acyclovir');
+ok(mentionsDrug('1.Aciclovir：', ['ACYCLOVIR', 'Acyclovir', 'Aciclovir']),
+   'WHO 拼法 Aciclovir 也要認得出是本藥（主檔用 ACYCLOVIR）');
 ok(!mentionsDrug('1.Isotretinoin：', ['TRETINOIN', 'Tretinoin']),
    'isotretinoin 不可被當成 tretinoin');
 
 // ── 2. 金絲雀：10.7.1.1. 三支抗病毒藥 ──
 const sec = rules['10.7.1.1.'];
 const cl = sec.clauses;
-const A = relevantStart(cl, ['ACICLOVIR', 'Aciclovir', 'Acyclovir']);
-ok(A.start === 0, `aciclovir 不跳段（實際 start=${A.start}）—— 它的規定就是第 1 項`);
+const A = relevantStart(cl, ['ACYCLOVIR', 'Acyclovir', 'Aciclovir']);
+ok(A.start === 0, `acyclovir 不跳段（實際 start=${A.start}）—— 它的規定就是第 1 項`);
 for (const [inn, names] of [['famciclovir', ['FAMCICLOVIR', 'Famciclovir']],
                             ['valaciclovir', ['VALACICLOVIR', 'Valaciclovir']]]) {
   const r = relevantStart(cl, names);

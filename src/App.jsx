@@ -45,7 +45,16 @@ export default function App() {
 
   const current = useMemo(() => {
     if (route.view !== 'ingredient') return null;
-    return (all ?? derm).find((i) => i.k === route.key) ?? derm.find((i) => i.k === route.key);
+    const pool = all ?? derm;
+    const byKey = pool.find((i) => i.k === route.key) ?? derm.find((i) => i.k === route.key);
+    if (byKey) return byKey;
+    // ★ 別名回退：學名鍵會隨健保主檔的拼法修正而變動
+    //   （2026-09 把 ACICLOVIR→ACYCLOVIR、CICLOSPORIN→CYCLOSPORIN 改回主檔用字）。
+    //   已經分享出去的連結不該因此變成一片「找不到」。
+    const want = String(route.key ?? '').toLowerCase();
+    const hit = (arr) => arr.find((i) =>
+      (i.al ?? []).some((a) => a.toLowerCase() === want));
+    return hit(pool) ?? hit(derm) ?? null;
   }, [route, derm, all]);
 
   return (

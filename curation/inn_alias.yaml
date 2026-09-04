@@ -1,6 +1,13 @@
 # 學名拼法／別名對照。key 為正規化後大寫，value 為 canonical。
 #
-# 原則：採台灣衛福部慣用的 rINN，美式拼法映射過來。
+# ★ 原則（2026-09 修正）：canonical 一律採「健保藥品主檔實際使用的拼法」。
+#   本站的核心原則是以官方開放資料為唯一權威來源，學名鍵就是健保署
+#   「分類分組名稱」的第一段 —— 把它改寫成主檔裡從未出現過的拼法，
+#   等於自己發明了一個查不到的鍵。實際踩到的兩個後果：
+#     · #/i/CYCLOSPORIN 是一片「找不到」（主檔寫 CYCLOSPORIN，我們卻叫 CICLOSPORIN）
+#     · 條文寫 Acyclovir、鍵是 ACICLOVIR，條文比對判錯而跳到別的藥的規定
+#   良性的別名（來源根本沒有那個拼法、只是使用者可能會打）照樣留著。
+#   gate 35 會擋下「canonical 在主檔出現 0 次」的規則。
 # 產生候選：etl/suggest_alias.py --by-shared-atc（同 ATC7 碼不同 key ≈ 必為變體）
 # ★ 永遠人工過目後才寫進這裡，程式不自動寫入。
 version: 1
@@ -8,16 +15,16 @@ version: 1
 # 抗病毒藥的 -ciclovir / -cyclovir 是系統性的英美拼法差異，
 # 台灣仿單與教科書兩種都看得到，全部列出來（含使用者常打的 famcyclovir）。
 aliases:
-  ACYCLOVIR: ACICLOVIR
+  ACICLOVIR: ACYCLOVIR          # 主檔寫 ACYCLOVIR（1,785 次），ACICLOVIR 0 次
   VALACYCLOVIR: VALACICLOVIR
   FAMCYCLOVIR: FAMCICLOVIR
   PENCYCLOVIR: PENCICLOVIR
   GANCYCLOVIR: GANCICLOVIR
   VALGANCYCLOVIR: VALGANCICLOVIR
   BRIVUDIN: BRIVUDINE
-  CYCLOSPORIN: CICLOSPORIN
-  CYCLOSPORINE: CICLOSPORIN
-  CYCLOSPORIN A: CICLOSPORIN
+  CICLOSPORIN: CYCLOSPORIN      # 主檔寫 CYCLOSPORIN（114 次），CICLOSPORIN 0 次
+  CYCLOSPORINE: CYCLOSPORIN     # 眼用液劑的寫法，同一支藥
+  CYCLOSPORIN A: CYCLOSPORIN
   AMPHOTERICIN: AMPHOTERICIN B
   TERBINAFIN: TERBINAFINE
   VITAMIN A ACID: TRETINOIN

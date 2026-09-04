@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import csv
 import gzip
 import re
 import unicodedata
@@ -319,6 +320,31 @@ def run() -> list[Gate]:
     g.append(Gate(34, "表格碎片殘留", not new_frag,
                   f"{len(frag)} 節（已知 {len(frag & KNOWN_FRAG)}）"
                   + (f"｜新增 {new_frag[:5]}" if new_frag else "")))
+
+    # 35 別名不可把主檔實際使用的拼法改寫成主檔沒有的拼法
+    #    本站的學名鍵就是主檔「分類分組名稱」的第一段。實際踩過：
+    #    主檔寫 CYCLOSPORIN(114)/ACYCLOVIR(1785)，我們卻改寫成
+    #    CICLOSPORIN(0)/ACICLOVIR(0) —— 等於發明了一個主檔查不到的鍵，
+    #    造成 #/i/CYCLOSPORIN 一片「找不到」，以及條文比對判錯跳到別的藥。
+    #
+    #    只擋這個精確模式：「來源拼法主檔有在用，canonical 主檔完全沒有」。
+    #    刻意不擋另外兩種：
+    #      · 兩邊都不在主檔（如 BRIVUDIN→BRIVUDINE，健保未收載）＝休眠規則，無害
+    #      · canonical 以子字串形式存在（主檔寫 RETINOIC ACID (=TRETINOIN)）＝合法
+    alias_path = CURATION / "inn_alias.yaml"
+    if alias_path.exists() and (RAW / "nhi_drug.csv").exists():
+        heads: set[str] = set()
+        with (RAW / "nhi_drug.csv").open(encoding="utf-8-sig", newline="") as fh:
+            for row in csv.DictReader(fh):
+                v = (row.get("分類分組名稱") or "").split(",")[0].strip().upper()
+                if v:
+                    heads.add(v)
+        blob = "\n".join(heads)
+        al = yaml.safe_load(alias_path.read_text(encoding="utf-8")).get("aliases") or {}
+        rewrite = [f"{k}→{v}" for k, v in al.items()
+                   if k.upper() in heads and v.upper() not in blob]
+        g.append(Gate(35, "別名不改寫主檔拼法", not rewrite,
+                      f"{len(al)} 條規則｜違規 {rewrite[:4] or '無'}"))
 
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():

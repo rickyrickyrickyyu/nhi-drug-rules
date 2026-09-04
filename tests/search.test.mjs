@@ -10,7 +10,7 @@ const cases = [
   ['口服A酸', 'ISOTRETINOIN'], ['A酸', 'ISOTRETINOIN'], ['13.4', 'ISOTRETINOIN'],
   ['D10BA01', 'ISOTRETINOIN'],
   ['Valtrex', 'VALACICLOVIR'], ['祛疹易', 'VALACICLOVIR'], ['valacyclovir', 'VALACICLOVIR'],
-  ['acyclovir', 'ACICLOVIR'], ['aciclovir', 'ACICLOVIR'], ['Zovirax', 'ACICLOVIR'],
+  ['acyclovir', 'ACYCLOVIR'], ['aciclovir', 'ACYCLOVIR'], ['Zovirax', 'ACYCLOVIR'],
   ['dupilumab', 'DUPILUMAB'], ['Dupixent', 'DUPILUMAB'], ['杜避炎', 'DUPILUMAB'],
   ['betamethasone', 'BETAMETHASONE (VALERATE)'],
   ['isotretinoim', 'ISOTRETINOIN'],   // 錯字 → fuzzy fallback
