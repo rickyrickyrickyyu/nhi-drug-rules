@@ -71,6 +71,11 @@ def main() -> int:
                 c["text"] = rejoin(c["text"], idx)
         clauses, spliced = splice_clauses(clauses, tables)
 
+        # 畫面上實際看得到多少字（條文 + 表格內容）。附表十七是一張「患部面積
+        # 計算圖」，本來就沒有文字可還原；這種頁面若不說明，看起來就像壞掉。
+        visible = (sum(len(c["text"]) for c in clauses)
+                   + sum(len("".join("".join(r) for r in t["grid"])) for t in tables))
+
         (out_dir / f"{name}.json").write_text(json.dumps({
             "name": name,
             "title": meta.get("title", ""),
@@ -81,6 +86,7 @@ def main() -> int:
             "clauses": clauses,
             "tables": tables,
             "tables_spliced": spliced,
+            "visible_chars": visible,
             "rejected": rejected,
         }, ensure_ascii=False), encoding="utf-8")
         n_ok += 1

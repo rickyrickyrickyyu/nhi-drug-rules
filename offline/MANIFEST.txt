@@ -1,8 +1,8 @@
 packed_at: 2026-09-04
 data_built: 2026-09-04
-fingerprint: eda6e50a95158f79
-app_fingerprint: 28ecec5060a62989
-embedded_files: 552
-nhi-derm-offline-20260904.html  15896197 bytes  08fbc76e0fe8330a
-nhi-full-offline-20260904.html  20075884 bytes  a53ac4c4fee51e25
-nhi-offline-20260904.zip  4045128 bytes
+fingerprint: 017efc303c85919e
+app_fingerprint: 39fb7118ab4433f4
+embedded_files: 553
+nhi-derm-offline-20260904.html  29117349 bytes  ec01733002273d1f
+nhi-full-offline-20260904.html  33259589 bytes  96a4fd2623ae7784
+nhi-offline-20260904.zip  22318496 bytes

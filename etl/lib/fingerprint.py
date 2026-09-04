@@ -18,8 +18,13 @@ EXCLUDE = {"meta.json"}
 
 
 def data_fingerprint(public: Path) -> str:
+    # ★ 涵蓋所有檔案而非只有 *.json：附表原文 PDF 也在 public/data 底下，
+    #   只算 json 的話，健保署改了附表而條文沒動，指紋不會變 ——
+    #   三個版本會「指紋一致」但內容其實不同。
     parts = []
-    for p in sorted(public.rglob("*.json")):
+    for p in sorted(public.rglob("*")):
+        if not p.is_file():
+            continue
         rel = p.relative_to(public).as_posix()
         if rel in EXCLUDE:
             continue

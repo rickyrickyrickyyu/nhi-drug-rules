@@ -211,7 +211,16 @@ def main() -> int:
         for f in sorted(appx_src.glob("*.json")):
             dump(f"appendix/{f.name}", json.loads(f.read_text(encoding="utf-8")))
             n_appx += 1
-        print(f"   附表分片 {n_appx} 個")
+        # ★ PDF 本身也放進 public/data：官方原文要能離線看。
+        #   這些是法規命令的附件（著作權法第 9 條不得為著作權之標的），
+        #   與已經進 git 的 534 份章節 PDF 同樣的處置。
+        #   放這裡而不是連 nhi.gov.tw：離線版點了要能開，線上版也不必外連。
+        from config import SNAP_APPX
+        n_pdf = 0
+        for f in sorted(SNAP_APPX.glob("*.pdf")):
+            shutil.copy2(f, out_dir / "appendix" / f.name)
+            n_pdf += 1
+        print(f"   附表分片 {n_appx} 個｜原文 PDF {n_pdf} 個")
 
     # diff 檔要能被前端 fetch —— 快照目錄不在 Vite 的 public/ 底下，得複製過去
     diff_src = SNAP_DIFF

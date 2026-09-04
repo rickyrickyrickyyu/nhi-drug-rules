@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { loadAppendix } from '../hooks/useData.js';
+import { appendixPdfUrl, loadAppendix } from '../hooks/useData.js';
 import { go } from '../lib/routes.js';
 import ClauseBody from './ClauseBody.jsx';
 import RuleTable from './RuleTable.jsx';
@@ -59,9 +59,10 @@ export default function AppendixView({ name }) {
               <p className="text-sm text-slate-600 mt-0.5">{data.title}</p>
             )}
           </div>
-          {data.url && (
+          {/* 本站自存的官方原文，離線也開得起來（見 useData.appendixPdfUrl） */}
+          {appendixPdfUrl(data.name) && (
             <a
-              href={data.url}
+              href={appendixPdfUrl(data.name)}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs shrink-0 px-2.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50"
@@ -74,8 +75,26 @@ export default function AppendixView({ name }) {
           健保署獨立發布之附表
           {data.updated && `｜官方標示更新日 ${data.updated}`}
           ｜以下為由官方 PDF 還原之結果，一律以官方原文為準。
+          {data.url && (
+            <>
+              {' '}
+              <a href={data.url} target="_blank" rel="noopener noreferrer" className="underline">
+                健保署來源頁 ↗
+              </a>
+            </>
+          )}
         </p>
       </div>
+
+      {/* ★ 有些附表本身就是圖（附表十七是患部面積計算圖）或掃描影像，
+          沒有文字可還原。不說明的話，近乎空白的頁面看起來像壞掉。
+          PDF 已內嵌，離線也開得起來。 */}
+      {(data.visible_chars ?? 999) < 300 && (
+        <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+          此附表主要為圖表或掃描影像，無法還原成文字。
+          請點上方「官方原文 PDF」查看完整內容（已內嵌於本站，離線亦可開啟）。
+        </div>
+      )}
 
       <div className="bg-white rounded-xl border border-slate-200 p-4 text-[15px] leading-relaxed text-slate-800">
         {(data.clauses ?? []).map((c, i) => (

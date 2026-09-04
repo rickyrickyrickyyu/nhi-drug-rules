@@ -20,9 +20,15 @@ import yaml
 CURATION = Path(__file__).resolve().parents[2] / "curation"
 
 # 劑量：3 MG、0.5 MG/GM、130/0.4 60 MG/ML、.05％ 都要吃掉
+#
+# ★ 分母要含 DOSE/PUFF/ACT：吸入劑寫成 'SALMETEROL 25 (50) MCG/DOSE'，
+#   少了 DOSE 就剝不掉，學名鍵變成「SALMETEROL 25 MCG/DOSE」，
+#   與正常的 SALMETEROL 拆成兩支藥（126 個品項被藏在錯的鍵底下）。
+# ★ 前面不能用 \b：'LYSOZYME10MG' 的 E 與 1 之間沒有詞邊界，
+#   結果整串被當成學名。改用「前面不是數字或小數點」的斷言。
 _RE_STRENGTH = re.compile(
-    r"\b\d*[\d.,]*\d\s*(?:MG|MCG|UG|GM|G|ML|L|IU|U|MEQ|KIU|%|％)"
-    r"(?:\s*/\s*[\d.,]*\s*(?:MG|GM|G|ML|L|CM2)?)?",
+    r"(?<![\d.])\d*[\d.,]*\d\s*(?:MG|MCG|UG|GM|G|ML|L|IU|U|MEQ|KIU|%|％)"
+    r"(?:\s*/\s*[\d.,]*\s*(?:MG|GM|G|ML|L|CM2|DOSE|PUFF|ACT)?)?",
     re.I,
 )
 _RE_LEAD_STRENGTH = re.compile(r"^[\s.,\d]+")
@@ -99,7 +105,10 @@ def canonicalize(raw: str, atc: str = "") -> str:
     # ★ 健保資料同一個酯基有兩種寫法：BETAMETHASONE (VALERATE) 與 CLOBETASOL PROPIONATE。
     #   兩種都要收，且必須歸一成同一個 key，否則同一支藥會被拆成兩張卡片。
     parens = [p.strip() for p in re.findall(r"\(([^)]*)\)", s)]
-    base = _RE_WS.sub(" ", re.sub(r"\([^)]*\)", " ", s)).strip(" ,;.-")
+    # ★ 去括號後要再剝一次劑量：'SALMETEROL 25 (50) MCG/DOSE' 的括號夾在
+    #   數字與單位之間，第一次剝不到；去掉括號才變成連續的 '25 MCG/DOSE'。
+    base = _strip_strength(re.sub(r"\([^)]*\)", " ", s))
+    base = _RE_WS.sub(" ", base).strip(" ,;.-")
 
     # 尾綴逐字剝：是鹽類就丟、是酯基就收（收完繼續往前看，處理 SODIUM PHOSPHATE 這種兩字鹽）
     trailing: list[str] = []
@@ -153,7 +162,10 @@ def normalize(group_name: str, ingredient_raw: str, is_mixture: str, atc: str = 
 
     優先序：分類分組名稱 token[0] → 成分欄 fallback（僅 1% 會走到，且標 warning）。
     """
-    g0 = (group_name or "").split(",")[0].strip()
+    # ★ 全形逗號也是分隔符：來源有 'RIVAROXABAN ，一般錠劑膠囊劑，10mg-20mg'。
+    #   只split半形的話，_cut_at_cjk 會在「一」切開而留下尾巴 'RIVAROXABAN ，'，
+    #   與正常的 RIVAROXABAN 拆成兩支藥。
+    g0 = re.split(r"[,，、]", group_name or "")[0].strip()
     source = "group"
     if not g0:
         g0 = (ingredient_raw or "").strip()

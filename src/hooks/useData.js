@@ -67,6 +67,31 @@ export async function loadChapter(n) {
   return chapterCache.get(n);
 }
 
+const blobCache = new Map();
+
+/**
+ * 附表原文 PDF 的可開啟網址。
+ *
+ * ★ 線上：連本站自己的 public/data/appendix/*.pdf（不外連 nhi.gov.tw，
+ *   也不受對方網站改版影響）。
+ * ★ 離線：PDF 以 base64 內嵌，轉成 blob: 再開 ——
+ *   瀏覽器會**擋掉 data: 的頂層導覽**，直接 <a href="data:application/pdf">
+ *   點了不會有反應。blob: 沒有這個限制。
+ */
+export function appendixPdfUrl(name) {
+  const embedded = typeof window !== 'undefined' ? window.__NHI_OFFLINE_PDF__ : null;
+  if (!embedded) return `${BASE}/appendix/${encodeURIComponent(name)}.pdf`;
+  const b64 = embedded[name];
+  if (!b64) return null;
+  if (!blobCache.has(name)) {
+    const bin = atob(b64);
+    const buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i += 1) buf[i] = bin.charCodeAt(i);
+    blobCache.set(name, URL.createObjectURL(new Blob([buf], { type: 'application/pdf' })));
+  }
+  return blobCache.get(name);
+}
+
 const appendixCache = new Map();
 
 /** 附表內容分片。附表名含中文，路徑要編碼（離線版是查 key，不編碼）。 */

@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import re
@@ -35,7 +36,16 @@ TODAY = date.today().isoformat()
 
 # 防毒啟發式掃描的紅旗。React production build 不會產生這些，
 # 但產物必須實際掃過才敢說「不會被擋」。
-_AV_FLAGS = ("eval(", "new Function(", "document.write(", "<iframe", "atob(")
+# 防毒／注入紅旗。這些單獨出現就是拒絕輸出的理由。
+_AV_FLAGS = ("eval(", "new Function(", "document.write(", "<iframe")
+
+# ★ atob( 從硬性紅旗改為「組合才危險」：
+#   內嵌的附表原文 PDF 是 base64，要 atob 解回 bytes 再包成 Blob 才能開
+#   （瀏覽器擋 data: 的頂層導覽，所以非用 blob: 不可）。
+#   atob 本身不執行任何東西 —— 真正的惡意特徵是 eval(atob(...)) 這種組合，
+#   而 eval/new Function 已經在上面的硬性清單裡。
+#   這裡再加一道：atob 出現時，同時檢查它周圍沒有動態執行的痕跡。
+_AV_COMBO = ("atob(",)
 
 
 def _sha(b: bytes) -> str:
@@ -70,6 +80,32 @@ def collect(scope: str) -> tuple[dict, dict]:
     return payload, shas
 
 
+def collect_pdfs(payload: dict) -> dict:
+    """附表原文 PDF → base64。只收這個版本用得到的。
+
+    ★ 為什麼要內嵌：使用者要求「點選官方原文 PDF 時不需要額外下載」——
+      封閉網路的醫院電腦連不到 nhi.gov.tw，只給連結等於給不到。
+
+    ★ 為什麼只收用得到的：全部 77 個是 11.9 MB（base64 後 15.8 MB）。
+      皮膚科版只有 42 個附表被引用到，收全部等於讓檔案白白多 7 MB。
+    """
+    want: set[str] = set()
+    for key, val in payload.items():
+        if not key.startswith("rules/"):
+            continue
+        for sec in val.get("sections", []):
+            for x in sec.get("appx_refs") or []:
+                if x.get("kind") == "file":
+                    want.add(x["name"])
+                want.update(x.get("variants") or [])
+    out = {}
+    for name in sorted(want):
+        f = PUBLIC / "appendix" / f"{name}.pdf"
+        if f.exists():
+            out[name] = base64.b64encode(f.read_bytes()).decode("ascii")
+    return out
+
+
 def _embed(obj) -> str:
     """把資料安全地嵌進 <script> 內。
 
@@ -87,7 +123,7 @@ def _embed(obj) -> str:
              .replace("\u2029", "\\u2029"))
 
 
-def build_html(payload: dict, shas: dict, scope: str) -> str:
+def build_html(payload: dict, shas: dict, scope: str, pdfs: dict | None = None) -> str:
     """把 app、樣式與資料合成單一 HTML。
 
     ★ 腳本一定要放在 </body> 之前，不能留在 <head>：
@@ -116,7 +152,9 @@ def build_html(payload: dict, shas: dict, scope: str) -> str:
     fingerprint = _sha("".join(f"{k}:{v}" for k, v in sorted(shas.items())).encode())[:16]
     meta = payload.get("meta.json", {})
     tail = (
-        "<script>window.__NHI_OFFLINE__="
+        "<script>window.__NHI_OFFLINE_PDF__="
+        + _embed(pdfs or {})
+        + ";window.__NHI_OFFLINE__="
         + _embed(payload)
         + ";window.__NHI_OFFLINE_META__="
         + _embed({"built": meta.get("built"), "scope": scope,
@@ -156,8 +194,8 @@ nhi-full-offline-{d}.html   全庫版（全部學名與醫令，檔案較大）
 4. 你在這個檔案裡寫的臨床註記存在這台電腦的瀏覽器裡，
    換一台電腦或換一個瀏覽器就看不到，重要內容請自行備份。
 5. 手機瀏覽器開這種大檔案可能會當掉，手機請用線上版。
-6. 附表內容已內嵌，離線可看；但「官方原文 PDF」「食藥署仿單」這類外部
-   連結需要網路，封閉電腦點了不會有反應。
+6. 附表的內容與「官方原文 PDF」都已內嵌，離線可直接開，不需要網路。
+7. 「食藥署仿單」連結指向食藥署網站，需要網路；封閉電腦點了不會有反應。
 
 資料來源
 --------
@@ -187,11 +225,17 @@ def main() -> int:
 
     for scope in scopes:
         payload, shas = collect(scope)
-        html = build_html(payload, shas, scope)
+        pdfs = collect_pdfs(payload)
+        html = build_html(payload, shas, scope, pdfs)
 
         flags = [f for f in _AV_FLAGS if f in html]
         if flags:
             raise SystemExit(f"❌ 產物含防毒紅旗字樣 {flags}，拒絕輸出")
+
+        # atob 可以有（解碼內嵌 PDF），但不可以和動態執行湊在一起
+        for combo in _AV_COMBO:
+            if combo in html and any(x in html for x in ("eval(", "new Function(", "setTimeout(\"")):
+                raise SystemExit(f"❌ {combo} 與動態執行同時出現，疑似混淆，拒絕輸出")
 
         # ★ script 逃逸驗證：內嵌資料區塊裡不得出現任何 `</`。
         #   資料是用 _embed() 跳脫過的，只要這裡命中就代表跳脫被繞過或被改掉，

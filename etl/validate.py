@@ -388,6 +388,15 @@ def run() -> list[Gate]:
     g.append(Gate(38, "仿單連結覆蓋", rate >= 0.90,
                   f"皮膚科學名 {with_ins}/{len(derm_ings)} ({rate:.0%})，下限 90%"))
 
+    # 39 學名鍵乾淨
+    #    分類分組名稱的分隔符有時是全形「，」、劑量有時黏在學名後
+    #    （LYSOZYME10MG、SALMETEROL 25 (50) MCG/DOSE）。解析漏掉就會把同一支藥
+    #    拆成兩筆 —— 實測 78 支中招，查 neomycin 會出現兩個結果、18 個品項被藏起來。
+    dirty = sorted(k for k in ings
+                   if re.search(r"[，,、；;]\s*$|\d+\s*(MG|ML|MCG|GM|IU|%)", k, re.I))
+    g.append(Gate(39, "學名鍵乾淨", not dirty,
+                  f"{len(ings):,} 個學名｜殘留分隔符或劑量 {dirty[:4] or '無'}"))
+
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():
         kb = len(gzip.compress((PUBLIC / "derm.json").read_bytes(), 9)) / 1024
