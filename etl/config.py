@@ -13,12 +13,18 @@ SNAPSHOTS = ROOT / "snapshots"
 SNAP_PDF = SNAPSHOTS / "pdf"
 SNAP_TEXT = SNAPSHOTS / "text"
 SNAP_DIFF = SNAPSHOTS / "diff"
+SNAP_APPX = SNAPSHOTS / "appendix"          # 官方獨立附表 PDF（本體不在章節 PDF 裡）
 MANIFEST = SNAPSHOTS / "manifest.json"
+APPX_MANIFEST = SNAPSHOTS / "appendix_manifest.json"
 SOURCES = BUILD / "sources.json"        # 溯源登錄簿（promote 後複製到 public/data/）
 PUBLIC = ROOT / "public" / "data"
 
 NHI_DRUG_CSV = "https://info.nhi.gov.tw/api/iode0000s01/Dataset?rId=A21030000I-E41001-001"
 TFDA_LICENCE = "https://data.fda.gov.tw/data/opendata/export/36/json"
+# 仿單／外盒圖檔連結（許可證字號 → 官方仿單 URL）。zip 內含單一 json。
+TFDA_INSERTS = "https://data.fda.gov.tw/data/opendata/export/39/json"
+# 由許可證字號推導的仿單網址。實測對兩種開放資料形式都回 200。
+TFDA_INSERT_URL = "https://mcp.fda.gov.tw/exportpdf/{}"
 NHI_PROC_CSV = "https://info.nhi.gov.tw/api/iode0000s01/Dataset?rId=A21030000I-D20021-001"
 PDF_URL = "https://info.nhi.gov.tw/api/INAE3000/INAE3000S01/getPDF?DurgFileName={}"
 

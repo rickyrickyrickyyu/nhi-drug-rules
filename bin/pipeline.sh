@@ -22,14 +22,17 @@ FULL="${2:-}"
 FETCH_STEPS=(
   "etl/fetch_nhi_drugs.py:下載健保藥品主檔（約 96 MB）"
   "etl/fetch_tfda.py:下載食藥署許可證資料（約 79 MB）:soft"
+  "etl/fetch_tfda_inserts.py:下載食藥署仿單連結對照:soft"
   "etl/fetch_procedures.py:下載醫療服務給付項目（處置醫令）"
   "etl/fetch_proc_chapters.py:抓處置的支付標準章節定位:soft"
   "etl/fetch_rule_pdfs.py:檢查給付規定章節改版:$FULL"
+  "etl/fetch_appendix_pdfs.py:下載健保署獨立附表 PDF:soft"
 )
 BUILD_STEPS=(
   "etl/normalize_drugs.py:正規化藥品資料"
   "etl/normalize_procedures.py:正規化處置醫令"
   "etl/build_tables.py:從 PDF 還原表格"
+  "etl/build_appendix.py:解析獨立附表 PDF"
   "etl/parse_rules.py:解析條文"
   "etl/tag_derm.py:皮膚科標籤"
   "etl/dosing.py:抽取條文所載劑量"

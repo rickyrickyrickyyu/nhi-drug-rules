@@ -5,6 +5,11 @@ import RuleSectionPanel from './RuleSectionPanel.jsx';
 import ClinicalNote from './ClinicalNote.jsx';
 import TfdaIndication from './TfdaIndication.jsx';
 import DosingPanel from './DosingPanel.jsx';
+
+// ★ 食藥署自己的開放資料就是用這個形式發布仿單網址（實測對兩種形式的證都回 200）。
+//   只連結、不鏡射 —— mcp.fda.gov.tw 明訂不得重製轉載，但連過去正是這些 URL 的用途。
+const insertUrl = (licenceNo) =>
+  `https://mcp.fda.gov.tw/exportpdf/${encodeURIComponent(licenceNo)}`;
 import { go } from '../lib/routes.js';
 
 export default function IngredientDetail({ item }) {
@@ -84,6 +89,32 @@ export default function IngredientDetail({ item }) {
 
       {active && (
         <>
+          {/* ★ 代表仿單：優先取原廠。同一學名不同藥廠仿單可能不同，所以必須
+              標明這是誰的仿單，並指路到品項表看其他家 —— 不能讓人以為
+              這一份代表全部。 */}
+          {(() => {
+            const pick = routeItems.find((p) => p.has_insert && p.is_originator)
+              ?? routeItems.find((p) => p.has_insert);
+            if (!pick) return null;
+            return (
+              <p className="mb-3 text-sm">
+                <a
+                  href={insertUrl(pick.licence_no)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-700 underline"
+                >
+                  📄 食藥署仿單 ↗
+                </a>
+                <span className="text-[11px] text-slate-500 ml-1.5">
+                  （{pick.brand_stem_zh || pick.brand_stem_en}
+                  {pick.is_originator && ' · 原廠'}
+                  ；其他藥廠見下方品項表）
+                </span>
+              </p>
+            );
+          })()}
+
           {/* 劑量放最前面：醫師確認「可以申請」之後，下一個問題就是「怎麼開」 */}
           <DosingPanel
             dosing={products?.dosing}
@@ -171,6 +202,7 @@ export default function IngredientDetail({ item }) {
                     <th className="text-left px-3 py-2 font-medium">中文名</th>
                     <th className="text-left px-3 py-2 font-medium whitespace-nowrap">藥品代號</th>
                     <th className="text-right px-3 py-2 font-medium whitespace-nowrap">健保價</th>
+                    <th className="text-center px-2 py-2 font-medium whitespace-nowrap">仿單</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -200,6 +232,23 @@ export default function IngredientDetail({ item }) {
                           <div className="text-[11px] text-orange-700">
                             {p.price_next_from} 起 {money(p.price_next)}
                           </div>
+                        )}
+                      </td>
+                      <td className="px-2 py-2 text-center whitespace-nowrap">
+                        {/* 每張許可證有自己的仿單（不同藥廠可能不同），所以是逐列連結。
+                            沒有仿單的品項留白 —— 不放點了沒用的假連結。 */}
+                        {p.has_insert ? (
+                          <a
+                            href={insertUrl(p.licence_no)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={`食藥署仿單（${p.licence_no}）`}
+                            className="text-brand-700 underline text-xs"
+                          >
+                            仿單 ↗
+                          </a>
+                        ) : (
+                          <span className="text-slate-300 text-xs">—</span>
                         )}
                       </td>
                     </tr>

@@ -7,6 +7,9 @@ const FDA_SEARCH = 'https://lmspiq.fda.gov.tw/web/DRPIQ/license-search';
 // 仿單全文在食藥署「藥品仿單查詢平台」，該站明訂未經同意不得重製轉載，
 // 因此本站只連過去、不鏡射任何仿單內容。
 const FDA_INSERT = 'https://mcp.fda.gov.tw/im';
+// 逐張許可證的官方仿單（食藥署開放資料自己用的形式）
+const insertUrl = (licenceNo) =>
+  `https://mcp.fda.gov.tw/exportpdf/${encodeURIComponent(licenceNo)}`;
 
 /**
  * 劑量資訊。
@@ -94,7 +97,17 @@ export default function DosingPanel({ dosing, innDisplay, licenceNo, doseTfda = 
                   </div>
                 )}
                 <div className="mt-1 text-[11px] text-slate-500">
-                  {g.licences?.[0]}
+                  {/* 許可證字號直接連到那張證的官方仿單 —— 這段用法用量就是從它來的 */}
+                  {g.licences?.[0] && (
+                    <a
+                      href={insertUrl(g.licences[0])}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-700 underline"
+                    >
+                      {g.licences[0]} ↗
+                    </a>
+                  )}
                   {g.brands?.[0] && `｜${g.brands[0]}`}
                   {g.n_products > 1 && `　等 ${g.n_products} 個品項適用同一段原文`}
                 </div>

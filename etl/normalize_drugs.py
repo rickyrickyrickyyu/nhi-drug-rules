@@ -114,6 +114,13 @@ def main() -> int:
     # 沒有它健保給付規定本身仍可用），但會在報告裡標明。
     tfda_path = RAW / "tfda_licence.json"
     tfda_idx = tfda.build_index(tfda_path) if tfda_path.exists() else {}
+
+    # 有官方仿單的許可證清單。缺檔不中斷 —— 沒有它只是不顯示仿單連結，
+    # 給付規定本身不受影響。
+    ins_path = RAW / "tfda_inserts.json"
+    insert_lics = set(
+        json.loads(ins_path.read_text(encoding="utf-8")).get("licences", [])
+    ) if ins_path.exists() else set()
     if not tfda_idx:
         print("⚠️  找不到 TFDA 資料，將略過中文名修復與仿單適應症")
 
@@ -208,6 +215,9 @@ def main() -> int:
             "licence_id": lic,
             "licence_no": (tf_rec or {}).get("許可證字號", ""),
             "licence_state": tf_state,
+            # 這張許可證在食藥署有官方仿單。只存布林值，網址由許可證字號推導
+            # （見 config.TFDA_INSERT_URL）—— 逐筆存 URL 會讓離線包多 1.6 MB。
+            "has_insert": ((tf_rec or {}).get("許可證字號", "") in insert_lics),
             "indication": (tf_rec or {}).get("適應症", "") or "",
             "tfda_form": (tf_rec or {}).get("劑型", "") or "",
             "price_history": hist,
@@ -225,6 +235,7 @@ def main() -> int:
         "route_source": dict(route_src_counter),
         "warnings": dict(warn_counter),
         "n_route_other": sum(1 for p in products.values() if p["route"] == "OTHER"),
+        "n_insert": sum(1 for p in products.values() if p.get("has_insert")),
         "n_tfda_active": sum(1 for p in products.values() if p["licence_state"] == "active"),
         "n_tfda_stale": sum(1 for p in products.values() if p["licence_state"] == "stale"),
         "n_tfda_miss": sum(1 for p in products.values() if p["licence_state"] == "miss"),

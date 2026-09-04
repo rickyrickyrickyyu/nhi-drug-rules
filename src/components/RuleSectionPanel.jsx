@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { rocToAd } from '../lib/format.js';
 import RuleTable from './RuleTable.jsx';
 import { go } from '../lib/routes.js';
 import { relevantStart } from '../lib/relevance.js';
+import ClauseBody, { RE_TABLE_MARK, annotate } from './ClauseBody.jsx';
 
 const FLAG_BADGES = [
   ['prior_review', '⚠️ 事前審查', 'bg-amber-100 text-amber-900'],
@@ -17,65 +17,19 @@ const FLAG_BADGES = [
 const PDF_URL = (fn) =>
   `https://info.nhi.gov.tw/api/INAE3000/INAE3000S01/getPDF?DurgFileName=${encodeURIComponent(fn)}`;
 
-/** 民國日期加 tooltip 顯示西元。條文原文一字不改，只做視覺結構化。 */
-function annotate(text) {
-  const parts = text.split(/(\d{2,3}\/\d{1,2}\/\d{1,2})/g);
-  return parts.map((p, i) => {
-    const ad = rocToAd(p);
-    return ad ? (
-      <abbr key={i} title={ad} className="decoration-dotted underline cursor-help text-slate-500">
-        {p}
-      </abbr>
-    ) : (
-      <span key={i}>{p}</span>
-    );
-  });
-}
-
-// ETL 在條文裡留下的表格佔位標記（私用區字元，不可能出現在條文原文）
-const RE_TABLE_MARK = /\ue000TB(\d+)\ue000/g;
-
-/**
- * 一段條文。表格標記處就地換成 <RuleTable>。
- *
- * ★ 為什麼不是「條文照印、表格附在最後」：
- *   表格在 PDF 純文字裡是逐格換行的碎片（「涵蓋程/度/0﹪/1-9﹪…」）。
- *   照印等於同一份內容出現兩次，而且先出現的那份不可讀。
- *   ETL 已把碎片從條文挖掉（挖除是無損的：只有夾雜 0 個非表格字元才會挖），
- *   這裡只負責把標記換回表格。
- */
-function ClauseBody({ text, tables, indent = 0 }) {
-  const segs = String(text ?? '').split(RE_TABLE_MARK);
-  const out = [];
-  for (let i = 0; i < segs.length; i += 1) {
-    // split 帶捕獲群組 → 偶數索引是文字、奇數索引是表格編號
-    if (i % 2 === 1) {
-      const t = tables?.[Number(segs[i])];
-      if (t) out.push(<RuleTable key={`t${i}`} table={t} />);
-      continue;
-    }
-    const body = segs[i].replace(/^\n+|\n+$/g, '');
-    if (!body) continue;
-    out.push(
-      <p
-        key={`p${i}`}
-        className="whitespace-pre-wrap mb-1.5"
-        style={indent ? { paddingLeft: `${indent}rem` } : undefined}
-      >
-        {annotate(body)}
-      </p>,
-    );
-  }
-  return out;
-}
-
 export default function RuleSectionPanel({ section, inn, innNames }) {
   const [expanded, setExpanded] = useState(false);
   if (!section) return null;
   const flags = section.flags ?? {};
   const tables = section.tables ?? [];
   // 引用了附表但本體在別節（13.17.1. 引用「附表三十二」，EASI 評分表其實在 13.17.2.）
-  const crossRefs = (section.appx_refs ?? []).filter((x) => x.host && !x.self);
+  // 附表參照分三類：跨章節（本體在別節）、官方獨立檔、真的沒有本體。
+  // 「條文寫基底名、官方細分成子檔」（附表二 → 附表二-A~D）走 variants。
+  const crossRefs = (section.appx_refs ?? []).filter(
+    (x) => x.kind === 'section' && x.host && !x.self);
+  const fileRefs = (section.appx_refs ?? []).filter((x) => x.kind === 'file');
+  const variantRefs = (section.appx_refs ?? []).filter(
+    (x) => !x.kind && x.variants?.length);
   const missingRefs = (section.appx_refs ?? []).filter((x) => x.missing);
   // 條文多久沒改了。健保署發布公告到更新條文 PDF 有時間落差，
   // 標出年數讓醫師對「這條可能不是最新的」有感覺。
@@ -264,7 +218,8 @@ export default function RuleSectionPanel({ section, inn, innNames }) {
         })()
       )}
 
-      {(crossRefs.length > 0 || missingRefs.length > 0) && (
+      {(crossRefs.length > 0 || fileRefs.length > 0
+        || variantRefs.length > 0 || missingRefs.length > 0) && (
         <div className="mt-3 text-xs space-y-1">
           {crossRefs.map((x) => (
             <button
@@ -276,9 +231,37 @@ export default function RuleSectionPanel({ section, inn, innNames }) {
               📎 {x.name} 的內容收錄於 <span className="font-mono">{x.host}</span>，點此查看 →
             </button>
           ))}
+          {fileRefs.map((x) => (
+            <button
+              key={x.name}
+              type="button"
+              onClick={() => go(`#/a/${encodeURIComponent(x.name)}`)}
+              className="block text-left text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1.5 w-full"
+            >
+              📎 {x.name}（健保署獨立附表），點此查看 →
+            </button>
+          ))}
+          {/* 條文只寫基底名，官方細分成子檔 —— 全部列出來，那正是條文所指的那一組 */}
+          {variantRefs.map((x) => (
+            <div key={x.name} className="bg-brand-50 rounded-lg px-2.5 py-1.5">
+              <span className="text-slate-600">📎 {x.name} 於健保署分為：</span>
+              <span className="ml-1 inline-flex flex-wrap gap-1.5">
+                {x.variants.map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    onClick={() => go(`#/a/${encodeURIComponent(v)}`)}
+                    className="text-brand-700 underline"
+                  >
+                    {v}
+                  </button>
+                ))}
+              </span>
+            </div>
+          ))}
           {missingRefs.map((x) => (
             <div key={x.name} className="text-slate-500 bg-slate-50 rounded-lg px-2.5 py-1.5">
-              📎 {x.name}：本站快照未收錄此附表原文，請點上方官方 PDF 查閱
+              📎 {x.name}：健保署未單獨發布此附表，請點上方官方 PDF 查閱條文內文
             </div>
           ))}
         </div>

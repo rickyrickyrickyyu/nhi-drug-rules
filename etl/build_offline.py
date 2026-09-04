@@ -55,17 +55,18 @@ def collect(scope: str) -> tuple[dict, dict]:
         payload[rel] = json.loads(raw)
         shas[rel] = _sha(raw)
 
-    add("meta.json")
-    add("derm.json")
-    add("changelog.json")
-    if scope == "all":
-        add("all.json")
-        add("procs_all.json")
-
-    for p in sorted((PUBLIC / "rules").glob("*.json")):
-        add(f"rules/{p.name}")
-    for p in sorted((PUBLIC / "products").glob("*.json")):
-        add(f"products/{p.name}")
+    # ★ 遞迴收錄，不逐項硬編。
+    #   原本是列舉 meta/derm/changelog + rules/* + products/*，新增任何資料目錄
+    #   都得記得回來加一行 —— 加了 appendix/ 卻忘記改這裡，離線版點附表就是
+    #   一片空白，而 check_offline.py 的指紋比對抓不到（它只比 public/data 的
+    #   內容，不比「離線包收了哪些」）。這是本專案第五次的「同一份清單維護在
+    #   兩個地方」。改成預設收錄、只列排除，日後新增目錄自動進離線包。
+    derm_only_excludes = {"all.json", "procs_all.json"}
+    for p in sorted(PUBLIC.rglob("*.json")):
+        rel = p.relative_to(PUBLIC).as_posix()
+        if scope != "all" and rel in derm_only_excludes:
+            continue
+        add(rel)
     return payload, shas
 
 
@@ -155,6 +156,8 @@ nhi-full-offline-{d}.html   全庫版（全部學名與醫令，檔案較大）
 4. 你在這個檔案裡寫的臨床註記存在這台電腦的瀏覽器裡，
    換一台電腦或換一個瀏覽器就看不到，重要內容請自行備份。
 5. 手機瀏覽器開這種大檔案可能會當掉，手機請用線上版。
+6. 附表內容已內嵌，離線可看；但「官方原文 PDF」「食藥署仿單」這類外部
+   連結需要網路，封閉電腦點了不會有反應。
 
 資料來源
 --------
@@ -250,6 +253,7 @@ def main() -> int:
         (OUT / "MANIFEST.txt").write_text(
             f"packed_at: {TODAY}\ndata_built: {meta['built']}\nfingerprint: {fp}\n"
             f"app_fingerprint: {app_fingerprint(DIST)}\n"
+            f"embedded_files: {len(made[0][2])}\n"
             + "".join(f"{p.name}  {p.stat().st_size} bytes  {_sha(p.read_bytes())[:16]}\n"
                       for p, _s, _sh in made)
             + f"{zp.name}  {zp.stat().st_size} bytes\n", encoding="utf-8")

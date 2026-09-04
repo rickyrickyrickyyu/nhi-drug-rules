@@ -67,6 +67,16 @@ export async function loadChapter(n) {
   return chapterCache.get(n);
 }
 
+const appendixCache = new Map();
+
+/** 附表內容分片。附表名含中文，路徑要編碼（離線版是查 key，不編碼）。 */
+export function loadAppendix(name) {
+  if (!appendixCache.has(name)) {
+    appendixCache.set(name, getJson(`appendix/${name}.json`));
+  }
+  return appendixCache.get(name);
+}
+
 export async function loadProducts(innKey) {
   const safe = innKey.replaceAll('/', '_').replaceAll(' ', '_').replaceAll('(', '').replaceAll(')', '');
   return getJson(`products/${safe}.json`);

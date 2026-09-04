@@ -26,7 +26,8 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.tablesplice import RE_MARK as RE_TBMARK  # noqa: E402
-from config import CSV_COLUMNS, CURATION, MANIFEST, PUBLIC, RAW, ROOT, SNAPSHOTS, STAGING  # noqa: E402
+from config import (APPX_MANIFEST, CSV_COLUMNS, CURATION, MANIFEST, PUBLIC, RAW,  # noqa: E402
+                    ROOT, SNAPSHOTS, SNAP_APPX, STAGING)
 from lib.section import match_prefix  # noqa: E402
 
 PREV = SNAPSHOTS / "last_run.json"
@@ -345,6 +346,47 @@ def run() -> list[Gate]:
                    if k.upper() in heads and v.upper() not in blob]
         g.append(Gate(35, "別名不改寫主檔拼法", not rewrite,
                       f"{len(al)} 條規則｜違規 {rewrite[:4] or '無'}"))
+
+    # 36 附表對照表有效
+    #    URL 內含不透明 id，健保署改版附表時會換 id。快照缺漏或雜湊對不上，
+    #    代表對照表過期 —— 列表頁擋程式（403），只能用瀏覽器重抓一次。
+    appx_yaml = CURATION / "appendix_files.yaml"
+    if appx_yaml.exists():
+        cur = (yaml.safe_load(appx_yaml.read_text(encoding="utf-8")) or {}).get("appendices") or {}
+        man = json.loads(APPX_MANIFEST.read_text(encoding="utf-8")) \
+            if APPX_MANIFEST.exists() else {}
+        stale = sorted(n for n, v in cur.items()
+                       if man.get(n, {}).get("url") != v.get("url"))
+        nofile = sorted(n for n in cur
+                        if not (SNAP_APPX / f"{n.replace('/', '_').replace(' ', '')}.pdf").exists())
+        ok36 = not stale and not nofile
+        g.append(Gate(36, "附表對照表有效",
+                      ok36,
+                      f"{len(cur)} 個附表"
+                      + (f"｜URL 變動 {stale[:3]}" if stale else "")
+                      + (f"｜缺快照 {nofile[:3]}" if nofile else "")
+                      + ("｜需用瀏覽器重抓列表頁" if not ok36 else "")))
+
+    # 37 附表參照可解析
+    #    條文引用的附表必須指得到本體（章節內、官方獨立檔、或細分成子檔）。
+    #    白名單是健保署自己沒單獨發布的，比照 gate 34 的做法。
+    KNOWN_NO_APPX = {"附表十六之二", "附表九之六"}
+    unresolved = sorted({x["name"] for r in rules.values()
+                         for x in (r.get("appx_refs") or []) if x.get("missing")})
+    new_unres = [n for n in unresolved if n not in KNOWN_NO_APPX]
+    g.append(Gate(37, "附表參照可解析", not new_unres,
+                  f"無本體 {len(unresolved)}（已知 {len(set(unresolved) & KNOWN_NO_APPX)}）"
+                  + (f"｜新增 {new_unres[:4]}" if new_unres else "")))
+
+    # 38 仿單連結覆蓋率
+    #    上游欄位改名會讓它靜默歸零 —— 這種「不會報錯只會變空」的破壞最難發現。
+    derm_ings = [i for i in ings.values() if i.get("derm")]
+    with_ins = sum(1 for i in derm_ings
+                   if any(products.get(c, {}).get("has_insert")
+                          for r in i["routes"].values() for c in r["products"]))
+    rate = with_ins / max(1, len(derm_ings))
+    g.append(Gate(38, "仿單連結覆蓋", rate >= 0.90,
+                  f"皮膚科學名 {with_ins}/{len(derm_ings)} ({rate:.0%})，下限 90%"))
 
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():

@@ -43,6 +43,8 @@
 | 加驗證閘門 | `etl/validate.py`（fail-closed，沒過就不 promote） |
 | PDF 表格還原 | `etl/lib/pdftable.py`（抽表）＋ `etl/lib/tablesplice.py`（嵌回條文） |
 | 表單填空欄位被拆行 | `etl/lib/formlines.py` |
+| 附表（本體不在章節 PDF 裡） | `curation/appendix_files.yaml` ＋ `etl/fetch_appendix_pdfs.py` / `build_appendix.py` |
+| 仿單連結 | `etl/fetch_tfda_inserts.py`（只存布林旗標，網址由許可證字號推導） |
 | 人工判斷（皮膚科標籤、酯基、同義詞） | `curation/*.yaml`（pipeline 只讀不寫） |
 | 「已公告但官方條文還沒改」的章節 | `curation/pending_updates.yaml`（見[待更新章節](#待更新章節官方公告了但條文-pdf-還沒改)） |
 | 搜尋排序 | `src/lib/search.js` ＋ `cli/query.py`（**兩份實作**，靠 `tests/search_parity.*` 綁在一起） |
@@ -306,6 +308,10 @@ data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ d
   那時 `#root` 還不存在，React 丟 Minified error #299，整頁空白。
 - **`body { overflow-wrap: anywhere }` 會切斷 `LDL-C≧70mg/dL`。**
   `table td, th` 要另外設 `overflow-wrap: normal; word-break: keep-all`。
+- **lint 必須納入 `make verify` 且要能擋。** `no-undef` 這種「跑起來才炸」的錯，
+  build 與所有 Node 測試都抓不到（它們不渲染 React）。實際踩過：把 `annotate`
+  抽到別的檔卻沒 import，整站白畫面，而 lint／build／全部測試都是綠的 ——
+  只有瀏覽器實測看得到。現在 `pnpm exec oxlint --deny-warnings src` 在 verify 裡。
 - **`make verify` 必須跑線上版與離線版兩種 build。** offline mode 會關掉 PWA，
   只跑 offline 等於沒驗到 workbox 設定（曾因此本機全綠、CI 紅燈）。
 
@@ -339,6 +345,26 @@ data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ d
   canonical 以子字串存在（主檔寫 `RETINOIC ACID (=TRETINOIN)`）＝合法，不擋。
 - **改鍵會讓已分享的連結失效**，所以 `App.jsx` 的路由有別名回退：
   找不到 key 時再比對各學名的 `al` 別名清單。
+
+### 附表與仿單
+
+- **附表本體常常不在章節 PDF 裡。** `8.2.4.x` 生物製劑家族的附表區塊只有
+  「◎附表二十二之一：…」這種引用行（46–168 字），健保署把 77 個附表當
+  **獨立檔案**發布在另一個頁面。少了它們，醫師點附表徽章就是死路。
+- **「有本體」不能只看字數。** 原本判準是附表區塊 >200 字，結果 8.2.4.4. 的
+  219 字純◎引用行被誤判成本體，那幾個附表被登記成「收錄在自己這一節」，
+  徽章直接消失。正確判準是**排除◎開頭的引用行**後還有沒有內容。
+- **官方列表頁對程式回 403**（WAF），只有瀏覽器開得起來；但列表裡的
+  `dl-…-1.pdf` 可直接下載。所以 URL 對照人工維護在 curation、下載自動化。
+  `gate 36` 在 URL 失效時 fail 並叫你用瀏覽器重抓一次。
+- **條文常寫基底名、官方細分成子檔**（附表二 → 附表二-A~D）。找不到同名時
+  回退到「以它為前綴再接 - 或 之」的官方附表，全部列出。方向不可反：
+  引用「附表十六之二」而官方只有「附表十六」不算命中，那是不同文件。
+- **仿單只連結不鏡射。** mcp.fda.gov.tw 明訂不得重製轉載，但那些 URL 是
+  食藥署自己的開放資料（endpoint 39）發布的，連過去正是它的用途。
+  `https://mcp.fda.gov.tw/exportpdf/<許可證字號>` 實測對兩種開放資料形式都
+  回 200，所以只存布林旗標、網址由許可證字號推導 —— 逐筆存 URL 會讓離線包
+  多 1.6 MB。
 
 ### 條文顯示
 

@@ -1,0 +1,695 @@
+{
+ "附表一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42611-70d95bdad88544f8835f5226a4583727-1.pdf",
+  "title": "全民健康保險醫療常用第一線抗微生物製劑品名表",
+  "updated": "",
+  "sha256": "fb731ecc51e94f7bdc7d203a1484682c87bb0706c8a3aad745de790c501a0dc4",
+  "bytes": 71974,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二-A": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42615-93283b6b181f4067a15cc05bb74ab11c-1.pdf",
+  "title": "全民健康保險使用rt-PA(Actilyse)或Tenecteplase (Metalyse)申報表【血管（不含腦血管）血栓病患用】",
+  "updated": "",
+  "sha256": "2e419e03d04193d74e8d626234d5d720a6d2d6b7a01aed2d5e7070b27ac46e3b",
+  "bytes": 150229,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二-B": {
+  "url": "https://www.nhi.gov.tw/ch/dl-50665-107706418fcf466c81ac7fb67812e24d-1.pdf",
+  "title": "全民健康保險使用rt-PA(Actilyse)申報表（急性缺血性腦中風病患用）",
+  "updated": "",
+  "sha256": "bee2183f2a0c6d5a48dc04d47c8c96f869b07060cd52bf90d18af6d5ba24ee97",
+  "bytes": 109171,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二-C": {
+  "url": "https://www.nhi.gov.tw/ch/dl-50620-0f1343daa2a94405a14f8d72cb894c4c-1.pdf",
+  "title": "急性缺血性腦中風之血栓溶解治療檢查表",
+  "updated": "112.09.22",
+  "sha256": "387781929e24fa88edaf2501a7223a9f8c19661789d30871c183da3321b65fbc",
+  "bytes": 138487,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二-D": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42624-efc58c8288494eb088683a9dd6a797ec-1.pdf",
+  "title": "使用健保給付PCSK9血脂調節劑事前審查申請表",
+  "updated": "114.08.22",
+  "sha256": "b74f07bfa5c0eb5417a8cdf23fa385b7bebe655a8e0ac135d1d822f5b368a3c2",
+  "bytes": 99758,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三-A": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42626-cb80075d93534afcbb66f12fa80dec58-1.pdf",
+  "title": "全民健康保險使用維生素之醫治病症",
+  "updated": "",
+  "sha256": "ed0887333563e1631b270fbc198c67a52b0d3e8a5e35120c3b8477afc057447a",
+  "bytes": 71147,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三-B": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42629-0ee658bb764b49bab01431d3670c74c7-1.pdf",
+  "title": "全民健康保險使用荷爾蒙之醫治病症",
+  "updated": "",
+  "sha256": "e5e0cd8a2436b14c539ba7ff06cc9e015173ba529289c05ff8e02a39b0fad4a2",
+  "bytes": 59671,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42632-2444c8488ae6445dbcdb61e341529c9c-1.pdf",
+  "title": "全民健康保險使用 Human Albumin 申報表",
+  "updated": "",
+  "sha256": "5c287312344302f56fdae5a873b24983246d02a6f2f91b2ae8271ff910a5cc4d",
+  "bytes": 82667,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42634-1de55c70fdc24b7c9691a41e360e8055-1.pdf",
+  "title": "全民健康保險使用繞徑治療藥物申報表",
+  "updated": "",
+  "sha256": "155a5ddee1acd90c428795ad40edc6cd29c112d1a94bcdb5183b028ba7926aac",
+  "bytes": 63070,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表六": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42636-9628696675ef4800bf454b533d280545-1.pdf",
+  "title": "全民健康保險使用Intravenous Immune Globulin(IVIG)治療川崎病 (Kawasaki Disease) 申請表",
+  "updated": "",
+  "sha256": "df55d326cc9d7f6521853a1b4340577882d5eeea91de728d5fb739263adc4704",
+  "bytes": 184829,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表七之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42639-72bdbef7c2da4905829073d86cba1108-1.pdf",
+  "title": "全民健康保險使用抗癌藥品Rituximab申請表",
+  "updated": "",
+  "sha256": "c1630d64992c8865c75fc7d5f65a4095568d9dc679e139b72e080f093ce6e448",
+  "bytes": 119636,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表八之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42642-025290783b0b43cb84357e5c704b1540-1.pdf",
+  "title": "全民健康保險使用抗癌藥品Temozolomide申請表",
+  "updated": "111.09.28",
+  "sha256": "6ac33c7b91eab4bf5d3bfcc7a3f99caa8b21c0a765c4213c5c82a79e882b92fd",
+  "bytes": 121164,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表八之四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42644-d8e3901da6704ec4aed160b1cbcd2ef9-1.pdf",
+  "title": "全民健康保險使用抗癌藥品Carmustine植入劑申請表",
+  "updated": "",
+  "sha256": "178939c5cc97655c036e4796f817c171a10740cd5863a372cdae60a79043c8db",
+  "bytes": 166505,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表九之三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42646-53d0784b6fcd4eadb9f7533b8e61c357-1.pdf",
+  "title": "全民健康保險使用抗癌藥品Bortezomib申請表",
+  "updated": "112.03.21",
+  "sha256": "28d2d59496ac3fb6e4bb62321e8d6d7693e447b14ccff847dbdaa89506ccd78f",
+  "bytes": 113159,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表九之五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-100720-4de96cba452b453d87a08b6e7cb2275b-1.pdf",
+  "title": "全民健康保險使用抗癌藥品Sunitinib申請表",
+  "updated": "115.07.23",
+  "sha256": "d76bc0c02d8011f8cda4aa7d850e573d54b4483fe67f203213e73cae3bb83d73",
+  "bytes": 84777,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表九之八": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42648-984cc327afe4478ba780584a7d98f23a-1.pdf",
+  "title": "全民健康保險使用抗癌藥品Imatinib申請表",
+  "updated": "",
+  "sha256": "227a188a61bed8a8e29799c82bf173955755d0cc1b0cb8fda95ae7b015ae7e04",
+  "bytes": 166167,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表九之十一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42650-0b947c729a134af8a255ae2899fa20ee-1.pdf",
+  "title": "全民健康保險使用抗癌藥品temsirolimus申請表",
+  "updated": "",
+  "sha256": "6690380e179905827b4295dadc7d589b856f612dc3ecff6c9ebe22e271f3372b",
+  "bytes": 169199,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表九之十三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-50679-c789e6577617441db0e78408624edfb7-1.pdf",
+  "title": "全民健康保險使用抗癌藥品pazopanib申請表",
+  "updated": "112.09.22",
+  "sha256": "e72a9a2bed1fff391e097b5bd3e3706e2f4b53c4e21339f6e28de2e7418f9281",
+  "bytes": 128425,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42654-e4f0e458a5684eeca5ee14d9c41c9857-1.pdf",
+  "title": "患者服用Isotretinoin口服製劑同意書",
+  "updated": "111.02.23",
+  "sha256": "c6728f6c0af479bff23dd70b98a08968162b860763c702bfb3ddbffdd55c8ca9",
+  "bytes": 110465,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42657-d4cc11379b2d45b2a4a7d3e57628a855-1.pdf",
+  "title": "患者服用Acitretin製劑同意書",
+  "updated": "111.02.23",
+  "sha256": "bb2d85c6e57b87d6216448e1bfc4cd5d02bf9f79ba70b6dec691ae40aaf9a593",
+  "bytes": 108959,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42659-8a1d4e130e414085b69d6185c40ba905-1.pdf",
+  "title": "全民健康保險類風濕關節炎病患28處關節疾病活動度(Disease Activity Score, DAS 28)評估表",
+  "updated": "",
+  "sha256": "ae0c5e6523429baecc24b262199115deba53e175734afc25a9af938a3bfae904",
+  "bytes": 611131,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42662-6988c11374d2459287adf68f55850ff9-1.pdf",
+  "title": "全民健康保險疾病修飾抗風濕病藥物(DMARDs)之標準目標劑量暨治療劑量表",
+  "updated": "",
+  "sha256": "36d3c74306f7d100f310d0bf553183945f141749285ddc6e6117f2fcd70b8093",
+  "bytes": 56850,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42664-3879793d16a147f487ab6a9a78a88210-1.pdf",
+  "title": "全民健康保險類風濕關節炎使用生物製劑申請表",
+  "updated": "",
+  "sha256": "3e1c1e6b0a7fe5306d3a751c1f36567b3525a3fbcc1b6e7f8b3181700edf1e09",
+  "bytes": 603309,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十六": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42667-575b729a552c45da8ef1f97de9fe8607-1.pdf",
+  "title": "全民健康保險活動性多關節幼年型慢性關節炎使用藥品申請表",
+  "updated": "114.06.23",
+  "sha256": "1e7af41b69f0573aab18bf003781072845daeb6fc8eb58c9254739a20efe84cb",
+  "bytes": 103772,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十七": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42670-f7ff328017a04e9bae071283671cf5ca-1.pdf",
+  "title": "全民健康保險使用Tacrolimus兒童患部面積計算圖",
+  "updated": "",
+  "sha256": "571291e0a8983d00574004ad5557f1f26273d82cd23f9f85b4c39d9b539b2c8e",
+  "bytes": 129120,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十八之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42673-1201f95c1dbd4c1e8b67c7f90009d0c2-1.pdf",
+  "title": "全民健康保險血友病患者使用「第八、第九凝血因子」在家治療紀錄表",
+  "updated": "109.05.21",
+  "sha256": "47d2050bd7c75314419510ea833d45026fbd08095b345a0aa91ff385fcd4c34b",
+  "bytes": 568200,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十八之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42677-9ca5e1c6619c412ab6d3866cf0a9a3ba-1.pdf",
+  "title": "全民健康保險血友病患者使用「繞徑治療藥物」在家治療紀錄表",
+  "updated": "109.05.21",
+  "sha256": "942990e48d0c21d7d0433cde74e143bab3458ca0e545cacbd113d701c5d95463",
+  "bytes": 567937,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十八之三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42680-9f9e2eabed2f494d93c4534f3400b83a-1.pdf",
+  "title": "全民健康保險一般型製劑及長效型製劑血友病患需要時治療之凝血因子建議劑量",
+  "updated": "113.06.26",
+  "sha256": "6df422f64d35418f9a7ab642726f4cea207548164aca6d7fa6980e39d8ec818a",
+  "bytes": 144734,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十八之四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42682-c80196356776497e922c735b5c3674bc-1.pdf",
+  "title": "全民健康保險血友病患者使用「第十三凝血因子」在家治療紀錄表",
+  "updated": "109.05.21",
+  "sha256": "b203fb333638a4eeb25d288e3405924a0651198649ce2c56ddd1ac2ceedae6ea",
+  "bytes": 568739,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十八之五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42685-d351ed17b47d4acb9933ee9b5cc314df-1.pdf",
+  "title": "重型血友病患「醫療評估追蹤紀錄表」",
+  "updated": "115.07.23",
+  "sha256": "a6a752fb7cd75c2c85073cf8e3e417fed295c680e9962a821309c656a1257cdf",
+  "bytes": 116025,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十八之六": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42688-c50a15ca5e12429a89c6548f89943d8d-1.pdf",
+  "title": "全民健康保險血友病患者使用「雙特異性單株抗體藥物」在家治療紀錄表",
+  "updated": "109.07.22",
+  "sha256": "fa9fc0a2cb72942d155cb921921864c9df851dc918492c26a9686b9d0a6653cd",
+  "bytes": 187448,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表十九": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42690-dfaae44724d14d95826f70bb31211c3e-1.pdf",
+  "title": "全民健康保險使用Pilocarpine hydrochloride口服劑型治療後，症狀改善評量表",
+  "updated": "",
+  "sha256": "a96463ec9305b022e642b39c8ac6bf0a4550ace7b9ec3ac9bfdde3d7048594b2",
+  "bytes": 89301,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42693-895debb2385f4194a5ca706ef1362711-1.pdf",
+  "title": "全民健康保險使用Cevimeline hydrochloride治療後，症狀改善評量表",
+  "updated": "",
+  "sha256": "eb8453a682fd9c01ffbce833122c7f92e6affbd0ba0801e5a7d67db41576d6f8",
+  "bytes": 89034,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十一之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42695-2e9ce414fb48402ab3977448c3eaf994-1.pdf",
+  "title": "全民健康保險僵直性脊椎炎使用生物製劑申請表",
+  "updated": "",
+  "sha256": "29f4a523b474e7e9afb3d44aab588492b917151b3b77645c2c3e196e4dc06967",
+  "bytes": 199408,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十一之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42699-9bf51a7fc1844c1895b91dba4585d54d-1.pdf",
+  "title": "NSAID藥物副作用",
+  "updated": "",
+  "sha256": "27129b546eb454b92006b698df941f890a90f237d9c75a225be8472b82b8e908",
+  "bytes": 176714,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十二之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42702-ab71df8022f7476ebabf6bb872ba8037-1.pdf",
+  "title": "全民健康保險乾癬性周邊關節炎使用生物製劑申請表",
+  "updated": "109.02.21",
+  "sha256": "02deca8ca4f9fa12fbc0522729e0f6e2d8529fd97d0dcd921303dd0e884eeb6d",
+  "bytes": 218624,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十二之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42704-0d36edbeb60c45d58bfdbf63363e4620-1.pdf",
+  "title": "乾癬性周邊關節炎使用DMARDs標準目標劑量及有效治療劑量的定義",
+  "updated": "",
+  "sha256": "b4bf58f7115e5eedcd43e4625ccfc7b9fec9559205c3afff2cb6640148a4e3c3",
+  "bytes": 97579,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十二之三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42707-8c1a96d888b54354a9d32e5544f33afc-1.pdf",
+  "title": "乾癬性關節炎評估表",
+  "updated": "",
+  "sha256": "abe7c828da4d32e916e9d8b599750ae2717f82e0947593b376a06007c144f868",
+  "bytes": 92273,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十二之四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42710-0d70976805e842b0ac547d74f79468ce-1.pdf",
+  "title": "全民健康保險乾癬性脊椎病變生物製劑申請表",
+  "updated": "109.02.21",
+  "sha256": "5eb95722ae84b62ab3ee80306108c365c2c9fa76c734380e0dc90a6c879bf52a",
+  "bytes": 154122,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十二之五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42712-ad6af328badb4e5d8e4ef50155a29701-1.pdf",
+  "title": "NSAID藥物副作用",
+  "updated": "",
+  "sha256": "a2bd190d661c341ef36e62c94906a525bcb45e944b1fbc972659e1bac8560f3a",
+  "bytes": 177287,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十二之六": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42716-13b7c7becb4048f1abae398f97804518-1.pdf",
+  "title": "全民健康保險乾癬性周邊關節炎使用 ustekinumab/guselkumab/risankizumab申請表",
+  "updated": "114.01.24",
+  "sha256": "14aa77533ef9fb68d4009abfd080e3291d90e50338b50bb1aaae2589c112df26",
+  "bytes": 185524,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42718-4b1deeb910a045e6bc2074ac73bc0db6-1.pdf",
+  "title": "全民健康保險使用rituximab用於類風濕性關節炎申請表",
+  "updated": "109.10.26",
+  "sha256": "91251f442759e7b1e5400cc58cb6355576415b8a398d2ae1acc0ae9bf0dead6f",
+  "bytes": 206837,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十四之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42722-9eb52019162746369a69b74332d5e75b-1.pdf",
+  "title": "全民健康保險乾癬使用生物製劑申請表",
+  "updated": "113.05.23",
+  "sha256": "d9d53c8ac582390468dfc39fbb5e125a9005ef709008924bd98f2d7409898337",
+  "bytes": 92855,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十四之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42724-b261dc5d0d0a4b58a6a710032e547d08-1.pdf",
+  "title": "全民健康保險乾癬(慢性紅皮症乾癬部分)使用生物製劑申請表",
+  "updated": "",
+  "sha256": "1908538a374201cc8e2d7072fe3b8e73212f45e4d82cc59364b7f3128c45a45d",
+  "bytes": 160149,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十四之三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42726-f66c4842fe0f461db4cc92968e387635-1.pdf",
+  "title": "乾癬面積暨嚴重度指數【Psoriasis Area Severity Index (PASI)】",
+  "updated": "",
+  "sha256": "98be1a7900ac87e785bbd5ed1850065cb96f8d041ef4d9ced50ea05e51af411f",
+  "bytes": 55432,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十四之四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42729-c7168c0e52f74739ae7370980b6946fa-1.pdf",
+  "title": "全民健康保險乾癬(全身型急性膿疱性乾癬部分)使用生物製劑申請表",
+  "updated": "110.04.23",
+  "sha256": "fd5d802d34c7a0392d0a741a9086b64155790dc5c22d476468e327e8199b5848",
+  "bytes": 119749,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十四之五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42732-2cfc7234827043d2ad79c3c7711354e0-1.pdf",
+  "title": "掌蹠膿皰症面積暨嚴重度指數【Palmoplantar Pustulosis Area Severity Index (PPPASI)】",
+  "updated": "111.09.28",
+  "sha256": "d36d99f3bb31c62ba59d5c869606752d8b7e8f7026e3626ac4783f0bc519c1d7",
+  "bytes": 83225,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十四之六": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42736-1ad0c3e1d3d449918c390f5ee3a79229-1.pdf",
+  "title": "全民健康保險掌蹠膿皰症使用生物製劑申請表",
+  "updated": "111.09.28",
+  "sha256": "00ec90b8fba295ce381d70ba2adf8f6bfc23e06314b3bddccbc498e156430c14",
+  "bytes": 155291,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十四之七": {
+  "url": "https://www.nhi.gov.tw/ch/dl-66955-ea761aa50aed4e559613b0409d019e4b-1.pdf",
+  "title": "全民健康保險乾癬使用apremilast申請表",
+  "updated": "",
+  "sha256": "bf60683ede4d56bbd1df1d46f52219d32100eaaa3e2fb7a8f2110657fc13ae84",
+  "bytes": 68855,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42739-d39f4bb5deef4830ac7ce0883ab57998-1.pdf",
+  "title": "全民健康保險克隆氏症使用生物製劑申請表",
+  "updated": "114.8.22",
+  "sha256": "e51041f8d7b6ca851fc2780fd74ea26c67a9ed56f5a7d2321e60bce8a51c9434",
+  "bytes": 106980,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42741-eaf0288770c1498ab0ac095559511824-1.pdf",
+  "title": "CDAI（Crohn's disease activity index）",
+  "updated": "",
+  "sha256": "e1799bb2d6e7be284f8616d76d4a5b68b475be51100e70b1f7c4555a45f2e8b3",
+  "bytes": 101505,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42744-d23022f716914ae5aeb42d110a74d5c7-1.pdf",
+  "title": "全民健康保險小兒克隆氏症使用adalimumab、infliximab、risankizumab申請表",
+  "updated": "113.08.28",
+  "sha256": "2b477cd54bc114ce196678a08811bea664dc953176d23f787a425cbacf25cc47",
+  "bytes": 141944,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42746-c41d1c0a1cf74016a5ceacf46b2cdb93-1.pdf",
+  "title": "PCDAI（Pediatric Crohn's disease activity index）",
+  "updated": "",
+  "sha256": "893b309dcf2d36b1838e2e7b79d9a8a289a052f35d1d5ca7f7fe013f5329e5dc",
+  "bytes": 300899,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-69945-b4b66026b64844a297d2fd0f36393559-1.pdf",
+  "title": "全民健康保險潰瘍性結腸炎使用生物製劑申請表",
+  "updated": "114.8.22",
+  "sha256": "6dfa22efb04d1e7f3db4c3d383389243995f99cc4c1b081bd07672b8b3bcf3fa",
+  "bytes": 110358,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之六": {
+  "url": "https://www.nhi.gov.tw/ch/dl-69949-c790ff11cade423096ab345c5469cd7e-1.pdf",
+  "title": "Mayo Score",
+  "updated": "",
+  "sha256": "9e7a0cfbcdccbf00daba8acf37e02e5f1896f8f16fad9fd879edcd99582c535b",
+  "bytes": 65775,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之七": {
+  "url": "https://www.nhi.gov.tw/ch/dl-69952-89b6df5630ba4405b6f519f2d8e7d697-1.pdf",
+  "title": "全民健康保險小兒潰瘍性結腸炎使用adalimumab、infliximab申請表",
+  "updated": "",
+  "sha256": "b56fac6736561290f0a1b265800576e76304a84b77b913729ef9ecbed87f97ac",
+  "bytes": 122308,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十六之八": {
+  "url": "https://www.nhi.gov.tw/ch/dl-69955-da9895287de245e197cad85512c4134d-1.pdf",
+  "title": "小兒潰瘍性結腸炎PUCAI Score",
+  "updated": "",
+  "sha256": "7f62e38d45813c3036e60cc6a25a33b30d82bf2725de492590769c199a6e125c",
+  "bytes": 58543,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十七": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42748-7ac1ae8cfbc841e18fb691a3b22d49e8-1.pdf",
+  "title": "全民健康保險眼科含cyclosporine製劑事前審查申請書",
+  "updated": "",
+  "sha256": "4439cd0721517c9049162c9b872ad3b2e3b927064941d473000c0e206de53a36",
+  "bytes": 183358,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十九之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42751-ccac8924a8234da986d3c2102d028de2-1.pdf",
+  "title": "全民健康保險新生血管抑制劑(Anti-angiogenic agents)(DME、CRVO、CNV、BRVO)",
+  "updated": "",
+  "sha256": "52ed4d2ed22d1a7e76492fcdb8750a70ebaeeafb47fdf46071e3470aa946f0c1",
+  "bytes": 82790,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表二十九之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42753-72a14ef57e5c47feb31391040b5c39cd-1.pdf",
+  "title": "全民健康保險新生血管抑制劑(Anti-angiogenic agents)(wAMD、PCV)",
+  "updated": "",
+  "sha256": "16b36e21e227a5def5babce21931895125c8eba03963c8d4a940abc5dfab80dc",
+  "bytes": 80910,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42756-b4fc134ef0384e4b9d44db197f0eaf8b-1.pdf",
+  "title": "全民健康保險使用陣發性夜間血紅素尿症治療藥品eculizumab、ravulizumab特殊專案審查申請表",
+  "updated": "114.09.24",
+  "sha256": "fd682c16d318160d4d277cfa84e4ecdc7d2bed08db8454bf383231a8520751a0",
+  "bytes": 103690,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42758-76d0825610084d259a6aae291fec66db-1.pdf",
+  "title": "陣發性夜間血紅素尿症患者特殊專案審查申請Soliris(eculizumab)、Ultomiris(ravulizumab)用藥檢附資料查檢表",
+  "updated": "115.2.23",
+  "sha256": "30383b880dc0b93a472d8dcccd6b99496eade16bd7a7f448aa908d04e1a0706a",
+  "bytes": 93561,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十之三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-96686-c93ce6d2606741ec98a03729910a1a08-1.pdf",
+  "title": "全民健康保險使用陣發性夜間血紅素尿症第二線治療藥品danicopan+eculizumab/ravulizumab 特殊專案審查申請表",
+  "updated": "115.8.21",
+  "sha256": "19ed3df1431b3f9a1bcfc59d3c38c2766a752d9356d2ae49debe805d7d208c8b",
+  "bytes": 102088,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十之四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-96689-180eb5652dbf4f20a50bf8d5d270b38d-1.pdf",
+  "title": "陣發性夜間血紅素尿症患者第二線治療藥品特殊專案審查申請Voydeya(Danicopan)+Soliris(eculizumab)/Ultomiris(ravulizumab)用藥檢附資料查檢表",
+  "updated": "115.8.21",
+  "sha256": "9a675c7a1037470b06fbab7b8207de0efa496a378a33d2defdc618bc398c7246",
+  "bytes": 135999,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42760-ef1306c2197a4151b24a50198daabd3e-1.pdf",
+  "title": "全民健康保險使用abatacept申請表(六歲至十七歲兒童)",
+  "updated": "",
+  "sha256": "a6eccb2a608c7c98e3c529799a5ceb86a711f9e8e2a8d233373b7238a3bc769e",
+  "bytes": 118226,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42763-8eb8a48752b84f899d54f9b30bb3c83f-1.pdf",
+  "title": "異位性皮膚炎面積暨嚴重度指數【Eczema Area and Severity Index (EASI)】",
+  "updated": "113.01.25",
+  "sha256": "fee4367ab1a5b539227b4cb7a31c4b006145c07d043ffab40a03449673b98a74",
+  "bytes": 102590,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十二之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42766-2a8f5c45b2194a82b08c994a81fe6dc5-1.pdf",
+  "title": "全民健康保險12歲以上病人異位性皮膚炎使用dupilumab生物製劑申請表",
+  "updated": "113.01.25",
+  "sha256": "4e6cc7c3fc24764007f3d67bd00b84e39be0d101c45a9257c271f273e21b51be",
+  "bytes": 127263,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十二之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-66487-65f46b5b58ac433bb5b15adbedb4d7ca-1.pdf",
+  "title": "全民健康保險6歲以上未滿12歲兒童異位性皮膚炎使用dupilumab生物製劑申請表",
+  "updated": "113.01.25",
+  "sha256": "7bb15ac317d6250de77668c9facc932c7c9252e12dcace25e8f89d7ae0bf8450",
+  "bytes": 146827,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十三": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42768-c4251d4b376f4a54bf2bd8a2b6c27e65-1.pdf",
+  "title": "全民健康保險遺傳性血管性水腫患者使用Icatibant/C1 esterase inhibitor治療紀錄表",
+  "updated": "111.06.01",
+  "sha256": "f3de6ae3f5db5255a3984a0f7e439efb7f1bbc615fb8f9d6cc7c9d76252d12cb",
+  "bytes": 146737,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十四": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42771-568e825c59804cce84e12e09fbf179b0-1.pdf",
+  "title": "肝炎治療醫療資源不足地區及山地離島地區一覽表",
+  "updated": "109.06.23",
+  "sha256": "63d4d190c91f9e76f051530dd4f5a28861f3f58896ba8b1b71f7b61e19d5182d",
+  "bytes": 70269,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十五": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42773-a54f26038ecc4b89a2247196d111112d-1.pdf",
+  "title": "成人中風後之手臂或下肢痙攣肉毒桿菌素再次申請治療效果評估表",
+  "updated": "112.10.24",
+  "sha256": "e8744083e57a8c0ae81438543105a927dffb9940a6acdb064d4542a9fa275090",
+  "bytes": 172400,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十六": {
+  "url": "https://www.nhi.gov.tw/ch/dl-42777-523a33f41c6e43dfa585603c5de2107f-1.pdf",
+  "title": "全民健康保險狼瘡腎炎使用belimumab生物製劑申請表",
+  "updated": "114.01.24",
+  "sha256": "7ccad00233ab3b826e77fbc32a50e34ff73e30162b4563cc4e110c729745e95e",
+  "bytes": 187064,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十六之一": {
+  "url": "https://www.nhi.gov.tw/ch/dl-81828-e10ab9c512ba4ba383ba5a9ba54a76ae-1.pdf",
+  "title": "全民健康保險全身性狼瘡5-17歲病人使用belimumab生物製劑申請表",
+  "updated": "114.01.24",
+  "sha256": "21777e0ce540dc78771f7b7e7912b16f6ae049b936c6002a2a2fe0496254b7e2",
+  "bytes": 130973,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十六之二": {
+  "url": "https://www.nhi.gov.tw/ch/dl-81835-94250f047a0e468f9aaa7c1e28815c0e-1.pdf",
+  "title": "SELENA SLEDAI積分表",
+  "updated": "114.01.24",
+  "sha256": "26a7e52d7c87fa511e942e9bab422a0ce3d1e2af0674a8531438f20ad2e410ea",
+  "bytes": 145471,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十七": {
+  "url": "https://www.nhi.gov.tw/ch/dl-50650-da9a64d25c9d4fb89754f439e3fd4012-1.pdf",
+  "title": "全民健康保險保險對象使用Onasemnogene abeparvovec基因療法製劑同意書",
+  "updated": "",
+  "sha256": "f28f9e991297723f960fd291eb33d9aa6147d9bb6c6accb3d42226258e20d312",
+  "bytes": 114668,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十八": {
+  "url": "https://www.nhi.gov.tw/ch/dl-93068-ee2052dbcd204813ae7a78d633e49b2b-1.pdf",
+  "title": "全民健康保險保險對象使用eladocagene exuparvovec基因療法製劑協議書",
+  "updated": "114.11.20",
+  "sha256": "f436692ecb8b015540590491ff36d5da3dbe232c5f373da4ec890679547025a5",
+  "bytes": 97081,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ },
+ "附表三十九": {
+  "url": "https://www.nhi.gov.tw/ch/dl-101629-6619a9b3fba14ce4b7ddecabd6ec1457-1.pdf",
+  "title": "全民健康保險阿拉吉歐症候群(ALGS)與進行性家族性肝內膽汁滯留症(PFIC)使用Livmarli (maralixibat chloride)申請表",
+  "updated": "115.8.21",
+  "sha256": "99b15832703bedad52d6de6c3851d1bbcc830ef9d59882cf992e9ee7aec8ed98",
+  "bytes": 117523,
+  "fetched_at": "2026-09-04",
+  "last_verified": "2026-09-04"
+ }
+}

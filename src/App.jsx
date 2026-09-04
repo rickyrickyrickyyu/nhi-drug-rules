@@ -9,6 +9,7 @@ import ProcedureDetail from './components/ProcedureDetail.jsx';
 import IngredientDetail from './components/IngredientDetail.jsx';
 import Footer from './components/Footer.jsx';
 import About from './components/About.jsx';
+import AppendixView from './components/AppendixView.jsx';
 import Changes from './components/Changes.jsx';
 import SectionView from './components/SectionView.jsx';
 
@@ -80,6 +81,10 @@ export default function App() {
         <p className="mt-6 text-rose-700 bg-rose-50 border border-rose-200 rounded-lg p-3 text-sm">
           資料載入失敗：{error}
         </p>
+      )}
+
+      {!loading && !error && route.view === 'appendix' && (
+        <AppendixView name={route.key} />
       )}
 
       {!loading && !error && route.view === 'about' && <About meta={meta} />}

@@ -22,7 +22,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import CURATION, PUBLIC, SNAP_DIFF, STAGING  # noqa: E402
+from config import BUILD, CURATION, PUBLIC, SNAP_DIFF, STAGING  # noqa: E402
 from lib.fingerprint import data_fingerprint  # noqa: E402
 from lib.section import code_tuple  # noqa: E402
 
@@ -84,6 +84,10 @@ def slim(ing: dict, products: dict, mentions: dict, dosing: dict, dose_tfda: dic
             for rt, r in ing["routes"].items()
         ],
         "dr": ing["derm_reasons"],
+        # 有官方仿單的品項數。搜尋結果與學名頁頂部用它決定要不要顯示仿單連結。
+        "ins": sum(1 for r in ing["routes"].values()
+                   for c in r["products"]
+                   if products.get(c, {}).get("has_insert")),
         "dt": 1 if dose_tfda.get(ing["inn"]) else 0,
         "ds": 1 if dosing.get(ing["inn"], {}).get("direct") or
                    dosing.get(ing["inn"], {}).get("section_sole") else 0,
@@ -194,9 +198,20 @@ def main() -> int:
                 "code", "name_en", "name_zh", "brand_stem_en", "brand_stem_zh",
                 "form", "route", "atc", "drug_class", "is_originator", "status",
                 "price", "price_next", "price_next_from", "vendor", "sections",
-                "licence_id", "licence_no", "licence_state", "indication",
+                "licence_id", "licence_no", "licence_state", "indication", "has_insert",
                 "name_zh_repaired", "zh_mojibake")} for c in codes if c in products],
         })
+
+    # 附表分片：一個附表一檔，點開才載（比照 products/）。
+    # 章節條文只存「引用了哪個附表」，內容不複製 —— 維持單一事實來源。
+    appx_src = BUILD / "appendix"
+    if appx_src.exists():
+        (out_dir / "appendix").mkdir(exist_ok=True)
+        n_appx = 0
+        for f in sorted(appx_src.glob("*.json")):
+            dump(f"appendix/{f.name}", json.loads(f.read_text(encoding="utf-8")))
+            n_appx += 1
+        print(f"   附表分片 {n_appx} 個")
 
     # diff 檔要能被前端 fetch —— 快照目錄不在 Vite 的 public/ 底下，得複製過去
     diff_src = SNAP_DIFF

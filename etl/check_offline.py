@@ -55,7 +55,20 @@ def main() -> int:
                   " → 請重跑 make offline")
             return 1
 
-    print(f"✅ 離線包與線上版同一份資料與前端（指紋 {live}｜快照 {meta['built']}）")
+    # ★ 指紋只證明「資料內容一致」，證明不了「離線包有收進去」。
+    #   collect() 若漏掉某個目錄，指紋照樣相符但離線版點下去是空白。
+    em = re.search(r"embedded_files:\s*(\d+)", body)
+    if em:
+        expect = sum(1 for p in PUBLIC.rglob("*.json")
+                     if p.relative_to(PUBLIC).as_posix() not in {"all.json", "procs_all.json"})
+        if int(em.group(1)) != expect:
+            print(f"❌ 離線包收錄 {em.group(1)} 個資料檔，"
+                  f"但 public/data 應收 {expect} 個 → collect() 漏了目錄")
+            return 1
+
+    print(f"✅ 離線包與線上版同一份資料與前端"
+          f"（指紋 {live}｜快照 {meta['built']}"
+          + (f"｜{em.group(1)} 個資料檔）" if em else "）"))
     return 0
 
 

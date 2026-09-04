@@ -51,7 +51,15 @@ FLAG_KEYWORDS = {
 _RE_DATE_BLOCK = re.compile(r"[（(]\s*\d{2,3}/\d{1,2}/\d{1,2}[^）)]*[）)]")
 
 _RE_SPECIALIST = re.compile(r"限([一-鿿]{2,6}?)專科醫師")
-_RE_ATTACHMENT = re.compile(r"附表[一二三四五六七八九十百\d]+")
+# ★ 附表名的唯一定義。這裡曾經有兩份：
+#   本處的 _RE_ATTACHMENT 不吃「之X」，而下方 build_appendix_registry 用的
+#   版本吃 —— 條文寫「◎附表二十二之一」，旗標抽成「附表二十二」，registry 卻以
+#   「附表二十二之一」建索引，於是每一筆參照都對不上，附表徽章變成死路。
+#   （這是本專案第四次出現「同一規則兩份實作走鐘」，前三次是 JS/Python 搜尋權重、
+#     sidecar 欄位清單、pipeline 步驟清單。）
+#   只能有一份，兩邊都從這裡取用。
+_RE_APPX_NAME = re.compile(
+    r"附表[一二三四五六七八九十百零〇\d]+(?:之[一二三四五六七八九十\d]+)?")
 # 附表區塊的起始行。實測三種寫法都要吃：
 #   「附表十 患者服用Isotretinoin口服製劑同意書」          純標題
 #   「◎附表三十二：異位性皮膚炎面積暨嚴重度指數【EASI】(108/12/1)」 有 ◎ 前綴、有括號
@@ -108,7 +116,7 @@ def extract_flags(text: str) -> tuple[dict, dict]:
                     {"kw": f"限{s_}專科醫師", "pos": m.start(),
                      "quote": text[lo:hi].replace("\n", " ").strip()})
 
-    flags["attachments"] = sorted(set(_RE_ATTACHMENT.findall(text)))
+    flags["attachments"] = sorted(set(_RE_APPX_NAME.findall(text)))
     return flags, ev
 
 
@@ -295,9 +303,6 @@ def parse_one(code: str, text: str, tables: list[dict] | None = None,
     }
 
 
-_RE_APPX_NAME = re.compile(r"附表[一二三四五六七八九十百零〇\d]+(?:之[一二三四五六七八九十\d]+)?")
-
-
 def load_visual_lines(pdf_filename: str) -> list[dict]:
     p = BUILD / "tables" / f"{Path(pdf_filename).stem}.json"
     if not p.exists():
@@ -316,6 +321,36 @@ def load_tables(pdf_filename: str) -> list[dict]:
         return []
 
 
+_CN_DIGIT = {c: i for i, c in enumerate("零一二三四五六七八九", 0)}
+
+
+def appx_sort_key(name: str) -> tuple:
+    """附表名的自然排序鍵。
+
+    直接用字串排序會得到「之一、之三、之二、之五、之六、之四」——
+    中文數字的碼位順序不是數值順序。醫師掃一眼就覺得亂。
+    """
+    def cn_int(t: str) -> int:
+        if not t:
+            return 0
+        if t.isdigit():
+            return int(t)
+        n = tot = 0
+        for ch in t:
+            if ch == "十":
+                n = (n or 1) * 10
+                tot, n = tot + n, 0
+            elif ch in _CN_DIGIT:
+                n = _CN_DIGIT[ch]
+        return tot + n
+
+    m = re.match(r"附表([一二三四五六七八九十百零〇\d]+)"
+                 r"(?:之([一二三四五六七八九十\d]+)|-([A-Z]))?", name)
+    if not m:
+        return (999, 999, "", name)
+    return (cn_int(m.group(1)), cn_int(m.group(2) or ""), m.group(3) or "", name)
+
+
 def build_appendix_registry(rules: dict) -> dict[str, str]:
     """{附表名: 內容所在的章節碼}。
 
@@ -323,19 +358,36 @@ def build_appendix_registry(rules: dict) -> dict[str, str]:
     但表格本體收在 13.17.2.。醫師在 13.17.1. 頁面完全看不到評分表 —— 而 EASI≧16
     正是申請門檻。這裡建索引讓 UI 能跨節指過去，**不複製內容**（維持單一事實來源）。
     """
-    reg: dict[str, str] = {}
+    reg: dict[str, dict] = {}
+
+    # ① 章節內本體優先。理由：13.17.2. 的附表三十二現在顯示正常，而章節 PDF 是
+    #    snapshots/text/ 的 diff 基準；不動它可避免既有行為被擾動。
     for code, r in rules.items():
         a = r.get("appendix_from")
         if a is None:
             continue
         body = r["clauses"][a:]
-        # 「有本體」的判準：附表區塊要有實質內容或表格，純引用標題不算
-        substantial = sum(len(c["text"]) for c in body) > 200 or bool(r.get("tables"))
+        # ★ 「◎附表二十二之一：…」開頭的是**引用行**，不是本體。
+        #   本體的標題不帶◎（13.17.2. 的 clause 29 是「附表三十二：異位性…」）。
+        #   原本只看總字數 >200，結果 8.2.4.4. 的 219 字純引用行被誤判成本體，
+        #   於是那四個附表被登記成「收錄在自己這一節」，畫面上既看不到內容、
+        #   也不會跳去官方獨立檔 —— 徽章直接消失。
+        real = [c for c in body if not c["text"].lstrip().startswith(("◎", "●", "※", "★"))]
+        substantial = sum(len(c["text"]) for c in real) > 200 or bool(r.get("tables"))
         if not substantial:
             continue
-        for c in body:
+        for c in real:
             for name in _RE_APPX_NAME.findall(c["text"][:60]):
-                reg.setdefault(name, code)
+                reg.setdefault(name, {"kind": "section", "host": code, "url": None})
+
+    # ② 官方獨立附表檔。8.2.4.x 生物製劑家族的附表本體根本不在章節 PDF 裡，
+    #    健保署把它們當獨立檔案發布 —— 沒有這一段，那些附表徽章就是死路。
+    appx_dir = BUILD / "appendix"
+    if appx_dir.exists():
+        for f in sorted(appx_dir.glob("*.json")):
+            d = json.loads(f.read_text(encoding="utf-8"))
+            reg.setdefault(d["name"], {"kind": "file", "host": None,
+                                       "url": d.get("url"), "title": d.get("title", "")})
     return reg
 
 
@@ -376,14 +428,34 @@ def main() -> int:
         r["first_seen"] = m.get("first_seen")
         rules[code] = r
 
-    # 跨章節附表索引：條文引用了哪些附表、本體在哪一節
+    # 附表索引：條文引用了哪些附表、本體在哪一節或哪個官方獨立檔
     registry = build_appendix_registry(rules)
     for code, r in rules.items():
         refs = []
         for name in sorted(set(r.get("flags", {}).get("attachments", []))):
-            host = registry.get(name)
-            refs.append({"name": name, "host": host, "missing": host is None,
-                         "self": host == code})
+            hit = registry.get(name)
+            # ★ 條文常寫基底名（「詳見附表二」），官方卻細分成 附表二-A~-D。
+            #   找不到精確同名時，收集所有「以它為前綴再接分隔號」的官方附表，
+            #   全部列給醫師 —— 那正是條文所指的那一組。
+            #   方向不可反：引用「附表十六之二」而官方只有「附表十六」不算命中，
+            #   那是不同的文件。
+            variants = []
+            if hit is None:
+                variants = sorted(
+                    (n for n in registry
+                     if n.startswith(name) and len(n) > len(name)
+                     and n[len(name)] in "-之"),
+                    key=appx_sort_key,
+                )
+            refs.append({
+                "name": name,
+                "kind": (hit or {}).get("kind"),
+                "host": (hit or {}).get("host"),
+                "url": (hit or {}).get("url"),
+                "variants": variants,
+                "missing": hit is None and not variants,
+                "self": bool(hit) and hit.get("host") == code,
+            })
         r["appx_refs"] = refs
 
     (STAGING / "rules.json").write_text(json.dumps(rules, ensure_ascii=False), encoding="utf-8")
