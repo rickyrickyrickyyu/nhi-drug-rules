@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useCoreData } from './hooks/useData.js';
+import { useFreshness } from './hooks/useFreshness.js';
 import { useHashRoute, go } from './lib/routes.js';
 import { searchIngredients, fuzzyFallback } from './lib/search.js';
 import SearchBar from './components/SearchBar.jsx';
@@ -8,6 +9,7 @@ import ProcedureRow from './components/ProcedureRow.jsx';
 import ProcedureDetail from './components/ProcedureDetail.jsx';
 import IngredientDetail from './components/IngredientDetail.jsx';
 import Footer from './components/Footer.jsx';
+import StaleBanner from './components/StaleBanner.jsx';
 import About from './components/About.jsx';
 import AppendixView from './components/AppendixView.jsx';
 import Changes from './components/Changes.jsx';
@@ -15,6 +17,8 @@ import SectionView from './components/SectionView.jsx';
 
 export default function App() {
   const { loading, error, meta, derm, procs, all, loadAll } = useCoreData();
+  // 開站自動比對伺服器上的資料指紋。對不上會自動修一次，修不掉才掛橫幅。
+  const fresh = useFreshness(meta);
   const route = useHashRoute();
   const [q, setQ] = useState('');
   const [scope, setScope] = useState('derm');
@@ -75,6 +79,10 @@ export default function App() {
           {meta && `｜${meta.n_ingredients_derm} 個常用學名 / ${meta.n_products.toLocaleString()} 個健保品項`}
         </p>
       </header>
+
+      {fresh.outdated && (
+        <StaleBanner serverBuilt={fresh.serverBuilt} onApply={fresh.apply} />
+      )}
 
       {loading && <p className="mt-6 text-slate-500">載入中…</p>}
       {error && (

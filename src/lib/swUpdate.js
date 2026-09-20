@@ -30,13 +30,18 @@ export function watchSwUpdate() {
   // ★ 自己註冊而不是用 vite-plugin-pwa 產生的 registerSW.js：那支沒有 .catch()，
   //   在不支援 SW 的環境（本機預覽伺服器、file://）會丟未捕捉的 promise
   //   rejection。SW 只是加速用的，註冊失敗不該讓畫面看起來像壞了。
-  window.addEventListener('load', () => {
+  const register = () => {
     const base = import.meta.env.BASE_URL;
     sw.register(`${base}sw.js`, { scope: base }).catch(() => {
       // 本機預覽或 file:// 註冊不了 —— 這是預期內的，靜默略過。
       // 少了 SW 只代表沒有離線快取，頁面照常運作（而且永遠是最新的）。
     });
-  });
+  };
+  // ★ 不能只掛 load：bundle 是 type="module"，從 HTTP 快取秒回時整支
+  //   有可能在 load 之後才執行，那個 listener 就永遠不會被呼叫 ——
+  //   結果是 SW 從未更新，使用者卡在舊版且毫無線索。
+  if (document.readyState === 'complete') register();
+  else window.addEventListener('load', register, { once: true });
 
   sw.addEventListener('controllerchange', () => {
     if (!hadController) return;             // 首次安裝，不是換版

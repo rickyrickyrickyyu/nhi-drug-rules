@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { isOffline } from '../hooks/useData.js';
+import { fetchServerMeta, hardReload, stamp } from '../lib/freshness.js';
 
 const BASE = `${import.meta.env.BASE_URL}data`;
 const STALE_DAYS = 45;   // 月更 + GitHub cron 可能延遲，45 天才算過期
@@ -12,26 +13,6 @@ const STALE_DAYS = 45;   // 月更 + GitHub cron 可能延遲，45 天才算過�
  * 「檢查更新」按鈕會繞過 Service Worker 直接向伺服器要 meta.json，
  * 比對後告知使用者本機快取是不是已經落後。
  */
-/**
- * 清掉 Service Worker 與其快取後重新載入。
- *
- * 換版時 SW 會自己接管（見 lib/swUpdate.js），這顆按鈕是給
- * 「畫面看起來還是舊的」時的自救出口 —— 醫師不該被要求去開 DevTools。
- */
-async function hardReload() {
-  try {
-    const regs = await navigator.serviceWorker?.getRegistrations?.() ?? [];
-    await Promise.all(regs.map((r) => r.unregister()));
-    if (window.caches) {
-      const keys = await caches.keys();
-      await Promise.all(keys.map((k) => caches.delete(k)));
-    }
-  } catch {
-    // 清不掉也要重載：加上時間戳可以繞過 HTTP 快取
-  }
-  window.location.replace(`${window.location.pathname}?fresh=${Date.now()}${window.location.hash}`);
-}
-
 export default function DataFreshness({ meta, repoUrl }) {
   const [state, setState] = useState({ checking: false, msg: null, outdated: false });
 
@@ -45,26 +26,21 @@ export default function DataFreshness({ meta, repoUrl }) {
 
   const check = async () => {
     setState({ checking: true, msg: null, outdated: false });
-    try {
-      // cache: 'reload' 強制繞過 SW 與瀏覽器快取，否則檢查到的還是舊的
-      const r = await fetch(`${BASE}/meta.json?t=${Date.now()}`, { cache: 'reload' });
-      const fresh = await r.json();
-      // ★ 比指紋不比日期：built 只到「日」，同一天內重跑 ETL（改 curation、
-      //   修 parser）資料已經不同但日期一樣，只比日期會回報「已是最新」，
-      //   醫師以為自己看到的是新版，其實是舊的。
-      const a = fresh.data_fingerprint ?? fresh.built;
-      const b = meta?.data_fingerprint ?? meta?.built;
-      if (a !== b) {
-        setState({
-          checking: false,
-          outdated: true,
-          msg: `伺服器上有更新的資料（快照 ${fresh.built}）。目前畫面顯示的是舊版。`,
-        });
-      } else {
-        setState({ checking: false, outdated: false, msg: `已是最新（快照 ${fresh.built}）。` });
-      }
-    } catch {
+    // 比對與自救邏輯都在 lib/freshness.js，與開站時的自動檢查共用同一份
+    // —— 兩處各寫一份指紋比對，總有一天會走鐘成「按鈕說最新、橫幅說過期」。
+    const fresh = await fetchServerMeta(BASE);
+    if (!fresh) {
       setState({ checking: false, outdated: false, msg: '無法連線，目前顯示的是離線快取內容。' });
+      return;
+    }
+    if (stamp(fresh) !== stamp(meta)) {
+      setState({
+        checking: false,
+        outdated: true,
+        msg: `伺服器上有更新的資料（快照 ${fresh.built}）。目前畫面顯示的是舊版。`,
+      });
+    } else {
+      setState({ checking: false, outdated: false, msg: `已是最新（快照 ${fresh.built}）。` });
     }
   };
 
