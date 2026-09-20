@@ -114,7 +114,7 @@ bin/更新健保資料.command --full   完整：重抓全部 534 份 PDF 比對
 |---|---|---|
 | **本機網頁** | `dist/`（`nhi` 開的那個） | pipeline 第 13 步 `pnpm build` |
 | **線上網頁** | GitHub Pages | `.command` 推 commit → Actions 建置部署 |
-| **離線包** | `offline/*.html` + `.zip` | pipeline 第 14 步 |
+| **離線包** | `offline/*.html` + `.zip` | pipeline 最後一步 |
 
 三者都從同一份 `public/data/` 衍生，用 **`data_fingerprint`**（`public/data/**.json`
 內容雜湊，排除 `meta.json` 自身）綁在一起：
@@ -129,32 +129,35 @@ bin/更新健保資料.command --full   完整：重抓全部 534 份 PDF 比對
 
 #### 步驟清單（`bin/pipeline.sh`）
 
-`fetch` 模式 19 步、`rebuild` 模式 14 步（跳過前 5 個下載步驟）。
+`fetch` 模式 22 步、`rebuild` 模式 15 步（跳過 7 個下載步驟）。
 
 ```
 下載（只有 fetch 模式跑）
   fetch_nhi_drugs.py       健保藥品主檔 CSV（96 MB）
   fetch_tfda.py            食藥署許可證 JSON（79 MB）        [soft：失敗只警告，沿用舊資料]
+  fetch_tfda_inserts.py    食藥署仿單連結對照                 [soft]
   fetch_procedures.py      醫療服務給付項目 CSV（處置醫令）
   fetch_proc_chapters.py   處置的支付標準章節定位（官方 API，124 頁）  [soft]
-  fetch_rule_pdfs.py       章節 PDF（檔名生效日有變才下載；--force 全抓；
-                           pending_updates.yaml 內的章節每次強制重抓比對雜湊）
+  fetch_rule_pdfs.py       章節 PDF（先向官方查詢 API 核對現行檔名，再抓檔名生效日
+                           有變的；--force 全抓；--no-live 跳過核對）
+  fetch_appendix_pdfs.py   健保署獨立附表 PDF                 [soft]
 
 建置（兩種模式都跑）
    1  normalize_drugs.py       學名／劑型／途徑／商品名正規化
    2  normalize_procedures.py  處置醫令 + 皮膚科標籤 + 同義詞
    3  build_tables.py          從 PDF 還原表格 + 視覺行 sidecar
-   4  parse_rules.py           條文切塊、旗標、附表定位、表格嵌回、視覺行還原
-   5  tag_derm.py              皮膚科標籤
-   6  dosing.py                健保條文所載劑量（direct / section_sole / prerequisite）
-   7  dose_tfda.py             仿單登載用法用量（按許可證分組）
-   8  mentions.py              藥名提及索引
-   9  diff_rules.py            條文異動 diff（偵測靜默改檔）
-  10  build_site_data.py       前端靜態分片
-  11  validate.py              ✋ 30 道閘門，fail-closed（沒過 → exit 2）
-  12  promote.py               原子搬移 .staging → public/data
-  13  pnpm build               重建 dist/（本機網頁）
-  14  build_offline.py         離線包 + check_offline.py 驗指紋（失敗 → exit 3）
+   4  build_appendix.py        解析獨立附表 PDF
+   5  parse_rules.py           條文切塊、旗標、附表定位、表格嵌回、視覺行還原
+   6  tag_derm.py              皮膚科標籤
+   7  dosing.py                健保條文所載劑量（direct / section_sole / prerequisite）
+   8  dose_tfda.py             仿單登載用法用量（按許可證分組）
+   9  mentions.py              藥名提及索引
+  10  diff_rules.py            條文異動 diff（偵測靜默改檔）
+  11  build_site_data.py       前端靜態分片
+  12  validate.py              ✋ 38 道閘門，fail-closed（沒過 → exit 2）
+  13  promote.py               原子搬移 .staging → public/data
+  14  pnpm build               重建 dist/（本機網頁）
+  15  build_offline.py         離線包 + check_offline.py 驗指紋（失敗 → exit 3）
 ```
 
 失敗語意：`exit 2` = 閘門擋下（三個版本全維持前一版，不會出現半套資料）；
@@ -202,7 +205,7 @@ offline/        離線單檔 HTML + zip          ← 衍生，只有 MANIFEST.tx
 資料流向是單向的，任何一步都不回寫上游：
 
 ```
-data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ dist/      本機
+data/raw ─→ data/build/.staging ─(38 道閘門)→ public/data ─┬→ dist/      本機
                                                             ├→ GitHub    線上
                                                             └→ offline/  離線
 ```
@@ -231,21 +234,49 @@ data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ d
 - **Service Worker 不快取資料**：給付規定每月改版，讓醫師看到上個月的條文比查不到更危險。
   `data/*.json` 走 NetworkFirst，每頁常駐顯示資料快照日期。
 
+### 改版偵測：不能只信開放資料的章節連結
+
+本站的改版偵測靠章節 PDF 的檔名日期。問題是那個檔名來自**開放資料藥品主檔的
+「給付規定章節連結」欄位**，而那份 CSV 是月更快照 —— 健保署換章節 PDF 時會
+**同時把舊檔從伺服器下架**，CSV 卻要等下次開放資料更新才跟上。空窗期內：
+
+- 照 CSV 的連結抓 → `HTTP 400 Bad Request`（檔案真的不存在，重試幾次都一樣）
+- 而且**檔名沒變** → 增量模式判成「未異動」直接跳過，官方改了條文本站毫無反應
+
+實測 2026-09-20：`2.6.1.`（降血脂擴大給付）、`2.6.2.`、`2.6.3.`、`8.2.19.`、
+`9.4.`、`9.20.`、`9.31.`、`9.43.` 共 8 節都已換版，CSV 全部還指著舊檔名，
+其中 2.6.1. 的舊檔（2021-03-29）已在官方站台上 404 化。
+
+解法是**每次更新都向官方查詢 API 核對現行檔名**（`etl/lib/nhi_live.py`）：
+官方查詢頁自己用的 `SQL0001` 回傳 `druG_UFILE_NAME_LIST`，那是資料庫當下的值，
+永遠與 `getPDF` 抓得到的檔一致。該 API 以「藥」為單位回章節清單，沒有「列出所有
+章節」的端點，所以用**貪婪集合覆蓋**挑出最少的代表藥（534 節 → 約 484 次查詢，
+併發 4、約 1.5 分鐘）。
+
+三道保險，缺一不可：
+
+- **生效日只進不退**：主檔連結過期時目標會是更舊的檔名，而那份舊快照往往還在
+  `snapshots/`（刻意保留的 provenance），於是會「成功」退版回去，還記一筆假改版。
+  比現行版舊的目標一律跳過。
+- **絕不先刪後抓**：下載一律先落暫存檔、成功才覆蓋快照。舊寫法為了比對雜湊
+  先 `unlink()` 再下載，2026-09-20 官方剛好把舊檔下架，快照就憑空消失了
+  （`snapshots/` 是本案唯一的 provenance，官方換檔後舊版再也拿不回來）。
+  `gate 40` 逐檔比對 manifest 的 sha256，少一個檔或內容被換掉都當場擋下。
+- **抓不到 ≠ 中止管線**：本機還留著上一版快照時記成 `stale` 沿用原文（出版內容
+  與上一版完全相同，不會出現半套資料），只有「完全沒有原文可用」才是硬失敗。
+  舊寫法一節 400 就讓整條管線 exit 1，連藥品與處置都一起卡在上個月。
+  `gate 41` 守住這條界線，`stale` 會出現在「本次異動」裡。
+
 ### 待更新章節：官方公告了但條文 PDF 還沒改
 
-健保署**發布政策公告**到**實際更新條文 PDF**之間有落差，而本站的改版偵測依賴
-藥品主檔裡的條文 PDF 檔名日期 —— 落差期間程式偵測不到（開放資料平台沒有公告資料集）。
-`curation/pending_updates.yaml` 就是這段空窗的人工記錄。
+健保署**發布政策公告**到**實際更新條文 PDF**之間還是有落差，程式偵測不到
+（開放資料平台沒有公告資料集）。`curation/pending_updates.yaml` 是這段空窗的人工記錄。
 
-實例（2026-09）：降血脂 `2.6.1.` 依 ASCVD 風險分級擴大給付，公告 115/9/1 生效，
-但該節條文檔仍是 `2.6.1._20210329.pdf`、內文最新修訂日期停在 108/2/1。
-
-兩個機制配合：
-
-- **ETL 側**：`fetch_rule_pdfs.py` 對清單內的章節**每次強制重抓並比對 sha256**。
-  增量模式只在「檔名的生效日變了」才下載，抓不到「同檔名換內容」——
-  沒有這一段，那份清單就只是靜態備忘，沒有東西會告訴你它何時真的落地。
-  官方一改檔就會出現在 `nhi changes` 的「本次異動」裡。
+- **ETL 側**：`fetch_rule_pdfs.py` 對清單內的章節**每次強制重抓並比對 sha256**，
+  抓「同檔名換內容」的靜默改檔。
+- **章節真的落地後務必移到 `resolved`**：否則 UI 會對一份**已經是現行版本**的
+  條文繼續掛「健保署尚未更新」的警告，比完全沒有提示更誤導醫師。
+  `gate 42` 會擋下這種過期的清單。
 - **UI 側**：`RuleSectionPanel.jsx` 依生效日**分開措辭**，不可合併成一句：
   - **已生效**（生效日已過）→「新制已於 X 生效，但健保署尚未更新官方條文檔」，
     並明講「以下條文已不等於現行規定，請勿據以判斷給付」。
@@ -255,7 +286,7 @@ data/raw ─→ data/build/.staging ─(30 道閘門)→ public/data ─┬→ d
   拿來判斷給付。
 
 維護方式：每次複查後更新該筆的 `checked` / `verified` 欄位（寫清楚是怎麼確認的），
-官方真的改版後就把該筆從清單移除。
+官方真的改版後就把該筆搬到 `resolved`（留著，那是為什麼要盯這一節的紀錄）。
 
 ## 踩過的坑（不要再踩一次）
 

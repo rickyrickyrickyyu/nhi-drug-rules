@@ -46,6 +46,13 @@ steps=()
 [[ "$MODE" == "fetch" ]] && steps+=("${FETCH_STEPS[@]}")
 steps+=("${BUILD_STEPS[@]}")
 
+# ★ 哪一步掛掉要留成檔案。以前一鍵更新只會跳一個「更新失敗」的對話框，
+#   真正的原因（某支腳本的錯誤訊息）捲在終端機上半部，等於沒說。
+ERRFILE=data/build/.staging/pipeline_error.txt
+mkdir -p data/build/.staging
+rm -f "$ERRFILE"
+fail() { printf '%s\n' "$1" > "$ERRFILE"; echo "❌ $1"; }
+
 total=$(( ${#steps[@]} + 4 ))   # +驗證 +promote +本機網頁 +離線包
 i=0
 for entry in "${steps[@]}"; do
@@ -57,21 +64,21 @@ for entry in "${steps[@]}"; do
     # soft：失敗只警告不中止（外部服務可能暫時掛掉，沿用既有資料仍可出版）
     python3 "$script" || echo "   ⚠️  $script 失敗，沿用既有資料"
   else
-    python3 "$script" ${opt:+$opt} || { echo "❌ $script 失敗"; exit 1; }
+    python3 "$script" ${opt:+$opt} || { fail "$script 失敗（$desc）"; exit 1; }
   fi
 done
 
 i=$((i+1)); echo "▶ $i/$total 驗證閘門（fail-closed）"
-python3 etl/validate.py || exit 2          # exit 2 = 閘門擋下，呼叫端要顯示 staging 位置
+python3 etl/validate.py || { fail "驗證閘門未通過"; exit 2; }   # exit 2 = 閘門擋下，呼叫端要顯示 staging 位置
 
 i=$((i+1)); echo "▶ $i/$total promote 到 public/data"
-python3 etl/promote.py || exit 1
+python3 etl/promote.py || { fail "promote 失敗"; exit 1; }
 
 i=$((i+1)); echo "▶ $i/$total 重建本機網頁（dist/）"
 # ★ 一定要跑：`nhi` 開的本機網頁服務的是 dist/，而 Vite 是在 build 時才把
 #   public/data 複製進 dist/。少了這一步，一鍵更新後本機網頁的資料與程式
 #   都還是上一版 —— 線上與離線都更新了，只有本機沒有，最難察覺。
-pnpm build >/dev/null 2>&1 || { echo "❌ 本機網頁建置失敗"; exit 1; }
+pnpm build >/dev/null 2>&1 || { fail "本機網頁建置失敗（pnpm build）"; exit 1; }
 echo "   🖥  dist/ 已更新（nhi 開的本機網頁）"
 
 i=$((i+1)); echo "▶ $i/$total 產生離線包（皮膚科版＋全庫版）"

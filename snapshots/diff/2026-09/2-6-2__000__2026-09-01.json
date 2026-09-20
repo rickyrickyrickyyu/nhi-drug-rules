@@ -1,0 +1,57 @@
+{
+ "section_code": "2.6.2.",
+ "kind": "revised",
+ "detected_at": "2026-09-20",
+ "from": "2.6.2._20050601_000.pdf",
+ "to": "2.6.2._20260901.pdf",
+ "effective_date": "2026-09-01",
+ "hunks": [
+  {
+   "op": "replace",
+   "removed": [
+    "1",
+    "2.6.2.Ezetimibe (如Ezetrol Tablets)：",
+    "(94/6/1)",
+    "原發性高膽固醇血症、同型接合子家族性高膽固醇血症、同型接合子性",
+    "麥脂醇血症(植物脂醇血症)患者並符合下列條件之一者：",
+    "1.符合全民健康保險降血脂藥物給付規定表且對Statins 類藥品發生無",
+    "法耐受藥物不良反應（如Severe myalgia、Myositis）者。",
+    "2.符合全民健康保險降血脂藥物給付規定表經使用Statins 類藥品單一",
+    "治療3個月未達治療目標者，得合併使用本案藥品與Statins 類藥品。"
+   ],
+   "added": [
+    "2.6.2.Ezetimibe：",
+    "(94/6/1、115/9/1)",
+    "限用於原發性高膽固醇血症、同型接合子家族性高膽固醇血症、同型接合子性麥脂醇血症",
+    "(植物脂醇血症)患者，並符合下列條件之一者：",
+    "1.對statins 類藥品發生無法耐受藥物不良反應（如Severe myalgia、Myositis）者。",
+    "(94/6/1、115/9/1)",
+    "2.經使用statins 類藥品單一治療6-8週未達治療目標者，得合併使用本類藥品與",
+    "statins 類藥品。",
+    "但下表所列項目，需經使用statins 類藥品單一治療3個月未達治療",
+    "目標者，始得與statins 類藥品併用。",
+    "(115/9/1)",
+    "健保代碼",
+    "藥品名稱",
+    "AC60610100 Ezetity tablets 10mg",
+    "BC27311100",
+    "Ezzicad (ezetimibe) 10mg",
+    "Tablets",
+    "BC28252100",
+    "Ezta 10 (ezetimibe Tablets",
+    "10mg)",
+    "BC26552100",
+    "Ezetimibe Sandoz 10mg",
+    "tablets"
+   ],
+   "ctx_before": [],
+   "ctx_after": []
+  }
+ ],
+ "stats": {
+  "sent_added": 23,
+  "sent_removed": 9,
+  "sent_equal": 0,
+  "change_ratio": 0.6957
+ }
+}

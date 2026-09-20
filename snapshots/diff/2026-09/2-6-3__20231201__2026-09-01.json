@@ -1,0 +1,65 @@
+{
+ "section_code": "2.6.3.",
+ "kind": "revised",
+ "detected_at": "2026-09-20",
+ "from": "2.6.3._20231201.pdf",
+ "to": "2.6.3._20260901.pdf",
+ "effective_date": "2026-09-01",
+ "hunks": [
+  {
+   "op": "replace",
+   "removed": [
+    "2.6.3. 含ezetimibe 及statin 類之複方製劑（如Vytorin、",
+    "Atozet、Cretrol、Tonvasca）：",
+    "(95/12/1、106/8/1、",
+    "111/11/1、112/12/1)：",
+    "1. 限用於原發性高膽固醇血症、同型接合子家族性高膽固醇血症",
+    "(HOFH)病患並符合全民健康保險降血脂藥物給付規定表，經使",
+    "用statin 類藥品單一治療3個月未達治療目標者(106/8/1)。",
+    "2. 本品不得與gemfibrozil 併用。"
+   ],
+   "added": [
+    "2.6.3.含ezetimibe 及statin 類之複方製劑：",
+    "(95/12/1、106/8/1、111/11/1、",
+    "112/12/1、115/9/1)：",
+    "1.限用於原發性高膽固醇血症、同型接合子家族性高膽固醇血症(HOFH) 病患。",
+    "(106/8/1、115/9/1)",
+    "2.經使用statin 類藥品單一治療6-8週未達治療目標者，得使用本類藥品。",
+    "但下表所列項",
+    "目，需經使用statin 類藥品單一治療3個月未達治療目標者，始得使用。",
+    "(115/9/1)",
+    "健保代碼",
+    "藥品名稱",
+    "AC59251100",
+    "Agitin tablets 10/20mg",
+    "AC60402100 Sacure tablets 10/20mg",
+    "BC28502100",
+    "Ezta-SM 10+20 (ezetimibe",
+    "and simvastatin tablets",
+    "10mg/20mg)",
+    "AC62052100 Zoliton tablets 10/20mg",
+    "AC62053100 Zoliton tablets 10/10mg",
+    "AC62140100 Zovastin tablets 10/10mg",
+    "AC62139100 Zovastin tablets 10/20mg",
+    "BC28181100",
+    "Cretrol Tab. 10/10 mg",
+    "BC28182100",
+    "Cretrol Tab. 10/20 mg",
+    "BC28884100",
+    "Livazebe combination tablets",
+    "HD (for 4mg)",
+    "3.本品不得與gemfibrozil 併用。"
+   ],
+   "ctx_before": [],
+   "ctx_after": [
+    "(106/8/1)"
+   ]
+  }
+ ],
+ "stats": {
+  "sent_added": 30,
+  "sent_removed": 8,
+  "sent_equal": 1,
+  "change_ratio": 0.6129
+ }
+}

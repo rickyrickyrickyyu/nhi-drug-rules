@@ -29,9 +29,15 @@ echo
 
 # 非互動執行（cron／CI／管線）時不要卡在等按鍵
 pause() { [[ -t 0 ]] && read -k 1 -s "?按任意鍵關閉..." || true; }
+# pipeline.sh 會把掛掉的步驟寫進這個檔；沒有就沿用呼叫端給的概述。
+# 只講「更新失敗」等於沒講 —— 使用者要知道是哪一步、為什麼。
+ERRFILE="data/build/.staging/pipeline_error.txt"
+reason() { [[ -s "$ERRFILE" ]] && cat "$ERRFILE" || echo "$1"; }
 die() {
-  echo "❌ $1"
-  osascript -e "display alert \"資料更新已中止\" message \"$1／本機與網頁資料維持原狀。\" as critical" 2>/dev/null
+  local why; why="$(reason "$1")"
+  echo "❌ $why"
+  echo "   完整錯誤訊息請往上捲；也可執行 bash bin/pipeline.sh fetch 重跑看細節。"
+  osascript -e "display alert \"資料更新已中止\" message \"$why／本機與網頁資料維持原狀。\" as critical" 2>/dev/null
   pause; exit 1
 }
 
@@ -44,7 +50,8 @@ if [[ $rc -eq 2 ]]; then
   echo
   echo "❌ 驗證閘門擋下，未更新正式資料（staging 保留在 data/build/.staging）"
   echo "   線上與離線版都維持前一版，不會出現半套資料。"
-  exit 1
+  osascript -e 'display alert "資料更新已中止" message "驗證閘門未通過，本機與網頁資料維持原狀。" as critical' 2>/dev/null
+  pause; exit 1
 elif [[ $rc -eq 3 ]]; then
   echo "⚠️  資料已更新，但離線包產生失敗 —— 執行 nhi offline 可單獨重產"
 elif [[ $rc -ne 0 ]]; then
@@ -59,6 +66,9 @@ c = json.loads(pathlib.Path('public/data/changelog.json').read_text(encoding='ut
 print(f"  章節改版 {c['n_revised']}｜靜默改檔 {c['n_silent_edit']}｜新章節 {c['new_sections_count']}")
 for x in c['changes'][:12]:
     print(f"    {x['code']:12s} {x['kind']:12s} 生效 {x['eff']}  +{x['added']}/-{x['removed']} 句")
+# 沿用快照＝官方那一節這次抓不到，內容停在上一版。要講出來，否則跟成功沒兩樣。
+if c.get('n_stale'):
+    print(f"  ⚠️  {c['n_stale']} 節官方暫時抓不到，沿用上一版原文：{'、'.join(c['stale_sections'][:8])}")
 PY
 
 echo

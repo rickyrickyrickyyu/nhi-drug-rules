@@ -1,0 +1,556 @@
+{
+ "section_code": "8.2.19.",
+ "kind": "revised",
+ "detected_at": "2026-09-20",
+ "from": "8.2.19._20260301.pdf",
+ "to": "8.2.19._20260901.pdf",
+ "effective_date": "2026-09-01",
+ "hunks": [
+  {
+   "op": "replace",
+   "removed": [
+    "8.2.19.Danicopan (如Voydeya)：",
+    "（115/3/1）",
+    "1.限與eculizumab 或ravulizumab 併用於經衛生福利部國民健康署",
+    "認定之陣發性夜間血紅素尿症病人，並經特殊專案審查核准後使用，",
+    "且符合下列條件：",
+    "(1)年齡18 歲以上。",
+    "(2)經C5 補體抑制劑(如eculizumab 或ravulizumab)治療後，仍出",
+    "現血管外溶血(clinically significant extravascular"
+   ],
+   "added": [
+    "8.2.19.Danicopan (如Voydeya)、iptacopan (如Fabhalta):",
+    "(115/3/1、115/9/1)",
+    "1.限用於經衛生福利部國民健康署認定之陣發性夜間血紅素尿症病",
+    "人，並經特殊專案審查核准後使用，且符合下列條件：",
+    "(115/3/1、",
+    "115/9/1)",
+    "(1)Danicopan 限與eculizumab 或ravulizumab 併用；",
+    "iptacopan 限",
+    "單用。",
+    "(115/3/1、115/9/1)",
+    "(2)年齡18 歲以上。",
+    "(3)經C5 補體抑制劑(如eculizumab 或ravulizumab)治療後，仍",
+    "出現血管外溶血(clinically significant extravascular"
+   ],
+   "ctx_before": [],
+   "ctx_after": [
+    "hemolysis)。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(3)使用C5 抑制劑下血紅素仍小於或等於9.5g/dL。",
+    "(4)絕對網狀紅血球計數大於或等於120×10"
+   ],
+   "added": [
+    "(4)使用C5 抑制劑下血紅素仍小於或等於9.5g/dL。",
+    "(5)絕對網狀紅血球計數大於或等於120×10"
+   ],
+   "ctx_before": [
+    "hemolysis)。"
+   ],
+   "ctx_after": [
+    "9/L，或網狀紅血球比例"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "1.5 倍或最近3 個月內輸血多於2 個單位）",
+    "(2) PNH granulocyte clone size ≦50%。"
+   ],
+   "added": [
+    "1.5 倍或最近3 個月內輸血多於2 個單位）。",
+    "(2)PNH granulocyte clone size ≦50%。"
+   ],
+   "ctx_before": [
+    "(1)接受治療的患者用藥後病情沒有改善者（LDH 超過正常值上限的"
+   ],
+   "ctx_after": [
+    "(3)發生嚴重再生不良性貧血者，其檢查結果符合下列兩項或兩項以"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "4.Danicopan、iptacopan 兩者僅得擇一使用，惟病人出現耐受不良反",
+    "應時方可轉換使用，且限轉換一次。",
+    "(115/9/1)"
+   ],
+   "ctx_before": [
+    "iv.骨髓內造血細胞密度<30%。"
+   ],
+   "ctx_after": [
+    "◎附表三十之三："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "治療藥品danicopan+eculizumab/ravulizumab 特殊專案審查申請",
+    "表"
+   ],
+   "added": [
+    "治療藥品danicopan+eculizumab /ravulizumab、iptacopan 特",
+    "殊專案審查申請表(115/3/1、115/9/1)"
+   ],
+   "ctx_before": [
+    "全民健康保險使用陣發性夜間血紅素尿症第二線"
+   ],
+   "ctx_after": [
+    "◎附表三十之四："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Voydeya(Danicopan)+Soliris(eculizumab)/Ultomiris(ravulizu",
+    "mab)用藥檢附資料查檢表",
+    "附表三十之三全民健康保險使用陣發性夜間血紅素尿症第二線治療藥品danicopan+eculizumab/ravulizumab 特殊專案審查申請表"
+   ],
+   "added": [
+    "Voydeya(danicopan)+Soliris(eculizumab)/Ultomiris(ravulizuma",
+    "b)或Fabhalta (iptacopan)用藥檢附資料查檢表(115/3/1、",
+    "115/9/1)",
+    "附表三十之三全民健康保險使用陣發性夜間血紅素尿症第二線治療藥品danicopan+eculizumab/ravulizumab、iptacopan 特殊專案審查申請表"
+   ],
+   "ctx_before": [
+    "專案審查申請"
+   ],
+   "ctx_after": [
+    "申請類別:"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Voydeya +",
+    "Soliris"
+   ],
+   "added": [
+    "Voydeya + Soliris"
+   ],
+   "ctx_before": [
+    "保險人核定欄"
+   ],
+   "ctx_after": [
+    "□VC00098100/"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Voydeya +",
+    "Ultomiris"
+   ],
+   "added": [
+    "Voydeya + Ultomiris"
+   ],
+   "ctx_before": [
+    "YC00016243"
+   ],
+   "ctx_after": [
+    "□VC00098100/"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "Fabhalta",
+    "□VC00102100"
+   ],
+   "ctx_before": [
+    "YC000452C3"
+   ],
+   "ctx_after": [
+    "□第一次申請"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "□治療後再次申",
+    "請續用"
+   ],
+   "added": [
+    "□治療後再次申請",
+    "續用"
+   ],
+   "ctx_before": [
+    "□第一次申請"
+   ],
+   "ctx_after": [
+    "□同意備查。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "年月日"
+   ],
+   "added": [
+    "年 月 日"
+   ],
+   "ctx_before": [
+    "醫院申請日期："
+   ],
+   "ctx_after": [
+    "印信"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Voydeya(Danicopan)+Soliris(eculizumab)/Ultomiris(ravulizumab)用藥檢附資料查檢表",
+    "115 年3 月1 日修訂"
+   ],
+   "added": [
+    "Voydeya(danicopan)+Soliris(eculizumab)/Ultomiris(ravulizumab)或",
+    "Fabhalta (iptacopan)用藥檢附資料查檢表",
+    "115 年9 月1 日修訂"
+   ],
+   "ctx_before": [
+    "附表三十之四陣發性夜間血紅素尿症患者第二線治療藥品特殊專案審查申請"
+   ],
+   "ctx_after": [
+    "新個案初次申請"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "資料確認",
+    "一、 限用於經衛生福利部國民健",
+    "康署認定之陣發性夜間血紅",
+    "素尿症病人，且曾經接受一",
+    "種C5補體抑制劑治療："
+   ],
+   "added": [
+    "資料確",
+    "認",
+    "一、 限用於經衛生福利部國民",
+    "健康署認定之陣發性夜間",
+    "血紅素尿症病人，且曾經",
+    "接受一種C5補體抑制劑治",
+    "療："
+   ],
+   "ctx_before": [
+    "送審應檢附資料"
+   ],
+   "ctx_after": [
+    "診斷依據(必備)："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(3)若為申請使用Voydeya (danicopan)，",
+    "則須同時申請",
+    "ravulizumab 或"
+   ],
+   "added": [
+    "(3)若為申請使用",
+    "Voydeya",
+    "(danicopan)，則須同時申請",
+    "ravulizumab",
+    "或"
+   ],
+   "ctx_before": [
+    "(2)年齡18歲以上。"
+   ],
+   "ctx_after": [
+    "eculizumab。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "若Voydeya 獲同意使用則ravulizumab",
+    "或 eculizumab 也可同時使用。",
+    "(4)治療計畫，必須包含莢膜細菌 (腦膜炎",
+    "雙球菌、肺炎鏈球菌和 B 型流感嗜血",
+    "桿菌)之疫苗施打計畫。",
+    "(5)曾經接受C5補體抑制劑治療之紀錄。",
+    "若為申請使用Voydeya (danicopan)，",
+    "則須檢附使用",
+    "ravulizumab 或",
+    "eculizumab 的使用紀錄。",
+    "(6)近三個月內之CBC 、WBC 分類及",
+    "reticulocyte 至少兩次。",
+    "在使用C5 抑制劑下，血紅素需仍小於",
+    "或等於9.5g/dL，並排除其他可能造成",
+    "貧血的原因。",
+    "同時需有絕對網狀紅血球計數大於或",
+    "等於120×10",
+    "9/L，或是網狀紅血球比例大",
+    "於或等於3%。",
+    "(7)近三個月內有關溶血性貧血活性之評",
+    "估檢驗報告。",
+    "需排除血管內溶血持續存在之情形。"
+   ],
+   "added": [
+    "若Voydeya 獲同意使用則",
+    "ravulizumab 或 eculizumab",
+    "也可同時使用。",
+    "(4)治療計畫，必須包含莢膜細菌",
+    "(腦膜炎雙球菌、肺炎鏈球菌",
+    "和 B 型流感嗜血桿菌)之疫",
+    "苗施打計畫。",
+    "(5)曾經接受C5補體抑制劑治療",
+    "之紀錄。",
+    "若為申請使用",
+    "Voydeya",
+    "(danicopan)，則須檢附使用",
+    "ravulizumab 或 eculizumab",
+    "的使用紀錄。",
+    "(6)近三個月內之CBC、WBC 分類",
+    "及reticulocyte 至少兩次。",
+    "在使用C5 抑制劑下，血紅素需",
+    "仍小於或等於9.5g/dL，並排除",
+    "其他可能造成貧血的原因。",
+    "同時需有絕對網狀紅血球計數",
+    "大於或等於120×10",
+    "9/L，或是網",
+    "狀紅血球比例大於或等於3%。",
+    "(7)近三個月內有關溶血性貧血",
+    "活性之評估檢驗報告。",
+    "需排除血管內溶血持續存在",
+    "之情形。"
+   ],
+   "ctx_before": [
+    "eculizumab。"
+   ],
+   "ctx_after": [
+    "(8)六個月內之骨髓檢查報告。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(9)六個月內之流式細胞儀的診斷報告，須",
+    "包含細胞圈選(gating)圖及細胞表面",
+    "抗原-抗體作用強度圖(即histogram",
+    "或dotplots 圖)：",
+    "須符合經兩種以上抗",
+    "體確認PNH之granulocyte clone size",
+    "均大於50%",
+    "二、 排除有高危險之骨髓化生不",
+    "良症候群（RAEB-1或RAEB-2）",
+    "的病患。",
+    "六個月內骨髓檢查報告(新申請案必備)",
+    "三、 需經特殊專案審查核准後使",
+    "用，每次申請期限為6個月。"
+   ],
+   "added": [
+    "(9)六個月內之流式細胞儀的診",
+    "斷報告，須包含細胞圈選",
+    "(gating)圖及細胞表面抗原-",
+    "抗體作用強度圖( 即",
+    "histogram 或dotplots 圖)：",
+    "須符合經兩種以上抗體確認",
+    "PNH 之granulocyte clone",
+    "size 均大於50%",
+    "二、 排除有高危險之骨髓化生",
+    "不良症候群（RAEB-1 或",
+    "RAEB-2）的病患。",
+    "六個月內骨髓檢查報告(新申請",
+    "案必備)",
+    "三、 需經特殊專案審查核准後",
+    "使用，每次申請期限為6個",
+    "月。"
+   ],
+   "ctx_before": [
+    "(8)六個月內之骨髓檢查報告。"
+   ],
+   "ctx_after": [
+    "續用申請"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "資料確認",
+    "一、 每6個月須重新評估治療結",
+    "果。",
+    "二、 若符合下列條件之一，則不",
+    "予同意使用。",
+    "(一)接受治療的患者用藥後病",
+    "情沒有改善者（LDH 超過正",
+    "常值上限的1.5倍或最近3",
+    "個月內輸血多於2 個單",
+    "位）。"
+   ],
+   "added": [
+    "資料確",
+    "認",
+    "一、 每6個月須重新評估治療",
+    "結果。",
+    "二、 若符合下列條件之一，則",
+    "不予同意使用。",
+    "(一)接受治療的患者用藥後",
+    "病情沒有改善者（LDH 超",
+    "過正常值上限的1.5倍或",
+    "最近3個月內輸血多於2",
+    "個單位）。"
+   ],
+   "ctx_before": [
+    "送審應檢附資料"
+   ],
+   "ctx_after": [
+    "(二)PNH granulocyte clone"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "（neutrophil count）＜",
+    "0.5x10"
+   ],
+   "added": [
+    "（neutrophil count）",
+    "＜0.5x10"
+   ],
+   "ctx_before": [
+    "1. 中性白血球數目"
+   ],
+   "ctx_after": [
+    "9/L。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "4. 骨髓內造血細胞密度＜",
+    "30%。"
+   ],
+   "added": [
+    "4. 骨髓內造血細胞密度",
+    "＜30%。"
+   ],
+   "ctx_before": [
+    "9/L。"
+   ],
+   "ctx_after": [
+    "必備："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(1)病史摘要說明及治療後療效評估說明。",
+    "(2)若",
+    "為",
+    "申",
+    "請",
+    "續",
+    "使",
+    "用",
+    "Voydeya",
+    "(danicopan) ，則須同時申請",
+    "ravulizumab 或 eculizumab。",
+    "若Voydeya 獲同意使用則ravulizumab",
+    "或 eculizumab 也可同時使用。",
+    "(3)治療計畫書，須說明申請續治療期間仍",
+    "在過往施打莢膜細菌 (腦膜炎雙球菌、",
+    "肺炎鏈球菌和 B 型流感嗜血桿菌)之",
+    "疫苗有效期間，或是有再次施打之計",
+    "畫。",
+    "(4)近三個月內之CBC、WBC 分類、LDH 及",
+    "reticulocyte 至少兩次。",
+    "(5)近三個月內之溶血性貧血活性評估，必",
+    "須包含LDH。",
+    "若LDH 仍超過正常值上限",
+    "的1.5倍且排除因其他疾病因素所致之",
+    "LDH 上升(如感染等)，則不再核准，但",
+    "病人呈現Coomb’stest 為陽性(須檢",
+    "附Coomb’stest 陽性之檢驗報告)且",
+    "輸血量及頻率未超過用藥前者除外。",
+    "(6)第一次送審時所附之CBC 及WBC 分類",
+    "(7)六個月內之流式細胞儀的診斷報告及",
+    "細胞圈選(gating)圖：",
+    "仍須符合經兩種",
+    "以上抗體確認PNH 之granulocyte"
+   ],
+   "added": [
+    "(1)病史摘要說明及治療後療效",
+    "評估說明。",
+    "(2)若為申請續使用Voydeya",
+    "(danicopan)，則須同時申請",
+    "ravulizumab",
+    "或",
+    "eculizumab。",
+    "若Voydeya 獲同意使用則",
+    "ravulizumab 或 eculizumab",
+    "也可同時使用。",
+    "(3)治療計畫書，須說明申請續治",
+    "療期間仍在過往施打莢膜細",
+    "菌 (腦膜炎雙球菌、肺炎鏈球",
+    "菌和 B 型流感嗜血桿菌)之",
+    "疫苗有效期間，或是有再次施",
+    "打之計畫。",
+    "(4)近三個月內之CBC、WBC 分類、",
+    "LDH 及reticulocyte 至少兩",
+    "次。",
+    "(5)近三個月內之溶血性貧血活",
+    "性評估，必須包含LDH。",
+    "若LDH",
+    "仍超過正常值上限的1.5倍且",
+    "排除因其他疾病因素所致之",
+    "LDH 上升(如感染等)，則不再",
+    "核准，但病人呈現",
+    "Coomb’stest 為陽性(須檢附",
+    "Coomb’stest 陽性之檢驗報",
+    "告)且輸血量及頻率未超過用",
+    "藥前者除外。",
+    "(6)第一次送審時所附之CBC 及",
+    "WBC 分類",
+    "(7)六個月內之流式細胞儀的診",
+    "斷報告及細胞圈選(gating)",
+    "圖：",
+    "仍須符合經兩種以上抗體",
+    "確認",
+    "PNH",
+    "之",
+    "granulocyte"
+   ],
+   "ctx_before": [
+    "必備："
+   ],
+   "ctx_after": [
+    "clone size 均大於50%"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "若再次申請之",
+    "CBC 、WBC",
+    "分類及",
+    "reticulocyte 和第一次送審之報告有除血",
+    "紅素上升外之明顯惡化，建議再次申請時",
+    "加附六個月內之骨髓檢查報告。"
+   ],
+   "added": [
+    "若再次申請之CBC、WBC 分類及",
+    "reticulocyte 和第一次送審之報",
+    "告有除血紅素上升外之明顯惡",
+    "化，建議再次申請時加附六個月",
+    "內之骨髓檢查報告。"
+   ],
+   "ctx_before": [
+    "其他應備項目："
+   ],
+   "ctx_after": []
+  }
+ ],
+ "stats": {
+  "sent_added": 151,
+  "sent_removed": 122,
+  "sent_equal": 149,
+  "change_ratio": 0.455
+ }
+}

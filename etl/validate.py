@@ -78,6 +78,59 @@ def run() -> list[Gate]:
             bad_head.append(c)
     g.append(Gate(5, "PDF 抽字/首行", not bad_head, f"異常 {len(bad_head)} 節 {bad_head[:5]}"))
 
+    # 40 快照完整性：manifest 說有的 PDF，檔案要在、雜湊要對得上
+    #    2026-09-20 踩過：fetch 為了比對雜湊「先刪本機檔再下載」，官方剛好把舊檔
+    #    下架，快照就憑空消失了，而 manifest 仍記著 char_count —— gate 4 看不出來。
+    #    snapshots/ 是本案唯一的 provenance（官方換檔後舊版再也拿不回來），
+    #    少一個檔或內容被換掉都必須當場擋下，不能等到下次才發現。
+    import hashlib
+    miss_snap, bad_sha = [], []
+    for c, m in man.items():
+        fn = m.get("pdf_filename")
+        if m.get("no_pdf") or not fn:
+            continue
+        f_ = SNAPSHOTS / "pdf" / fn
+        if not f_.exists():
+            miss_snap.append(c)
+        elif m.get("pdf_sha256") and hashlib.sha256(f_.read_bytes()).hexdigest() != m["pdf_sha256"]:
+            bad_sha.append(c)
+    g.append(Gate(40, "快照完整性", not miss_snap and not bad_sha,
+                  f"{len(man)} 節"
+                  + (f"｜快照遺失 {len(miss_snap)} {miss_snap[:5]}" if miss_snap else "")
+                  + (f"｜雜湊不符 {len(bad_sha)} {bad_sha[:5]}" if bad_sha else "")
+                  + ("｜全數相符" if not miss_snap and not bad_sha else "")))
+
+    # 41 本次抓取沒有「完全抓不到原文」的章節
+    #    沿用快照（fetch_stale）不擋 —— 出版內容與上一版相同，是安全的降級；
+    #    但 fetch_failed 代表那一節沒有任何可用原文，絕不能放行。
+    fe_path = STAGING / "fetch_events.json"
+    fe = json.loads(fe_path.read_text(encoding="utf-8")) if fe_path.exists() else {}
+    fe_stats = fe.get("stats") or {}
+    hard = [e["code"] for e in (fe.get("events") or []) if e.get("kind") == "fetch_failed"]
+    stale = [e["code"] for e in (fe.get("events") or []) if e.get("kind") == "fetch_stale"]
+    g.append(Gate(41, "章節抓取結果", not hard,
+                  f"未變 {fe_stats.get('unchanged', 0)}｜改版 {fe_stats.get('revised', 0)}"
+                  f"｜靜默改檔 {fe_stats.get('silent_edit', 0)}"
+                  + (f"｜沿用快照 {len(stale)} {stale[:5]}" if stale else "")
+                  + (f"｜無原文 {len(hard)} {hard[:5]}" if hard else "")))
+
+    # 42 待更新清單不得過期
+    #    pending_updates.yaml 的作用是對「官方還沒更新條文」的章節掛警告。
+    #    章節真的更新之後若忘了把它移到 resolved，UI 會對一份**已經是現行版本**
+    #    的條文繼續說「健保署尚未更新」—— 比完全沒有提示更誤導醫師。
+    pend_path = CURATION / "pending_updates.yaml"
+    if pend_path.exists():
+        pend = (yaml.safe_load(pend_path.read_text(encoding="utf-8")) or {}).get("pending") or []
+        landed = []
+        for x in pend:
+            sec, eff = str(x.get("section") or ""), str(x.get("effective") or "")
+            cur_eff = man.get(sec, {}).get("effective_date") or ""
+            if sec and eff and cur_eff >= eff:
+                landed.append(f"{sec}(官方已出 {cur_eff})")
+        g.append(Gate(42, "待更新清單有效", not landed,
+                      f"{len(pend)} 節待更新"
+                      + (f"｜已落地卻未移到 resolved: {landed}" if landed else "")))
+
     # 7 INN 覆蓋
     rate = rep["n_inn_unresolved"] / max(rep["n_products"], 1)
     g.append(Gate(7, "INN 覆蓋", rate <= 0.02, f"未解析 {rate:.3%}"))

@@ -96,12 +96,18 @@ def main() -> int:
 
     changes.sort(key=lambda c: code_tuple(c["code"]))
     new_sections = [e["code"] for e in events["events"] if e["kind"] == "new"]
+    # 官方把檔下架又還沒換上新版時，該節沿用上一版快照。要讓人看得到「這一節
+    # 這次沒能重新驗證」，否則沉默降級跟成功長得一模一樣。
+    stale_sections = sorted({e["code"] for e in events["events"] if e["kind"] == "fetch_stale"},
+                            key=code_tuple)
     changelog = {
         "generated_at": TODAY,
         "month": TODAY[:7],
         "n_revised": sum(1 for c in changes if c["kind"] == "revised"),
         "n_silent_edit": sum(1 for c in changes if c["kind"] == "silent_edit"),
         "n_new": len(new_sections),
+        "n_stale": len(stale_sections),
+        "stale_sections": stale_sections,
         "changes": changes,
         # 首次建庫時 534 節全是 new，列出來只會洗版；之後每月才有意義
         "new_sections": new_sections if len(new_sections) < 50 else [],
@@ -109,7 +115,9 @@ def main() -> int:
     }
     (STAGING / "changelog.json").write_text(json.dumps(changelog, ensure_ascii=False), encoding="utf-8")
     (PUBLIC / "changelog.json").write_text(json.dumps(changelog, ensure_ascii=False), encoding="utf-8")
-    print(f"✅ changelog：改版 {changelog['n_revised']}｜靜默改檔 {changelog['n_silent_edit']}｜新增 {changelog['n_new']}")
+    print(f"✅ changelog：改版 {changelog['n_revised']}｜靜默改檔 {changelog['n_silent_edit']}"
+          f"｜新增 {changelog['n_new']}"
+          + (f"｜沿用快照 {changelog['n_stale']} {stale_sections[:5]}" if stale_sections else ""))
     return 0
 
 
