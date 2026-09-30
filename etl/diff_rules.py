@@ -64,6 +64,10 @@ def main() -> int:
     events_path = STAGING / "fetch_events.json"
     events = json.loads(events_path.read_text(encoding="utf-8")) if events_path.exists() else {"events": []}
 
+    # ★ 偵測日 = 抓取那天，不是跑 diff 這天。make rebuild 重用舊的 fetch_events，
+    #   用 TODAY 會把 09-20 抓到的 8 筆改版改寫成「09-30 偵測」，跨月重跑還會
+    #   寫進下個月的目錄。
+    detected = events.get("generated_at") or TODAY
     changes = []
     for ev in events["events"]:
         code, kind = ev["code"], ev["kind"]
@@ -78,11 +82,11 @@ def main() -> int:
         old_txt = old_txt_p.read_text(encoding="utf-8") if old_txt_p.exists() else ""
         d = diff_texts(old_txt, new_txt_p.read_text(encoding="utf-8"))
 
-        month_dir = SNAP_DIFF / TODAY[:7]
+        month_dir = SNAP_DIFF / detected[:7]
         month_dir.mkdir(parents=True, exist_ok=True)
         stem = f"{code.rstrip('.').replace('.', '-')}__{(old_name or 'new').split('_')[-1].replace('.pdf','')}__{m.get('effective_date','')}"
         (month_dir / f"{stem}.json").write_text(json.dumps({
-            "section_code": code, "kind": kind, "detected_at": TODAY,
+            "section_code": code, "kind": kind, "detected_at": detected,
             "from": old_name, "to": new_name,
             "effective_date": m.get("effective_date"), **d,
         }, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -91,7 +95,7 @@ def main() -> int:
             "code": code, "kind": kind, "eff": m.get("effective_date"),
             "ratio": d["stats"]["change_ratio"],
             "added": d["stats"]["sent_added"], "removed": d["stats"]["sent_removed"],
-            "diff_file": f"{TODAY[:7]}/{stem}.json",
+            "diff_file": f"{detected[:7]}/{stem}.json",
         })
 
     changes.sort(key=lambda c: code_tuple(c["code"]))
@@ -101,8 +105,8 @@ def main() -> int:
     stale_sections = sorted({e["code"] for e in events["events"] if e["kind"] == "fetch_stale"},
                             key=code_tuple)
     changelog = {
-        "generated_at": TODAY,
-        "month": TODAY[:7],
+        "generated_at": detected,
+        "month": detected[:7],
         "n_revised": sum(1 for c in changes if c["kind"] == "revised"),
         "n_silent_edit": sum(1 for c in changes if c["kind"] == "silent_edit"),
         "n_new": len(new_sections),

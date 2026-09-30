@@ -445,10 +445,13 @@ def run() -> list[Gate]:
     #    分類分組名稱的分隔符有時是全形「，」、劑量有時黏在學名後
     #    （LYSOZYME10MG、SALMETEROL 25 (50) MCG/DOSE）。解析漏掉就會把同一支藥
     #    拆成兩筆 —— 實測 78 支中招，查 neomycin 會出現兩個結果、18 個品項被藏起來。
+    #    以「)」開頭結尾卻沒有「(」= 複方拆分切在括號中間（'SENNOSIDE (A+B)' → 'B)'）。
+    #    （一般的括號不成對擋不得：上游欄位本身有長度截斷，如 'FACTOR IX ('。）
     dirty = sorted(k for k in ings
-                   if re.search(r"[，,、；;]\s*$|\d+\s*(MG|ML|MCG|GM|IU|%)", k, re.I))
+                   if re.search(r"[，,、；;]\s*$|\d+\s*(MG|ML|MCG|GM|IU|%)", k, re.I)
+                   or (k.endswith(")") and "(" not in k))
     g.append(Gate(39, "學名鍵乾淨", not dirty,
-                  f"{len(ings):,} 個學名｜殘留分隔符或劑量 {dirty[:4] or '無'}"))
+                  f"{len(ings):,} 個學名｜殘留分隔符、劑量或殘括號 {dirty[:4] or '無'}"))
 
     # 11 前端產物
     if (PUBLIC / "derm.json").exists():

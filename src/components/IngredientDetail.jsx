@@ -5,6 +5,7 @@ import RuleSectionPanel from './RuleSectionPanel.jsx';
 import ClinicalNote from './ClinicalNote.jsx';
 import TfdaIndication from './TfdaIndication.jsx';
 import DosingPanel from './DosingPanel.jsx';
+import BrandOverview from './BrandOverview.jsx';
 
 // ★ 食藥署自己的開放資料就是用這個形式發布仿單網址（實測對兩種形式的證都回 200）。
 //   只連結、不鏡射 —— mcp.fda.gov.tw 明訂不得重製轉載，但連過去正是這些 URL 的用途。
@@ -68,6 +69,19 @@ export default function IngredientDetail({ item }) {
           共 {item.np} 個健保品項｜標籤來源：{(item.dr ?? []).join('、') || '—'}
         </div>
       </div>
+
+      {products && (
+        <BrandOverview
+          item={item}
+          items={products.items ?? []}
+          onPick={(ro) => {
+            setTab(ro);
+            // 等分頁切換後的品項表渲染出來再捲過去
+            requestAnimationFrame(() => document.getElementById('product-table')
+              ?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+          }}
+        />
+      )}
 
       {/* ★ 依劑型分頁：acyclovir 外用掛 10.7.1.2、口服掛 10.7.1.1，條文完全不同 */}
       <div className="flex gap-1.5 flex-wrap">
@@ -188,7 +202,7 @@ export default function IngredientDetail({ item }) {
             routeLabel={active.l}
           />
 
-          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+          <div id="product-table" className="bg-white rounded-xl border border-slate-200 overflow-hidden scroll-mt-4">
             <div className="px-4 py-2.5 text-sm font-medium border-b border-slate-200">
               {active.l}品項（{routeItems.length} 項有列價
               {unpricedItems.length > 0 && `，另 ${unpricedItems.length} 項未列價`}）

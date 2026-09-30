@@ -29,6 +29,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import PUBLIC, ROOT  # noqa: E402
 from lib.fingerprint import app_fingerprint, data_fingerprint  # noqa: E402
+from lib.inn import product_shard  # noqa: E402
 
 DIST = ROOT / "dist-offline"
 OUT = ROOT / "offline"
@@ -72,9 +73,17 @@ def collect(scope: str) -> tuple[dict, dict]:
     #   內容，不比「離線包收了哪些」）。這是本專案第五次的「同一份清單維護在
     #   兩個地方」。改成預設收錄、只列排除，日後新增目錄自動進離線包。
     derm_only_excludes = {"all.json", "procs_all.json"}
+    # 品項分片自 2026-09-30 起全庫學名都有（約 2,400 檔）；皮膚科版查不到
+    # 非皮膚科學名，只收皮膚科的，免得離線包平白多三倍。
+    derm_shards = {
+        f"products/{product_shard(i['k'])}.json"
+        for i in json.loads((PUBLIC / "derm.json").read_text(encoding="utf-8"))["ing"]
+    }
     for p in sorted(PUBLIC.rglob("*.json")):
         rel = p.relative_to(PUBLIC).as_posix()
         if scope != "all" and rel in derm_only_excludes:
+            continue
+        if scope != "all" and rel.startswith("products/") and rel not in derm_shards:
             continue
         add(rel)
     return payload, shas

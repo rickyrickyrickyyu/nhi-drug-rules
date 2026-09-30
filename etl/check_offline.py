@@ -21,6 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from config import PUBLIC, ROOT  # noqa: E402
 from lib.fingerprint import app_fingerprint, data_fingerprint  # noqa: E402
+from lib.inn import product_shard  # noqa: E402
 
 
 def main() -> int:
@@ -59,8 +60,14 @@ def main() -> int:
     #   collect() 若漏掉某個目錄，指紋照樣相符但離線版點下去是空白。
     em = re.search(r"embedded_files:\s*(\d+)", body)
     if em:
+        # 皮膚科版的 products/ 只收皮膚科學名的分片（全庫學名都有分片，但皮膚科版查不到）。
+        # 這裡刻意獨立重算，不呼叫 build_offline.collect() —— 同一份邏輯自己驗自己等於沒驗。
+        derm_keys = {i["k"] for i in json.loads(
+            (PUBLIC / "derm.json").read_text(encoding="utf-8"))["ing"]}
+        derm_shards = {f"{product_shard(k)}.json" for k in derm_keys}
         expect = sum(1 for p in PUBLIC.rglob("*.json")
-                     if p.relative_to(PUBLIC).as_posix() not in {"all.json", "procs_all.json"})
+                     if p.relative_to(PUBLIC).as_posix() not in {"all.json", "procs_all.json"}
+                     and (p.parent.name != "products" or p.name in derm_shards))
         if int(em.group(1)) != expect:
             print(f"❌ 離線包收錄 {em.group(1)} 個資料檔，"
                   f"但 public/data 應收 {expect} 個 → collect() 漏了目錄")

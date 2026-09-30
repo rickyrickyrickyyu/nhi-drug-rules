@@ -30,6 +30,23 @@ export default function App() {
     loadAll().finally(() => setLoadingAll(false));
   }, [scope, all, loadingAll, loadAll]);
 
+  // ★ 直連非皮膚科學名（#/i/TIMOLOL、分享出去的連結、重新整理）時，
+  //   全庫只在「切到全庫」才會載 —— 以前這裡一律顯示「找不到」。
+  //   皮膚科清單查不到本鍵（含別名）就自動載全庫再判斷。
+  const inDerm = (key) => {
+    const want = String(key ?? '').toLowerCase();
+    return derm.some((i) => i.k === key || (i.al ?? []).some((a) => a.toLowerCase() === want));
+  };
+  // 載失敗（皮膚科離線版本來就沒有 all.json、或斷網）只試一次，否則會無限重試
+  const [allFailed, setAllFailed] = useState(false);
+  const needAll = !loading && !error && route.view === 'ingredient' && !all && !allFailed
+    && !inDerm(route.key);
+  useEffect(() => {
+    if (!needAll || loadingAll) return;
+    setLoadingAll(true);
+    loadAll().catch(() => setAllFailed(true)).finally(() => setLoadingAll(false));
+  }, [needAll, loadingAll, loadAll]);
+
   // 處置混在 derm.json 裡；切全庫時併入 procs_all
   const dataset = scope === 'all' ? (all ?? derm) : derm;
 
@@ -110,7 +127,10 @@ export default function App() {
           <IngredientDetail item={current} />
         </div>
       )}
-      {!loading && !error && route.view === 'ingredient' && !current && (
+      {!loading && !error && route.view === 'ingredient' && !current && needAll && (
+        <p className="mt-6 text-slate-500">載入全庫學名中…</p>
+      )}
+      {!loading && !error && route.view === 'ingredient' && !current && !needAll && (
         <p className="mt-6 text-slate-500">
           找不到「{route.key}」。<button type="button" className="underline" onClick={() => go('#/')}>回搜尋</button>
         </p>

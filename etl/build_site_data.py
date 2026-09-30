@@ -24,6 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import BUILD, CURATION, PUBLIC, SNAP_DIFF, STAGING  # noqa: E402
 from lib.fingerprint import data_fingerprint  # noqa: E402
+from lib.inn import product_shard  # noqa: E402
 from lib.section import code_tuple  # noqa: E402
 
 TODAY = date.today().isoformat()
@@ -72,8 +73,10 @@ def slim(ing: dict, products: dict, mentions: dict, dosing: dict, dose_tfda: dic
             "cs": 1 if ing["flags"]["consent_form"] else 0,
             "co": 1 if ing["flags"]["course_limited"] else 0,
         },
-        "be": ing["brands_en"][:40],       # 搜尋用；超過 40 個品牌的老藥不必全帶
-        "bz": ing["brands_zh"][:40],
+        # 搜尋用，必須帶完整清單。以前截在 40 個：Clindamycin 的 Kingdacin、比比黴素
+        # 排在 40 名之後就搜不到（皮膚科 33 個學名中招）。全帶 derm.json 只多約 15 KB gz。
+        "be": ing["brands_en"],
+        "bz": ing["brands_zh"],
         "r": [
             {
                 "ro": rt, "l": r["label"], "g": r["group"], "s": r["sections"],
@@ -177,13 +180,23 @@ def main() -> int:
         ch_sizes[ch] = round(gz_size(p), 1)
 
     # 品項明細：一個學名一檔，點開才載
+    # ★ 全庫每個學名都要有分片，不能只產皮膚科。
+    #   原本 `if not ing["derm"]: continue`，結果切到全庫點開 Timolol
+    #   顯示「共 114 個健保品項」、品項清單卻是空的（分片 404 被吞成 items: []）。
+    #   皮膚科離線包在 build_offline.py 自行排除非皮膚科分片，不必在這裡省。
     (out_dir / "products").mkdir(exist_ok=True)
+    shards = {f"{product_shard(k)}.json" for k in ingredients}
+    if len(shards) != len(ingredients):   # 兩個學名撞同一檔名 → 其中一個的品項清單會是另一支藥
+        seen: dict[str, list[str]] = collections.defaultdict(list)
+        for k in ingredients:
+            seen[product_shard(k)].append(k)
+        sys.exit(f"❌ products 分片檔名撞車：{[v for v in seen.values() if len(v) > 1]}")
+    for stale in (out_dir / "products").glob("*.json"):
+        if stale.name not in shards:   # 學名鍵改名/消失：舊分片不留，免得離線包收進孤兒
+            stale.unlink()
     for key, ing in ingredients.items():
-        if not ing["derm"]:
-            continue
         codes = sorted({c for r in ing["routes"].values() for c in r["products"]})
-        safe = key.replace("/", "_").replace(" ", "_").replace("(", "").replace(")", "")
-        dump(f"products/{safe}.json", {
+        dump(f"products/{product_shard(key)}.json", {
             "inn": key,
             # 劑量只放在懶載分片：搜尋用不到，放進 derm.json 會撐大首載
             "dosing": dosing.get(key, {}),
@@ -199,7 +212,7 @@ def main() -> int:
                 "form", "route", "atc", "drug_class", "is_originator", "status",
                 "price", "price_next", "price_next_from", "vendor", "sections",
                 "licence_id", "licence_no", "licence_state", "indication", "has_insert",
-                "name_zh_repaired", "zh_mojibake")} for c in codes if c in products],
+                "name_zh_repaired", "zh_mojibake", "inn_keys")} for c in codes if c in products],
         })
 
     # 附表分片：一個附表一檔，點開才載（比照 products/）。

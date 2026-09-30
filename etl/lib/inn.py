@@ -154,7 +154,26 @@ def canonicalize(raw: str, atc: str = "") -> str:
 
 
 def _split_components(s: str) -> list[str]:
-    return [p for p in re.split(r"\s*\+\s*", s) if p.strip()]
+    # ★ 只在括號外層切 '+'。'SENNOSIDE (A+B)'、'PYRABITAL (=AMINOPYRINE + BARBITAL)'
+    #   以前被從括號中間切開，產生 'B)'、'BARBITAL)' 這種殘括號學名鍵，
+    #   而且與乾淨的 'BARBITAL' 撞同一個 products/ 分片檔名互相覆蓋。
+    # ★ 但上游欄位有長度截斷（'ALUMINUM BIS (=ALUMINUM ACETYLSALICYLA' 沒有右括號），
+    #   括號不成對時深度永遠回不到 0，會把後面所有成分黏成一個學名 —— 退回舊切法。
+    if s.count("(") != s.count(")"):
+        return [p for p in re.split(r"\s*\+\s*", s) if p.strip()]
+    parts, buf, depth = [], [], 0
+    for ch in s:
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        if ch == "+" and depth == 0:
+            parts.append("".join(buf))
+            buf = []
+            continue
+        buf.append(ch)
+    parts.append("".join(buf))
+    return [p.strip() for p in parts if p.strip()]
 
 
 def normalize(group_name: str, ingredient_raw: str, is_mixture: str, atc: str = "") -> InnParse:
@@ -189,3 +208,8 @@ def normalize(group_name: str, ingredient_raw: str, is_mixture: str, atc: str = 
         combo = " + ".join(sorted(keys))
         return InnParse(keys=keys, combo_key=combo, is_combo=True, source=source, warnings=warn)
     return InnParse(keys=keys, source=source, warnings=warn)
+
+
+def product_shard(key: str) -> str:
+    """學名鍵 → products/<shard>.json 檔名。須與前端 useData.loadProducts 同一規則。"""
+    return key.replace("/", "_").replace(" ", "_").replace("(", "").replace(")", "")
