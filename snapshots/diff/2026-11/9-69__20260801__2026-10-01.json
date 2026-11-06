@@ -1,0 +1,1845 @@
+{
+ "section_code": "9.69.",
+ "kind": "revised",
+ "detected_at": "2026-11-06",
+ "from": "9.69._20260801.pdf",
+ "to": "9.69._20261001.pdf",
+ "effective_date": "2026-10-01",
+ "hunks": [
+  {
+   "op": "replace",
+   "removed": [
+    "dostarlimab 製劑)：",
+    "(108/4/1、108/6/1、109/4/1、109/6/1、",
+    "109/11/1、110/5/1、110/10/1、111/4/1、111/6/1、112/8/1、",
+    "112/10/1、112/12/1、113/2/1、113/4/1、113/5/1、113/6/1、",
+    "113/8/1、114/1/1、114/2/1、114/6/1、114/8/1、114/10/1、",
+    "115/2/1、115/4/1、115/5/1、115/6/1、115/8/1)"
+   ],
+   "added": [
+    "dostarlimab；",
+    "tislelizumab 製劑)：",
+    "(108/4/1、108/6/1、109/4/1、",
+    "109/6/1、109/11/1、110/5/1、110/10/1、111/4/1、111/6/1、112/8/1、",
+    "112/10/1、112/12/1、113/2/1、113/4/1、113/5/1、113/6/1、113/8/1、",
+    "114/1/1、114/2/1、114/6/1、114/8/1、114/10/1、115/2/1、115/4/1、",
+    "115/5/1、115/6/1、115/8/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "cemiplimab；"
+   ],
+   "ctx_after": [
+    "1.本類藥品得於藥品許可證登載之適應症及藥品仿單內，單獨使用於下列"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "腫瘤無法切除或轉移之第三期或第四期黑色素瘤病人，",
+    "先前曾接受過至少一次全身性治療失敗者。"
+   ],
+   "added": [
+    "腫瘤無法切除或轉移之第三期或第四期黑色素瘤病人，先",
+    "前曾接受過至少一次全身性治療失敗者。"
+   ],
+   "ctx_before": [
+    "(1)黑色素瘤："
+   ],
+   "ctx_after": [
+    "(2)非小細胞肺癌："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "I. 鞏固治療：",
+    "限durvalumab 用於第三期局部晚期、無法手術切除且",
+    "腫瘤表現PD-L1 ≥1%之非小細胞肺癌成人病人，非鱗狀癌者需為",
+    "EGFR/ALK/ROS-1腫瘤基因原生型、鱗狀癌者需為EGFR/ALK 腫瘤基",
+    "因原生型，病人須於接受根治性同步放射治療合併至少2個週期含",
+    "鉑化療後無惡化(無PD)，且至多使用12個月。"
+   ],
+   "added": [
+    "I.鞏固治療：",
+    "限durvalumab 用於第三期局部晚期、無法手術切除且腫",
+    "瘤表現PD-L1 ≥1%之非小細胞肺癌成人病人，非鱗狀癌者需為",
+    "EGFR/ALK/ROS-1 腫瘤基因原生型、鱗狀癌者需為EGFR/ALK 腫瘤基",
+    "因原生型，病人須於接受根治性同步放射治療合併至少2 個週期含",
+    "鉑化療後無惡化(無PD)，且至多使用12 個月。"
+   ],
+   "ctx_before": [
+    "(109/4/1、109/11/1、114/6/1、114/8/1)"
+   ],
+   "ctx_after": [
+    "(114/8/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "II. 非小細胞肺癌第一線用藥：",
+    "轉移性非小細胞肺癌成人病人，非鱗",
+    "狀癌者需為EGFR/ALK/ROS-1腫瘤基因原生型、鱗狀癌者需為"
+   ],
+   "added": [
+    "II.非小細胞肺癌第一線用藥：",
+    "轉移性非小細胞肺癌成人病人，非鱗狀",
+    "癌者需為EGFR/ALK/ROS-1 腫瘤基因原生型、鱗狀癌者需為"
+   ],
+   "ctx_before": [
+    "(114/8/1)"
+   ],
+   "ctx_after": [
+    "EGFR/ALK 腫瘤基因原生型。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "III. 鱗狀非小細胞肺癌第二線用藥：",
+    "先前已使用過platinum 類化學",
+    "治療失敗後，又有疾病惡化，且EGFR/ALK 腫瘤基因為原生型之",
+    "晚期鱗狀非小細胞肺癌成人病人。",
+    "IV. 肺腺癌第三線用藥：",
+    "先前已使用過platinum 類及"
+   ],
+   "added": [
+    "III.鱗狀非小細胞肺癌第二線用藥：",
+    "先前已使用過platinum 類化學治",
+    "療失敗後，又有疾病惡化，且EGFR/ALK 腫瘤基因為原生型之晚期",
+    "鱗狀非小細胞肺癌成人病人。",
+    "IV.肺腺癌第三線用藥：",
+    "先前已使用過",
+    "platinum",
+    "類及"
+   ],
+   "ctx_before": [
+    "(114/6/1)"
+   ],
+   "ctx_after": [
+    "docetaxel/paclitaxel 類二線(含)以上化學治療均失敗，又有疾"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "病惡化，且EGFR/ALK/ROS-1腫瘤基因為原生型之晚期非小細胞肺"
+   ],
+   "added": [
+    "病惡化，且EGFR/ALK/ROS-1 腫瘤基因為原生型之晚期非小細胞肺"
+   ],
+   "ctx_before": [
+    "docetaxel/paclitaxel 類二線(含)以上化學治療均失敗，又有疾"
+   ],
+   "ctx_after": [
+    "腺癌成人病人。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "先前已接受自體造血幹細胞移植(HSCT)與移",
+    "植後brentuximab vedotin (BV)治療，但又復發或惡化的典型何杰",
+    "金氏淋巴瘤成人患者。"
+   ],
+   "added": [
+    "先前已接受自體造血幹細胞移植(HSCT)與移植",
+    "後brentuximab vedotin (BV)治療，但又復發或惡化的典型何杰金氏",
+    "淋巴瘤成人患者。"
+   ],
+   "ctx_before": [
+    "(3)典型何杰金氏淋巴瘤："
+   ],
+   "ctx_after": [
+    "(4)泌尿道上皮癌："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "使用含atezolizumab 藥品成分須於113年8月1日前",
+    "審核同意用藥。"
+   ],
+   "added": [
+    "使用含atezolizumab 藥品成分須於113 年8 月1 日",
+    "前審核同意用藥。"
+   ],
+   "ctx_before": [
+    "(4)泌尿道上皮癌："
+   ],
+   "ctx_after": [
+    "(109/11/1、112/10/1、113/8/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "i.CTCAE(the common terminology criteria for adverse"
+   ],
+   "added": [
+    "i.CTCAE(the",
+    "common",
+    "terminology",
+    "criteria",
+    "for",
+    "adverse"
+   ],
+   "ctx_before": [
+    "下列條件之一："
+   ],
+   "ctx_after": [
+    "events) v4.0 grade≧2 audiometric hearing loss"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "III.限avelumab 用於接受第一線含鉑化學治療4至6個療程後，疾",
+    "病未惡化，且達部分緩解（PR）或疾病呈穩定狀態者(SD)之無",
+    "法手術切除局部晚期(stage Ⅲ)或轉移性泌尿上皮癌(stage",
+    "Ⅳ)成人患者之維持療法。"
+   ],
+   "added": [
+    "III.限avelumab 用於接受第一線含鉑化學治療4 至6 個療程後，疾",
+    "病未惡化，且達部分緩解（PR）或疾病呈穩定狀態者(SD)之無法",
+    "手術切除局部晚期(stage Ⅲ)或轉移性泌尿上皮癌(stage Ⅳ)",
+    "成人患者之維持療法。"
+   ],
+   "ctx_before": [
+    "無法切除或轉移性泌尿道上皮癌成人患者。"
+   ],
+   "ctx_after": [
+    "(112/10/1）"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(108/4/1、109/11/1、",
+    "112/12/1、115/2/1)"
+   ],
+   "added": [
+    "(108/4/1、109/11/1、112/12/1、",
+    "115/2/1)"
+   ],
+   "ctx_before": [
+    "(5)頭頸部鱗狀細胞癌(不含鼻咽癌)："
+   ],
+   "ctx_after": [
+    "I.先前未曾接受全身性治療且無法手術切除之復發性或轉移性(第三"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "II.先前已使用過platinum 類化學治療失敗後，又有疾病惡化的復",
+    "發性或轉移性(第三期或第四期)頭頸部鱗狀細胞癌成人患者。"
+   ],
+   "added": [
+    "II.先前已使用過platinum 類化學治療失敗後，又有疾病惡化的復發",
+    "性或轉移性(第三期或第四期)頭頸部鱗狀細胞癌成人患者。"
+   ],
+   "ctx_before": [
+    "（112/12/1)"
+   ],
+   "ctx_after": [
+    "(108/4/1、109/11/1、112/12/1）"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "先前已使用過二線(含)以上化學治療均失敗，又有疾",
+    "病惡化的轉移性胃腺癌成人患者，且於109年4月1日前經審核同意用"
+   ],
+   "added": [
+    "先前已使用過二線(含)以上化學治療均失敗，又有疾病",
+    "惡化的轉移性胃腺癌成人患者，且於109 年4 月1 日前經審核同意用"
+   ],
+   "ctx_before": [
+    "(6)轉移性胃癌："
+   ],
+   "ctx_after": [
+    "藥，後續評估符合續用申請條件者。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "先前已使用過至少二線標靶藥物治療均失敗，又有",
+    "疾病惡化之晚期腎細胞癌，其病理上為亮細胞癌(clear cell renal"
+   ],
+   "added": [
+    "先前已使用過至少二線標靶藥物治療均失敗，又有疾",
+    "病惡化之晚期腎細胞癌，其病理上為亮細胞癌(clear cell renal"
+   ],
+   "ctx_before": [
+    "(7)晚期腎細胞癌："
+   ],
+   "ctx_after": [
+    "carcinoma)之成人患者。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Ⅱ.先前經T.A.C.E.於12個月內>=3次局部治療失敗者。"
+   ],
+   "added": [
+    "Ⅱ.先前經T.A.C.E.於12 個月內>=3 次局部治療失敗者。"
+   ],
+   "ctx_before": [
+    "Ⅰ.Child-Pugh A class 肝細胞癌成人患者。"
+   ],
+   "ctx_after": [
+    "Ⅲ.已使用過至少一線標靶藥物治療失敗，又有疾病惡化者。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Ⅴ.於109年4月1日前經審核同意用藥，後續評估符合續用申請條件",
+    "者。"
+   ],
+   "added": [
+    "Ⅴ.於109 年4 月1 日前經審核同意用藥，後續評估符合續用申請條",
+    "件者。"
+   ],
+   "ctx_before": [
+    "Ⅳ.未曾進行肝臟移植。"
+   ],
+   "ctx_after": [
+    "(109/4/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "限avelumab 用於先前已使用過platinum 類化學治療",
+    "失敗後，又有疾病惡化之轉移性第四期默克細胞癌(Merkel Cell"
+   ],
+   "added": [
+    "限avelumab 用於先前已使用過platinum 類化學治療失",
+    "敗後，又有疾病惡化之轉移性第四期默克細胞癌(Merkel",
+    "Cell"
+   ],
+   "ctx_before": [
+    "(9)默克細胞癌："
+   ],
+   "ctx_after": [
+    "Carcinoma)之成人患者。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(10)食道鱗狀細胞癌："
+   ],
+   "added": [
+    "(10) 食道鱗狀細胞癌第二線用藥："
+   ],
+   "ctx_before": [
+    "(109/6/1)"
+   ],
+   "ctx_after": [
+    "限nivolumab 用於曾接受合併含鉑及"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "fluoropyrimidine 化學治療之後惡化的無法切除晚期或復發性食道",
+    "鱗狀細胞癌病人。",
+    "(113/4/1、113/6/1、115/2/1)"
+   ],
+   "added": [
+    "fluoropyrimidine 化學治療，或限tislelizumab 用於曾接受含鉑化",
+    "學治療，之後惡化的無法手術切除之局部晚期或轉移性食道鱗狀細胞",
+    "癌之成人病人。",
+    "(113/4/1、113/6/1、115/2/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "限nivolumab 用於曾接受合併含鉑及"
+   ],
+   "ctx_after": [
+    "(11)大腸直腸癌："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(112/12/1、113/4/1、113/6/1、113/8/1、114/2/1、114/6/1、",
+    "115/2/1、115/4/1、115/6/1、115/8/1)"
+   ],
+   "added": [
+    "(112/12/1、113/4/1、113/6/1、113/8/1、114/2/1、114/6/1、115/2/1、",
+    "115/4/1、115/6/1、115/8/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "下列患者："
+   ],
+   "ctx_after": [
+    "(1)晚期肝細胞癌第一線用藥(112/8/1、112/10/1、114/2/1):"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "（112/8/1、112/10/1、114/2/1)"
+   ],
+   "added": [
+    "（112/8/1、",
+    "112/10/1、114/2/1)"
+   ],
+   "ctx_before": [
+    "class 晚期肝細胞癌成人患者，並符合下列條件之一："
+   ],
+   "ctx_after": [
+    "i.肝外轉移（遠端轉移或肝外淋巴結侵犯）。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "iii.經導管動脈化學藥物栓塞治療（Transcatheter arterial"
+   ],
+   "added": [
+    "iii.經導管動脈化學藥物栓塞治療（Transcatheter",
+    "arterial"
+   ],
+   "ctx_before": [
+    "分支）。"
+   ],
+   "ctx_after": [
+    "chemo embolization, T.A.C.E.）失敗者，需提供患者於12"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "個月內>=3次局部治療之紀錄。"
+   ],
+   "added": [
+    "個月內>=3 次局部治療之紀錄。"
+   ],
+   "ctx_before": [
+    "chemo embolization, T.A.C.E.）失敗者，需提供患者於12"
+   ],
+   "ctx_after": [
+    "II.須排除有以下任一情形："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "IV.atezolizumab 與bevacizumab 併用或durvalumab 與",
+    "tremelimumab 併用治療失敗後，不得申請使用regorafenib 或",
+    "ramucirumab。"
+   ],
+   "added": [
+    "IV.atezolizumab 與bevacizumab併用或durvalumab與tremelimumab",
+    "併用治療失敗後，不得申請使用regorafenib 或ramucirumab。"
+   ],
+   "ctx_before": [
+    "(114/2/1)"
+   ],
+   "ctx_after": [
+    "(114/2/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(112/12/1、113/4/1、113/8/1、114/6/1、",
+    "115/6/1)",
+    "I. 非小細胞肺癌術前輔助治療：",
+    "限用於可切除（腫瘤≧4 公分或淋巴",
+    "結陽性N1/N2(排除N3)，且無疾病轉移M0）之不具EGFR 或ALK 腫",
+    "瘤基因異常成人病人，且至多3 個療程，並依下列條件使用：",
+    "(115/6/1)"
+   ],
+   "added": [
+    "(112/12/1、113/4/1、113/8/1、114/6/1、115/6/1、",
+    "115/8/1、115/10/1)",
+    "I.非小細胞肺癌術前輔助治療：",
+    "限用於可切除（腫瘤≧4 公分或淋巴結",
+    "陽性N1/N2(排除N3)，且無疾病轉移M0）之不具EGFR 或ALK 腫瘤",
+    "基因異常成人病人，且至多3 個療程，並依下列條件使用：",
+    "(115/6/1、",
+    "115/8/1)"
+   ],
+   "ctx_before": [
+    "(2)非小細胞肺癌："
+   ],
+   "ctx_after": [
+    "i.非鱗狀非小細胞肺癌："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "限nivolumab 與pemetrexed(限使用",
+    "Pexeda、Apeta、Pemetrexed Sandoz 或Alimta Avos)及含鉑化",
+    "療併用。"
+   ],
+   "added": [
+    "限nivolumab 與pemetrexed(限使用Pexeda、",
+    "Apeta、Pemetrexed Sandoz 或Alimta Avos)及含鉑化療併用。"
+   ],
+   "ctx_before": [
+    "i.非鱗狀非小細胞肺癌："
+   ],
+   "ctx_after": [
+    "ii.鱗狀細胞非小細胞肺癌："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "pembrolizumab 治療。",
+    "(112/12/1、113/4/1、113/8/1)",
+    "III. 轉移性非鱗狀非小細胞肺癌第一線："
+   ],
+   "added": [
+    "pembrolizumab 治療，或限tislelizumab 與carboplatin 及",
+    "paclitaxel 併用至多使用4 個療程，接續單用tislelizumab 治療 。",
+    "(112/12/1、113/4/1、113/8/1、115/10/1)",
+    "III.轉移性非鱗狀非小細胞肺癌第一線："
+   ],
+   "ctx_before": [
+    "carboplatin 及paclitaxel 併用至多使用4 個療程，接續單用"
+   ],
+   "ctx_after": [
+    "限pembrolizumab 與"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "pemetrexed(限使用Pexeda、Apeta、Pemetrexed Sandoz 或Alimta",
+    "Avos) 及含鉑類化學療法併用，或限",
+    "tislelizumab",
+    "與"
+   ],
+   "ctx_before": [
+    "限pembrolizumab 與"
+   ],
+   "ctx_after": [
+    "pemetrexed(限使用Pexeda、Apeta、Pemetrexed Sandoz 或Alimta"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(114/6/1、114/8/1、115/8/1)"
+   ],
+   "added": [
+    "(114/6/1、114/8/1、115/8/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "EGFR/ALK/ROS-1 腫瘤基因異常的非鱗狀非小細胞肺癌第一線治療。"
+   ],
+   "ctx_after": [
+    "(3)小細胞肺癌："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "限atezolizumab 與carboplatin 及etoposide 併用，",
+    "或durvalumab 與etoposide 及carboplatin 或cisplatin 兩者之一",
+    "併用，適用於先前未曾接受化療，且無腦部或無脊髓轉移之擴散期"
+   ],
+   "added": [
+    "限atezolizumab 與carboplatin 及etoposide 併用，或",
+    "durvalumab 與etoposide 及carboplatin 或cisplatin 兩者之一併",
+    "用，適用於先前未曾接受化療，且無腦部或無脊髓轉移之擴散期"
+   ],
+   "ctx_before": [
+    "(3)小細胞肺癌："
+   ],
+   "ctx_after": [
+    "(extensive stage)小細胞肺癌成人患者。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(113/4/1、",
+    "113/6/1、115/2/1、115/4/1)",
+    "I. 限nivolumab 併用fluoropyrimidine（5-FU 或capecitabine）",
+    "及oxaliplatin，用於第一線治療晚期或轉移性且不具有HER2過",
+    "度表現的胃癌病人。"
+   ],
+   "added": [
+    "(113/4/1、113/6/1、",
+    "115/2/1、115/4/1)",
+    "I.限nivolumab 併用fluoropyrimidine（5-FU 或capecitabine）及",
+    "oxaliplatin，用於第一線治療晚期或轉移性且不具有HER2 過度表",
+    "現的胃癌病人。"
+   ],
+   "ctx_before": [
+    "(5)胃癌（不含胃腸基質瘤及神經內分泌腫瘤/癌）："
+   ],
+   "ctx_after": [
+    "(113/4/1、113/6/1、115/2/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "II. 與zolbetuximab 僅得擇一使用，且治療失敗時不可互換。"
+   ],
+   "added": [
+    "II.與zolbetuximab 僅得擇一使用，且治療失敗時不可互換。"
+   ],
+   "ctx_before": [
+    "(113/4/1、113/6/1、115/2/1)"
+   ],
+   "ctx_after": [
+    "(115/4/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "用至多使用8個療程，接續單用durvalumab 於先前未接受過治療或"
+   ],
+   "added": [
+    "用至多使用8 個療程，接續單用durvalumab 於先前未接受過治療或"
+   ],
+   "ctx_before": [
+    "限durvalumab 與cisplatin 及gemcitabine 併"
+   ],
+   "ctx_after": [
+    "不可手術之局部晚期或轉移性膽道癌(biliary tract cancer)，並"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "非轉移性、第II 期至第IIIb 期（cT1c N1-2 或",
+    "T2-4 N0-2）成年病人(114/6/1)：",
+    "I.術前前導性治療：",
+    "限pembrolizumab 每3週1次與carboplatin 和",
+    "paclitaxel 併用至多4個療程，接續限pembrolizumab 每3週1次",
+    "與cyclophosphamide 和doxorubicin 或epirubicin 併用至多4",
+    "個療程，做為初診斷病人前導性治療用藥。",
+    "II.術後輔助治療：",
+    "上述病人接受過術前前導性治療後，限手術後未",
+    "達pCR 者，單用pembrolizumab 每3週1次，做為輔助治療用藥，",
+    "且至多使用9個療程。",
+    "III.上述pembrolizumab 用於早期三陰性乳癌依前述療程規定至多",
+    "使用17個療程，且用於術後輔助治療，pembrolizumab 與",
+    "olaparib 僅能擇一支付。"
+   ],
+   "added": [
+    "非轉移性、第II 期至第IIIb 期（cT1c N1-2 或T2-",
+    "4 N0-2）成年病人(114/6/1)：",
+    "Ⅰ.術前前導性治療：",
+    "限pembrolizumab 每3 週1 次與carboplatin",
+    "和paclitaxel 併用至多4 個療程，接續限pembrolizumab 每3 週",
+    "1 次與cyclophosphamide 和doxorubicin 或epirubicin 併用至多",
+    "4 個療程，做為初診斷病人前導性治療用藥。",
+    "Ⅱ.術後輔助治療：",
+    "上述病人接受過術前前導性治療後，限手術後未達",
+    "pCR 者，單用pembrolizumab 每3 週1 次，做為輔助治療用藥，且",
+    "至多使用9 個療程。",
+    "Ⅲ.上述pembrolizumab 用於早期三陰性乳癌依前述療程規定至多使",
+    "用17 個療程，且用於術後輔助治療，pembrolizumab 與olaparib",
+    "僅能擇一支付。"
+   ],
+   "ctx_before": [
+    "(7)早期三陰性乳癌："
+   ],
+   "ctx_after": [
+    "(8)食道鱗狀細胞癌："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "限nivolumab 與fluoropyrimidine 及cisplatin",
+    "或oxaliplatin 併用，用於無法接受化學放射性治療或手術切除等治",
+    "癒性治療之晚期或轉移性食道鱗狀細胞癌成人病人的第一線治療。"
+   ],
+   "added": [
+    "限nivolumab 與fluoropyrimidine 及cisplatin 或",
+    "oxaliplatin 併用，用於無法接受化學放射性治療或手術切除等治癒",
+    "性治療之晚期或轉移性食道鱗狀細胞癌成人病人的第一線治療。"
+   ],
+   "ctx_before": [
+    "(8)食道鱗狀細胞癌："
+   ],
+   "ctx_after": [
+    "(115/2/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(9) 泌尿道上皮癌："
+   ],
+   "added": [
+    "(9)泌尿道上皮癌："
+   ],
+   "ctx_before": [
+    "(115/2/1)"
+   ],
+   "ctx_after": [
+    "限nivolumab 與cisplatin 及gemcitabine 併用至多"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "6個療程，接續限單用nivolumab，做為無法切除或轉移性泌尿道上皮"
+   ],
+   "added": [
+    "6 個療程，接續限單用nivolumab，做為無法切除或轉移性泌尿道上皮"
+   ],
+   "ctx_before": [
+    "限nivolumab 與cisplatin 及gemcitabine 併用至多"
+   ],
+   "ctx_after": [
+    "癌成人病人的第一線治療。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(10) 子宮內膜癌："
+   ],
+   "added": [
+    "(10)子宮內膜癌："
+   ],
+   "ctx_before": [
+    "(115/2/1)"
+   ],
+   "ctx_after": [
+    "限dostarlimab 與carboplatin 及paclitaxel(除"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "GENETAXYL CREM LESS 及TAXOL 以外)併用至多使用6個療程，接續單",
+    "用dostarlimab 用於治療患有錯誤配對修復功能不足（dMMR）或微衛"
+   ],
+   "added": [
+    "GENETAXYL CREM LESS 及TAXOL 以外)併用至多使用6 個療程，接續單",
+    "用dostarlimab 用於治療患有錯誤配對修復功能不足（dMMR）或微衛"
+   ],
+   "ctx_before": [
+    "限dostarlimab 與carboplatin 及paclitaxel(除"
+   ],
+   "ctx_after": [
+    "星高度不穩定性（MSI-H）之原發性晚期或首次復發性子宮內膜癌(EC）"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "II. 先前曾接受術前/術後輔助全身性治療，且於治療結束後至少6個月",
+    "以後才首次復發。"
+   ],
+   "added": [
+    "II. 先前曾接受術前/術後輔助全身性治療，且於治療結束後至少6 個",
+    "月以後才首次復發。",
+    "(11)頭頸部鱗狀細胞癌(不含鼻咽癌)：",
+    "限pembrolizumab 與含鉑化學療法",
+    "及fluorouracil(FU)併用，做為轉移性或無法切除之復發性頭頸部鱗",
+    "狀細胞癌(HNSCC)病人的第一線治療。",
+    "(115/10/1)"
+   ],
+   "ctx_before": [
+    "I. 先前未曾接受全身性治療。"
+   ],
+   "ctx_after": [
+    "3.使用條件："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "III IVD)所檢測之PD-L1表現量需符合下表："
+   ],
+   "added": [
+    "III IVD)所檢測之PD-L1 表現量需符合下表："
+   ],
+   "ctx_before": [
+    "皮瘤外，依個別藥品使用其對應之第三等級體外診斷醫療器材(class"
+   ],
+   "ctx_after": [
+    "(109/4/1、109/6/1、"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "115/6/1、115/8/1)"
+   ],
+   "added": [
+    "115/6/1、115/8/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "113/8/1、114/2/1、114/6/1、114/8/1、114/10/1、115/2/1、115/5/1、"
+   ],
+   "ctx_after": [
+    "給付範圍"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(Dako 22C3或"
+   ],
+   "added": [
+    "(Dako 22C3 或"
+   ],
+   "ctx_before": [
+    "pembrolizumab"
+   ],
+   "ctx_after": [
+    "Ventana"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(Dako 28-8或",
+    "Ventana"
+   ],
+   "added": [
+    "(Dako 28-8",
+    "或Ventana"
+   ],
+   "ctx_before": [
+    "nivolumab"
+   ],
+   "ctx_after": [
+    "SP263*)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "22C3或Ventana"
+   ],
+   "added": [
+    "22C3 或Ventana"
+   ],
+   "ctx_before": [
+    "cemiplimab(Dako"
+   ],
+   "ctx_after": [
+    "SP263*)"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "tislelizumab",
+    "(Ventana",
+    "SP263*)"
+   ],
+   "ctx_before": [
+    "dostarlimab"
+   ],
+   "ctx_after": [
+    "黑色素瘤"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "非小細胞肺"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "非小細胞肺"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "鱗狀、非鱗"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "TC≧50%或",
+    "IC≧10%"
+   ],
+   "added": [
+    "TC≧50%或IC",
+    "≧10%"
+   ],
+   "ctx_before": [
+    "付於此適應症"
+   ],
+   "ctx_after": [
+    "本藥品尚"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "非鱗狀非小"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "TC≧50%"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "鱗狀非小細"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "TC≧50%或",
+    "IC≧10%"
+   ],
+   "added": [
+    "TC≧50%或IC",
+    "≧10%"
+   ],
+   "ctx_before": [
+    "TC≧50%"
+   ],
+   "ctx_after": [
+    "本藥品尚"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "TC≧50%"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "非鱗狀非小"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "TC≧50%或",
+    "IC≧10%"
+   ],
+   "added": [
+    "TC≧50%或IC",
+    "≧10%"
+   ],
+   "ctx_before": [
+    "TC≧50%"
+   ],
+   "ctx_after": [
+    "本藥品尚"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "TC≧50%"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "鱗狀非小細"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "不需檢附報告"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "小細胞肺癌"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "不需檢附報告",
+    "本藥品尚未給付"
+   ],
+   "added": [
+    "不需檢附報告本藥品尚未給付"
+   ],
+   "ctx_before": [
+    "此適應症"
+   ],
+   "ctx_after": [
+    "於此適應症"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "典型何杰金"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "給付範圍",
+    "事審",
+    "代碼",
+    "pembrolizumab",
+    "(Dako 22C3或",
+    "Ventana",
+    "SP263*)",
+    "nivolumab",
+    "(Dako 28-8或",
+    "Ventana",
+    "SP263*)",
+    "atezolizumab",
+    "(Ventana",
+    "SP142)",
+    "avelumab",
+    "(Ventana",
+    "SP263*)",
+    "durvalumab",
+    "(Ventana",
+    "SP263*)",
+    "cemiplimab(Dako",
+    "22C3或Ventana",
+    "SP263*)",
+    "dostarlimab"
+   ],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "泌尿道上皮"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症",
+    "給付範圍",
+    "事審",
+    "代碼",
+    "pembrolizumab",
+    "(Dako 22C3 或",
+    "Ventana",
+    "SP263*)",
+    "nivolumab",
+    "(Dako 28-8",
+    "或Ventana",
+    "SP263*)",
+    "atezolizumab",
+    "(Ventana",
+    "SP142)",
+    "avelumab",
+    "(Ventana",
+    "SP263*)",
+    "durvalumab",
+    "(Ventana",
+    "SP263*)",
+    "cemiplimab(Dako",
+    "22C3 或Ventana",
+    "SP263*)",
+    "dostarlimab",
+    "tislelizumab",
+    "(Ventana",
+    "SP263*)"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "泌尿道上皮"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(113年8月1日",
+    "前審核同意符",
+    "合續用申請條",
+    "件者)"
+   ],
+   "added": [
+    "(113 年8 月1",
+    "日前審核同意",
+    "符合續用申請",
+    "條件者)"
+   ],
+   "ctx_before": [
+    "IC≧5%"
+   ],
+   "ctx_after": [
+    "本藥品尚"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "泌尿道上皮"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "泌尿道上皮"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(113年8月1日",
+    "前審核同意符",
+    "合續用申請條",
+    "件者)"
+   ],
+   "added": [
+    "(113 年8 月1",
+    "日前審核同意",
+    "符合續用申請",
+    "條件者)"
+   ],
+   "ctx_before": [
+    "IC≧5%"
+   ],
+   "ctx_after": [
+    "本藥品尚"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "胃腺癌"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(109年4月1",
+    "日前審核同",
+    "意符合續用",
+    "申請條件者)"
+   ],
+   "added": [
+    "(109 年4 月",
+    "1 日前審核",
+    "同意符合續",
+    "用申請條件",
+    "者)"
+   ],
+   "ctx_before": [
+    "胃腺癌"
+   ],
+   "ctx_after": [
+    "P051"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "胃癌第一線"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "晚期腎細胞"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "晚期肝細胞"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "癌(109年4月",
+    "1日前審核同",
+    "意符合續用)"
+   ],
+   "added": [
+    "癌(109 年4",
+    "月1 日前審",
+    "核同意符合",
+    "續用)"
+   ],
+   "ctx_before": [
+    "晚期肝細胞"
+   ],
+   "ctx_after": [
+    "P071 本藥品尚未給"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(109年4月1日",
+    "前審核同意符",
+    "合續用申請條",
+    "件者)"
+   ],
+   "added": [
+    "(109 年4 月1",
+    "日前審核同意",
+    "符合續用申請",
+    "條件者)"
+   ],
+   "ctx_before": [
+    "不需檢附報告"
+   ],
+   "ctx_after": [
+    "本藥品尚未給"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "晚期肝細胞"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "頭頸部鱗狀"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "線用藥"
+   ],
+   "added": [
+    "線用藥(單",
+    "用)"
+   ],
+   "ctx_before": [
+    "細胞癌第一"
+   ],
+   "ctx_after": [
+    "P082"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "CPS≧20"
+   ],
+   "added": [
+    "CPS≧1"
+   ],
+   "ctx_before": [
+    "P082"
+   ],
+   "ctx_after": [
+    "本藥品尚未給"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "給付範圍",
+    "事審",
+    "代碼",
+    "pembrolizumab",
+    "(Dako 22C3或",
+    "Ventana",
+    "SP263*)",
+    "nivolumab",
+    "(Dako 28-8或",
+    "Ventana",
+    "SP263*)",
+    "atezolizumab",
+    "(Ventana",
+    "SP142)",
+    "avelumab",
+    "(Ventana",
+    "SP263*)",
+    "durvalumab",
+    "(Ventana",
+    "SP263*)",
+    "cemiplimab(Dako",
+    "22C3或Ventana",
+    "SP263*)",
+    "dostarlimab"
+   ],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症",
+    "頭頸癌鱗狀",
+    "細胞癌第一",
+    "線用藥(併用",
+    "化療)",
+    "P082 不需檢附報告本藥品尚未給",
+    "付於此適應症",
+    "本藥品尚未給",
+    "付於此適應症",
+    "本藥品尚",
+    "未給付於",
+    "此適應症",
+    "本藥品尚未給",
+    "付於此適應症",
+    "本藥品尚未給付",
+    "於此適應症",
+    "本藥品尚未",
+    "給付於此適",
+    "應症",
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "頭頸部鱗狀"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "默克細胞癌P091 本藥品尚未給"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "食道鱗狀細"
+   ],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症",
+    "給付範圍",
+    "事審",
+    "代碼",
+    "pembrolizumab",
+    "(Dako 22C3 或",
+    "Ventana",
+    "SP263*)",
+    "nivolumab",
+    "(Dako 28-8",
+    "或Ventana",
+    "SP263*)",
+    "atezolizumab",
+    "(Ventana",
+    "SP142)",
+    "avelumab",
+    "(Ventana",
+    "SP263*)",
+    "durvalumab",
+    "(Ventana",
+    "SP263*)",
+    "cemiplimab(Dako",
+    "22C3 或Ventana",
+    "SP263*)",
+    "dostarlimab",
+    "tislelizumab",
+    "(Ventana",
+    "SP263*)",
+    "食道鱗狀細"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "胞癌第一線"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "食道鱗狀細"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "TAP≧1%",
+    "或",
+    "CPS≧1"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "惡性肋膜間"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "膽道癌"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "不需檢附報告",
+    "本藥品尚未給付"
+   ],
+   "added": [
+    "不需檢附報告本藥品尚未給付"
+   ],
+   "ctx_before": [
+    "此適應症"
+   ],
+   "ctx_after": [
+    "於此適應症"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "早期三陰性"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "大腸直腸癌P141 不需檢附報告本藥品尚未給"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症"
+   ],
+   "ctx_before": [
+    "應症"
+   ],
+   "ctx_after": [
+    "子宮內膜癌"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "* Ventana SP263僅適用於檢測非小細胞肺癌或泌尿道上皮癌維持療法",
+    "(4)每位病人每個適應症限給付一種免疫檢查點抑制劑且不得互換，治",
+    "療期間亦不可合併申報該適應症之標靶藥物（atezolizumab 與"
+   ],
+   "added": [
+    "本藥品尚未給",
+    "付於此適應症",
+    "* Ventana SP263 僅適用於檢測非小細胞肺癌、泌尿道上皮癌維持療法或食道鱗狀細胞癌",
+    "(4)每位病人每個適應症限給付一種免疫檢查點抑制劑且不得互換，治療",
+    "期間亦不可合併申報該適應症之標靶藥物（atezolizumab 與"
+   ],
+   "ctx_before": [
+    "告"
+   ],
+   "ctx_after": [
+    "bevacizumab 併用於晚期肝細胞癌第一線用藥及非鱗狀非小細胞肺"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "癌第一線用藥除外），無效後或給付時程期滿後則不再給付該適應",
+    "症相關之標靶藥物。",
+    "（enfortumab vedotin 用於局部晚期或轉移性",
+    "泌尿道上皮癌第三線用藥及cetuximab 用於頭頸部鱗狀細胞癌(不",
+    "含鼻咽癌) 除外）。",
+    "(108/4/1、111/6/1、112/8/1、113/5/1、",
+    "115/2/1)"
+   ],
+   "added": [
+    "癌第一線用藥除外），無效後或給付時程期滿後則不再給付該適應症",
+    "相關之標靶藥物。",
+    "（enfortumab vedotin 用於局部晚期或轉移性泌",
+    "尿道上皮癌第三線用藥及cetuximab 用於頭頸部鱗狀細胞癌(不含",
+    "鼻咽癌) 除外）。",
+    "(108/4/1、111/6/1、112/8/1、113/5/1、115/2/1)"
+   ],
+   "ctx_before": [
+    "bevacizumab 併用於晚期肝細胞癌第一線用藥及非鱗狀非小細胞肺"
+   ],
+   "ctx_after": [
+    "(5)給付時程期限："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "自初次處方用藥日起算2年（pembrolizumab 用於早",
+    "期三陰性乳癌依前述給付時程期限至多使用17個療程、durvalumab",
+    "用於鞏固治療自初次處方用藥日起算1年、nivolumab 用於非小細",
+    "胞肺癌術前輔助治療至多使用3個療程）。"
+   ],
+   "added": [
+    "自初次處方用藥日起算2 年（pembrolizumab 用於早",
+    "期三陰性乳癌依前述給付時程期限至多使用17 個療程、durvalumab",
+    "用於鞏固治療自初次處方用藥日起算1 年、nivolumab 用於非小細",
+    "胞肺癌術前輔助治療至多使用3 個療程）。"
+   ],
+   "ctx_before": [
+    "(5)給付時程期限："
+   ],
+   "ctx_after": [
+    "(109/4/1、109/11/1、"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(108/4/1、110/10/1、111/6/1、",
+    "115/6/1)",
+    "(7)每次申請以12週為限，初次申請時需檢附以下資料："
+   ],
+   "added": [
+    "(108/4/1、110/10/1、111/6/1、115/6/1)",
+    "(7)每次申請以12 週為限，初次申請時需檢附以下資料："
+   ],
+   "ctx_before": [
+    "(6)需經事前審查核准後使用。"
+   ],
+   "ctx_after": [
+    "(108/6/1、"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "PD-L1表現量檢測結果需符合全民健"
+   ],
+   "added": [
+    "PD-L1 表現量檢測結果需符合全民健"
+   ],
+   "ctx_before": [
+    "Ⅱ.生物標記表現量檢測報告："
+   ],
+   "ctx_after": [
+    "康保險藥品給付規定之通則十二。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "IV.病人12週內之疾病影像檢查及報告(如胸部X 光、電腦斷層或其"
+   ],
+   "added": [
+    "IV.病人12 週內之疾病影像檢查及報告(如胸部X 光、電腦斷層或其"
+   ],
+   "ctx_before": [
+    "Ⅲ.病人身體狀況良好(ECOG≦1)及心肺與肝腎功能之評估資料。"
+   ],
+   "ctx_after": [
+    "他可作為評估的影像)，此影像證明以可測量(measurable)的病灶"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(8)用藥後每12週至少評估一次，以i-RECIST 標準(HCC 患者以",
+    "mRECIST 標準)評定藥物療效反應，依下列原則申請續用：",
+    "(109/4/1、109/11/1、114/6/1、114/8/1、115/6/1)",
+    "I.有療效反應iPR(PR)、iCR(CR)者，或限使用nivolumab、",
+    "avelumab、ipilimumab 或cemiplimab 後評估疾病呈穩定狀態",
+    "iSD (SD)者，得繼續用藥；"
+   ],
+   "added": [
+    "(8)用藥後每12 週至少評估一次，以i-RECIST 標準(HCC 患者以mRECIST",
+    "標準)評定藥物療效反應，依下列原則申請續用：",
+    "(109/4/1、109/11/1、",
+    "114/6/1、114/8/1、115/6/1、115/10/1)",
+    "I.有療效反應iPR(PR)、iCR(CR)者，或限使用nivolumab、avelumab、",
+    "ipilimumab 、cemiplimab 、dostarlimab 、tislelizumab 或",
+    "pembrolizumab 後評估疾病呈穩定狀態iSD (SD)者，得繼續用",
+    "藥；"
+   ],
+   "ctx_before": [
+    "IX. 其他佐證病歷資料。"
+   ],
+   "ctx_after": [
+    "(109/4/1、115/6/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "用藥4-8週後再次評估；"
+   ],
+   "added": [
+    "用藥4-8 週後再次評估；"
+   ],
+   "ctx_before": [
+    "II.初始用藥後，如評估疾病呈未確認疾病惡化者(iUPD)，可持續"
+   ],
+   "ctx_after": [
+    "如再次評估，結果為疾病惡化iCPD (PD)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Ⅳ.使用atezolizumab、pembrolizumab、durvalumab、tremelimumab",
+    "後評估疾病呈穩定狀態者(SD)，可持續再用藥12週，並於12週後",
+    "再次評估；"
+   ],
+   "added": [
+    "Ⅳ.使用atezolizumab、durvalumab、tremelimumab 後評估疾病呈",
+    "穩定狀態者(SD)，可持續再用藥12 週，並於12 週後再次評估；"
+   ],
+   "ctx_before": [
+    "(109/4/1、115/6/1)"
+   ],
+   "ctx_after": [
+    "經連續二次評估皆為SD 者，不得申請續用。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "durvalumab 用於非小細胞肺癌之鞏固治療不在此限。",
+    "(114/8/1、",
+    "115/6/1)",
+    "Ⅴ使用於早期三陰性乳癌，術前前導性治療腫瘤惡化iCPD 者，或",
+    "術後輔助治療復發者，不得申請續用。"
+   ],
+   "added": [
+    "durvalumab 用於非",
+    "小細胞肺癌之鞏固治療不在此限。",
+    "(114/8/1、115/6/1)",
+    "Ⅴ使用於早期三陰性乳癌，術前前導性治療腫瘤惡化iCPD 者，或術",
+    "後輔助治療復發者，不得申請續用。"
+   ],
+   "ctx_before": [
+    "經連續二次評估皆為SD 者，不得申請續用。"
+   ],
+   "ctx_after": [
+    "(114/6/1、115/6/1)"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(9)申請續用時，需檢附病人12週內之評估資料如下："
+   ],
+   "added": [
+    "(9)申請續用時，需檢附病人12 週內之評估資料如下："
+   ],
+   "ctx_before": [
+    "(114/6/1、115/6/1)"
+   ],
+   "ctx_after": [
+    "(108/6/1、"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(1)醫師處方使用本類藥品，倘病人結束治療、停止用藥、未通過續用",
+    "申請或達給付時程期限時，醫事機構須在28天內於VPN 系統登錄結"
+   ],
+   "added": [
+    "(1)醫師處方使用本類藥品，倘病人結束治療、停止用藥、未通過續用申",
+    "請或達給付時程期限時，醫事機構須在28 天內於VPN 系統登錄結"
+   ],
+   "ctx_before": [
+    "(109/11/1、114/1/1）"
+   ],
+   "ctx_after": [
+    "案。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "逾期未登錄結案者，系統自動結案，且不予支付該個案自前次",
+    "事前審查核定日後申報之藥費。"
+   ],
+   "added": [
+    "逾期未登錄結案者，系統自動結案，且不予支付該個案自前次事",
+    "前審查核定日後申報之藥費。"
+   ],
+   "ctx_before": [
+    "案。"
+   ],
+   "ctx_after": [
+    "(109/11/1、114/1/1)"
+   ]
+  }
+ ],
+ "stats": {
+  "sent_added": 337,
+  "sent_removed": 232,
+  "sent_equal": 750,
+  "change_ratio": 0.2617
+ }
+}

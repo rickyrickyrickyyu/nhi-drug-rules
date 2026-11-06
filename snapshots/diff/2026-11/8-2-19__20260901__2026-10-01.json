@@ -1,0 +1,220 @@
+{
+ "section_code": "8.2.19.",
+ "kind": "revised",
+ "detected_at": "2026-11-06",
+ "from": "8.2.19._20260901.pdf",
+ "to": "8.2.19._20261001.pdf",
+ "effective_date": "2026-10-01",
+ "hunks": [
+  {
+   "op": "replace",
+   "removed": [
+    "8.2.19.Danicopan (如Voydeya)、iptacopan (如Fabhalta):",
+    "(115/3/1、115/9/1)",
+    "1.限用於經衛生福利部國民健康署認定之陣發性夜間血紅素尿症病",
+    "人，並經特殊專案審查核准後使用，且符合下列條件："
+   ],
+   "added": [
+    "8.2.19.Danicopan (如Voydeya)、iptacopan (如Fabhalta)、pegcetacoplan(如",
+    "Aspaveli/Empaveli): (115/3/1、115/9/1、115/10/1)",
+    "1.限用於經衛生福利部國民健康署認定之陣發性夜間血紅素尿症病人，並經特殊專案審查核准後使用，",
+    "且符合下列條件：",
+    "(115/3/1、115/9/1、115/10/1)",
+    "(1)Danicopan 限與eculizumab 或ravulizumab 併用；",
+    "iptacopan 及pegcetacoplan 限單用。"
+   ],
+   "ctx_before": [],
+   "ctx_after": [
+    "(115/3/1、"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "115/9/1)",
+    "(1)Danicopan 限與eculizumab 或ravulizumab 併用；",
+    "iptacopan 限",
+    "單用。",
+    "(115/3/1、115/9/1)"
+   ],
+   "added": [
+    "115/9/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "(115/3/1、"
+   ],
+   "ctx_after": [
+    "(2)年齡18 歲以上。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(3)經C5 補體抑制劑(如eculizumab 或ravulizumab)治療後，仍",
+    "出現血管外溶血(clinically significant extravascular",
+    "hemolysis)。"
+   ],
+   "added": [
+    "(3)經C5 補體抑制劑(如eculizumab 或ravulizumab)治療後，仍出現血管外溶血(clinically",
+    "significant extravascular hemolysis)。"
+   ],
+   "ctx_before": [
+    "(2)年齡18 歲以上。"
+   ],
+   "ctx_after": [
+    "(4)使用C5 抑制劑下血紅素仍小於或等於9.5g/dL。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "9/L，或網狀紅血球比例",
+    "大於或等於3%。"
+   ],
+   "added": [
+    "9/L，或網狀紅血球比例大於或等於3%。"
+   ],
+   "ctx_before": [
+    "(5)絕對網狀紅血球計數大於或等於120×10"
+   ],
+   "ctx_after": [
+    "2.排除有高危險之骨髓化生不良症候群（RAEB-1 或RAEB-2）。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "若符合下列條件之",
+    "一，則不予同意使用。",
+    "(1)接受治療的患者用藥後病情沒有改善者（LDH 超過正常值上限的",
+    "1.5 倍或最近3 個月內輸血多於2 個單位）。"
+   ],
+   "added": [
+    "若符合下列條件之一，則不予同意使用。",
+    "(1)接受治療的患者用藥後病情沒有改善者（LDH 超過正常值上限的1.5 倍或最近3 個月內輸血多於2",
+    "個單位）。"
+   ],
+   "ctx_before": [
+    "3.每6 個月須經特殊專案審查重新評估治療結果。"
+   ],
+   "ctx_after": [
+    "(2)PNH granulocyte clone size ≦50%。"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "(3)發生嚴重再生不良性貧血者，其檢查結果符合下列兩項或兩項以",
+    "上者："
+   ],
+   "added": [
+    "(3)發生嚴重再生不良性貧血者，其檢查結果符合下列兩項或兩項以上者："
+   ],
+   "ctx_before": [
+    "(2)PNH granulocyte clone size ≦50%。"
+   ],
+   "ctx_after": [
+    "i.中性白血球數目(neutrophil count) <0.5x10"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "4.Danicopan、iptacopan 兩者僅得擇一使用，惟病人出現耐受不良反",
+    "應時方可轉換使用，且限轉換一次。",
+    "(115/9/1)"
+   ],
+   "added": [
+    "4.Danicopan、iptacopan、pegcetacoplan 三者僅得擇一使用，惟病人出現耐受不良反應時方可轉換使",
+    "用，且限轉換一次。",
+    "(115/9/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "iv.骨髓內造血細胞密度<30%。"
+   ],
+   "ctx_after": [
+    "◎附表三十之三："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "全民健康保險使用陣發性夜間血紅素尿症第二線",
+    "治療藥品danicopan+eculizumab /ravulizumab、iptacopan 特",
+    "殊專案審查申請表(115/3/1、115/9/1)"
+   ],
+   "added": [
+    "全民健康保險使用陣發性夜間血紅素尿症第二線治療藥品danicopan+eculizumab",
+    "/ravulizumab 或iptacopan 或pegcetacoplan 特殊專案審查申請表(115/3/1、115/9/1、115/10/1)"
+   ],
+   "ctx_before": [
+    "◎附表三十之三："
+   ],
+   "ctx_after": [
+    "◎附表三十之四："
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "陣發性夜間血紅素尿症患者第二線治療藥品特殊",
+    "專案審查申請",
+    "Voydeya(danicopan)+Soliris(eculizumab)/Ultomiris(ravulizuma",
+    "b)或Fabhalta (iptacopan)用藥檢附資料查檢表(115/3/1、",
+    "115/9/1)",
+    "附表三十之三全民健康保險使用陣發性夜間血紅素尿症第二線治療藥品danicopan+eculizumab/ravulizumab、iptacopan 特殊專案審查申請表"
+   ],
+   "added": [
+    "陣發性夜間血紅素尿症患者第二線治療藥品特殊專案審查申請",
+    "Voydeya(danicopan)+Soliris(eculizumab)/Ultomiris(ravulizumab)或Fabhalta (iptacopan)或",
+    "Aspaveli/Empaveli(pegcetacoplan)用藥檢附資料查檢表(115/3/1、115/9/1、115/10/1)",
+    "附表三十之三全民健康保險使用陣發性夜間血紅素尿症第二線治療藥品danicopan+eculizumab/ravulizumab 或iptacopan 或pegcetacoplan 特殊",
+    "專案審查申請表"
+   ],
+   "ctx_before": [
+    "◎附表三十之四："
+   ],
+   "ctx_after": [
+    "申請類別:"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "Aspaveli/Empaveli",
+    "□X000385238"
+   ],
+   "ctx_before": [
+    "□VC00102100"
+   ],
+   "ctx_after": [
+    "□第一次申請"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Fabhalta (iptacopan)用藥檢附資料查檢表",
+    "115 年9 月1 日修訂"
+   ],
+   "added": [
+    "Fabhalta (iptacopan)或Aspaveli/Empaveli(pegcetacoplan)用藥檢附資料查",
+    "檢表",
+    "115 年10 月1 日修訂"
+   ],
+   "ctx_before": [
+    "Voydeya(danicopan)+Soliris(eculizumab)/Ultomiris(ravulizumab)或"
+   ],
+   "ctx_after": [
+    "新個案初次申請"
+   ]
+  }
+ ],
+ "stats": {
+  "sent_added": 30,
+  "sent_removed": 34,
+  "sent_equal": 266,
+  "change_ratio": 0.1067
+ }
+}

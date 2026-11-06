@@ -1,0 +1,82 @@
+{
+ "section_code": "5.6.1.",
+ "kind": "revised",
+ "detected_at": "2026-11-06",
+ "from": "5.6.1._20260701.pdf",
+ "to": "5.6.1._20260801.pdf",
+ "effective_date": "2026-08-01",
+ "hunks": [
+  {
+   "op": "replace",
+   "removed": [
+    "5.6.骨質疏鬆症治療藥物(100/1/1)",
+    "5.6.1.抗骨質再吸收劑（anti- resorptive）(101/3/1、101/5/1、102/2/1、102/8/1、",
+    "103/2/1、103/10/1、104/8/1、106/12/1、114/3/1、115/7/1)"
+   ],
+   "added": [
+    "5.6.1.抗骨質再吸收劑（anti- resorptive）(101/3/1、101/5/1、102/2/1、",
+    "102/8/1、103/2/1、103/10/1、104/8/1、106/12/1、114/3/1、115/7/1、115/8/1)"
+   ],
+   "ctx_before": [
+    "1"
+   ],
+   "ctx_after": [
+    "1.藥品種類"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "Ⅰ.限用於停經後婦女（alendronate、zoledronate、denosumab 及risedronate"
+   ],
+   "added": [
+    "I.限用於停經後婦女（alendronate、zoledronate、denosumab 及risedronate"
+   ],
+   "ctx_before": [
+    "(1)使用條件"
+   ],
+   "ctx_after": [
+    "35mg 亦可使用於男性，risedronate 150mg 不可使用於男性）因骨質疏鬆症"
+   ]
+  },
+  {
+   "op": "replace",
+   "removed": [
+    "使用Prolia、Alendronate Sandoz 70mg Tablets",
+    "及PlusDmax Tablets \"Sinphar\"除上述條件外，亦可用於前述因骨質疏鬆症引",
+    "起之遠端橈骨或近端肱骨骨折，或骨質疏少症引起之遠端橈骨、近端肱骨2處或",
+    "2次(含)以上之骨折。",
+    "(101/5/1、102/8/1、103/10/1、104/8/1、106/12/1、",
+    "114/3/1、115/7/1)",
+    "Ⅱ.用於骨質疏鬆症患者 (須經DXA 檢測BMD 之T-score≦-2.5)，且合併下列至少",
+    "一項骨質疏鬆性骨折高風險因子者，限使用Prolia 及Alendronate Sandoz",
+    "70mg Tablet 及PlusDmax Tablets \"Sinphar\"，且須於病歷上載明:",
+    "(114/3/1、115/7/1)"
+   ],
+   "added": [
+    "denosumab 及alendronate (除COVAXIN、",
+    "Mosmass、Apo-Alendronate、Fosamax、Binosto 及Alendro-Dthen 外)除使用於",
+    "上述條件外，亦可用於前述因骨質疏鬆症引起之遠端橈骨或近端肱骨骨折，或",
+    "骨質疏少症引起之遠端橈骨、近端肱骨2處或2次(含)以上之骨折。",
+    "(101/5/1、",
+    "102/8/1、103/10/1、104/8/1、106/12/1、114/3/1、115/7/1、115/8/1)",
+    "II.用於骨質疏鬆症患者 (須經DXA 檢測BMD 之T-score≦-2.5)，且合併下列至少",
+    "一項骨質疏鬆性骨折高風險因子者，限使用denosumab 及alendronate(除",
+    "COVAXIN、Mosmass、Apo-Alendronate、Fosamax、Binosto 及Alendro-Dthen",
+    "外)，且須於病歷上載明: (114/3/1、115/7/1、115/8/1)"
+   ],
+   "ctx_before": [
+    "部2處或2次(含)以上之骨折。"
+   ],
+   "ctx_after": [
+    "ⅰ類風溼性關節炎。"
+   ]
+  }
+ ],
+ "stats": {
+  "sent_added": 13,
+  "sent_removed": 14,
+  "sent_equal": 25,
+  "change_ratio": 0.3462
+ }
+}

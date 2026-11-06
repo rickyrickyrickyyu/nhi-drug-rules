@@ -1,0 +1,51 @@
+{
+ "section_code": "8.2.4.3.",
+ "kind": "revised",
+ "detected_at": "2026-11-06",
+ "from": "8.2.4.3._20250901.pdf",
+ "to": "8.2.4.3._20260501.pdf",
+ "effective_date": "2026-05-01",
+ "hunks": [
+  {
+   "op": "replace",
+   "removed": [
+    "brodalumab (如Lumicef) (98/8/1、98/11/1、101/1/1、102/1/1、",
+    "107/1/1、109/9/1、109/12/1、110/7/1、111/5/1、112/3/1、",
+    "112/4/1、112/12/1、114/9/1)："
+   ],
+   "added": [
+    "brodalumab (如Lumicef)；",
+    "bimekizumab（如Bimzelx） (98/8/1、",
+    "98/11/1、101/1/1、102/1/1、107/1/1、109/9/1、109/12/1、",
+    "110/7/1、111/5/1、112/3/1、112/4/1、112/12/1、114/9/1、",
+    "115/5/1)："
+   ],
+   "ctx_before": [
+    "tofacitinib (如Xeljanz)；"
+   ],
+   "ctx_after": [
+    "用於僵直性脊椎炎治療部分"
+   ]
+  },
+  {
+   "op": "insert",
+   "removed": [],
+   "added": [
+    "(7) Bimekizumab 每次使用劑量為160mg，每4週投予160mg 劑量。",
+    "(115/5/1)"
+   ],
+   "ctx_before": [
+    "(112/12/1)"
+   ],
+   "ctx_after": [
+    "5.療效評估與繼續使用："
+   ]
+  }
+ ],
+ "stats": {
+  "sent_added": 7,
+  "sent_removed": 3,
+  "sent_equal": 103,
+  "change_ratio": 0.0455
+ }
+}
