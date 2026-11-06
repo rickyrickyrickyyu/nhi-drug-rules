@@ -38,6 +38,8 @@ jobs:
         with:
           python-version: '3.12'
       - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: false   # v7 預設開快取，找不到 requirements 檔會一直警告；只裝兩個套件不需要
       - name: 安裝 Python 依賴
         # ★ 版本鎖成本機驗證過的（vibe-coding venv）。沒鎖時 CI 裝到 pymupdf 2.1，find_tables 切法改變，
         #   gate 34 表格碎片從 3 節變 12 節。升級要先本機 make rebuild 全綠再改這裡。
@@ -120,7 +122,7 @@ jobs:
       # ★ 公開 repo 連續 60 天沒有 commit，GitHub 會靜默停用排程（資料沒變就不 commit，09-21→11-03 已隔 43 天）。
       #   每次排程跑完都呼叫一次 enable 重置計時（keepalive-workflow 的 API 模式同原理），失敗只警告。
       - name: 防排程因 60 天無活動被停用
-        if: always() && github.event_name == 'schedule'
+        if: always()   # 手動觸發也跑：重複 enable 無副作用，且每次都驗得到這步沒壞
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/full-refresh.yml/enable" || echo "::warning::keepalive 失敗"
