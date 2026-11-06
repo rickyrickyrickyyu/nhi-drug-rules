@@ -16,6 +16,7 @@ permissions:
   pages: write
   id-token: write
   issues: write
+  actions: write   # keepalive 用
 
 concurrency:
   group: nhi-data
@@ -25,24 +26,24 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       # ★ runner（Ubuntu 24.04）系統 Python 是 externally-managed，`uv pip install --system` 會被拒
       #   （2026-09／10／11 三次月更都死在這一步，13 秒就結束）。先用 setup-python 裝一個自己的。
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v7
       - name: 安裝 Python 依賴
         # ★ 版本鎖成本機驗證過的（vibe-coding venv）。沒鎖時 CI 裝到 pymupdf 2.1，find_tables 切法改變，
         #   gate 34 表格碎片從 3 節變 12 節。升級要先本機 make rebuild 全綠再改這裡。
         run: uv pip install --system pymupdf==1.28.0 pyyaml==6.0.3
 
       # pipeline 最後會 pnpm build＋產離線包，Node 要先就緒
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: pnpm
@@ -64,7 +65,7 @@ jobs:
 
       - name: 保留 staging 供人工檢視
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: staging-${{ github.run_id }}
           path: data/build/.staging
@@ -92,15 +93,15 @@ jobs:
 
       # ★ GITHUB_TOKEN 的 push 不會觸發其他 workflow（GitHub 防遞迴），build+deploy 必須併在這裡
       - run: pnpm build
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
       # 已有未關閉的同類 issue → 留言追加，不重複開；附上 pipeline 記下的失敗原因
       - name: 失敗時開 issue
         if: failure()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
@@ -114,6 +115,14 @@ jobs:
             if (prev) await github.rest.issues.createComment({ owner, repo, issue_number: prev.number, body: `${new Date().toISOString().slice(0,10)} 再次失敗\n\n${body}` });
             else await github.rest.issues.create({ owner, repo, title: `❌ ${new Date().toISOString().slice(0,7)} 月更失敗`, body });
 
+      # ★ 公開 repo 連續 60 天沒有 commit，GitHub 會靜默停用排程（資料沒變就不 commit，09-21→11-03 已隔 43 天）。
+      #   每次排程跑完都呼叫一次 enable 重置計時（keepalive-workflow 的 API 模式同原理），失敗只警告。
+      - name: 防排程因 60 天無活動被停用
+        if: always() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/monthly-update.yml/enable" || echo "::warning::keepalive 失敗"
+
   deploy:
     needs: refresh
     runs-on: ubuntu-latest
@@ -122,4 +131,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
