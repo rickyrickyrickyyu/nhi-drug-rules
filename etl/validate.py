@@ -373,7 +373,7 @@ def run() -> list[Gate]:
     new_frag = sorted(frag - KNOWN_FRAG)
     g.append(Gate(34, "表格碎片殘留", not new_frag,
                   f"{len(frag)} 節（已知 {len(frag & KNOWN_FRAG)}）"
-                  + (f"｜新增 {new_frag[:5]}" if new_frag else "")))
+                  + (f"｜新增 {new_frag}" if new_frag else "")))
 
     # 35 別名不可把主檔實際使用的拼法改寫成主檔沒有的拼法
     #    本站的學名鍵就是主檔「分類分組名稱」的第一段。實際踩過：

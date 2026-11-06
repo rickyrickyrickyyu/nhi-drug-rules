@@ -38,7 +38,9 @@ jobs:
           python-version: '3.12'
       - uses: astral-sh/setup-uv@v5
       - name: 安裝 Python 依賴
-        run: uv pip install --system pymupdf pyyaml
+        # ★ 版本鎖成本機驗證過的（vibe-coding venv）。沒鎖時 CI 裝到 pymupdf 2.1，find_tables 切法改變，
+        #   gate 34 表格碎片從 3 節變 12 節。升級要先本機 make rebuild 全綠再改這裡。
+        run: uv pip install --system pymupdf==1.28.0 pyyaml==6.0.3
 
       # pipeline 最後會 pnpm build＋產離線包，Node 要先就緒
       - uses: pnpm/action-setup@v4
