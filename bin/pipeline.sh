@@ -69,7 +69,8 @@ for entry in "${steps[@]}"; do
 done
 
 i=$((i+1)); echo "▶ $i/$total 驗證閘門（fail-closed）"
-python3 etl/validate.py || { fail "驗證閘門未通過"; exit 2; }   # exit 2 = 閘門擋下，呼叫端要顯示 staging 位置
+# OVERRIDE：CI 的 workflow_dispatch 人工放行（例 6,10）
+python3 etl/validate.py ${OVERRIDE:+--override "$OVERRIDE"} || { fail "驗證閘門未通過"; exit 2; }   # exit 2 = 閘門擋下，呼叫端要顯示 staging 位置
 
 i=$((i+1)); echo "▶ $i/$total promote 到 public/data"
 python3 etl/promote.py || { fail "promote 失敗"; exit 1; }

@@ -1,16 +1,15 @@
 # 半年一次的完整校驗（1 月與 7 月）。
-#
-# 為什麼需要這條：月更是增量的 —— 只下載「檔名生效日有變」的章節。
-# 但健保署有前科會修訂條文卻不改檔名，那種靜默改檔增量模式抓不到。
-# 半年重抓全部 534 份 PDF 比對 sha256，才能確定本站條文與官方一致。
+# 月更是增量的 —— 只下載「檔名生效日有變」的章節；健保署有前科會修訂條文卻不改檔名，
+# 半年重抓全部章節 PDF 比對 sha256（fetch_rule_pdfs.py --force），才能確定本站條文與官方一致。
+# ★ 與 monthly-update.yml 只差 cron、pipeline 參數與標題；改一邊要同步另一邊。
 name: full-refresh
 on:
   schedule:
-    - cron: '0 21 5 1,7 *'   # UTC 1月/7月 5日 21:00 = 台北 6 日 05:00
+    - cron: '0 21 5 1,7 *'
   workflow_dispatch:
     inputs:
       override_gate:
-        description: '人工確認後放行的 gate 編號（例 6,10）'
+        description: '人工確認後放行的 gate 編號，逗號分隔（例 6,10）'
         type: string
         default: ''
 
@@ -25,64 +24,98 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  full:
+  refresh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+        with:
+          fetch-depth: 0
+
+      # ★ runner（Ubuntu 24.04）系統 Python 是 externally-managed，`uv pip install --system` 會被拒
+      #   （2026-09／10／11 三次月更都死在這一步，13 秒就結束）。先用 setup-python 裝一個自己的。
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - uses: astral-sh/setup-uv@v5
-      - run: uv pip install --system pymupdf pyyaml
+      - name: 安裝 Python 依賴
+        run: uv pip install --system pymupdf pyyaml
 
-      - name: 完整重抓與校驗
+      # pipeline 最後會 pnpm build＋產離線包，Node 要先就緒
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # ★ 一律走 bin/pipeline.sh（與 make refresh、一鍵更新同一份）。舊 workflow 自己列了一份步驟清單，
+      #   漏跑處置／表格／劑量／提及索引／diff，等於重演 pipeline.sh 開頭寫的那場事故。
+      #   exit 3 = 資料已 promote、只有離線包沒出 → 照常 commit＋部署，標 warning。
+      - name: 抓取 → 建置 → 閘門 → promote
+        shell: bash
+        env:
+          OVERRIDE: ${{ inputs.override_gate }}
         run: |
-          python3 etl/fetch_nhi_drugs.py
-          python3 etl/fetch_tfda.py
-          python3 etl/fetch_rule_pdfs.py --force   # ★ --force：全部 534 份重抓比對 sha256
-          python3 etl/normalize_drugs.py
-          python3 etl/parse_rules.py
-          python3 etl/tag_derm.py
-          python3 etl/diff_rules.py
-          python3 etl/build_site_data.py
+          set +e
+          bash bin/pipeline.sh fetch --force
+          rc=$?
+          if [[ $rc == 3 ]]; then echo "::warning::離線包產生失敗（線上版資料已更新）"; exit 0; fi
+          exit $rc
 
-      - run: python3 etl/validate.py --override "${{ inputs.override_gate }}"
-      - if: failure()
+      - name: 保留 staging 供人工檢視
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: staging-${{ github.run_id }}
           path: data/build/.staging
-      - run: python3 etl/promote.py
+          # ★ .staging 是隱藏目錄，upload-artifact v4.4+ 預設排除 → 不加這行永遠是空的
+          include-hidden-files: true
+          if-no-files-found: ignore
 
       - name: commit
         run: |
           set -euo pipefail
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # ★ 公開 repo：路徑白名單＋個資掃描先過，才 add -A
+          #   （add -A 仍必要：每月新下載的 snapshots/pdf、text、diff 全是 untracked）
+          python3 bin/pre_push_check.py
           git add -A
-          git diff --cached --quiet && echo "無變更" || \
-            git commit -m "chore(data): $(date +%Y-%m) 半年完整校驗" && git push
+          if git diff --cached --quiet; then
+            echo "無變更"
+          else
+            python3 bin/pre_push_check.py --staged
+            N=$(python3 -c "import json;d=json.load(open('data/build/fetch_events.json'));print(len(d['events']))" 2>/dev/null || echo "?")
+            git commit -m "chore(data): $(date +%Y-%m) 半年完整校驗 — ${N} 個章節異動"
+            git push
+          fi
 
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: pnpm install --frozen-lockfile
+      # ★ GITHUB_TOKEN 的 push 不會觸發其他 workflow（GitHub 防遞迴），build+deploy 必須併在這裡
       - run: pnpm build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
-        with: { path: ./dist }
+        with:
+          path: ./dist
 
+      # 已有未關閉的同類 issue → 留言追加，不重複開；附上 pipeline 記下的失敗原因
       - name: 失敗時開 issue
         if: failure()
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.issues.create({
-              owner: context.repo.owner, repo: context.repo.repo,
-              title: `❌ ${new Date().toISOString().slice(0,7)} 半年完整校驗失敗`,
-              body: `完整重抓或閘門失敗，資料未更新。\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-            });
+            const fs = require('fs');
+            const f = 'data/build/.staging/pipeline_error.txt';
+            const why = fs.existsSync(f) ? fs.readFileSync(f, 'utf8').trim() : '（pipeline 之前的步驟就失敗了，看 Run log）';
+            const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `資料未更新（fail-closed，正式檔案未被修改），網站維持上一版。\n\n失敗原因：${why}\n\n健保署會間歇擋 GitHub runner；急用可在本機 \`make refresh\`。\n\nRun: ${run}`;
+            const { owner, repo } = context.repo;
+            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
+            const prev = open.data.find((i) => i.title.endsWith('半年完整校驗失敗'));
+            if (prev) await github.rest.issues.createComment({ owner, repo, issue_number: prev.number, body: `${new Date().toISOString().slice(0,10)} 再次失敗\n\n${body}` });
+            else await github.rest.issues.create({ owner, repo, title: `❌ ${new Date().toISOString().slice(0,7)} 半年完整校驗失敗`, body });
 
   deploy:
-    needs: full
+    needs: refresh
     runs-on: ubuntu-latest
     environment:
       name: github-pages
